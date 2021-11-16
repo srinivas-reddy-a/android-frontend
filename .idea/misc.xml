@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.15" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/activity_home_navigation.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/activity_main.xml" value="0.12590579710144928" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/app_bar_home_navigation.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/content_home_navigation.xml" value="0.12590579710144928" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/fragment_bottom_notification.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/fragment_gallery.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/fragment_home.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/fragment_slideshow.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/nav_header_home_navigation.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/menu/activity_main_drawer.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

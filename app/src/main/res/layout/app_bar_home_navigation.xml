@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeNavigationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Arraykart.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.Arraykart.PopupOverlay" >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:layout_gravity="right"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/cart" />
+
+            <ImageView
+                android:layout_gravity="right"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                app:srcCompat="@drawable/ic_baseline_notifications_24" />
+
+            <SearchView
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="50sp"
+                android:queryHint="Search Arraykart.in"
+                android:goIcon="@drawable/ic_baseline_search_24"
+                android:searchIcon="@drawable/ic_baseline_search_24" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_home_navigation" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        tools:ignore="SpeakableTextPresentCheck" />
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:id="@+id/frame_layout" />
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:mbn_circleColor="@color/white"
+        app:mbn_selectedIconColor="@color/green"
+        app:mbn_defaultIconColor="@color/white"
+        app:mbn_backgroundBottomColor="@color/green"
+        android:layout_gravity="bottom"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
