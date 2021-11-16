@@ -1,11 +1,16 @@
 package com.example.arraykart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.homeCategoryProduct.HAdapter;
+import com.example.arraykart.homeCategoryProduct.MainModel;
+import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
+import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.example.arraykart.ui.BottomNotificationFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -17,14 +22,27 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arraykart.databinding.ActivityHomeNavigationBinding;
+
+import java.util.ArrayList;
 
 public class HomeNavigationActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeNavigationBinding binding;
     private MeowBottomNavigation meowBottomNavigation;
+
+    //homePageCategoryProductItem
+
+    RecyclerView recyclerView;
+    HAdapter hAdapter;
+    ArrayList<MainModel> maiModel;
+
+    //homePageCategoryProductItem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +115,37 @@ public class HomeNavigationActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //homePageCategoryProductItem
+        recyclerView=findViewById(R.id.recyclerView);
+
+        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
+        String[] name = {"name","name","name","name"};
+        String[] price ={"price","price","price","price"};
+
+        maiModel = new ArrayList<>();
+        for(int i=0;i< name.length;i++){
+            MainModel model = new MainModel(name[i],price[i],imgs[i]);
+            maiModel.add(model);
+        }
+        LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        hAdapter = new HAdapter(this,maiModel);
+        recyclerView.setAdapter(hAdapter);
+
+        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+            @Override
+            public void onClickListener(int position) {
+                for(int i=0;i<imgs.length;i++){
+                    if(position==i){
+                        startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                    }
+                }
+            }
+        });
+
+        //HomeCategoryProductItem
     }
 
     private void loadFragment(Fragment fragment) {
@@ -119,6 +168,13 @@ public class HomeNavigationActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_navigation);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    //button for MoreCategoryProduct
+
+    public void MoreItem(View view){
+        Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
+        startActivity(in);
     }
 
 

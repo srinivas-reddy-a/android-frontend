@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">
         <activity
+            android:name=".homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct"
+            android:exported="false" />
+        <activity
+            android:name=".homeCategoryProduct.moreProductCategory.moreCategoryProducts"
+            android:exported="false" />
+        <activity
             android:name=".HomeNavigationActivity"
             android:exported="false"
             android:label="@string/title_activity_home_navigation"
