@@ -80,6 +80,8 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(R.layout.item_frame_single_product, parent, false);
+
+    // it will help take item from single product and put that item in this page
             try{
                 ImageView cImg = view.findViewById(R.id.gridImage);
                 TextView txt = view.findViewById(R.id.gridText);

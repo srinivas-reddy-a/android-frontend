@@ -42,13 +42,14 @@ public class moreCategoryProducts extends AppCompatActivity {
 
         MyAdapter adapter = new MyAdapter(this,fTitle,fDescription,fRate,fPrice,images);
         listView.setAdapter(adapter);
+
+//      this helps click on every item present in more_products_category_page and open new activity of all item_product
         try {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     for (int i = 0; i < images.length; i++) {
                         if (position == i) {
-                            Toast.makeText(moreCategoryProducts.this, "new page", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(moreCategoryProducts.this, ItemsForSingleProduct.class));
                         }
                     }
@@ -81,6 +82,8 @@ public class moreCategoryProducts extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater =(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View More_item = layoutInflater.inflate(R.layout.products_category_morepage_item,parent,false);
+
+    //     it will help to take the item and put that item in more_product_category_page
             try {
                 ImageView images = More_item.findViewById(R.id.imageView);
                 TextView myTitle = More_item.findViewById(R.id.textView3);

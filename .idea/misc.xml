@@ -21,10 +21,17 @@
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/drawable/ribbon_shape_new_product.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/drawable/selector_wishlist_heart.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/drawable/shape.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/activity_home_navigation.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/activity_main.xml" value="0.11367753623188406" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/app_bar_home_navigation.xml" value="0.10144927536231885" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/content_home_navigation.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_bottom_notification.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_home.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_slideshow.xml" value="0.11367753623188406" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/item_frame_single_product.xml" value="0.11956521739130435" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/items_for_single_product.xml" value="0.11956521739130435" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/more_category_products.xml" value="0.1796875" />
+        <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/nav_header_home_navigation.xml" value="0.11367753623188406" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/products_category_homepage_item.xml" value="0.15353260869565216" />
         <entry key="..\:/Users/sachi/AndroidStudioProjects/android-frontend/app/src/main/res/layout/products_category_morepage_item.xml" value="0.11956521739130435" />
       </map>

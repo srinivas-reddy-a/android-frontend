@@ -117,6 +117,7 @@ public class HomeNavigationActivity extends AppCompatActivity {
         });
 
         //homePageCategoryProductItem
+
         recyclerView=findViewById(R.id.recyclerView);
 
         int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
@@ -124,9 +125,13 @@ public class HomeNavigationActivity extends AppCompatActivity {
         String[] price ={"price","price","price","price"};
 
         maiModel = new ArrayList<>();
-        for(int i=0;i< name.length;i++){
-            MainModel model = new MainModel(name[i],price[i],imgs[i]);
-            maiModel.add(model);
+        try {
+            for (int i = 0; i < name.length; i++) {
+                MainModel model = new MainModel(name[i], price[i], imgs[i]);
+                maiModel.add(model);
+            }
+        }catch(Exception e){
+
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -134,16 +139,24 @@ public class HomeNavigationActivity extends AppCompatActivity {
         hAdapter = new HAdapter(this,maiModel);
         recyclerView.setAdapter(hAdapter);
 
-        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-            @Override
-            public void onClickListener(int position) {
-                for(int i=0;i<imgs.length;i++){
-                    if(position==i){
-                        startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+//      this helps click on every item present in home_products_category and open new activity of all item_product
+        try {
+            hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+                @Override
+                public void onClickListener(int position) {
+                    for (int i = 0; i < imgs.length; i++) {
+                        if (position == i) {
+                            startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                        }
                     }
                 }
-            }
-        });
+            });
+
+        }catch(Exception e){
+
+        }
+
+
 
         //HomeCategoryProductItem
     }
