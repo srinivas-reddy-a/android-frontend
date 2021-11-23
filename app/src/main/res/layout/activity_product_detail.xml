@@ -15,7 +15,7 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
 
@@ -28,7 +28,7 @@
                 android:layout_height="?attr/actionBarSize">
 
                 <ImageView
-                    android:id="@+id/back_more"
+                    android:id="@+id/back_all_products"
                     android:layout_width="35sp"
                     android:layout_height="35sp"
                     android:layout_gravity="left"
@@ -56,40 +56,54 @@
                     android:searchIcon="@drawable/ic_baseline_search_24"
                     tools:layout_editor_absoluteX="328dp"
                     tools:layout_editor_absoluteY="3dp" />
-
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <include
+        layout="@layout/product_detail_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/white"
-            tools:context=".homeCategoryProduct.moreProductCategory.moreCategoryProducts">
-
-            <ListView
-                android:id="@+id/listView"
+        tools:context=".ProductDetailActivity">
+            <LinearLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:divider="@null"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:padding="10sp"
+                    android:text="ADD TO CART"
+                    android:textSize="20sp"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#D13F34"
+                    android:padding="10sp"
+                    android:text="BUY NOW"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

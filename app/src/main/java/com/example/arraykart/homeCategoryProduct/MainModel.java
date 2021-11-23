@@ -10,6 +10,11 @@ public class MainModel {
         this.imgs = imgs;
     }
 
+    public MainModel(int imgs, String name) {
+        this.imgs = imgs;
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

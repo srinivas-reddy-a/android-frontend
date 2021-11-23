@@ -4,8 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
@@ -15,6 +21,7 @@ import com.example.arraykart.ui.BottomNotificationFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,7 +35,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arraykart.databinding.ActivityHomeNavigationBinding;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeNavigationActivity extends AppCompatActivity {
 
@@ -145,7 +155,26 @@ public class HomeNavigationActivity extends AppCompatActivity {
             }
         });
 
-        //HomeCategoryProductItem
+        ImageSlider imageSlider = findViewById(R.id.imageSlider2);
+        List<SlideModel> slideModelList = new ArrayList<>();
+        slideModelList.add(new SlideModel(R.drawable.offer));
+        slideModelList.add(new SlideModel(R.drawable.offer));
+        slideModelList.add(new SlideModel(R.drawable.offer));
+        slideModelList.add(new SlideModel(R.drawable.offer));
+        slideModelList.add(new SlideModel(R.drawable.offer));
+
+        imageSlider.setImageList(slideModelList, true);
+
+
+        LinearLayout brandsv = findViewById(R.id.brandsv);
+        View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+        ImageView isv = v.findViewById(R.id.imageView2);
+        isv.setImageResource(R.drawable.img);
+        TextView tsv = v.findViewById(R.id.textView2);
+        tsv.setText("allo");
+        brandsv.addView(v);
+        brandsv.addView(v);
+        brandsv.addView(v);
     }
 
     private void loadFragment(Fragment fragment) {
