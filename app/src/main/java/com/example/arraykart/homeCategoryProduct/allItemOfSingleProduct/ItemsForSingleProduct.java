@@ -4,21 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 
 public class ItemsForSingleProduct extends AppCompatActivity {
 
     GridView gridView;
-
+    ImageView back_all_products;
     String[] name = {"Herbicides", "Insecticides",
             "Insecticides", "name", "name","name", "name", "name", "name", "name"};
 
@@ -41,6 +46,18 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
         GridAdapter gridAdapter = new GridAdapter(this, name, price, rate, ribbon, imgs);
         gridView.setAdapter(gridAdapter);
+
+        try{
+            back_all_products=findViewById(R.id.back_all_products);
+            back_all_products.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }catch (Exception e){
+
+        }
     }
     public class GridAdapter extends BaseAdapter {
         Context context;
@@ -104,6 +121,20 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         }catch(Exception ex){
 
         }
+            try {
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (int i = 0; i < imgs.length; i++) {
+                            if (position == i) {
+                                startActivity(new Intent(ItemsForSingleProduct.this, ProductDetailActivity.class));
+                            }
+                        }
+                    }
+                });
+            }catch(Exception e){
+
+            }
 
             return view;
 

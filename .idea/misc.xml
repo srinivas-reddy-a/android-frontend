@@ -3,6 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/activity_product_detail.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/app_bar_home_navigation.xml" value="0.11956521739130435" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/content_home_navigation.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_bottom_notification.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_gallery.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_home.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/fragment_slideshow.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/home_brand.xml" value="0.67" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/item_frame_single_product.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/items_for_single_product.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/more_category_products.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/product_detail_body.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/products_category_homepage_item.xml" value="0.18568840579710144" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/android-frontend/app/src/main/res/layout/products_category_morepage_item.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.15" />
         <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.2203125" />
         <entry key="..\:/Users/Admin/arraykart2/app/src/main/res/layout/activity_home_navigation.xml" value="0.11956521739130435" />

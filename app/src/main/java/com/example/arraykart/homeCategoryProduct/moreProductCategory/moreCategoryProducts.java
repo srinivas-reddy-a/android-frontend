@@ -23,6 +23,7 @@ import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsFor
 public class moreCategoryProducts extends AppCompatActivity {
 
     ListView listView ;
+    ImageView back_more;
     String fTitle[] = {"Herbicides","Insecticides","Fungicides","Water fertilizer",
             "Seeds","Herbicides","Insecticides","Fungicides","Water fertilizer","Seeds"};
     String fDescription[]={"Herbicides Description","Insecticides Description","Fungicides Description",
@@ -57,6 +58,17 @@ public class moreCategoryProducts extends AppCompatActivity {
                 }
             });
         }catch(Exception e){
+
+        }
+        try{
+            back_more = findViewById(R.id.back_more);
+            back_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }catch (Exception e){
 
         }
     }
