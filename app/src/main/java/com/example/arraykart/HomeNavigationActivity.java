@@ -18,6 +18,7 @@ import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.example.arraykart.ui.BottomNotificationFragment;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -111,8 +112,11 @@ public class HomeNavigationActivity extends AppCompatActivity {
         meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-                if(item.getId()!=2){
+                if(item.getId()==1){
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                }
+                if(item.getId()==3){
+                    showSignIn();
                 }
 
             }
@@ -120,8 +124,11 @@ public class HomeNavigationActivity extends AppCompatActivity {
         meowBottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
-                if(item.getId()!=2){
+                if(item.getId()==1){
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                }
+                if(item.getId()==3){
+                    showSignIn();
                 }
             }
         });
@@ -166,15 +173,49 @@ public class HomeNavigationActivity extends AppCompatActivity {
         imageSlider.setImageList(slideModelList, true);
 
 
-        LinearLayout brandsv = findViewById(R.id.brandsv);
-        View v = getLayoutInflater().inflate(R.layout.home_brand, null);
-        ImageView isv = v.findViewById(R.id.imageView2);
-        isv.setImageResource(R.drawable.img);
-        TextView tsv = v.findViewById(R.id.textView2);
-        tsv.setText("allo");
-        brandsv.addView(v);
-        brandsv.addView(v);
-        brandsv.addView(v);
+
+        for(int i=1;i<9;i++){
+            LinearLayout categoryhsv = findViewById(R.id.horizontalscrollview);
+            View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+            ImageView isv = v.findViewById(R.id.imageView2);
+            isv.setImageResource(R.drawable.img);
+            TextView tsv = v.findViewById(R.id.textView2);
+            tsv.setText("Category"+i);
+            isv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                }
+            });
+            categoryhsv.addView(v);
+        }
+        for(int i=1;i<9;i++){
+            LinearLayout brandhsv = findViewById(R.id.horizontalscrollview2);
+            View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+            ImageView isv = v.findViewById(R.id.imageView2);
+            isv.setImageResource(R.drawable.img);
+            TextView tsv = v.findViewById(R.id.textView2);
+            tsv.setText("brand"+i);
+            isv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                }
+            });
+            brandhsv.addView(v);
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        meowBottomNavigation.show(2, true);
+    }
+
+    private void showSignIn() {
+        startActivity(new Intent(HomeNavigationActivity.this, Signin.class));
+
     }
 
     private void loadFragment(Fragment fragment) {
