@@ -35,6 +35,15 @@
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="3dp" />
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35sp"
+                    android:layout_marginLeft="40sp"
+                    android:text="Product Details"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/cart_product_detail_page"
@@ -58,6 +67,8 @@
                     tools:layout_editor_absoluteX="328dp"
                     tools:layout_editor_absoluteY="3dp" />
             </androidx.appcompat.widget.Toolbar>
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -35,15 +35,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="136dp"
+            <ImageView
+                android:id="@+id/companynameiv"
+                android:layout_width="136sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="arraykart"
-                android:textColor="#FFFFFF"
-                android:textSize="34sp" />
+                app:srcCompat="@drawable/company_name" />
 
             <ImageView
                 android:id="@+id/logo"
@@ -159,9 +156,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
+            android:layout_marginEnd="61dp"
             android:text="Sign in"
             android:textColor="#3084C5"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
 
@@ -170,9 +169,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
+            android:padding="5sp"
             android:text="By signing up. you agree to Arraykart's Terms of Use and Privacy Policy"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView21"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
 
