@@ -16,6 +16,12 @@
             android:exported="false" />
         <activity
             android:name=".Signin"
+            android:exported="false"/>
+        <activity
+            android:name=".MyOrder.MyOrder"
+            android:exported="false" />
+        <activity
+            android:name=".MyCart.MYCartActivity"
             android:exported="false" />
         <activity
             android:name=".ProductDetailActivity"

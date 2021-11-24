@@ -37,6 +37,7 @@
                     tools:layout_editor_absoluteY="3dp" />
 
                 <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/cart_product_detail_page"
                     android:layout_width="35sp"
                     android:layout_height="35sp"
                     android:layout_gravity="right"

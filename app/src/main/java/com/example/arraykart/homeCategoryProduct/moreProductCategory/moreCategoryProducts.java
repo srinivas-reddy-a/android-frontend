@@ -17,23 +17,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.arraykart.HomeNavigationActivity;
+import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 
 public class moreCategoryProducts extends AppCompatActivity {
 
-    ListView listView ;
-    ImageView back_more;
-    String fTitle[] = {"Herbicides","Insecticides","Fungicides","Water fertilizer",
+    private ListView listView ;
+    private ImageView back_more;
+    private String fTitle[] = {"Herbicides","Insecticides","Fungicides","Water fertilizer",
             "Seeds","Herbicides","Insecticides","Fungicides","Water fertilizer","Seeds"};
-    String fDescription[]={"Herbicides Description","Insecticides Description","Fungicides Description",
+    private  String fDescription[]={"Herbicides Description","Insecticides Description","Fungicides Description",
             "Water fertilizer Description","Seed Description","Herbicides Description","Insecticides Description",
             "Fungicides Description","Water fertilizer Description","Seed Description"};
-    String fRate[] ={"4.2 r","4.3 r","4.4 r","4.5 r","4.6 r","4.2 r","4.3 r","4.4 r","4.5 r","4.6 r"};
-    String fPrice[] ={"price","price","price","price","price","price","price","price","price","price"};
-    int images[] ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,
+    private String fRate[] ={"4.2 r","4.3 r","4.4 r","4.5 r","4.6 r","4.2 r","4.3 r","4.4 r","4.5 r","4.6 r"};
+    private String fPrice[] ={"price","price","price","price","price","price","price","price","price","price"};
+    private int images[] ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,
             R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
 
+    ////cart icon on moreProductPage
+    private LottieAnimationView cart_more_products_page;
+    ///cart icon on moreProductsPage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +49,14 @@ public class moreCategoryProducts extends AppCompatActivity {
 
         MyAdapter adapter = new MyAdapter(this,fTitle,fDescription,fRate,fPrice,images);
         listView.setAdapter(adapter);
+
+//      this helps click on every item present in more_products_category_page and open new activity of all item_product
         try {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     for (int i = 0; i < images.length; i++) {
                         if (position == i) {
-                            Toast.makeText(moreCategoryProducts.this, "new page", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(moreCategoryProducts.this, ItemsForSingleProduct.class));
                         }
                     }
@@ -59,6 +66,7 @@ public class moreCategoryProducts extends AppCompatActivity {
         }catch(Exception e){
 
         }
+        ///back on more_page
         try{
             back_more = findViewById(R.id.back_more);
             back_more.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +78,24 @@ public class moreCategoryProducts extends AppCompatActivity {
         }catch (Exception e){
 
         }
+        ////back on more_page
+
+        ///cart icon on more page click
+        ///cart icon clicklistener
+        try {
+            cart_more_products_page = findViewById(R.id.cart_more_page);
+            cart_more_products_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(moreCategoryProducts.this, MYCartActivity.class);
+                    startActivity(in);
+                }
+            });
+        }catch(Exception e){
+
+        }
+        ///cart icon clicklistener
+        ///cart icon on more page click
     }
     class MyAdapter extends ArrayAdapter<String> {
         Context context;
@@ -93,6 +119,8 @@ public class moreCategoryProducts extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater =(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View More_item = layoutInflater.inflate(R.layout.products_category_morepage_item,parent,false);
+
+    //     it will help to take the item and put that item in more_product_category_page
             try {
                 ImageView images = More_item.findViewById(R.id.imageView);
                 TextView myTitle = More_item.findViewById(R.id.textView3);

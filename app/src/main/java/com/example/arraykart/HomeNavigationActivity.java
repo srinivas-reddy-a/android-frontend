@@ -1,18 +1,23 @@
 package com.example.arraykart;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
@@ -46,6 +51,8 @@ public class HomeNavigationActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeNavigationBinding binding;
     private MeowBottomNavigation meowBottomNavigation;
+
+    private LottieAnimationView lottieAnimationView;
 
     //homePageCategoryProductItem
 
@@ -134,6 +141,7 @@ public class HomeNavigationActivity extends AppCompatActivity {
         });
 
         //homePageCategoryProductItem
+
         recyclerView=findViewById(R.id.recyclerView);
 
         int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
@@ -141,9 +149,13 @@ public class HomeNavigationActivity extends AppCompatActivity {
         String[] price ={"price","price","price","price"};
 
         maiModel = new ArrayList<>();
-        for(int i=0;i< name.length;i++){
-            MainModel model = new MainModel(name[i],price[i],imgs[i]);
-            maiModel.add(model);
+        try {
+            for (int i = 0; i < name.length; i++) {
+                MainModel model = new MainModel(name[i], price[i], imgs[i]);
+                maiModel.add(model);
+            }
+        }catch(Exception e){
+
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -151,16 +163,24 @@ public class HomeNavigationActivity extends AppCompatActivity {
         hAdapter = new HAdapter(this,maiModel);
         recyclerView.setAdapter(hAdapter);
 
-        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-            @Override
-            public void onClickListener(int position) {
-                for(int i=0;i<imgs.length;i++){
-                    if(position==i){
-                        startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+//      this helps click on every item present in home_products_category and open new activity of all item_product
+        try {
+            hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+                @Override
+                public void onClickListener(int position) {
+                    for (int i = 0; i < imgs.length; i++) {
+                        if (position == i) {
+                            startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                        }
                     }
                 }
-            }
-        });
+            });
+
+        }catch(Exception e){
+
+        }
+
+
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
         List<SlideModel> slideModelList = new ArrayList<>();
@@ -172,6 +192,30 @@ public class HomeNavigationActivity extends AppCompatActivity {
 
         imageSlider.setImageList(slideModelList, true);
 
+//
+//        LinearLayout brandsv = findViewById(R.id.brandsv);
+//        View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+//        ImageView isv = v.findViewById(R.id.imageView2);
+//        isv.setImageResource(R.drawable.img);
+//        TextView tsv = v.findViewById(R.id.textView2);
+//        tsv.setText("allo");
+//        brandsv.addView(v);
+//        brandsv.addView(v);
+//        brandsv.addView(v);
+
+        ///cart icon clicklistener
+       lottieAnimationView = findViewById(R.id.cartHomePage);
+        lottieAnimationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
+                startActivity(in);
+//                Intent in = new Intent(HomeNavigationActivity.this, MyOrder.class);
+//                startActivity(in);
+            }
+        });
+
+        ///cart icon clicklistener
 
 
         for(int i=1;i<9;i++){
@@ -245,6 +289,7 @@ public class HomeNavigationActivity extends AppCompatActivity {
     public void MoreItem(View view){
         Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
         startActivity(in);
+
     }
 
 
