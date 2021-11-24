@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
+import com.google.android.material.chip.Chip;
 
 public class moreCategoryProducts extends AppCompatActivity {
 
@@ -40,6 +42,7 @@ public class moreCategoryProducts extends AppCompatActivity {
     ////cart icon on moreProductPage
     private LottieAnimationView cart_more_products_page;
     ///cart icon on moreProductsPage
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
