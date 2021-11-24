@@ -16,26 +16,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 
 public class ItemsForSingleProduct extends AppCompatActivity {
 
-    GridView gridView;
-    ImageView back_all_products;
-    String[] name = {"Herbicides", "Insecticides",
+    private GridView gridView;
+    private ImageView back_all_products;
+    private String[] name = {"Herbicides", "Insecticides",
             "Insecticides", "name", "name","name", "name", "name", "name", "name"};
 
-    String[] price = {"2400", "2400", "2400", "2400", "2400","2400", "2400", "2400", "2400", "2400"};
+    private String[] price = {"2400", "2400", "2400", "2400", "2400","2400", "2400", "2400", "2400", "2400"};
 
-    String[] rate = {"4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k",
+    private String[] rate = {"4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k",
             "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k"};
 
-    String[] ribbon ={"new","new","new","new","new","new","new","new","new","new"};
+    private String[] ribbon ={"new","new","new","new","new","new","new","new","new","new"};
 
-    int[] imgs = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img,R.drawable.img,
+    private int[] imgs = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img,R.drawable.img,
             R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+
+    ///cart icon on item product page
+    private LottieAnimationView cart_item_product_page;
+    ///cart icon on item product page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,19 @@ public class ItemsForSingleProduct extends AppCompatActivity {
                 }
             });
         }catch (Exception e){
+
+        }
+
+        try {
+            cart_item_product_page = findViewById(R.id.cart_item_product_page);
+            cart_item_product_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(ItemsForSingleProduct.this, MYCartActivity.class);
+                    startActivity(in);
+                }
+            });
+        }catch(Exception e){
 
         }
     }

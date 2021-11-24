@@ -1,18 +1,23 @@
 package com.example.arraykart;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
@@ -45,6 +50,8 @@ public class HomeNavigationActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeNavigationBinding binding;
     private MeowBottomNavigation meowBottomNavigation;
+
+    private LottieAnimationView lottieAnimationView;
 
     //homePageCategoryProductItem
 
@@ -178,16 +185,31 @@ public class HomeNavigationActivity extends AppCompatActivity {
 
         imageSlider.setImageList(slideModelList, true);
 
+//
+//        LinearLayout brandsv = findViewById(R.id.brandsv);
+//        View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+//        ImageView isv = v.findViewById(R.id.imageView2);
+//        isv.setImageResource(R.drawable.img);
+//        TextView tsv = v.findViewById(R.id.textView2);
+//        tsv.setText("allo");
+//        brandsv.addView(v);
+//        brandsv.addView(v);
+//        brandsv.addView(v);
 
-        LinearLayout brandsv = findViewById(R.id.brandsv);
-        View v = getLayoutInflater().inflate(R.layout.home_brand, null);
-        ImageView isv = v.findViewById(R.id.imageView2);
-        isv.setImageResource(R.drawable.img);
-        TextView tsv = v.findViewById(R.id.textView2);
-        tsv.setText("allo");
-        brandsv.addView(v);
-        brandsv.addView(v);
-        brandsv.addView(v);
+        ///cart icon clicklistener
+       lottieAnimationView = findViewById(R.id.cartHomePage);
+        lottieAnimationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
+                startActivity(in);
+//                Intent in = new Intent(HomeNavigationActivity.this, MyOrder.class);
+//                startActivity(in);
+            }
+        });
+
+        ///cart icon clicklistener
+
     }
 
     private void loadFragment(Fragment fragment) {
@@ -217,6 +239,7 @@ public class HomeNavigationActivity extends AppCompatActivity {
     public void MoreItem(View view){
         Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
         startActivity(in);
+
     }
 
 
