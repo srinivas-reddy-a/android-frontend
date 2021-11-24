@@ -11,16 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.arraykart.Filter.BottomSheetFragment;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.Sort.BottomSheetFragmentSort;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
+import com.google.android.material.chip.Chip;
 
 public class ItemsForSingleProduct extends AppCompatActivity {
 
@@ -42,6 +46,12 @@ public class ItemsForSingleProduct extends AppCompatActivity {
     ///cart icon on item product page
     private LottieAnimationView cart_item_product_page;
     ///cart icon on item product page
+
+    ///filter for page
+    private Button filterBtn;
+    private Button sortBtn;
+    private Chip chip1;
+    ///filter fo page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +87,25 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         }catch(Exception e){
 
         }
+        //bottom sheet for filter and sort
+
+        filterBtn = findViewById(R.id.filterButton);
+        sortBtn = findViewById(R.id.sortButton);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
+                bottomSheetFragment.show(getSupportFragmentManager(),"TAG");
+            }
+        });
+        sortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetFragmentSort bottomSheetFragmentSort = new BottomSheetFragmentSort();
+                bottomSheetFragmentSort.show(getSupportFragmentManager(),"TAG");
+            }
+        });
+        //bottom sheet for filter and sort
     }
     public class GridAdapter extends BaseAdapter {
         Context context;
@@ -117,8 +146,8 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(R.layout.item_frame_single_product, parent, false);
 
-    // it will help take item from single product and put that item in this page
-            try{
+            // it will help take item from single product and put that item in this page
+            try {
                 ImageView cImg = view.findViewById(R.id.gridImage);
                 TextView txt = view.findViewById(R.id.gridText);
                 TextView prc = view.findViewById(R.id.priceGrid);
@@ -130,16 +159,16 @@ public class ItemsForSingleProduct extends AppCompatActivity {
                 prc.setText(price[position]);
                 rt.setText(rate[position]);
 
-                if(position >=0 && position<=2){
+                if (position >= 0 && position <= 2) {
                     rb.setText(ribbon[position]);
-                }else{
+                } else {
                     rb.setBackgroundResource(R.color.white);
                     rb.setText(null);
                 }
 
-        }catch(Exception ex){
+            } catch (Exception ex) {
 
-        }
+            }
             try {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -151,13 +180,14 @@ public class ItemsForSingleProduct extends AppCompatActivity {
                         }
                     }
                 });
-            }catch(Exception e){
+            } catch (Exception e) {
 
             }
 
             return view;
+        }
 
 
     }
-}
+
 }

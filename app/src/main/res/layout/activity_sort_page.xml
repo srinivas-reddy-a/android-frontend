@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sort.sortPage">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="1dp"
+        android:paddingLeft="5dp"
+        android:text="Sort by"
+        android:textColor="#100F0F"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.chip.ChipGroup
+
+        android:id="@+id/chipFilter1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="2dp"
+        android:paddingStart="10dp"
+        app:chipSpacing="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:singleSelection="false"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip1.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            style="@style/CustomChipStyle"
+            android:text="Trending" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            style="@style/CustomChipStyle"
+            android:text="NewArrival" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip3.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomChipStyle"
+            android:text="Best selling" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:padding="1dp"
+        android:paddingLeft="5dp"
+        android:text="Cost"
+        android:textColor="#100F0F"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipFilter1"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.chip.ChipGroup
+
+        android:id="@+id/chipFilter2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="2dp"
+        android:paddingStart="10dp"
+        app:chipSpacing="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:singleSelection="false"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip1.3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            style="@style/CustomChipStyle"
+            android:text="Low to High" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2.3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            style="@style/CustomChipStyle"
+            android:text="High to Low" />
+
+    </com.google.android.material.chip.ChipGroup>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#F12A2A"
+        android:text="Search"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipFilter2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
