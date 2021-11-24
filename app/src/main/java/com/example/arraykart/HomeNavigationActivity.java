@@ -1,10 +1,16 @@
 package com.example.arraykart;
 
 import android.animation.Animator;
+import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -27,7 +33,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -46,7 +54,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeNavigationActivity extends AppCompatActivity {
+public class HomeNavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeNavigationBinding binding;
@@ -61,6 +69,9 @@ public class HomeNavigationActivity extends AppCompatActivity {
     ArrayList<MainModel> maiModel;
 
     //homePageCategoryProductItem
+
+    private MenuItem items ;
+    private  Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +100,29 @@ public class HomeNavigationActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        meowBottomNavigation = findViewById(R.id.bottom_navigation);
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
+                meowBottomNavigation = findViewById(R.id.bottom_navigation);
         meowBottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_baseline_agriculture_24));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_baseline_home_24));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_account_circle_24));
@@ -249,6 +282,12 @@ public class HomeNavigationActivity extends AppCompatActivity {
             brandhsv.addView(v);
         }
 
+
+
+
+        // item = findViewById(R.id.nav_slideshow);
+
+
     }
 
     @Override
@@ -273,9 +312,26 @@ public class HomeNavigationActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_navigation, menu);
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if (id == R.id.nav_slideshow) {
+//            Intent intent1 = new Intent(this,MyOrder.class);
+//            this.startActivity(intent1);
+//            return true;
+//        }
+//
+////            if (id == R.id.settings) {
+////                Toast.makeText(this, "Setting", Toast.LENGTH_LONG).show();
+////                return true;
+////            }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -293,4 +349,29 @@ public class HomeNavigationActivity extends AppCompatActivity {
     }
 
 
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_slideshow) {
+//            items = findViewById(R.id.nav_slideshow);
+//
+//            items.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//                @Override
+//                public boolean onMenuItemClick(MenuItem item) {
+//                    startActivity(new Intent(HomeNavigationActivity.this,MyOrder.class));
+//                    return true;
+//                }
+//            });
+
+
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

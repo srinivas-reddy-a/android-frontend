@@ -1,5 +1,6 @@
 package com.example.arraykart.ui.slideshow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.R;
 import com.example.arraykart.databinding.FragmentSlideshowBinding;
 
@@ -43,4 +45,5 @@ public class SlideshowFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }
