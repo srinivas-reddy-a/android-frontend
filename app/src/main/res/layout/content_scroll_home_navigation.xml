@@ -117,6 +117,85 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/banner_slider_view_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="230dp"
+                android:foregroundGravity="center"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageSlider2"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/editText1.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:text="Good suggestions"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="NotSibling" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button1"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/white"
+                android:onClick="MoreItem"
+                android:text="...more"
+                android:textAllCaps="false"
+                android:textColor="#7BB7E6"
+                android:textSize="15dp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20sp">
 
             <com.airbnb.lottie.LottieAnimationView
@@ -144,10 +223,47 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint1.2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/editText1.2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:text="Head Title"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="NotSibling" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <GridView
+                android:id="@+id/gridView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:numColumns="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50sp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:fillViewport="true"
             android:paddingLeft="20sp"
             android:paddingTop="0sp"
@@ -160,8 +276,50 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="50sp" />
+                android:paddingBottom="20sp" />
         </HorizontalScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint1.3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+            <TextView
+                android:id="@+id/editText1.3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:padding="5dp"
+                android:text="Head Title"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="NotSibling" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="530dp"
+            android:layout_marginBottom="50dp">
+            <GridView
+                android:id="@+id/gridView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:numColumns="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </LinearLayout>

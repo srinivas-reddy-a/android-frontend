@@ -5,13 +5,16 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,10 +25,13 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.BannerSlider.SliderAdapter;
+import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
+import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.example.arraykart.ui.BottomNotificationFragment;
@@ -46,6 +52,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.arraykart.databinding.ActivityHomeNavigationBinding;
 
@@ -53,6 +60,8 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeNavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,14 +73,44 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     //homePageCategoryProductItem
 
-    RecyclerView recyclerView;
-    HAdapter hAdapter;
-    ArrayList<MainModel> maiModel;
+    private  RecyclerView recyclerView;
+    private  HAdapter hAdapter;
+    private ArrayList<MainModel> maiModel;
+    private RecyclerView recyclerView1;
+
 
     //homePageCategoryProductItem
 
     private MenuItem items ;
     private  Context context;
+
+    ///grid view on home page
+    private GridView gridView;
+    private GridView gridView2;
+
+    private String[] name = {"Herbicides", "Insecticides",
+            "Insecticides", "name"};
+
+    private String[] price = {"2400", "2400", "2400", "2400"};
+
+    private String[] rate = {"4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k"};
+
+    private String[] ribbon ={"new","new","new","new"};
+
+    private int[] imgs = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+
+    //grid view on home page
+
+    //banner slider on home page
+    private ViewPager bannerSliderViewPager;
+
+    private SliderAdapter sliderAdapter;
+    private ArrayList<SliderModel> sliderModels;
+    private int currentPage=2;
+    private Timer timer;
+    final private  long DELAY_TIME =3000;
+    final private  long PERIOD_TIME = 3000;
+    //banner slider on home page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +215,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         //homePageCategoryProductItem
 
         recyclerView=findViewById(R.id.recyclerView);
+        recyclerView1 = findViewById(R.id.recyclerView1);
 
         int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
         String[] name = {"name","name","name","name"};
@@ -196,6 +236,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         hAdapter = new HAdapter(this,maiModel);
         recyclerView.setAdapter(hAdapter);
 
+        LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView1.setLayoutManager(layoutManagers);
+        recyclerView1.setItemAnimator(new DefaultItemAnimator());
+        HAdapter hAdapters = new HAdapter(this,maiModel);
+        recyclerView1.setAdapter(hAdapters);
+
+
 //      this helps click on every item present in home_products_category and open new activity of all item_product
         try {
             hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
@@ -214,6 +261,19 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         }
 
 
+        ///1st grid view for home page
+        gridView = findViewById(R.id.gridView1);
+
+        GridViewAdapter gridAdapter = new GridViewAdapter(this, name, price, rate, ribbon, imgs);
+        gridView.setAdapter(gridAdapter);
+        ///1nd grid view for home page
+
+        ///2nd grid view for home page
+        gridView2 = findViewById(R.id.gridView2);
+
+        GridViewAdapter gridAdapters = new GridViewAdapter(this, name, price, rate, ribbon, imgs);
+        gridView2.setAdapter(gridAdapters);
+        ///2nd grid view for home page
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
         List<SlideModel> slideModelList = new ArrayList<>();
@@ -287,8 +347,104 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         // item = findViewById(R.id.nav_slideshow);
 
+        //bannerSlider on home page
+        bannerSliderViewPager = findViewById(R.id.banner_slider_view_pager);
+
+        localCard();
+        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage=position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if(state==ViewPager.SCROLL_STATE_IDLE){
+                    pageLooper();
+                }
+            }
+        };
+        bannerSliderViewPager.addOnPageChangeListener(onPageChangeListener);
+
+        startBannerSlideShow();
+
+        bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                pageLooper();
+                stopBannerSlideShow();
+                if(event.getAction()==MotionEvent.ACTION_UP){
+                    startBannerSlideShow();
+                }
+                return false;
+            }
+        });
+        //bannerSlider on home page
+
 
     }
+    //function for bannerSlider
+    private void localCard(){
+        sliderModels =  new ArrayList<>();
+
+        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.img));
+
+
+        sliderAdapter = new SliderAdapter(sliderModels);
+
+        bannerSliderViewPager.setClipToPadding(false);
+        bannerSliderViewPager.setPageMargin(20);
+
+        bannerSliderViewPager.setAdapter(sliderAdapter);
+        bannerSliderViewPager.setPadding(100,0,100,0);
+    }
+
+    private void pageLooper(){
+        if(currentPage== sliderModels.size()-2){
+            currentPage=2;
+            bannerSliderViewPager.setCurrentItem(currentPage,false);
+        }
+        if(currentPage== 1){
+            currentPage=sliderModels.size()-3;
+            bannerSliderViewPager.setCurrentItem(currentPage,false);
+        }
+    }
+
+    private void startBannerSlideShow(){
+        Handler handler = new Handler();
+        Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                if(currentPage>= sliderModels.size()){
+                    currentPage=1;
+                }
+                bannerSliderViewPager.setCurrentItem(currentPage++,true);
+            }
+        };
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(update);
+            }
+        },DELAY_TIME,PERIOD_TIME);
+    }
+
+    private void stopBannerSlideShow(){
+        timer.cancel();
+    }
+    //function for bannerSlider
 
     @Override
     protected void onStart() {

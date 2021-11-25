@@ -33,6 +33,14 @@
                 app:strokeColor="#FF777777"
                 app:strokeWidth="1dp">
 
+                <CheckBox
+                    android:id="@+id/wishList"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:button="@drawable/selector_wishlist_heart"
+                    app:useMaterialThemeColors="false"
+                    tools:ignore="TouchTargetSizeCheck" />
+
             </com.synnapps.carouselview.CarouselView>
 
             <TextView
