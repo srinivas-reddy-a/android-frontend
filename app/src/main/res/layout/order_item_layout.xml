@@ -83,8 +83,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rating_container"
+    <LinearLayout
+        android:id="@+id/rating_containers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -104,10 +104,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_star_rate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_star_rate" />
 
         <ImageView
             android:id="@+id/ratingStar2"
@@ -116,10 +113,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_star_rate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ratingStar1"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_star_rate" />
 
         <ImageView
             android:id="@+id/ratingStar3"
@@ -128,10 +122,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_star_rate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ratingStar2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_star_rate" />
 
         <ImageView
             android:id="@+id/ratingStar4"
@@ -141,9 +132,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_star_rate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ratingStar3"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
         <ImageView
             android:id="@+id/ratingStar5"
@@ -154,11 +143,8 @@
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_star_rate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ratingStar4"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

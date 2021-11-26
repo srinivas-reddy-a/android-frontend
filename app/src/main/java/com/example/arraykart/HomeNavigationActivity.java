@@ -499,7 +499,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     //button for MoreCategoryProduct
 
     public void MoreItem(View view){
-        Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
+        Intent in = new Intent(HomeNavigationActivity.this, MyOrder.class);
         startActivity(in);
 
     }

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">
         <activity
+            android:name=".MyOrder.OrderDetail"
+            android:exported="false" />
+        <activity
             android:name=".Sort.sortPage"
             android:exported="false" />
         <activity

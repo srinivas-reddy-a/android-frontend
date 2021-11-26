@@ -2,14 +2,18 @@ package com.example.arraykart.MyOrder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.R;
 
 public class MyOrder extends AppCompatActivity {
     private ImageView back_order_page;
+    private LottieAnimationView orderPageCartIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,5 +33,20 @@ public class MyOrder extends AppCompatActivity {
         }catch (Exception e){
 
         }
+        ////cart icon on order page
+        try {
+            orderPageCartIcon = findViewById(R.id.orderPageCartIcon);
+            orderPageCartIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MyOrder.this, MYCartActivity.class));
+                }
+            });
+        }catch(Exception e){
+
+        }
+        ////cart icon on order page
     }
+
+
 }

@@ -7,19 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-<<<<<<< HEAD
-            <value value="C:\Users\Admin\.android\avd\a.avd" />
-=======
             <value value="C:\Users\sachi\.android\avd\Arraykart.avd" />
->>>>>>> bff622ebdb09b63b865051366351a664083f2e13
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-<<<<<<< HEAD
-    <timeTargetWasSelectedWithDropDown value="2021-11-23T09:49:37.689732300Z" />
-=======
-    <timeTargetWasSelectedWithDropDown value="2021-11-17T05:53:30.295012600Z" />
->>>>>>> bff622ebdb09b63b865051366351a664083f2e13
+    <timeTargetWasSelectedWithDropDown value="2021-11-26T07:54:52.434473600Z" />
   </component>
 </project>
