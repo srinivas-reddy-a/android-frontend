@@ -29,6 +29,7 @@ import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.MyOrder.MyOrder;
+import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;

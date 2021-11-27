@@ -1,6 +1,7 @@
 package com.example.arraykart.MyOrder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +10,15 @@ import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
 public class OrderDetail extends AppCompatActivity {
     private ImageView backOrderDetailPage;
 
     private LottieAnimationView orderDetailPageCartIcon;
+
+    private ConstraintLayout detail_container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,18 @@ public class OrderDetail extends AppCompatActivity {
                     startActivity(new Intent(OrderDetail.this, MYCartActivity.class));
                 }
             });
+        }catch (Exception e){
+
+        }
+
+        try{
+         detail_container = findViewById(R.id.detail_container);
+         detail_container.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(OrderDetail.this, ProductDetailActivity.class));
+             }
+         });
         }catch (Exception e){
 
         }

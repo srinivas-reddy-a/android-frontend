@@ -8,65 +8,77 @@
     android:background="#F8F6F6"
     android:elevation="3dp">
 
-    <ImageView
-        android:id="@+id/order_detail_productImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F6F6"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
-
-    <TextView
-        android:id="@+id/order_detail_productTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:padding="2dp"
-        android:text="Product Name"
-        android:maxLines="1"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/order_detail_productPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:padding="2dp"
-        android:text="Rs.49999/-"
-        android:textSize="22sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/order_detail_productImage"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/order_detail_productImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img" />
 
-    <TextView
-        android:id="@+id/order_detail_productQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Qty: 1"
-        android:textColor="#000000"
-        android:background="@drawable/boarder_background"
-        android:padding="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/order_detail_productImage"
-        app:layout_constraintEnd_toStartOf="@+id/order_detail_productImage" />
+        <TextView
+            android:id="@+id/order_detail_productTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:text="Product Name"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/order_detail_productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:padding="2dp"
+            android:text="Rs.49999/-"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/order_detail_productImage"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/order_detail_productQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/boarder_background"
+            android:padding="2dp"
+            android:text="Qty: 1"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/order_detail_productImage"
+            app:layout_constraintEnd_toStartOf="@+id/order_detail_productImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_detail_productPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_container" />
 
     <ImageView
         android:id="@+id/orderIndicator"
