@@ -1,11 +1,13 @@
 package com.example.arraykart.MyOrder;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,7 +52,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         private ImageView deliveryIndicator;
         private TextView productTitle;
         private TextView deliveryStatus;
-        private ConstraintLayout rateContainer ;
+        private LinearLayout rateContainer ;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,7 +60,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             productTitle =itemView.findViewById(R.id.title_orderPage);
             deliveryIndicator =itemView.findViewById(R.id.order_indicator);
             deliveryStatus =itemView.findViewById(R.id.order_delivery_date);
-            rateContainer = itemView.findViewById(R.id.rating_container);
+            rateContainer = itemView.findViewById(R.id.rating_containers);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(itemView.getContext(), OrderDetail.class);
+                    itemView.getContext().startActivity(i);
+                }
+            });
         }
         public void setOrderDetail(int image,String title,String delivery,int rating){
             try {
@@ -90,9 +100,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             try{
                 for(int i = 0;i<rateContainer.getChildCount();i++){
                     ImageView starBar = (ImageView) rateContainer.getChildAt(i);
-                    starBar.setImageTintList(ColorStateList.valueOf(Color.parseColor("##FFFF00")));
+                    starBar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#CCCCCC")));
                     if(i<=starPosition){
-                        starBar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FFFF00")));
+                        starBar.setImageTintList(ColorStateList.valueOf(Color.parseColor("#F9DB22")));
                     }
                 }
             }catch (Exception e){

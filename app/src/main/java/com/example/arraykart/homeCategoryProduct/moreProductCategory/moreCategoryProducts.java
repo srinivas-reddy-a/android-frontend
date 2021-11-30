@@ -29,15 +29,14 @@ public class moreCategoryProducts extends AppCompatActivity {
 
     private ListView listView ;
     private ImageView back_more;
-    private String fTitle[] = {"Herbicides","Insecticides","Fungicides","Water fertilizer",
-            "Seeds","Herbicides","Insecticides","Fungicides","Water fertilizer","Seeds"};
+    private String fTitle[] = {"Herbicides","Insecticides","Fungicides","Water Soluble Fertilizer",
+            "Seeds","Herbicides","Insecticides","Fungicides","Water Soluble Fertilizer","Seeds"};
     private  String fDescription[]={"Herbicides Description","Insecticides Description","Fungicides Description",
-            "Water fertilizer Description","Seed Description","Herbicides Description","Insecticides Description",
+            "Water Soluble Fertilizer Description","Seed Description","Herbicides Description","Insecticides Description",
             "Fungicides Description","Water fertilizer Description","Seed Description"};
     private String fRate[] ={"4.2 r","4.3 r","4.4 r","4.5 r","4.6 r","4.2 r","4.3 r","4.4 r","4.5 r","4.6 r"};
-    private String fPrice[] ={"price","price","price","price","price","price","price","price","price","price"};
-    private int images[] ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,
-            R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
+    private String fPrice[] ={"","","","","","","price","price","price","price"};
+    private int images[] ={R.drawable.categories,R.drawable.categories,R.drawable.categories,R.drawable.watersoluble,R.drawable.categories,R.drawable.categories,R.drawable.categories,R.drawable.categories};
 
     ////cart icon on moreProductPage
     private LottieAnimationView cart_more_products_page;

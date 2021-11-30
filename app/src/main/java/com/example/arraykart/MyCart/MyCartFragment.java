@@ -74,10 +74,10 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         List<CartItemModel> cartItemModelList = new ArrayList<>();
-        cartItemModelList.add(new CartItemModel(0,R.drawable.img,"product name",2,"Rs.49999/-","RS.59999",1,0,0));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.img,"product name",0,"Rs.49999/-","RS.59999",2,1,0));
-        cartItemModelList.add(new CartItemModel(0,R.drawable.img,"product name",1,"Rs.49999/-","RS.59999",3,0,1));
-        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.546877878","Free","RS.342553767"));
+        cartItemModelList.add(new CartItemModel(0,R.drawable.img,"Pesticide1",2,"Rs.---/-","RS.",1,0,0));
+        cartItemModelList.add(new CartItemModel(0,R.drawable.img,"Pesticide2",0,"Rs.---/-","RS.",2,1,0));
+        cartItemModelList.add(new CartItemModel(0,R.drawable.img,"Pesticide3",1,"Rs.---/-","RS.",3,0,1));
+        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.----","Free","RS.-----"));
 
         CartAdapter cartAdapter = new CartAdapter(cartItemModelList);
         cartItemsRecyclerView.setAdapter(cartAdapter);

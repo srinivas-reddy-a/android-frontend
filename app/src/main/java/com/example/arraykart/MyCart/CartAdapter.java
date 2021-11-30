@@ -1,5 +1,6 @@
 package com.example.arraykart.MyCart;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
 import java.util.List;
@@ -100,6 +102,19 @@ public class CartAdapter extends RecyclerView.Adapter {
             offerApplied = itemView.findViewById(R.id.offer_applied);
             couponsApplied = itemView.findViewById(R.id.coupon_applied);
             productQuantity = itemView.findViewById(R.id.product_quantity);
+
+            try{
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(itemView.getContext(), ProductDetailActivity.class);
+                        itemView.getContext().startActivity(i);
+                    }
+                });
+
+            }catch (Exception e){
+
+            }
         }
         private void cartItemDetail(int image,String title,int freeCoupon,String productPriceText,String cuttedPriceText,int offerAppliedNo){
             try {
