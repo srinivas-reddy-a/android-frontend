@@ -5,6 +5,8 @@
     android:id="@+id/filterPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:padding="20sp"
     style="@style/BottomSheetStyle"
     tools:context=".Filter.FilterPage">
 
@@ -13,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:padding="1dp"
-        android:paddingLeft="5dp"
+        android:padding="20sp"
         android:text="cost/kg"
         android:textColor="#100F0F"
         android:textSize="20dp"
@@ -30,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:padding="2dp"
+        android:padding="20sp"
         android:paddingStart="10dp"
         app:chipSpacing="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,37 +42,37 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip1"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="1Kg/200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="2kg/400" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip3"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="3Kg/600" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip4"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="4Kg/800" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip5"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="5kg/1000" />
     </com.google.android.material.chip.ChipGroup>
 
@@ -80,6 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:padding="20sp"
         android:text="cost"
         android:textColor="#171515"
         android:textSize="20dp"
@@ -93,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:padding="2dp"
+        android:padding="20sp"
         app:chipSpacing="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,51 +103,52 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip6"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="100" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip7"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip8"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="300" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip9"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="400" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip10"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="500" />
     </com.google.android.material.chip.ChipGroup>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="#EA3E3E"
+        android:padding="20sp"
         android:text="search"
         android:textColor="#F4ECEC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

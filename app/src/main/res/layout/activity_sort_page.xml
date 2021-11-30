@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20sp"
     tools:context=".Sort.sortPage">
 
     <TextView
@@ -39,25 +40,25 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip1.1"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            style="@style/CustomChipStyle"
             android:text="Trending" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2.1"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            style="@style/CustomChipStyle"
             android:text="NewArrival" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip3.1"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomChipStyle"
             android:text="Best selling" />
     </com.google.android.material.chip.ChipGroup>
 
@@ -94,21 +95,22 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip1.3"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            style="@style/CustomChipStyle"
             android:text="Low to High" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2.3"
+            style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            style="@style/CustomChipStyle"
             android:text="High to Low" />
 
     </com.google.android.material.chip.ChipGroup>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="match_parent"
