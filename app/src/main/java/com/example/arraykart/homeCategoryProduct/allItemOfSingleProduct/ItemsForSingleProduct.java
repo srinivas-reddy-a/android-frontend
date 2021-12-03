@@ -31,9 +31,9 @@ public class ItemsForSingleProduct extends AppCompatActivity {
     private GridView gridView;
     private ImageView back_all_products;
     private String[] name = {"Herbicides", "Insecticides",
-            "Insecticides", "name", "name","name", "name", "name", "name", "name"};
+            "Insecticides", "Pesticides", "name","name", "name", "name", "name", "name"};
 
-    private String[] price = {"2400", "2400", "2400", "2400", "2400","2400", "2400", "2400", "2400", "2400"};
+    private String[] price = {"Price", "Price", "Price", "Price", "Price","Price", "Price", "Price", "Price", "Price"};
 
     private String[] rate = {"4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k",
             "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k"};
