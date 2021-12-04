@@ -35,6 +35,13 @@
             tools:ignore="MissingConstraints" />
 
             <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="right"
+                app:srcCompat="@drawable/ic_heart_white_filled" />
+
+            <ImageView
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_gravity="right"
@@ -50,6 +57,8 @@
 
 
         </androidx.appcompat.widget.Toolbar>
+
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -75,10 +84,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
-        app:mbn_circleColor="@color/white"
-        app:mbn_selectedIconColor="@color/green"
-        app:mbn_defaultIconColor="@color/white"
-        app:mbn_backgroundBottomColor="@color/green"
+        app:mbn_circleColor="@color/green"
+        app:mbn_selectedIconColor="@color/white"
+        app:mbn_defaultIconColor="@color/green"
+        app:mbn_backgroundBottomColor="@color/white"
         android:layout_gravity="bottom"/>
 
 
