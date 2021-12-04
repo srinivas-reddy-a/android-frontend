@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">
         <activity
+            android:name=".AddressActivity.AddressFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddressActivity.MyAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeliveryPage.DeliveryActivity"
+            android:exported="false" />
+        <activity
             android:name=".WishList.WishListActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>

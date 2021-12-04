@@ -213,6 +213,9 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             }
         });
 
+       // mAppBarConfiguration
+
+
         //homePageCategoryProductItem
 
         recyclerView=findViewById(R.id.recyclerView);
@@ -513,18 +516,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_slideshow) {
-//            items = findViewById(R.id.nav_slideshow);
-//
-//            items.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem item) {
-//                    startActivity(new Intent(HomeNavigationActivity.this,MyOrder.class));
-//                    return true;
-//                }
-//            });
-
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main);

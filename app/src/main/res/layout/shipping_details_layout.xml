@@ -60,11 +60,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="pincode"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/changeAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingDetailAddress" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/changeAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:visibility="gone"
+        android:text="Change your address"
+        android:textColor="@color/white"
+        android:backgroundTint="#ED1414"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
