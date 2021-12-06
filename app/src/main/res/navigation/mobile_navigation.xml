@@ -8,18 +8,28 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.arraykart.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/menu_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.arraykart.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="Home" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.arraykart.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="Home" />
+    <fragment
+        android:id="@+id/nav_wishList"
+        android:name="com.example.arraykart.ui.WishList.WishListFragment"
+        android:label="Home" />
+    <fragment
+        android:id="@+id/nav_MyCart"
+        android:name="com.example.arraykart.ui.MyCart.MyCartNavFragment"
+        android:label="Home" />
+    <fragment
+        android:id="@+id/nav_Settings"
+        android:name="com.example.arraykart.ui.settings.SettingsNavFragment"
+        android:label="Home"
+        />
 </navigation>

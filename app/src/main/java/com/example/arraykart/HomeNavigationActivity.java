@@ -106,6 +106,17 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+          setSupportActionBar(binding.appBarHomeNavigation.toolbar);
+//        binding.appBarHomeNavigation.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
         setSupportActionBar(binding.appBarHomeNavigation.toolbar);
         binding.appBarHomeNavigation.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,12 +125,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                         .setAction("Action", null).show();
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_wishList, R.id.nav_MyCart, R.id.nav_Settings)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_navigation);
@@ -213,9 +225,9 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView1 = findViewById(R.id.recyclerView1);
 
-        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
-        String[] name = {"name","name","name","name"};
-        String[] price ={"price","price","price","price"};
+        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
+        String[] name = {"name","name","name","name","name"};
+        String[] price ={"price","price","price","price","price"};
 
         maiModel = new ArrayList<>();
         try {
@@ -245,9 +257,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                 @Override
                 public void onClickListener(int position) {
                     for (int i = 0; i < imgs.length; i++) {
-                        if (position == i) {
+                        if (position == i-1) {
                             startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
                         }
+                    }
+                    if(position==imgs.length-1){
+                        startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
                     }
                 }
             });
@@ -524,6 +539,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_slideshow) {
+            Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main);

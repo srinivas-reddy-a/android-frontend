@@ -26,8 +26,8 @@ public class SlideshowFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+//        slideshowViewModel =
+//                new ViewModelProvider(this).get(SlideshowViewModel.class);
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -39,6 +39,7 @@ public class SlideshowFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
+
         getContext().startActivity(new Intent(getContext(), MyOrder.class));
         return root;
     }

@@ -124,7 +124,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="30dp"
-            android:backgroundTint="#F40404"
+            android:backgroundTint="@color/green"
             android:text="continue"
             android:padding="9dp"
             android:textColor="#FDF7F7"

@@ -67,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingDetailAddress" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/changeAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         android:visibility="gone"
         android:text="Change your address"
         android:textColor="@color/white"
-        android:backgroundTint="#ED1414"
+        android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
