@@ -10,12 +10,14 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -36,6 +38,23 @@ public class ProductDetailActivity extends AppCompatActivity {
     ///cart icon product detail page
     private LottieAnimationView cart_product_detail_page;
     //cart icon product detail page
+
+    //productdetail description
+    private LinearLayout descriptionLL;
+    private ImageView desArrowDownIV;
+    private TextView textView11;
+
+    //productdetail chemicalComposition
+    private LinearLayout chemCompLL;
+    private ImageView chemCompIV;
+    private TextView textView25;
+
+    //product detail offers
+    private LinearLayout offerLL1;
+    private ImageView closeBsdOffers1;
+    private LinearLayout offerLL2;
+    private ImageView closeBsdOffers2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +109,72 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
-        ///cart icon clicklistener
+        ///product detail des clicklistener
+        descriptionLL = findViewById(R.id.descriptionLL);
+        descriptionLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView11=findViewById(R.id.textView11);
+                desArrowDownIV = findViewById(R.id.imageView7);
+                if ((textView11.getVisibility() == View.GONE)) {
+                    textView11.setVisibility(View.VISIBLE);
+                    desArrowDownIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    textView11.setVisibility(View.GONE);
+                    desArrowDownIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        ///product detail chemical comp clicklistener
+        chemCompLL = findViewById(R.id.chemCompLL);
+        chemCompLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView25=findViewById(R.id.textView25);
+                chemCompIV = findViewById(R.id.imageView8);
+                if ((textView25.getVisibility() == View.GONE)) {
+                    textView25.setVisibility(View.VISIBLE);
+                    chemCompIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    textView25.setVisibility(View.GONE);
+                    chemCompIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
 
+        //product detail offers clicklistener
+        offerLL1 = findViewById(R.id.offerLL1);
+        offerLL1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOffersBottomSheetDialog();
+            }
+        });
 
+        offerLL2 = findViewById(R.id.offerLL2);
+        offerLL2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showOffersBottomSheetDialog();
+            }
+        });
 
     }
+
+    private void showOffersBottomSheetDialog() {
+        final BottomSheetDialog bsd = new BottomSheetDialog(this);
+        bsd.setContentView(R.layout.bottom_sheet_dialog_offers_product_detail);
+        closeBsdOffers1 = bsd.findViewById(R.id.closeBsdOffers);
+        closeBsdOffers1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bsd.dismiss();
+            }
+        });
+        bsd.show();
+
+    }
+
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {

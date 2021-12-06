@@ -22,4 +22,7 @@
     <style name="Theme.Arraykart.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Arraykart.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>

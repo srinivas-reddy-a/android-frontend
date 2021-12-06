@@ -140,8 +140,10 @@
                     android:layout_weight="1"
                     android:padding="5sp"
                     android:text="20% off"
-                    android:textColor="@color/green"
+                    android:textColor="#2874F0"
                     android:textSize="20sp" />
+
+
             </LinearLayout>
 
         </LinearLayout>
@@ -149,27 +151,172 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:background="#FDFBFB"
-            android:orientation="vertical"
-            >
+            android:layout_marginBottom="20sp"
+            android:layout_weight="1"
+            android:elevation="5sp"
+            android:orientation="vertical">
+
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="15dp"
-                android:text="Description"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Offers and Coupons"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/offerLL1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5sp">
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5sp"
+                    app:srcCompat="@drawable/ic_baseline_local_offer_24" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5sp"
+                    android:text="Special PriceGet extra 14% off (price inclusive of discount)" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5sp"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/offerLL2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5sp">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5sp"
+                    app:srcCompat="@drawable/ic_baseline_local_offer_24" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5sp"
+                    android:text="Bank OfferFlat ₹100 off on first Flipkart Pay Later order of ₹500 and above" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5sp"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDFBFB"
+            android:elevation="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/descriptionLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:textAlignment="center">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:text="Description"
+                    android:textColor="#5F5A5A"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15sp"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
                 android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="#000000"/>
+                android:textColor="@color/gray"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:background="#FDFBFB"
+            android:elevation="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/chemCompLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:textAlignment="center">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:text="Chemical composition"
+                    android:textColor="#5F5A5A"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15sp"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
+                android:text="Mancozeb 63% + Carbendazim 12% WP"
+                android:textColor="@color/gray"
+                android:visibility="gone" />
 
         </LinearLayout>
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.R;
+import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.databinding.FragmentSlideshowBinding;
 
 public class SlideshowFragment extends Fragment {
