@@ -1,26 +1,20 @@
 package com.example.arraykart;
 
-import android.animation.Animator;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -28,20 +22,15 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
-import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
-import com.example.arraykart.ui.BottomNotificationFragment;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -54,11 +43,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.arraykart.databinding.ActivityHomeNavigationBinding;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -78,6 +63,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private  HAdapter hAdapter;
     private ArrayList<MainModel> maiModel;
     private RecyclerView recyclerView1;
+    private ImageView wishListHome;
+    private SearchView searchHome;
 
 
     //homePageCategoryProductItem
@@ -119,7 +106,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.appBarHomeNavigation.toolbar);
         binding.appBarHomeNavigation.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,8 +199,14 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             }
         });
 
-       // mAppBarConfiguration
-
+       //wishlist
+        wishListHome = findViewById(R.id.wishListHome);
+        wishListHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeNavigationActivity.this, WishListActivity.class));
+            }
+        });
 
         //homePageCategoryProductItem
 
@@ -390,8 +382,24 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         });
         //bannerSlider on home page
 
+//        //searchview
+//        searchHome = findViewById(R.id.searchHome);
+//        searchHome.
 
     }
+
+
+    //
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
     //function for bannerSlider
     private void localCard(){
         sliderModels =  new ArrayList<>();
