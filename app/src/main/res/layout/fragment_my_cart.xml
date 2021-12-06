@@ -70,7 +70,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginRight="20sp"
-            android:backgroundTint="#F40404"
+            android:backgroundTint="@color/green"
             android:padding="3dp"
             android:text="Place Order"
             android:textColor="#FDF7F7"

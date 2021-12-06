@@ -1,6 +1,7 @@
 package com.example.arraykart.homeCategoryProduct;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +44,19 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull HAdapter.ViewHolder holder, int position) {
-        holder.img.setImageResource(mainModel.get(position).getImgs());
-        holder.tv.setText(mainModel.get(position).getName());
-        holder.tv1.setText(mainModel.get(position).getPrice());
+        int p =mainModel.size()-2 ;
+        if(position<=p) {
+            holder.img.setImageResource(mainModel.get(position).getImgs());
+            holder.tv.setText(mainModel.get(position).getName());
+            holder.tv1.setText(mainModel.get(position).getPrice());
+        }else {
+            holder.img.setVisibility(View.GONE);
+            holder.tv.setText("...more");
+            holder.tv.setTextSize(15);
+            holder.tv.setTextColor(Color.parseColor("#7BB7E6"));
+            holder.tv.setPadding(20,140,20,140);
+            holder.tv1.setVisibility(View.GONE);
+        }
 
     }
 

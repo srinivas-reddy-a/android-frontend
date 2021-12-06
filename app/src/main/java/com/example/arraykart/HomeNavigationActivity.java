@@ -221,9 +221,9 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView1 = findViewById(R.id.recyclerView1);
 
-        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
-        String[] name = {"name","name","name","name"};
-        String[] price ={"price","price","price","price"};
+        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
+        String[] name = {"name","name","name","name","name"};
+        String[] price ={"price","price","price","price","price"};
 
         maiModel = new ArrayList<>();
         try {
@@ -253,9 +253,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                 @Override
                 public void onClickListener(int position) {
                     for (int i = 0; i < imgs.length; i++) {
-                        if (position == i) {
+                        if (position == i-1) {
                             startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
                         }
+                    }
+                    if(position==imgs.length-1){
+                        startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
                     }
                 }
             });
