@@ -17,5 +17,17 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_wishList"
+            android:icon="@drawable/ic_heart_outlined"
+            android:title="WishList"/>
+        <item
+            android:id="@+id/nav_MyCart"
+            android:icon="@drawable/ic_baseline_add_shopping_cart"
+            android:title="MyCart"/>
+        <item
+            android:id="@+id/nav_Settings"
+            android:icon="@drawable/ic_baseline_settings"
+            android:title="Settings"/>
     </group>
 </menu>

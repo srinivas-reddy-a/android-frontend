@@ -120,20 +120,20 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarHomeNavigation.toolbar);
-        binding.appBarHomeNavigation.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+          setSupportActionBar(binding.appBarHomeNavigation.toolbar);
+//        binding.appBarHomeNavigation.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_wishList, R.id.nav_MyCart, R.id.nav_Settings)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_navigation);
@@ -519,6 +519,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         int id = item.getItemId();
 
         if (id == R.id.nav_slideshow) {
+            Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main);
