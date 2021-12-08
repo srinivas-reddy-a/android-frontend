@@ -1,6 +1,7 @@
 package com.example.arraykart;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,11 +10,13 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
@@ -54,6 +57,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ImageView closeBsdOffers1;
     private LinearLayout offerLL2;
     private ImageView closeBsdOffers2;
+
+    ///buttons on product detail page
+    private Button cart_on_product_detail;
+    private Button buy_on_product_detail;
 
 
     @Override
@@ -158,6 +165,30 @@ public class ProductDetailActivity extends AppCompatActivity {
                 showOffersBottomSheetDialog();
             }
         });
+
+        ///buttons on product detail page
+        try {
+            cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
+            cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
+        try{
+            buy_on_product_detail = findViewById(R.id.buy_on_product_detail);
+            buy_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
 
     }
 

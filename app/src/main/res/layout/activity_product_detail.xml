@@ -90,7 +90,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
+                    android:id="@+id/cart_on_product_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -101,7 +101,7 @@
                     tools:ignore="DuplicateClickableBoundsCheck" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/buy_on_product_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
