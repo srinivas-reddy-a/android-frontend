@@ -18,6 +18,8 @@
         <activity
             android:name=".UserProfile.UserProfileActivity"
             android:exported="false" />
+        <activity android:name=".SearchPage.SearchPageActivity"
+            android:exported="false"/>
         <activity
             android:name=".AddressActivity.AddressFormActivity"
             android:exported="false"
