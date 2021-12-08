@@ -12,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
@@ -24,6 +23,7 @@ import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.UserProfile.ProfileEditPageActivity;
 import com.example.arraykart.UserProfile.UserProfileActivity;
+import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
@@ -66,7 +66,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private ArrayList<MainModel> maiModel;
     private RecyclerView recyclerView1;
     private ImageView wishListHome;
-    private SearchView searchHome;
+    private TextView searchHome;
 
 
     //homePageCategoryProductItem
@@ -105,7 +105,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -298,16 +297,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         imageSlider.setImageList(slideModelList, true);
 
-//
-//        LinearLayout brandsv = findViewById(R.id.brandsv);
-//        View v = getLayoutInflater().inflate(R.layout.home_brand, null);
-//        ImageView isv = v.findViewById(R.id.imageView2);
-//        isv.setImageResource(R.drawable.img);
-//        TextView tsv = v.findViewById(R.id.textView2);
-//        tsv.setText("allo");
-//        brandsv.addView(v);
-//        brandsv.addView(v);
-//        brandsv.addView(v);
 
         ///cart icon clicklistener
        lottieAnimationView = findViewById(R.id.cartHomePage);
@@ -399,9 +388,14 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         });
         //bannerSlider on home page
 
-//        //searchview
-//        searchHome = findViewById(R.id.searchHome);
-//        searchHome.
+        //searchview
+        searchHome = findViewById(R.id.searchHome);
+        searchHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeNavigationActivity.this, SearchPageActivity.class));
+            }
+        });
 
     }
 
