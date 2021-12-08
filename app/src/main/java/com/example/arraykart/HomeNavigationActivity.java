@@ -22,6 +22,8 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.UserProfile.ProfileEditPageActivity;
+import com.example.arraykart.UserProfile.UserProfileActivity;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
@@ -194,7 +196,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getId()==3){
-                    showSignIn();
+                    startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
                 }
 
             }
@@ -206,7 +208,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getId()==3){
-                    showSignIn();
+                    startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
                 }
             }
         });
@@ -526,7 +528,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     //button for MoreCategoryProduct
 
     public void MoreItem(View view){
-        Intent in = new Intent(HomeNavigationActivity.this, moreCategoryProducts.class);
+        Intent in = new Intent(HomeNavigationActivity.this, UserProfileActivity.class);
         startActivity(in);
 
     }

@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">
         <activity
+            android:name=".UserProfile.ProfileEditPageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserProfile.UserProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddressActivity.AddressFormActivity"
             android:exported="false" />
         <activity
@@ -23,57 +29,57 @@
         <activity
             android:name=".WishList.WishListActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MyOrder.OrderDetail"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Sort.sortPage"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Filter.FilterPage"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SignUP"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Signin"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MyOrder.MyOrder"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MyCart.MYCartActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ProductDetailActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".homeCategoryProduct.moreProductCategory.moreCategoryProducts"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".HomeNavigationActivity"
             android:exported="false"
             android:label="@string/title_activity_home_navigation"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/Theme.Arraykart.NoActionBar" />
+            android:theme="@style/Theme.Arraykart.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
