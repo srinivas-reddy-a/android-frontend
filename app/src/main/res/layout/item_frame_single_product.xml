@@ -85,9 +85,11 @@
             android:elevation="3dp"
             android:padding="4dp"
             android:text="rate"
-            android:textColor="@color/black"
-            android:textSize="9sp"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:textStyle="italic"
+            android:drawableEnd="@drawable/ic_star_rate"
+            android:drawableTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/gridImage"
             app:layout_constraintStart_toStartOf="@+id/gridImage"
             app:layout_constraintTop_toTopOf="@+id/gridImage" />

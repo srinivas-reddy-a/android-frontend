@@ -77,17 +77,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     ///grid view on home page
     private GridView gridView;
     private GridView gridView2;
-
-    private String[] name = {"Herbicides", "Insecticides",
-            "Insecticides", "name"};
-
-    private String[] price = {"2400", "2400", "2400", "2400"};
-
-    private String[] rate = {"4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k"};
-
-    private String[] ribbon ={"new","new","new","new"};
-
-    private int[] imgs = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+    
 
     //grid view on home page
 
@@ -132,7 +122,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_wishList, R.id.nav_MyCart, R.id.nav_Settings,R.id.nav_SignUp)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_wishList, R.id.nav_MyCart, R.id.nav_Settings,R.id.nav_SignUp,R.id.nav_LogOut)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_navigation);
@@ -274,16 +264,27 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
 
         ///1st grid view for home page
+        String[] namess = {"Herbicides", "Insecticides",
+                "Insecticides", "name"};
+
+        String[] pricess = {"2400", "2400", "2400", "2400"};
+
+        String[] rate = {"4.3","4.3", "4.3", "4.3"};
+
+        String[] ribbon ={"new","new","new","new"};
+
+        int[] imgss = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+        
         gridView = findViewById(R.id.gridView1);
 
-        GridViewAdapter gridAdapter = new GridViewAdapter(this, name, price, rate, ribbon, imgs);
+        GridViewAdapter gridAdapter = new GridViewAdapter(this, namess, pricess, rate, ribbon, imgss);
         gridView.setAdapter(gridAdapter);
         ///1nd grid view for home page
 
         ///2nd grid view for home page
         gridView2 = findViewById(R.id.gridView2);
 
-        GridViewAdapter gridAdapters = new GridViewAdapter(this, name, price, rate, ribbon, imgs);
+        GridViewAdapter gridAdapters = new GridViewAdapter(this, namess, pricess, rate, ribbon, imgss);
         gridView2.setAdapter(gridAdapters);
         ///2nd grid view for home page
 
