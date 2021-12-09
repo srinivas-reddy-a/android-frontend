@@ -6,49 +6,40 @@
     android:id="@+id/main"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home"
             />
         <item
             android:id="@+id/nav_gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery"
              />
         <item
             android:id="@+id/nav_slideshow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/nav_wishList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:icon="@drawable/ic_heart_outlined"
             android:title="WishList"
             />
         <item
             android:id="@+id/nav_MyCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:icon="@drawable/ic_baseline_add_shopping_cart"
             android:title="MyCart"
              />
         <item
             android:id="@+id/nav_Settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:icon="@drawable/ic_baseline_settings"
             android:title="Settings"
+            />
+        <item
+            android:id="@+id/nav_SignUp"
+            android:icon="@drawable/ic_baseline_login"
+            android:title="SignUp"
             />
     </group>
 </menu>
