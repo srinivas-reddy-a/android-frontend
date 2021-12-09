@@ -3,6 +3,7 @@ package com.example.arraykart.AddressActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,9 @@ public class MyAddressActivity extends AppCompatActivity {
     private RecyclerView addressRecyclerView;
     private LinearLayout addNewAddress;
     private ImageView back_Address_page;
+    public static  final  int SELECTED_ADDRESS = 0;
+
+    private static AddressAdapter addressAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +38,15 @@ public class MyAddressActivity extends AppCompatActivity {
             addressRecyclerView.setLayoutManager(layoutManager);
 
             List<AddressModel> addressModels = new ArrayList<>();
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420"));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420"));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420"));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420"));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",true));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
 
-            AddressAdapter addressAdapter = new AddressAdapter(addressModels);
+            addressAdapter = new AddressAdapter(addressModels,0);
             addressRecyclerView.setAdapter(addressAdapter);
+            ((SimpleItemAnimator)addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+            addressAdapter.notifyDataSetChanged();
 
             addNewAddress = findViewById(R.id.AddNewAddress);
             addNewAddress.setOnClickListener(new View.OnClickListener() {
@@ -63,5 +69,11 @@ public class MyAddressActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
+    }
+    public static void refreshAddress (int deselected,int selected){
+        addressAdapter.notifyItemChanged(deselected);
+        addressAdapter.notifyItemChanged(selected);
+
+
     }
 }

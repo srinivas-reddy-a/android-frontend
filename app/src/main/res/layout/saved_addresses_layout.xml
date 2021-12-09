@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FDFCFC"
-    android:elevation="5dp"
-    android:layout_marginBottom="15dp"
+    android:elevation="8dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_marginBottom="10dp"
+    android:layout_margin="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/personName"
@@ -59,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:visibility="gone"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_check" />
@@ -71,6 +73,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
+        android:visibility="gone"
         android:background="#BDB9B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
