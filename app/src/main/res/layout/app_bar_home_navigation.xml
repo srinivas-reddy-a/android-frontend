@@ -47,6 +47,7 @@
                 app:srcCompat="@drawable/ic_heart_white_filled" />
 
             <ImageView
+                android:id="@+id/notification_home_page"
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_gravity="right"

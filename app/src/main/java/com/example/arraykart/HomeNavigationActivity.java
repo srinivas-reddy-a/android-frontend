@@ -21,6 +21,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.NotificationPage.NotificationActivity;
 import com.example.arraykart.UserProfile.ProfileEditPageActivity;
 import com.example.arraykart.UserProfile.UserProfileActivity;
 import com.example.arraykart.SearchPage.SearchPageActivity;
@@ -58,6 +59,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private MeowBottomNavigation meowBottomNavigation;
 
     private LottieAnimationView lottieAnimationView;
+
+    private ImageView notification_home_page;
 
     //homePageCategoryProductItem
 
@@ -397,6 +400,19 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                 startActivity(new Intent(HomeNavigationActivity.this, SearchPageActivity.class));
             }
         });
+
+        ///home page notification click
+        try{
+            notification_home_page = findViewById(R.id.notification_home_page);
+            notification_home_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(HomeNavigationActivity.this, NotificationActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
 
     }
 

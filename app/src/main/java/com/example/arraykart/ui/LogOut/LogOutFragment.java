@@ -22,6 +22,7 @@ public class LogOutFragment extends Fragment {
         binding =FragmentLogOutBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         return  root;
     }
 }
