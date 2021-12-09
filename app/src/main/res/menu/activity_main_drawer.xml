@@ -41,5 +41,10 @@
             android:icon="@drawable/ic_baseline_login"
             android:title="SignUp"
             />
+        <item
+            android:id="@+id/nav_LogOut"
+            android:icon="@drawable/ic_baseline_logout"
+            android:title="LogOut"
+            />
     </group>
 </menu>

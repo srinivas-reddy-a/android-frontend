@@ -71,25 +71,29 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             address.setText(addresses);
             pinCode.setText(pin);
 
-            if(ADDRESSMODE == SELECTED_ADDRESS){
-                icon.setImageResource(R.drawable.ic_check);
-                if (selected){
-                    icon.setVisibility(View.VISIBLE);
-                    allReadySelected = position;
-                }else{
-                    icon.setVisibility(View.GONE);
-                }
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(allReadySelected!=position) {
-                            addressModelList.get(position).setSelected(true);
-                            addressModelList.get(allReadySelected).setSelected(false);
-                            refreshAddress(allReadySelected, position);
-                            allReadySelected = position;
-                        }
+            try {
+                if (ADDRESSMODE == SELECTED_ADDRESS) {
+                    icon.setImageResource(R.drawable.ic_check);
+                    if (selected) {
+                        icon.setVisibility(View.VISIBLE);
+                        allReadySelected = position;
+                    } else {
+                        icon.setVisibility(View.GONE);
                     }
-                });
+                    itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (allReadySelected != position) {
+                                addressModelList.get(position).setSelected(true);
+                                addressModelList.get(allReadySelected).setSelected(false);
+                                refreshAddress(allReadySelected, position);
+                                allReadySelected = position;
+                            }
+                        }
+                    });
+
+                }
+            }catch (Exception e){
 
             }
         }

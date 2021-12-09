@@ -38,10 +38,14 @@ public class MyAddressActivity extends AppCompatActivity {
             addressRecyclerView.setLayoutManager(layoutManager);
 
             List<AddressModel> addressModels = new ArrayList<>();
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",true));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420,choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
+                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",true));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
+                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
+                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
+            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
+                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
 
             addressAdapter = new AddressAdapter(addressModels,0);
             addressRecyclerView.setAdapter(addressAdapter);
