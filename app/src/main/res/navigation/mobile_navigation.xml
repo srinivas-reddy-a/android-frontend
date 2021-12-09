@@ -37,4 +37,9 @@
         android:name="com.example.arraykart.ui.SignUp.SignUpFragment"
         android:label="Home"
         />
+    <fragment
+        android:id="@+id/nav_LogOut"
+        android:name="com.example.arraykart.ui.LogOut.LogOutFragment"
+        android:label="Home"
+        />
 </navigation>
