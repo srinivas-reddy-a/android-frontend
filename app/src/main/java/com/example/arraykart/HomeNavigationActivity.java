@@ -519,16 +519,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                 || super.onSupportNavigateUp();
     }
 
-    //button for MoreCategoryProduct
-
-    public void MoreItem(View view){
-        Intent in = new Intent(HomeNavigationActivity.this, UserProfileActivity.class);
-        startActivity(in);
-
-    }
-
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
