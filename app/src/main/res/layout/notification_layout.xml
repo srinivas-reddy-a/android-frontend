@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/notifi_boldTv" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/notification_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

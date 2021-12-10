@@ -1,5 +1,6 @@
 package com.example.arraykart.NotificationPage;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arraykart.R;
+import com.example.arraykart.homeCategoryProduct.HAdapter;
 
 import java.util.List;
 
 public class NotificationAdapter extends  RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
 
     private List<NotificationModel> notificationModelList ;
+
+    private OnItemClickListener nListener;
+
+    public interface OnItemClickListener{
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        nListener=listener;
+    }
+
 
     public NotificationAdapter(List<NotificationModel> notificationModelList) {
         this.notificationModelList = notificationModelList;
@@ -26,7 +39,7 @@ public class NotificationAdapter extends  RecyclerView.Adapter<NotificationAdapt
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_layout,parent,false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view,nListener);
     }
 
     @Override
@@ -48,11 +61,30 @@ public class NotificationAdapter extends  RecyclerView.Adapter<NotificationAdapt
         private ImageView image ;
         private TextView tv1;
         private TextView tv2;
-        public ViewHolder(@NonNull View itemView) {
+        private ImageView notification_delete;
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             image= itemView.findViewById(R.id.notifi_image);
             tv1 =itemView.findViewById(R.id.notifi_boldTv);
             tv2 = itemView.findViewById(R.id.notifi_normalTv);
+            notification_delete= itemView.findViewById(R.id.notification_delete);
+            try {
+                notification_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (listener != null) {
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                listener.onDeleteClick(position);
+                            }
+                        }
+
+                    }
+                });
+            }catch (Exception e){
+
+            }
 
         }
         private void setData(int images,String tv , String ntv){

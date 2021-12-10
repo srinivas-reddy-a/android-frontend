@@ -66,6 +66,8 @@ public class WishListFragment extends Fragment {
 //    }
 
     private RecyclerView wishListRecyclerView;
+    private WishListAdapter wishListAdapter;
+    private List<WishListModel> wishListModelList ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +81,7 @@ public class WishListFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         wishListRecyclerView.setLayoutManager(linearLayoutManager);
 
-        List<WishListModel> wishListModelList = new ArrayList<>();
+        wishListModelList = new ArrayList<>();
         wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",2,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
         wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",0,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
         wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",1,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
@@ -88,10 +90,18 @@ public class WishListFragment extends Fragment {
         wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",5,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
         wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",0,"5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
 
-        WishListAdapter wishListAdapter = new WishListAdapter(wishListModelList);
+        wishListAdapter = new WishListAdapter(wishListModelList);
         wishListRecyclerView.setAdapter(wishListAdapter);
 
         wishListAdapter.notifyDataSetChanged();
+
+        wishListAdapter.setOnItemClickListener(new WishListAdapter.onItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+                wishListModelList.remove(position);
+                wishListAdapter.notifyItemRemoved(position);
+            }
+        });
 
         return view;
     }

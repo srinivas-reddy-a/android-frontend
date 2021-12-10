@@ -17,6 +17,9 @@ public class NotificationActivity extends AppCompatActivity {
 
     private RecyclerView notificationRecyclerView;
     private ImageView back_notification_page;
+    private ImageView notification_delete;
+    private NotificationAdapter notificationAdapter;
+    private List<NotificationModel> notificationModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class NotificationActivity extends AppCompatActivity {
             notificationRecyclerView.setLayoutManager(layoutManager);
 
 
-            List<NotificationModel> notificationModelList = new ArrayList<>();
+            notificationModelList = new ArrayList<>();
             notificationModelList.add(new NotificationModel(R.drawable.img,
                     "yuyigjgxccnccncnbmnvnvmvmvmmnnvnvnvvvvvvvbnbbnbnbnbnbnbnbnb","yobvusdj"));
             notificationModelList.add(new NotificationModel(R.drawable.img,
@@ -41,7 +44,7 @@ public class NotificationActivity extends AppCompatActivity {
             notificationModelList.add(new NotificationModel(R.drawable.img,
                     "yuyigjgxccnccncnbmnvnvmvmvmmnnvnvnvvvvvvvbnbbnbnbnbnbnbnbnb","yobvusdj"));
 
-            NotificationAdapter notificationAdapter= new NotificationAdapter(notificationModelList);
+            notificationAdapter= new NotificationAdapter(notificationModelList);
             notificationRecyclerView.setAdapter(notificationAdapter);
             notificationAdapter.notifyDataSetChanged();
 
@@ -57,6 +60,18 @@ public class NotificationActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        }catch (Exception e){
+
+        }
+        try{
+            notificationAdapter.setOnItemClickListener(new NotificationAdapter.OnItemClickListener() {
+                @Override
+                public void onDeleteClick(int position) {
+                    notificationModelList.remove(position);
+                    notificationAdapter.notifyItemRemoved(position);
+                }
+            });
+
         }catch (Exception e){
 
         }

@@ -8,8 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arraykart.NotificationPage.NotificationAdapter;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
@@ -18,6 +20,16 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter {
 
     private List<CartItemModel> cartItemModelList;
+
+    private OnItemClickListeners cListener;
+
+    public  interface OnItemClickListeners{
+        void  onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListeners listener){
+        cListener = listener;
+    }
 
     public CartAdapter(List<CartItemModel> cartItemModelList) {
         this.cartItemModelList = cartItemModelList;
@@ -42,7 +54,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         switch (viewType){
             case CartItemModel.CART_ITEM:
                 View cartItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item_layout,parent,false);
-                return new CartItemViewHolder(cartItemView);
+                return new CartItemViewHolder(cartItemView,cListener);
             case CartItemModel.TOTAL_AMOUNT:
                 View cartTotalView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_total_amount_layout,parent,false);
                 return new CartTotalAmountViewHolder(cartTotalView);
@@ -90,8 +102,9 @@ public class CartAdapter extends RecyclerView.Adapter {
         private TextView offerApplied;
         private TextView couponsApplied;
         private TextView productQuantity;
+        private ConstraintLayout remove_item_btn;
 
-        public CartItemViewHolder(@NonNull View itemView) {
+        public CartItemViewHolder(@NonNull View itemView, OnItemClickListeners listener) {
             super(itemView);
             productImage = itemView.findViewById(R.id.product_image);
             freeCouponIcon = itemView.findViewById(R.id.free_offer_icon);
@@ -102,6 +115,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             offerApplied = itemView.findViewById(R.id.offer_applied);
             couponsApplied = itemView.findViewById(R.id.coupon_applied);
             productQuantity = itemView.findViewById(R.id.product_quantity);
+            remove_item_btn=itemView.findViewById(R.id.remove_item_btn);
 
             try{
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +126,22 @@ public class CartAdapter extends RecyclerView.Adapter {
                     }
                 });
 
+            }catch (Exception e){
+
+            }
+            try{
+                remove_item_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener != null) {
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                listener.onDeleteClick(position);
+                            }
+                        }
+
+                    }
+                });
             }catch (Exception e){
 
             }

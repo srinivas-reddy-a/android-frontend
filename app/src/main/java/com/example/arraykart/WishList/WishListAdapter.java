@@ -21,6 +21,16 @@ import java.util.List;
 public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHolder> {
     private List<WishListModel> wishListModelList ;
 
+    private onItemClickListener wListener;
+
+    public interface onItemClickListener{
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener){
+        wListener = listener;
+    }
+
     public WishListAdapter(List<WishListModel> wishListModelList) {
         this.wishListModelList = wishListModelList;
     }
@@ -30,7 +40,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wishlist_item_layout,parent,false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view,wListener);
     }
 
     @Override
@@ -61,8 +71,9 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
         private TextView price;
         private TextView cuttedPrice;
         private TextView paymentMethod;
+        private ImageButton wishListDelete;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, onItemClickListener listener) {
             super(itemView);
             productImage = itemView.findViewById(R.id.wishListImage);
             productTitle = itemView.findViewById(R.id.wishListTitle);
@@ -72,14 +83,36 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
             price = itemView.findViewById(R.id.wishListPrice);
             cuttedPrice = itemView.findViewById(R.id.wishListCuttedPrice);
             paymentMethod = itemView.findViewById(R.id.wishListDeliveryProcess);
+            wishListDelete = itemView.findViewById(R.id.wishListDelete);
+            try {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(itemView.getContext(), ProductDetailActivity.class);
+                        itemView.getContext().startActivity(i);
+                    }
+                });
+            }catch (Exception e){
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(itemView.getContext(), ProductDetailActivity.class);
-                    itemView.getContext().startActivity(i);
-                }
-            });
+            }
+
+            try{
+                wishListDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (listener != null) {
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                listener.onDeleteClick(position);
+                            }
+                        }
+
+                    }
+                });
+            }catch (Exception e){
+
+            }
         }
         private void setData(int resource,String title,int couponNo,String rate,String prices,String cuttedPricess,String method){
             try {
