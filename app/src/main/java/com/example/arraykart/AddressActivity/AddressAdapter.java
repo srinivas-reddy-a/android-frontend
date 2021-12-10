@@ -6,12 +6,15 @@ import static com.example.arraykart.AddressActivity.MyAddressActivity.refreshAdd
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arraykart.NotificationPage.NotificationAdapter;
 import com.example.arraykart.R;
 
 import java.util.List;
@@ -19,7 +22,19 @@ import java.util.List;
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
     private List<AddressModel> addressModelList;
     private  int ADDRESSMODE ;
-    private  int allReadySelected;
+    int allReadySelected;
+    int pp ;
+
+    private OnItemClickListener aListener;
+
+    public interface OnItemClickListener{
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        aListener=listener;
+    }
+
 
     public AddressAdapter(List<AddressModel> addressModelList,int ADDRESSMODE) {
         this.addressModelList = addressModelList;
@@ -30,7 +45,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.saved_addresses_layout,parent,false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,aListener);
     }
 
     @Override
@@ -52,7 +67,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         private TextView address;
         private TextView pinCode;
         private ImageView icon ;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             fullName = itemView.findViewById(R.id.personName);
             address = itemView.findViewById(R.id.personAddress);
@@ -65,6 +80,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
                 }
             });
+            pp = getAdapterPosition();
+
         }
         private void SetData(String name,String addresses,String pin,boolean selected,int position){
             fullName.setText(name);
@@ -96,6 +113,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             }catch (Exception e){
 
             }
+
         }
     }
 }

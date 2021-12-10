@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.MyOrder.MyOrder;
+import com.example.arraykart.NotificationPage.NotificationActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
@@ -30,6 +32,15 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView editProfile;
 
     private ImageView back_user_profile_page;
+
+    private TextView account_settings;
+
+    private TextView notification_preferences;
+
+    private TextView logout_of_this_app;
+
+    private TextView logout_of_this_devices;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +106,52 @@ public class UserProfileActivity extends AppCompatActivity {
                 }
             });
         }catch(Exception e){
+
+        }
+        try {
+            account_settings=findViewById(R.id.account_settings);
+            account_settings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(UserProfileActivity.this,ProfileEditPageActivity.class));
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+        try{
+            notification_preferences = findViewById(R.id.notification_preferences);
+            notification_preferences.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(UserProfileActivity.this, NotificationActivity.class));
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+        try{
+            logout_of_this_app=findViewById(R.id.logout_of_this_app);
+            logout_of_this_app.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }catch (Exception e){
+
+        }
+        try{
+            logout_of_this_devices = findViewById(R.id.logout_of_this_devices);
+            logout_of_this_devices.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }catch (Exception e){
 
         }
     }
