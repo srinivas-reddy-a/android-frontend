@@ -13,4 +13,10 @@
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
     </style>
+
+    <style name="Smaller_Drawable">
+        <item name="android:textSize">35sp</item>
+        <item name="android:scaleX">1</item>
+        <item name="android:scaleY">1</item>
+    </style>
 </resources>

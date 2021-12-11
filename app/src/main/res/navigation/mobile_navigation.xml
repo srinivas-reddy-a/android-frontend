@@ -42,4 +42,19 @@
         android:name="com.example.arraykart.ui.LogOut.LogOutFragment"
         android:label="Home"
         />
+    <fragment
+        android:id="@+id/nav_HelpCenter"
+        android:name="com.example.arraykart.ui.HelpCenter.HelpCenterFragment"
+        android:label="Home"
+        />
+    <fragment
+        android:id="@+id/nav_PrivacyPolicy"
+        android:name="com.example.arraykart.ui.PrivacyPolicy.PrivacyPolicyFragment"
+        android:label="Home"
+        />
+    <fragment
+        android:id="@+id/nav_Legal"
+        android:name="com.example.arraykart.ui.Legal.LegalFragment"
+        android:label="Home"
+        />
 </navigation>

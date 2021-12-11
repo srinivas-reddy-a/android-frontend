@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">
         <activity
+            android:name=".RatingPage.RatingActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotificationPage.NotificationActivity"
             android:exported="false" />
         <activity

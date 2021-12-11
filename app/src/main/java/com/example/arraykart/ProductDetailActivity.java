@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,12 +26,19 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
     private CarouselView carouselView;
     private TextView striketextView;
     private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+
+    ///rating layout
+    private LinearLayout linearLayout;
+    private List<Integer> list;
+    private ImageView Rating_layout_image;
+
 
     ///recyclerView for products in productdetailpage
     private RecyclerView recyclerView;
@@ -186,6 +194,25 @@ public class ProductDetailActivity extends AppCompatActivity {
                     startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
                 }
             });
+        }catch (Exception e){
+
+        }
+
+        //rating layout
+        try {
+            linearLayout = findViewById(R.id.RatingImage);
+            list = new ArrayList<>();
+            list.add(R.drawable.img);
+            list.add(R.drawable.img);
+            list.add(R.drawable.img);
+            list.add(R.drawable.img);
+            for (int i =0;i<list.size();i++){
+                View view = LayoutInflater.from(this).inflate(R.layout.rating_image_layout,linearLayout,false);
+                Rating_layout_image = view.findViewById(R.id.Rating_layout_image);
+                Rating_layout_image.setImageResource(list.get(i));
+
+                linearLayout.addView(view);
+            }
         }catch (Exception e){
 
         }

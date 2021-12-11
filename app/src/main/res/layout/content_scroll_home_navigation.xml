@@ -129,7 +129,7 @@
                 android:layout_marginBottom="8dp"
                 android:padding="5dp"
                 android:text="Good suggestions"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -192,7 +192,7 @@
                 android:layout_marginBottom="8dp"
                 android:padding="5dp"
                 android:text="Head Title"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -218,7 +218,7 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:fillViewport="true"
             android:paddingLeft="20sp"
@@ -249,7 +249,7 @@
                 android:layout_marginBottom="4dp"
                 android:padding="5dp"
                 android:text="Head Title"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -262,6 +262,7 @@
             android:layout_width="match_parent"
             android:layout_height="530dp"
             android:layout_marginBottom="50dp">
+
             <GridView
                 android:id="@+id/gridView2"
                 android:layout_width="match_parent"

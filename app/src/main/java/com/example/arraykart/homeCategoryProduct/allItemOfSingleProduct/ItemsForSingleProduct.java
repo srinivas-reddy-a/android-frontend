@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,8 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
     private String[] price = {"Price", "Price", "Price", "Price", "Price","Price", "Price", "Price", "Price", "Price"};
 
-    private String[] rate = {"4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k",
-            "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k", "4.3 *|348k"};
+    private String[] rate = {"4.3", "4.3", "4.3", "4.3", "4.3",
+            "4.3", "4.3", "4.3", "4.3", "4.3"};
 
     private String[] ribbon ={"new","new","new","new","new","new","new","new","new","new"};
 
@@ -161,6 +162,8 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
                 if (position >= 0 && position <= 2) {
                     rb.setText(ribbon[position]);
+                    rb.setTextColor(Color.parseColor("#FFFFFF"));
+
                 } else {
                     rb.setBackgroundResource(R.color.white);
                     rb.setText(null);
