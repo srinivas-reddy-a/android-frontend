@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/white"
+    android:elevation="5dp">
 
     <TextView
         android:id="@+id/rateGrid"
@@ -41,15 +44,13 @@
         android:id="@+id/ReviewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="259dp"
+        android:maxWidth="150dp"
+        android:maxLines="3"
         android:text="write about products in details"
         android:textColor="#000000"
         android:textSize="10sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rateGrid"
         app:layout_constraintTop_toBottomOf="@+id/rateGrid" />
 
     <HorizontalScrollView
@@ -60,17 +61,14 @@
         android:scrollbars="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ReviewDescription">
+        app:layout_constraintTop_toBottomOf="@+id/ReviewDescription"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
-            android:id="@+id/RatingImage"
+            android:id="@+id/image_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ReviewDescription" />
+            android:orientation="horizontal" />
 
     </HorizontalScrollView>
 
@@ -81,7 +79,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="sachin jha"
-        android:textSize="8dp"
+        android:textSize="10dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -92,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="noida"
-        android:textSize="8dp"
+        android:textSize="10dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/name_of_buyer"
         app:layout_constraintStart_toEndOf="@+id/name_of_buyer"
@@ -104,10 +102,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:drawableStart="@drawable/ic_baseline_verified"
         android:text="Certified Buyer"
-        android:textSize="8dp"
+        android:textSize="10dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_of_buyer" />
 
@@ -117,10 +117,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Jan,2021"
-        android:textSize="8dp"
+        android:textSize="10dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/certified_buyer"
         app:layout_constraintStart_toEndOf="@+id/certified_buyer"
         app:layout_constraintTop_toTopOf="@+id/certified_buyer" />
+
+    <TextView
+        android:id="@+id/lines_or_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="more"
+        android:textColor="@color/green"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ReviewDescription"
+        app:layout_constraintStart_toEndOf="@+id/ReviewDescription"
+        app:layout_constraintTop_toBottomOf="@+id/ReviewDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -117,10 +118,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         cart_product_detail_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(ProductDetailActivity.this, MYCartActivity.class);
+                Intent in = new Intent(ProductDetailActivity.this, AllReviewActivity.class);
                 startActivity(in);
-//                Intent in = new Intent(HomeNavigationActivity.this, MyOrder.class);
-//                startActivity(in);
             }
         });
 
