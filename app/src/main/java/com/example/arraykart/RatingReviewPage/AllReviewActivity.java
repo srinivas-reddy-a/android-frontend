@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.arraykart.R;
 
@@ -18,21 +19,20 @@ import java.util.List;
 
 public class AllReviewActivity extends AppCompatActivity {
 
-    private LinearLayout linearLayout;
-    private List<Integer> list;
-    private ImageView Rating_layout_image;
 
     private RecyclerView ReviewRecyclerView;
     private List<ReviewModel> reviewModelList ;
     private ReviewAdapter reviewAdapter;
 
-    private TextView lines_or_text;
-    private TextView ReviewDescription;
+    ///back button
+    private ImageView back_AllReview_page;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_review);
+
 
         try{
             ReviewRecyclerView = findViewById(R.id.ReviewRecyclerView);
@@ -65,35 +65,18 @@ public class AllReviewActivity extends AppCompatActivity {
 
             reviewAdapter = new ReviewAdapter(reviewModelList);
             ReviewRecyclerView.setAdapter(reviewAdapter);
-        }catch (Exception e){
-
-        }
-        try{
-            lines_or_text = findViewById(R.id.lines_or_text);
-            ReviewDescription = findViewById(R.id.ReviewDescription);
-            lines_or_text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ReviewDescription.setLines(10);
-                }
-            });
+            reviewAdapter.notifyDataSetChanged();
         }catch (Exception e){
 
         }
         try {
-            linearLayout = findViewById(R.id.image_layout);
-            list = new ArrayList<>();
-            list.add(R.drawable.img);
-            list.add(R.drawable.img);
-            list.add(R.drawable.img);
-            list.add(R.drawable.img);
-            for (int i =0;i<list.size();i++){
-                View view = LayoutInflater.from(this).inflate(R.layout.rating_image_layout,linearLayout,false);
-                Rating_layout_image = view.findViewById(R.id.Rating_layout_image);
-                Rating_layout_image.setImageResource(list.get(i));
-
-                linearLayout.addView(view);
-            }
+            back_AllReview_page = findViewById(R.id.back_AllReview_page);
+            back_AllReview_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }catch (Exception e){
 
         }

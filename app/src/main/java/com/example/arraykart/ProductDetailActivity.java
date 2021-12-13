@@ -20,6 +20,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
+import com.example.arraykart.RatingReviewPage.ReviewAdapter;
+import com.example.arraykart.RatingReviewPage.ReviewModel;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -70,6 +72,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     ///buttons on product detail page
     private Button cart_on_product_detail;
     private Button buy_on_product_detail;
+
+    //review for this page
+    private RecyclerView ReviewRecyclerView;
+    private List<ReviewModel> reviewModelList ;
+    private ReviewAdapter reviewAdapter;
+    private TextView MoreReview;
 
 
     @Override
@@ -212,6 +220,38 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 linearLayout.addView(view);
             }
+        }catch (Exception e){
+
+        }
+
+        //review layout
+        try{
+            ReviewRecyclerView = findViewById(R.id.ReviewRecyclerView);
+            LinearLayoutManager layoutManagers = new LinearLayoutManager(this);
+            layoutManagers.setOrientation(LinearLayoutManager.VERTICAL);
+            ReviewRecyclerView.setLayoutManager(layoutManagers);
+
+            reviewModelList = new ArrayList<>();
+            reviewModelList.add(new ReviewModel("4.4","Cool Product",
+                    "hbvashbdjajdvbaschbjjacjacjjascjavscj a cjabcjavdab " +
+                            "d acj ajscdja dqochqwdb qjhd jhavc cjhs jaca cjhac dvbasjca " +
+                            " cjha sjcajc a cujhascb jc ahcjackwdbiwdb " +
+                            " wdi bxbxibISX  sx     djb dbuscbxhhxAXB   DDQ WKJDJBB WDKKw","sachin jha","noia","Jan,2021" ));
+
+            reviewAdapter = new ReviewAdapter(reviewModelList);
+            ReviewRecyclerView.setAdapter(reviewAdapter);
+            reviewAdapter.notifyDataSetChanged();
+        }catch (Exception e){
+
+        }
+        try{
+           MoreReview = findViewById(R.id.MoreReview);
+           MoreReview.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   startActivity(new Intent(ProductDetailActivity.this,AllReviewActivity.class));
+               }
+           });
         }catch (Exception e){
 
         }
