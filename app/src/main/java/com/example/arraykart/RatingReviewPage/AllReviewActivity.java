@@ -1,4 +1,4 @@
-package com.example.arraykart.RatingPage;
+package com.example.arraykart.RatingReviewPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,8 @@ import com.example.arraykart.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RatingActivity extends AppCompatActivity {
+public class AllReviewActivity extends AppCompatActivity {
+
     private LinearLayout linearLayout;
     private List<Integer> list;
     private ImageView Rating_layout_image;
@@ -21,7 +22,8 @@ public class RatingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rating);
+        setContentView(R.layout.activity_all_review);
+
         try {
             linearLayout = findViewById(R.id.RatingImage);
             list = new ArrayList<>();

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">
         <activity
-            android:name=".RatingPage.RatingActivity"
+            android:name=".RatingReviewPage.RatingActivity"
             android:exported="false" />
         <activity
             android:name=".NotificationPage.NotificationActivity"
