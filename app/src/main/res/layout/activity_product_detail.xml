@@ -50,12 +50,10 @@
                     android:layout_width="35sp"
                     android:layout_height="35sp"
                     android:layout_gravity="right"
-                    android:layout_margin="15sp"
+                    android:layout_marginEnd="15sp"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/cart"
-                    tools:layout_editor_absoluteX="376dp"
-                    tools:layout_editor_absoluteY="10dp" />
+                    app:lottie_rawRes="@raw/cart"/>
 
                 <SearchView
                     android:layout_width="wrap_content"
