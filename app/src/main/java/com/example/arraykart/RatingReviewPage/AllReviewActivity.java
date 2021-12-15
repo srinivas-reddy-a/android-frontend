@@ -1,5 +1,4 @@
 package com.example.arraykart.RatingReviewPage;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
