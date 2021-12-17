@@ -52,10 +52,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
@@ -78,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_corners"
             android:ems="10"
             android:hint="username"
@@ -86,6 +89,7 @@
             android:padding="10dp"
             android:textColor="#000000"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -95,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_corners"
             android:ems="10"
             android:hint="email"
@@ -103,6 +108,7 @@
             android:padding="10sp"
             android:textColor="#000000"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpUserName" />
 
@@ -112,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_corners"
             android:ems="10"
             android:hint="password"
@@ -121,6 +128,7 @@
             android:password="true"
             android:textColor="#000000"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpUserEmail" />
 
@@ -130,6 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/rounded_corners"
             android:ems="10"
             android:hint="confirm password"
@@ -139,6 +148,7 @@
             android:password="true"
             android:textColor="#000000"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpUserPassword" />
 
@@ -149,29 +159,64 @@
             android:layout_margin="18sp"
             android:text="Already have an account?"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/login_button"
+            app:layout_constraintEnd_toStartOf="@+id/textView21"
+            app:layout_constraintStart_toStartOf="@+id/signUpUserPasswordConform"
             app:layout_constraintTop_toBottomOf="@+id/signUpUserPasswordConform" />
 
         <TextView
             android:id="@+id/textView21"
             android:layout_width="60dp"
             android:layout_height="25dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
             android:text="Sign in"
             android:textColor="#3084C5"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/login_button"
+            app:layout_constraintBottom_toTopOf="@+id/FrameLayout1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView20"
             app:layout_constraintTop_toTopOf="@+id/textView20" />
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
+        <!--        <com.facebook.login.widget.LoginButton-->
+        <!--            android:id="@+id/login_button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:onClick="logIn"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textView20" />-->
+        <FrameLayout
+            android:id="@+id/FrameLayout1"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:onClick="logIn"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="logIn"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/fb"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#416BC1"
+                android:onClick="onClick"
+                android:text="FaceBook"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="180dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@+id/FrameLayout1"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <TextView
@@ -179,24 +224,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
             android:padding="5sp"
             android:text="By signing up. you agree to Arraykart's Terms of Use and Privacy Policy"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+            app:layout_constraintTop_toBottomOf="@+id/FrameLayout1" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:padding="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
 
         <Button
             android:id="@+id/button4"
@@ -209,7 +259,8 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
