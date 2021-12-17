@@ -323,7 +323,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             LinearLayout categoryhsv = findViewById(R.id.horizontalscrollview);
             View v = getLayoutInflater().inflate(R.layout.home_brand, null);
             ImageView isv = v.findViewById(R.id.imageView2);
-            isv.setImageResource(R.drawable.img);
+            isv.setImageResource(R.drawable.categories);
             TextView tsv = v.findViewById(R.id.textView2);
             tsv.setText("Category"+i);
             isv.setOnClickListener(new View.OnClickListener() {

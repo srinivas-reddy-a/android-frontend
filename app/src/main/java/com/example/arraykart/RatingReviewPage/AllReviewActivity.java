@@ -41,15 +41,15 @@ public class AllReviewActivity extends AppCompatActivity {
 
             reviewModelList = new ArrayList<>();
             reviewModelList.add(new ReviewModel("4.4","Cool Product",
-                    "hbvashbdjajdvbaschbjjacjacjjascjavscj a cjabcjavdab " +
-                            "d acj ajscdja dqochqwdb qjhd jhavc cjhs jaca cjhac dvbasjca " +
-                            " cjha sjcajc a cujhascb jc ahcjackwdbiwdb " +
-                            " wdi bxbxibISX  sx     djb dbuscbxhhxAXB   DDQ WKJDJBB WDKKw","sachin jha","noia","Jan,2021" ));
-            reviewModelList.add(new ReviewModel("4.4","Cool Product",
-                    "hbvashbdjajdvbaschbjjacjacjjascjavscj a cjabcjavdab " +
-                            "d acj ajscdja dqochqwdb qjhd jhavc cjhs jaca cjhac dvbasjca " +
-                            " cjha sjcajc a cujhascb jc ahcjac","sachin jha","noia","Jan,2021" ));
-            reviewModelList.add(new ReviewModel("4.4","Cool Product",
+                    " " +
+                            "After using it my plants became green and are growing very well. " +
+                            "Their leaves are growing larger now. Happy with it. " +
+                            "Their leaves are growing larger now. Happy with it. ","sachin jha","noia","Jan,2021" ));
+            reviewModelList.add(new ReviewModel("4.4","Value for money!",
+                    "I always prefer organic fertilizers. Bought this because needed an urgent treatment for my plants as I was away from home so my plants became weak. " +
+                            "After using this my plants are coming back to normal quickly. I can see the changes in just 10 days. " +
+                            "Their leaves are growing larger now. Happy with it. ","sachin jha","noia","Jan,2021" ));
+            reviewModelList.add(new ReviewModel("4.4","Best product",
                     "hbvashbdjajdvbaschbjjacjacjjascjavscj a cjabcjavdab " +
                             "d acj ajscdja dqochqwdb qjhd jhavc cjhs jaca cjhac dvbasjca " +
                             " cjha sjcajc a cujhascb jc ahcjac","sachin jha","noia","Jan,2021" ));

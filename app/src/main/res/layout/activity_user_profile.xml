@@ -62,8 +62,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/UserProfileImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
             app:shapeAppearanceOverlay="@style/Circular"
             app:strokeColor="#AFAAAA"
             app:strokeWidth="1sp"
-            android:src="@drawable/img"
+            android:src="@drawable/profile"
             android:background="#FDFBFB"
             android:scaleType="centerCrop"
             />
