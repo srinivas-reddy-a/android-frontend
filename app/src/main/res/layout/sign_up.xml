@@ -84,7 +84,7 @@
             android:background="@drawable/rounded_corners"
             android:ems="10"
             android:hint="username"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:minHeight="48dp"
             android:padding="10dp"
             android:textColor="#000000"

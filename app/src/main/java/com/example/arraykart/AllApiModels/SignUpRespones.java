@@ -2,11 +2,11 @@ package com.example.arraykart.AllApiModels;
 
 public class SignUpRespones {
     String err;
-    String msg;
+    String message;
 
-    public SignUpRespones(String err, String msg) {
+    public SignUpRespones(String err, String message) {
         this.err = err;
-        this.msg = msg;
+        this.message = message;
     }
 
     public String getErr() {
@@ -17,11 +17,11 @@ public class SignUpRespones {
         this.err = err;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

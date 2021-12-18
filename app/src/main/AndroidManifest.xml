@@ -10,6 +10,7 @@
         android:allowBackup="true"
         android:icon="@drawable/arraykart_icon"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@drawable/arraykart_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Arraykart">

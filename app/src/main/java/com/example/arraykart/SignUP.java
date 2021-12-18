@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.SignUpRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.UserProfile.UserProfileActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -42,7 +45,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUP extends AppCompatActivity {
 
@@ -97,6 +105,7 @@ public class SignUP extends AppCompatActivity {
             signupbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    registerUser();
 
                 }
             });
@@ -160,6 +169,63 @@ public class SignUP extends AppCompatActivity {
 
 
     }
+
+    private void  registerUser(){
+        String userName = signUpUserName.getText().toString();
+        String userEmail=signUpUserEmail.getText().toString() ;
+        String userPassword =signUpUserPassword.getText().toString();
+        String userCP =signUpUserPassw0rdConform.getText().toString();
+
+        if(userName.isEmpty()){
+            signUpUserName.requestFocus();
+            signUpUserName.setError("please enter you name");
+            return;
+        }
+        if(userEmail.isEmpty()){
+            signUpUserEmail.requestFocus();
+            signUpUserEmail.setError("please enter you email");
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
+            signUpUserEmail.requestFocus();
+            signUpUserEmail.setError("please enter you correctEmail");
+            return;
+        }
+        if(userPassword.isEmpty()){
+            signUpUserPassword.requestFocus();
+            signUpUserPassword.setError("please enter you name");
+            return;
+        }
+//        if(userPassword != userCP){
+//            signUpUserPassw0rdConform.requestFocus();
+//            signUpUserPassw0rdConform.setError("please enter correct password");
+//            return;
+//        }
+
+        Call<SignUpRespones> call = RetrofitClient
+                .getInstance()
+                .getApi().signUp(userName);
+        call.enqueue(new Callback<SignUpRespones>() {
+            @Override
+            public void onResponse(Call<SignUpRespones> call, Response<SignUpRespones> response) {
+                SignUpRespones signUpRespones = response.body();
+                if(response.isSuccessful()){
+                    Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(SignUP.this, signUpRespones.getErr(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignUpRespones> call, Throwable t) {
+                Toast.makeText(SignUP.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    //facebook
 
     GraphRequest request1;
 
