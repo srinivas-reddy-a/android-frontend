@@ -181,21 +181,21 @@ public class SignUP extends AppCompatActivity {
             signUpUserName.setError("please enter you name");
             return;
         }
-        if(userEmail.isEmpty()){
-            signUpUserEmail.requestFocus();
-            signUpUserEmail.setError("please enter you email");
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
-            signUpUserEmail.requestFocus();
-            signUpUserEmail.setError("please enter you correctEmail");
-            return;
-        }
-        if(userPassword.isEmpty()){
-            signUpUserPassword.requestFocus();
-            signUpUserPassword.setError("please enter you name");
-            return;
-        }
+//        if(userEmail.isEmpty()){
+//            signUpUserEmail.requestFocus();
+//            signUpUserEmail.setError("please enter you email");
+//            return;
+//        }
+//        if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
+//            signUpUserEmail.requestFocus();
+//            signUpUserEmail.setError("please enter you correctEmail");
+//            return;
+//        }
+//        if(userPassword.isEmpty()){
+//            signUpUserPassword.requestFocus();
+//            signUpUserPassword.setError("please enter you name");
+//            return;
+//        }
 //        if(userPassword != userCP){
 //            signUpUserPassw0rdConform.requestFocus();
 //            signUpUserPassw0rdConform.setError("please enter correct password");
@@ -212,7 +212,7 @@ public class SignUP extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(SignUP.this, signUpRespones.getErr(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
