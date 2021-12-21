@@ -47,7 +47,9 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -171,12 +173,12 @@ public class SignUP extends AppCompatActivity {
     }
 
     private void  registerUser(){
-        String userName = signUpUserName.getText().toString();
+        String userNumber = signUpUserName.getText().toString();
         String userEmail=signUpUserEmail.getText().toString() ;
         String userPassword =signUpUserPassword.getText().toString();
         String userCP =signUpUserPassw0rdConform.getText().toString();
 
-        if(userName.isEmpty()){
+        if(userNumber.isEmpty()){
             signUpUserName.requestFocus();
             signUpUserName.setError("please enter you name");
             return;
@@ -204,13 +206,14 @@ public class SignUP extends AppCompatActivity {
 
         Call<SignUpRespones> call = RetrofitClient
                 .getInstance()
-                .getApi().signUp(userName);
+                .getApi().signUp(userNumber);
         call.enqueue(new Callback<SignUpRespones>() {
             @Override
             public void onResponse(Call<SignUpRespones> call, Response<SignUpRespones> response) {
                 SignUpRespones signUpRespones = response.body();
                 if(response.isSuccessful()){
                     Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignUP.this,Signin.class));
                 }else {
                     Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
                 }

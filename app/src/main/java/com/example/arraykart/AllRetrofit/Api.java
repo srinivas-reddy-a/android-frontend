@@ -14,5 +14,6 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("/api/user/register/")
-    Call<SignUpRespones>signUp(@Field("phone_number") String userNumber);
+    Call<SignUpRespones>signUp(@Field("phoneNumber") String userNumber);
+
 }
