@@ -13,6 +13,6 @@ import retrofit2.http.POST;
 public interface Api {
 
     @FormUrlEncoded
-    @POST("/register/")
-    Call<SignUpRespones>signUp(@Field("phone_number") String userNumber);
+    @POST("/api/user/register/")
+    Call<SignUpRespones>signUp(@Field("phoneNumber") String userNumber);
 }
