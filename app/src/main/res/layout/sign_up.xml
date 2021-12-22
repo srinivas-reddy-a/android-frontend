@@ -55,7 +55,9 @@
         android:id="@+id/constraintLayout12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
         android:padding="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,74 +96,34 @@
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <EditText
-            android:id="@+id/signUpUserEmail"
-            android:layout_width="match_parent"
+            android:id="@+id/signUpUserOtp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:visibility="gone"
             android:background="@drawable/rounded_corners"
             android:ems="10"
-            android:hint="email"
+            android:hint="Enter otp"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:padding="10sp"
             android:textColor="#000000"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/signUpUserName"
             app:layout_constraintTop_toBottomOf="@+id/signUpUserName" />
 
-        <EditText
-            android:id="@+id/signUpUserPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/rounded_corners"
-            android:ems="10"
-            android:hint="password"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:padding="10sp"
-            android:password="true"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUpUserEmail" />
-
-        <EditText
-            android:id="@+id/signUpUserPasswordConform"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/rounded_corners"
-            android:ems="10"
-            android:hint="confirm password"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:padding="10sp"
-            android:password="true"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signUpUserPassword" />
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="18sp"
+            android:layout_marginTop="20dp"
             android:text="Already have an account?"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/textView21"
-            app:layout_constraintStart_toStartOf="@+id/signUpUserPasswordConform"
-            app:layout_constraintTop_toBottomOf="@+id/signUpUserPasswordConform" />
+            app:layout_constraintStart_toStartOf="@+id/signUpUserOtp"
+            app:layout_constraintTop_toBottomOf="@+id/signUpUserOtp" />
 
         <TextView
             android:id="@+id/textView21"
@@ -187,9 +149,11 @@
         <!--            app:layout_constraintTop_toBottomOf="@+id/textView20" />-->
         <FrameLayout
             android:id="@+id/FrameLayout1"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20">
 
@@ -202,7 +166,7 @@
 
             <Button
                 android:id="@+id/fb"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#416BC1"
                 android:onClick="onClick"
@@ -213,18 +177,19 @@
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
-            android:layout_width="180dp"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintStart_toEndOf="@+id/FrameLayout1"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/FrameLayout1"
+            app:layout_constraintTop_toBottomOf="@+id/FrameLayout1" />
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:padding="5sp"
             android:text="By signing up. you agree to Arraykart's Terms of Use and Privacy Policy"
@@ -232,7 +197,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FrameLayout1" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -241,12 +206,10 @@
         android:id="@+id/constraintLayout13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:padding="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/button4"
@@ -254,6 +217,20 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
             android:text="Sign Up"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:visibility="gone"
+            android:text="submit"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp"

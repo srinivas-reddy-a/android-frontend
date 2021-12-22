@@ -62,8 +62,8 @@ public class SignUP extends AppCompatActivity {
 
     private ImageView imageView;
     private TextView signintv;
-    private Button signupbtn;
-    private EditText signUpUserName,signUpUserEmail,signUpUserPassword,signUpUserPassw0rdConform;
+    private Button signupbtn,submit;
+    private EditText signUpUserName,signUpUserOtp;
     private LoginButton loginButton;
     private  Button fb;
 
@@ -74,9 +74,9 @@ public class SignUP extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         signUpUserName = findViewById(R.id.signUpUserName);
-        signUpUserEmail = findViewById(R.id.signUpUserEmail);
-        signUpUserPassword = findViewById(R.id.signUpUserPassword);
-        signUpUserPassw0rdConform = findViewById(R.id.signUpUserPasswordConform);
+        signUpUserOtp = findViewById(R.id.signUpUserOtp);
+        signupbtn = findViewById(R.id.button4);
+        submit = findViewById(R.id.submit);
         try{
             imageView = findViewById(R.id.imageView6);
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,7 @@ public class SignUP extends AppCompatActivity {
         }
 
         try {
-            signupbtn = findViewById(R.id.button4);
+
             signupbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -174,9 +174,6 @@ public class SignUP extends AppCompatActivity {
 
     private void  registerUser(){
         String userNumber = signUpUserName.getText().toString();
-        String userEmail=signUpUserEmail.getText().toString() ;
-        String userPassword =signUpUserPassword.getText().toString();
-        String userCP =signUpUserPassw0rdConform.getText().toString();
 
         if(userNumber.isEmpty()){
             signUpUserName.requestFocus();
@@ -213,9 +210,29 @@ public class SignUP extends AppCompatActivity {
                 SignUpRespones signUpRespones = response.body();
                 if(response.isSuccessful()){
                     Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignUP.this,Signin.class));
-                }else {
-                    Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                    signUpUserOtp.setVisibility(View.VISIBLE);
+                    signupbtn.setVisibility(View.GONE);
+                    submit.setVisibility(View.VISIBLE);
+                    submit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            signUpUserOtp.setVisibility(View.GONE);
+                            submit.setVisibility(View.GONE);
+                            signupbtn.setVisibility(View.VISIBLE);
+                            startActivity(new Intent(SignUP.this,HomeNavigationActivity.class));
+                        }
+                    });
+                }else{
+                    try{
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(SignUP.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
+                        Intent in = new Intent(SignUP.this,Signin.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(in);
+
+                    }catch (Exception e){
+                        Toast.makeText(SignUP.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
@@ -241,7 +258,6 @@ public class SignUP extends AppCompatActivity {
             String uLastName = profile.getId();
 
             signUpUserName.setText(UName);
-            signUpUserEmail.setText(uLastName);
 
             request1 = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
                 @Override
@@ -252,7 +268,6 @@ public class SignUP extends AppCompatActivity {
                         String profile_name = jsonObject.getString("name");
                         String fb_id = jsonObject.getString("id"); ///we will use this for logout
 
-                        signUpUserEmail.setText(email_id);
 
                         Log.d("email_id","email_id");
                         Log.d("gender","gender");

@@ -73,14 +73,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/Sign_in_page_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:background="@drawable/rounded_corners"
             android:ems="10"
-            android:hint="email"
-            android:inputType="textPersonName"
+            android:hint="Enter your number"
+            android:inputType="number"
             android:minHeight="48dp"
             android:padding="10sp"
             android:textColor="#000000"
@@ -91,24 +91,24 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
-            android:layout_width="match_parent"
+            android:id="@+id/Sign_in_page_otp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
+            android:visibility="gone"
             android:background="@drawable/rounded_corners"
             android:ems="10"
-            android:hint="password"
+            android:hint="Enter OTP"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:padding="10sp"
-            android:password="true"
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+            app:layout_constraintTop_toBottomOf="@+id/Sign_in_page_email"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
@@ -120,7 +120,7 @@
             android:text="Do not have an account?"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            app:layout_constraintTop_toBottomOf="@+id/Sign_in_page_otp" />
 
         <TextView
             android:id="@+id/textView17"
@@ -169,11 +169,24 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/Sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
             android:text="Sign In"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/Submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:visibility="gone"
+            android:text="submit"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
