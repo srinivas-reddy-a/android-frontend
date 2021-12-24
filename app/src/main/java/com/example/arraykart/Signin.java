@@ -160,7 +160,7 @@ public class Signin extends AppCompatActivity {
                         Toast.makeText(Signin.this,logInOtpRespones.getMsg(), Toast.LENGTH_SHORT).show();
                     }
 
-                    Toast.makeText(Signin.this,logInOtpRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Signin.this,logInOtpRespones.getToken(), Toast.LENGTH_SHORT).show();
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
