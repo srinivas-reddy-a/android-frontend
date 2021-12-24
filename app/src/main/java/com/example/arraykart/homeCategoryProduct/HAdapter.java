@@ -14,10 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.arraykart.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
 
-    private ArrayList<MainModel> mainModel;
+    private List<MainModel> mainModel;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -30,7 +31,7 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
 
     Context context;
 
-    public HAdapter(Context c, ArrayList<MainModel> mainModel){
+    public HAdapter(Context c, List<MainModel> mainModel){
         this.context = c;
         this.mainModel = mainModel;
     }

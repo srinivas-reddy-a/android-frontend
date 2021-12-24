@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.MyOrder.MyOrder;
@@ -56,6 +57,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView UserName;
     private TextView UserEmail;
 
+    SharedPrefManager sharedPrefManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,11 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         recyclerView = findViewById(R.id.UserProfileRecyclerView);
+        UserName = findViewById(R.id.UserName);
+        UserEmail = findViewById(R.id.UserEmail);
+        UserProfileImage = findViewById(R.id.UserProfileImage);
+
+        sharedPrefManager = new SharedPrefManager(UserProfileActivity.this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(UserProfileActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -159,11 +167,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         }
 
-
-        UserName = findViewById(R.id.UserName);
-        UserEmail = findViewById(R.id.UserEmail);
-        UserProfileImage = findViewById(R.id.UserProfileImage);
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -193,6 +196,14 @@ public class UserProfileActivity extends AppCompatActivity {
             Glide.with(this).load(String.valueOf(personPhoto)).into(UserProfileImage);
 
         }
+
+        //sharedpre
+//
+//        String username = sharedPrefManager.getUser().getName();
+//        String useremail = sharedPrefManager.getUser().getPhone_number();
+//        UserName.setText(username);
+//        UserEmail.setText(useremail);
+
     }
     private void signOut() {
         mGoogleSignInClient.signOut()

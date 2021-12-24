@@ -1,6 +1,10 @@
 package com.example.arraykart.AllRetrofit;
 
+import com.example.arraykart.AllApiModels.AuthRespones;
+import com.example.arraykart.AllApiModels.LogInIdRespones;
+import com.example.arraykart.AllApiModels.LogInOtpRespones;
 import com.example.arraykart.AllApiModels.LogInRespones;
+import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllApiModels.SignUpRespones;
 
 import java.util.HashMap;
@@ -23,12 +27,12 @@ public interface Api {
     Call<SignUpRespones>signUp(@Field("phoneNumber") String userNumber);
 
     @FormUrlEncoded
-    @POST("/api/user/register/")
+    @POST("/api/user/register/otp")
     Call<ResponseBody>registerOtp(@Field("phoneNumber") String userNumber,
                                   @Field("otp") String otp);
 
     @GET("/api/user/auth/")
-    Call<ResponseBody>auth();
+    Call<AuthRespones>auth();
 
 
     @FormUrlEncoded
@@ -37,10 +41,10 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("/api/user/login/otp")
-    Call<ResponseBody>loginOtp(@Field("otp") String userNumber);
+    Call<LogInOtpRespones>loginOtp(@Field("otp") String otp);
 
     @GET("/api/user/:id")
-    Call<ResponseBody>loginId();
+    Call<LogInIdRespones>loginId();
 
     @FormUrlEncoded
     @PUT("/api/user")
@@ -54,7 +58,7 @@ public interface Api {
     ////products api
 
     @GET("/api/product/")
-    Call<ResponseBody>getProduct();
+    Call<ProductsRespones>getProduct();
 
     @GET("/api/product/category/")
     Call<ResponseBody>productCategory();

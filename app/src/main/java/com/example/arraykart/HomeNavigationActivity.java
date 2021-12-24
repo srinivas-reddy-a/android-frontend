@@ -18,6 +18,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.AllApiModels.ProductsRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
@@ -47,10 +49,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.example.arraykart.databinding.ActivityHomeNavigationBinding;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeNavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,7 +75,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     private  RecyclerView recyclerView;
     private  HAdapter hAdapter;
-    private ArrayList<MainModel> maiModel;
+    private  List<MainModel> maiModel;
     private RecyclerView recyclerView1;
     private ImageView wishListHome;
     private TextView searchHome;
@@ -237,14 +246,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        hAdapter = new HAdapter(this,maiModel);
+        hAdapter = new HAdapter(this, maiModel);
         recyclerView.setAdapter(hAdapter);
 
         LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView1.setLayoutManager(layoutManagers);
         recyclerView1.setItemAnimator(new DefaultItemAnimator());
-        HAdapter hAdapters = new HAdapter(this,maiModel);
+        HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
         recyclerView1.setAdapter(hAdapters);
+
 
 
 //      this helps click on every item present in home_products_category and open new activity of all item_product
@@ -252,12 +262,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
                 @Override
                 public void onClickListener(int position) {
-                    for (int i = 0; i < imgs.length; i++) {
+                    for (int i = 0; i < maiModel.size(); i++) {
                         if (position == i-1) {
                             startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
                         }
                     }
-                    if(position==imgs.length-1){
+                    if(position==maiModel.size()-1){
                         startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
                     }
                 }
@@ -266,6 +276,37 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         }catch(Exception e){
 
         }
+
+        ///call for home products
+
+//        Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getProduct();
+//
+//        call.enqueue(new Callback<ProductsRespones>() {
+//            @Override
+//            public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
+//                if(response.isSuccessful()){
+//                    maiModel = response.body().getProducts();
+//                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
+//                    recyclerView1.setAdapter(hAdapters);
+//
+//
+//                }else {
+//                    try {
+//                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+//                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
+//
+//                    } catch (Exception e) {
+//                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ProductsRespones> call, Throwable t) {
+//                Toast.makeText(HomeNavigationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
 
         ///1st grid view for home page
@@ -292,6 +333,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         GridViewAdapter gridAdapters = new GridViewAdapter(this, namess, pricess, rate, ribbon, imgss);
         gridView2.setAdapter(gridAdapters);
         ///2nd grid view for home page
+
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
         List<SlideModel> slideModelList = new ArrayList<>();

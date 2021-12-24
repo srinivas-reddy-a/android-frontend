@@ -50,6 +50,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,7 +64,7 @@ public class SignUP extends AppCompatActivity {
     private ImageView imageView;
     private TextView signintv;
     private Button signupbtn,submit;
-    private EditText signUpUserName,signUpUserOtp;
+    private EditText signUpUserNumber,signUpUserOtp;
     private LoginButton loginButton;
     private  Button fb;
 
@@ -73,7 +74,7 @@ public class SignUP extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_sign_up);
 
-        signUpUserName = findViewById(R.id.signUpUserName);
+        signUpUserNumber = findViewById(R.id.signUpUserName);
         signUpUserOtp = findViewById(R.id.signUpUserOtp);
         signupbtn = findViewById(R.id.button4);
         submit = findViewById(R.id.submit);
@@ -173,11 +174,11 @@ public class SignUP extends AppCompatActivity {
     }
 
     private void  registerUser(){
-        String userNumber = signUpUserName.getText().toString();
+        String userNumber = signUpUserNumber.getText().toString();
 
         if(userNumber.isEmpty()){
-            signUpUserName.requestFocus();
-            signUpUserName.setError("please enter you name");
+            signUpUserNumber.requestFocus();
+            signUpUserNumber.setError("please enter you name");
             return;
         }
 //        if(userEmail.isEmpty()){
@@ -216,10 +217,11 @@ public class SignUP extends AppCompatActivity {
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            registerOtp();
                             signUpUserOtp.setVisibility(View.GONE);
                             submit.setVisibility(View.GONE);
                             signupbtn.setVisibility(View.VISIBLE);
-                            startActivity(new Intent(SignUP.this,HomeNavigationActivity.class));
+                           // startActivity(new Intent(SignUP.this,HomeNavigationActivity.class));
                         }
                     });
                 }else{
@@ -243,6 +245,54 @@ public class SignUP extends AppCompatActivity {
         });
     }
 
+    private void registerOtp(){
+        String userNumber = signUpUserNumber.getText().toString();
+        String otp = signUpUserOtp.getText().toString();
+        if(userNumber.isEmpty()){
+            signUpUserNumber.requestFocus();
+            signUpUserNumber.setError("please enter you name");
+            return;
+        }
+        if(otp.isEmpty()){
+            signUpUserOtp.requestFocus();
+            signUpUserOtp.setError("please enter otp first");
+            return;
+        }
+
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi().registerOtp(userNumber,otp);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                ResponseBody responseBody = response.body();
+                if(response.isSuccessful()){
+                    Toast.makeText(SignUP.this,responseBody.toString(), Toast.LENGTH_SHORT).show();
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(SignUP.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
+//                        Intent in = new Intent(SignUP.this, Signin.class);
+//                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        startActivity(in);
+
+                    } catch (Exception e) {
+                        Toast.makeText(SignUP.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(SignUP.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+    }
+
 
 
     //facebook
@@ -257,7 +307,7 @@ public class SignUP extends AppCompatActivity {
             String UName = profile.getName();
             String uLastName = profile.getId();
 
-            signUpUserName.setText(UName);
+            signUpUserNumber.setText(UName);
 
             request1 = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
                 @Override
