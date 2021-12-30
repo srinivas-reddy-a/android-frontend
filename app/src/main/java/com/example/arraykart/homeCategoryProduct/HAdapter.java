@@ -2,6 +2,7 @@ package com.example.arraykart.homeCategoryProduct;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.arraykart.R;
 
 import java.util.ArrayList;
@@ -45,19 +48,36 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull HAdapter.ViewHolder holder, int position) {
-        int p =mainModel.size()-2 ;
-        if(position<=p) {
-            holder.img.setImageResource(mainModel.get(position).getImgs());
-            holder.tv.setText(mainModel.get(position).getName());
-            holder.tv1.setText(mainModel.get(position).getPrice());
-        }else {
-            holder.img.setVisibility(View.GONE);
-            holder.tv.setText("...more");
-            holder.tv.setTextSize(15);
-            holder.tv.setTextColor(Color.parseColor("#7BB7E6"));
-            holder.tv.setPadding(20,140,20,140);
-            holder.tv1.setVisibility(View.GONE);
-        }
+//        int p =mainModel.size()-2 ;
+
+//        Drawable res = context.getResources().getDrawable(context.getResources()
+//                .getIdentifier(mainModel.get(position).getImage(), null, context.getPackageName()));
+
+
+        Glide.with(context.getApplicationContext())
+                .load(mainModel.get(position).getImage())
+                .placeholder(R.drawable.categories)
+                .centerInside()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.img);
+        holder.tv.setText(mainModel.get(position).getName());
+        holder.tv1.setText(mainModel.get(position).getPrice());
+
+//        if(position<=p) {
+//            Glide.with(this.context)
+//                    .load(mainModel.get(position).getImage())
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .into(holder.img);
+//            holder.tv.setText(mainModel.get(position).getName());
+//            holder.tv1.setText(mainModel.get(position).getPrice());
+//        }else {
+//            holder.img.setVisibility(View.GONE);
+//            holder.tv.setText("...more");
+//            holder.tv.setTextSize(15);
+//            holder.tv.setTextColor(Color.parseColor("#7BB7E6"));
+//            holder.tv.setPadding(20,140,20,140);
+//            holder.tv1.setVisibility(View.GONE);
+//        }
 
     }
 

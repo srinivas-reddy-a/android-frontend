@@ -101,24 +101,24 @@ public class ProductDetailActivity extends AppCompatActivity {
         ///recyclerView for products in productdetailpage
         recyclerView=findViewById(R.id.recyclerView);
 
-        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
-        String[] name = {"name","name","name","name"};
-        String[] price ={"price","price","price","price"};
-
-        maiModel = new ArrayList<>();
-        try {
-            for (int i = 0; i < name.length; i++) {
-                MainModel model = new MainModel(name[i], price[i], imgs[i]);
-                maiModel.add(model);
-            }
-        }catch(Exception e){
-
-        }
-        LinearLayoutManager layoutManager = new LinearLayoutManager(ProductDetailActivity.this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        hAdapter = new HAdapter(this,maiModel);
-        recyclerView.setAdapter(hAdapter);
+//        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
+//        String[] name = {"name","name","name","name"};
+//        String[] price ={"price","price","price","price"};
+//
+//        maiModel = new ArrayList<>();
+//        try {
+//            for (int i = 0; i < name.length; i++) {
+//                MainModel model = new MainModel(name[i], price[i], imgs[i]);
+//                maiModel.add(model);
+//            }
+//        }catch(Exception e){
+//
+//        }
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(ProductDetailActivity.this,LinearLayoutManager.HORIZONTAL,false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        hAdapter = new HAdapter(this,maiModel);
+//        recyclerView.setAdapter(hAdapter);
         ///recyclerView for products in productdetailpage
 
         ///cart icon clicklistener

@@ -230,83 +230,69 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView1 = findViewById(R.id.recyclerView1);
 
-        int[] imgs ={R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img};
-        String[] name = {"name","name","name","name","name"};
-        String[] price ={"price","price","price","price","price"};
-
-        maiModel = new ArrayList<>();
-        try {
-            for (int i = 0; i < name.length; i++) {
-                MainModel model = new MainModel(name[i], price[i], imgs[i]);
-                maiModel.add(model);
-            }
-        }catch(Exception e){
-
-        }
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        hAdapter = new HAdapter(this, maiModel);
-        recyclerView.setAdapter(hAdapter);
 
         LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView1.setLayoutManager(layoutManagers);
         recyclerView1.setItemAnimator(new DefaultItemAnimator());
-        HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
-        recyclerView1.setAdapter(hAdapters);
 
-
-
-//      this helps click on every item present in home_products_category and open new activity of all item_product
-        try {
-            hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-                @Override
-                public void onClickListener(int position) {
-                    for (int i = 0; i < maiModel.size(); i++) {
-                        if (position == i-1) {
-                            startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
-                        }
-                    }
-                    if(position==maiModel.size()-1){
-                        startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
-                    }
-                }
-            });
-
-        }catch(Exception e){
-
-        }
 
         ///call for home products
 
-//        Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getProduct();
-//
-//        call.enqueue(new Callback<ProductsRespones>() {
-//            @Override
-//            public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
-//                if(response.isSuccessful()){
-//                    maiModel = response.body().getProducts();
-//                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
-//                    recyclerView1.setAdapter(hAdapters);
-//
-//
-//                }else {
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-//                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
-//
-//                    } catch (Exception e) {
-//                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ProductsRespones> call, Throwable t) {
-//                Toast.makeText(HomeNavigationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getProduct();
+
+        call.enqueue(new Callback<ProductsRespones>() {
+            @Override
+            public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
+                if(response.isSuccessful()){
+                    maiModel = response.body().getProducts();
+                    hAdapter = new HAdapter(getApplicationContext(), maiModel);
+                    recyclerView.setAdapter(hAdapter);
+
+                    /// this helps click on every item present in home_products_category and open new activity of all item_product
+
+                    try {
+                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+                            @Override
+                            public void onClickListener(int position) {
+                                for (int i = 0; i < maiModel.size(); i++) {
+                                    if (position == i-1) {
+                                        startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                                    }
+                                }
+                                if(position==maiModel.size()-1){
+                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
+                                }
+                            }
+                        });
+
+                    }catch(Exception e){
+
+                    }
+
+                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
+                    recyclerView1.setAdapter(hAdapters);
+
+
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductsRespones> call, Throwable t) {
+                Toast.makeText(HomeNavigationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         ///1st grid view for home page

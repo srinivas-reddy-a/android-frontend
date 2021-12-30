@@ -1,18 +1,28 @@
 package com.example.arraykart.homeCategoryProduct;
 
-public class MainModel {
-    String name,price;
-    int imgs;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public MainModel(String name, String price, int imgs) {
+public class MainModel {
+    int id ;
+    String name;
+    String price;
+    @SerializedName("image")
+    @Expose
+    String image;
+
+    public MainModel(String name, String price, String image) {
         this.name = name;
         this.price = price;
-        this.imgs = imgs;
+        this.image = image;
     }
 
-    public MainModel(int imgs, String name) {
-        this.imgs = imgs;
-        this.name = name;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,11 +41,11 @@ public class MainModel {
         this.price = price;
     }
 
-    public int getImgs() {
-        return imgs;
+    public String getImage() {
+        return image;
     }
 
-    public void setImgs(int imgs) {
-        this.imgs = imgs;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

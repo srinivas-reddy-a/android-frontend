@@ -7,20 +7,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
+import com.example.arraykart.AllApiModels.AuthRespones;
+import com.example.arraykart.AllApiModels.UserId;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.NotificationPage.NotificationActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.SignUP;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,8 +37,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserProfileActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
@@ -58,6 +70,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView UserEmail;
 
     SharedPrefManager sharedPrefManager;
+    List<UserId> userIds;
 
 
     @Override
@@ -70,7 +83,36 @@ public class UserProfileActivity extends AppCompatActivity {
         UserEmail = findViewById(R.id.UserEmail);
         UserProfileImage = findViewById(R.id.UserProfileImage);
 
-        sharedPrefManager = new SharedPrefManager(UserProfileActivity.this);
+        sharedPrefManager = new SharedPrefManager(this);
+
+        String user = sharedPrefManager.getValue_string("token");
+
+        Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(user);
+        call.enqueue(new Callback<AuthRespones>() {
+            @Override
+            public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
+                if(response.isSuccessful()){
+                    AuthRespones authRespones = response.body();
+                    String name = authRespones.getUser().getName();
+                    UserName.setText(name);
+
+                }else{
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(UserProfileActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(UserProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<AuthRespones> call, Throwable t) {
+                Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(UserProfileActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -176,9 +218,15 @@ public class UserProfileActivity extends AppCompatActivity {
         logout_of_this_app.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOut();
-                finish();
-
+                SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                if(user_token.contains("token")){
+                    sharedPrefManager.clear();
+                    startActivity(new Intent(UserProfileActivity.this,HomeNavigationActivity.class));
+                    finish();
+                }else {
+                    signOut();
+                    finish();
+                }
             }
         });
 

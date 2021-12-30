@@ -1,5 +1,6 @@
 package com.example.arraykart.AllRetrofit;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -8,45 +9,47 @@ import com.example.arraykart.AllApiModels.User;
 import com.example.arraykart.AllApiModels.UserId;
 
 public class SharedPrefManager {
-    private static String SHARED_PREF_NAME="arraykartuser"; ////name of class
+    private static final String SHARED_PREF_NAME="arraykartuser"; ////name of class
     private SharedPreferences sharedPreferences;
-    Context context ;
     private SharedPreferences.Editor editor; ///for save the user
 
     public SharedPrefManager(Context context) {
-        this.context = context;
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Activity.MODE_PRIVATE);
+        this.editor = sharedPreferences.edit();
     }
 
-    public void saveUser(UserId user){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putInt("id", user.getId());
-        editor.putString("name", user.getName());
-        editor.putString("phone_number", user.getPhone_number());
-        editor.putString("email",user.getEmail());
-        editor.putBoolean("logged",true);
-        editor.apply();
-    }
-    public boolean isLoggedIn(){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean("logged",false);
-
-    }
-    public UserId getUser(){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,context.MODE_PRIVATE);
-        return new UserId(sharedPreferences.getInt("id",-1),
-                sharedPreferences.getString("name",null),
-                sharedPreferences.getString("phone_number",null),
-                sharedPreferences.getString("email",null));
+    //int
+    public int getValue_int(String key){
+        return  sharedPreferences.getInt(key,0);
     }
 
-    void logged(){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,context.MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
+    public void setValue_int(String key,int value){
+        editor.putInt(key,value).commit();
     }
 
+    //string
+
+    public String getValue_string(String key){
+        return  sharedPreferences.getString(key,"");
+    }
+
+    public void setValue_string(String key,String value){
+        editor.putString(key,value).commit();
+    }
+
+    //boolean
+
+    public boolean getValue_boolean(String key){
+        return  sharedPreferences.getBoolean(key,false);
+    }
+
+    public void setValue_boolean(String key,boolean value){
+        editor.putBoolean(key,value).commit();
+    }
+
+    public void clear(){
+        editor.clear().commit();
+    }
 
 
 }

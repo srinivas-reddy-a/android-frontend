@@ -50,11 +50,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String name = addressModelList.get(position).getFullName();
-        String address = addressModelList.get(position).getAddress();
-        String pin = addressModelList.get(position).getPinCode();
+        String name = addressModelList.get(position).getAddress_name();
+        String address1 = addressModelList.get(position).getAddress_line1();
+        String address2 = addressModelList.get(position).getAddress_line2();
+        String state = addressModelList.get(position).getState();
+        String city = addressModelList.get(position).getCity();
+        String pin = addressModelList.get(position).getPostal_code();
+        String phone = addressModelList.get(position).getPhone_number();
         Boolean selected = addressModelList.get(position).getSelected();
-        holder.SetData(name,address,pin,selected,position);
+        holder.SetData(name,address1,address2,state,city,pin,phone,selected,position);
     }
 
     @Override
@@ -64,14 +68,22 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView fullName;
-        private TextView address;
+        private TextView address1;
+        private TextView address2;
+        private TextView state;
+        private TextView city;
         private TextView pinCode;
+        private TextView phone;
         private ImageView icon ;
         public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             fullName = itemView.findViewById(R.id.personName);
-            address = itemView.findViewById(R.id.personAddress);
+            address1 = itemView.findViewById(R.id.personAddress1);
+            address2 = itemView.findViewById(R.id.personAddress2);
+            state = itemView.findViewById(R.id.addressState);
+            city = itemView.findViewById(R.id.addressCity);
             pinCode = itemView.findViewById(R.id.addressPinCode);
+            phone= itemView.findViewById(R.id.addressPhone);
             icon = itemView.findViewById(R.id.addressSelectTick);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -83,10 +95,14 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             pp = getAdapterPosition();
 
         }
-        private void SetData(String name,String addresses,String pin,boolean selected,int position){
+        private void SetData(String name,String addresses1,String addresses2,String states,String citys,String pin,String phones,boolean selected,int position){
             fullName.setText(name);
-            address.setText(addresses);
+            address1.setText(addresses1);
+            address2.setText(addresses2);
+            state.setText(states);
+            city.setText(citys);
             pinCode.setText(pin);
+            phone.setText(phones);
 
             try {
                 if (ADDRESSMODE == SELECTED_ADDRESS) {

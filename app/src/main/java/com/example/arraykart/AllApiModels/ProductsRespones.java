@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ProductsRespones {
 
-    List<MainModel> products;
+    List<MainModel>products;
 
     public ProductsRespones(List<MainModel> products) {
         this.products = products;

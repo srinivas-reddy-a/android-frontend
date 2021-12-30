@@ -72,6 +72,7 @@
                 android:src="@drawable/img" />
 
             <EditText
+                android:id="@+id/UserCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -83,6 +84,7 @@
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <EditText
+                android:id="@+id/UserAddressLine1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -95,6 +97,7 @@
                 android:lines="3" />
 
             <EditText
+                android:id="@+id/UserAddressLine2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -114,6 +117,7 @@
                 android:padding="5dp">
 
                 <EditText
+                    android:id="@+id/UserPinCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -124,6 +128,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <EditText
+                    android:id="@+id/UserState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -143,6 +148,7 @@
                 android:background="#DAD8D8" />
 
             <EditText
+                android:id="@+id/USerFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -155,6 +161,7 @@
 
 
             <EditText
+                android:id="@+id/UserMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -166,6 +173,7 @@
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <EditText
+                android:id="@+id/UserAlternativeNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -178,6 +186,7 @@
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <Button
+                android:id="@+id/UserAddAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"

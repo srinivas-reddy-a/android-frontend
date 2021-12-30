@@ -1,17 +1,22 @@
 package com.example.arraykart.AllApiModels;
 
-public class AuthRespones {
-    User user;
+import com.google.gson.annotations.SerializedName;
 
-    public AuthRespones(User user) {
+import java.util.List;
+
+public class AuthRespones {
+    @SerializedName("user")
+    UserId user;
+
+    public AuthRespones(UserId user) {
         this.user = user;
     }
 
-    public User getUser() {
+    public UserId getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserId user) {
         this.user = user;
     }
 }
