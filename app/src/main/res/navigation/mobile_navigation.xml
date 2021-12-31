@@ -8,53 +8,53 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.arraykart.ui.home.HomeFragment"
-        android:label="@string/menu_home" />
+        android:label="Arraykart" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.arraykart.ui.gallery.GalleryFragment"
-        android:label="Home" />
+        android:label="Arraykart" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.arraykart.ui.slideshow.SlideshowFragment"
-        android:label="Home" />
+        android:label="Arraykart" />
     <fragment
         android:id="@+id/nav_wishList"
         android:name="com.example.arraykart.ui.WishList.WishListFragment"
-        android:label="Home" />
+        android:label="Arraykart" />
     <fragment
         android:id="@+id/nav_MyCart"
         android:name="com.example.arraykart.ui.MyCart.MyCartNavFragment"
-        android:label="Home" />
+        android:label="Arraykart" />
     <fragment
         android:id="@+id/nav_Settings"
         android:name="com.example.arraykart.ui.settings.SettingsNavFragment"
-        android:label="Home"
+        android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_SignUp"
         android:name="com.example.arraykart.ui.SignUp.SignUpFragment"
-        android:label="Home"
+        android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_LogOut"
         android:name="com.example.arraykart.ui.LogOut.LogOutFragment"
-        android:label="Home"
+        android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_HelpCenter"
         android:name="com.example.arraykart.ui.HelpCenter.HelpCenterFragment"
-        android:label="Home"
+        android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_PrivacyPolicy"
         android:name="com.example.arraykart.ui.PrivacyPolicy.PrivacyPolicyFragment"
-        android:label="Home"
+        android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_Legal"
         android:name="com.example.arraykart.ui.Legal.LegalFragment"
-        android:label="Home"
+        android:label="Arraykart"
         />
 </navigation>

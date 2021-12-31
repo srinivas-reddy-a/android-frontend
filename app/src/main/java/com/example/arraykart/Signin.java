@@ -163,9 +163,10 @@ public class Signin extends AppCompatActivity {
                     Toast.makeText(Signin.this,logInOtpRespones.getToken(), Toast.LENGTH_SHORT).show();
                 }else {
                     try {
-                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(Signin.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(Signin.this, SignUp.class);
+                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(Signin.this,jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                        Intent in = new Intent(Signin.this, SignUP.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(in);
 

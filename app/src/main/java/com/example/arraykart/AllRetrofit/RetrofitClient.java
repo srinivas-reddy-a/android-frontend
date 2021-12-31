@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.0.2.2:3000"; //95d7-106-215-84-42.ngrok.io
+    private static final String BASE_URL = "https://95d7-106-215-84-42.ngrok.io"; //95d7-106-215-84-42.ngrok.io
     OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(50, TimeUnit.SECONDS)
             .readTimeout(50,TimeUnit.SECONDS)

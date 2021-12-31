@@ -47,7 +47,8 @@
         <activity
             android:name=".WishList.WishListActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:label="Wish List"/>
         <activity
             android:name=".MyOrder.OrderDetail"
             android:exported="false"
@@ -91,7 +92,6 @@
         <activity
             android:name=".HomeNavigationActivity"
             android:exported="false"
-            android:label="@string/title_activity_home_navigation"
             android:theme="@style/Theme.Arraykart.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity

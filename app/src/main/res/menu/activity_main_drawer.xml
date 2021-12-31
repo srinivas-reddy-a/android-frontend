@@ -9,17 +9,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home"
             />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery"
-             />
+            android:icon="@drawable/ic_baseline_category_24"
+            android:title="@string/menu_gallery" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_output_24"
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/nav_wishList"
@@ -48,15 +47,15 @@
             />
         <item
             android:id="@+id/nav_HelpCenter"
-            android:title="Help Center"
-            />
+            android:enabled="true"
+            android:title="Help Center" />
         <item
             android:id="@+id/nav_PrivacyPolicy"
-            android:title="Privacy Policy"
-            />
+            android:enabled="true"
+            android:title="Privacy Policy" />
         <item
             android:id="@+id/nav_Legal"
-            android:title="Legal"
-            />
+            android:enabled="true"
+            android:title="Legal" />
     </group>
 </menu>
