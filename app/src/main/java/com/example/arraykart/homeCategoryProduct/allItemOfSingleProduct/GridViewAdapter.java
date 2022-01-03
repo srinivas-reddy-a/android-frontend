@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
@@ -76,6 +78,19 @@ public class GridViewAdapter extends BaseAdapter {
             }
 
         } catch (Exception ex) {
+
+        }
+
+        try {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(position<= imgs.length) {
+                        context.startActivity(new Intent(context, ProductDetailActivity.class));
+                    }
+                }
+            });
+        } catch (Exception e) {
 
         }
 

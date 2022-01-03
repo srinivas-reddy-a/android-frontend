@@ -18,20 +18,22 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.NotificationPage.NotificationActivity;
-import com.example.arraykart.UserProfile.ProfileEditPageActivity;
 import com.example.arraykart.UserProfile.UserProfileActivity;
 import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
+import com.example.arraykart.homeCategoryProduct.HomeAllCategory.HomeAllCategoryAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
+import com.example.arraykart.homeCategoryProduct.moreProductCategory.MoreCotegoryModel;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -83,8 +85,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     //homePageCategoryProductItem
 
-    private MenuItem items ;
-    private  Context context;
+    private  List<MoreCotegoryModel> homeAllCategoryModels;
 
     ///grid view on home page
     private GridView gridView;
@@ -306,19 +307,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         String[] ribbon ={"new","new","new","new"};
 
         int[] imgss = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
-        
-        gridView = findViewById(R.id.gridView1);
 
-        GridViewAdapter gridAdapter = new GridViewAdapter(this, namess, pricess, rate, ribbon, imgss);
-        gridView.setAdapter(gridAdapter);
-        ///1nd grid view for home page
-
-        ///2nd grid view for home page
         gridView2 = findViewById(R.id.gridView2);
 
         GridViewAdapter gridAdapters = new GridViewAdapter(this, namess, pricess, rate, ribbon, imgss);
         gridView2.setAdapter(gridAdapters);
-        ///2nd grid view for home page
+
 
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
@@ -347,21 +341,71 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         ///cart icon clicklistener
 
 
-        for(int i=1;i<9;i++){
-            LinearLayout categoryhsv = findViewById(R.id.horizontalscrollview);
-            View v = getLayoutInflater().inflate(R.layout.home_brand, null);
-            ImageView isv = v.findViewById(R.id.imageView2);
-            isv.setImageResource(R.drawable.categories);
-            TextView tsv = v.findViewById(R.id.textView2);
-            tsv.setText("Category"+i);
-            isv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+
+//
+//        for(int i=1;i<9;i++){
+//            LinearLayout categoryhsv = findViewById(R.id.horizontalscrollview);
+//            View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+//            ImageView isv = v.findViewById(R.id.imageView2);
+//            isv.setImageResource(R.drawable.categories);
+//            TextView tsv = v.findViewById(R.id.textView2);
+//            tsv.setText("Category"+i);
+//            isv.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+//                }
+//            });
+//            categoryhsv.addView(v);
+//        }
+        //home all Category
+
+//        homeAllCategoryModels = new ArrayList<>();
+//        homeAllCategoryModels.add(new HomeAllCategoryModel("category1",R.drawable.categories));
+//        homeAllCategoryModels.add(new HomeAllCategoryModel("category1",R.drawable.categories));
+//        homeAllCategoryModels.add(new HomeAllCategoryModel("category1",R.drawable.categories));
+//        homeAllCategoryModels.add(new HomeAllCategoryModel("category1",R.drawable.categories));
+//        homeAllCategoryModels.add(new HomeAllCategoryModel("category1",R.drawable.categories));
+
+        RecyclerView HorizontalRecyclerView = findViewById(R.id.HorizontalRecyclerView);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        HorizontalRecyclerView.setLayoutManager(layoutManager1);
+
+//        homeAllCategoryAdapter = new HomeAllCategoryAdapter(homeAllCategoryModels,this);
+//        HorizontalRecyclerView.setAdapter(homeAllCategoryAdapter);
+
+        Call<ProductsCategoryRespones> call1 = RetrofitClient
+                .getInstance()
+                .getApi().productCategory();
+        call1.enqueue(new Callback<ProductsCategoryRespones>() {
+            @Override
+            public void onResponse(Call<ProductsCategoryRespones> call, Response<ProductsCategoryRespones> response) {
+
+                if(response.isSuccessful()){
+                    homeAllCategoryModels =  response.body().getCategories();
+                    HomeAllCategoryAdapter homeAllCategoryAdapter = new HomeAllCategoryAdapter(homeAllCategoryModels,getApplicationContext());
+                    HorizontalRecyclerView.setAdapter(homeAllCategoryAdapter);
+
+//
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            });
-            categoryhsv.addView(v);
-        }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductsCategoryRespones> call, Throwable t) {
+
+            }
+        });
+
+
         for(int i=1;i<9;i++){
             LinearLayout brandhsv = findViewById(R.id.horizontalscrollview2);
             View v = getLayoutInflater().inflate(R.layout.home_brand, null);

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
 import com.example.arraykart.SignUP;
 
@@ -29,8 +30,6 @@ import retrofit2.Response;
 
 public class MyAddressActivity extends AppCompatActivity {
 
-    public static final String TOKEN ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMDAxfSwiaWF0IjoxNjQwNTI3MjA3LCJleHAiOjE2NDA4ODcyMDd9.XFXChA4iO36elzx3naqJfImDj6S-qsQnI4XuHjA9NrI";
-
     private RecyclerView addressRecyclerView;
     private LinearLayout addNewAddress;
     private ImageView back_Address_page;
@@ -40,11 +39,15 @@ public class MyAddressActivity extends AppCompatActivity {
     private static AddressAdapter addressAdapter;
 
     private Button SaveAddressDelete ;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_address);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
 
         try {
             addressRecyclerView = findViewById(R.id.AddressPageRecyclerView);
@@ -63,16 +66,20 @@ public class MyAddressActivity extends AppCompatActivity {
 
             Call<GetAddressRespones> call = RetrofitClient
                     .getInstance()
-                    .getApi().getAddress(TOKEN);
+                    .getApi().getAddress(token);
             call.enqueue(new Callback<GetAddressRespones>() {
                 @Override
                 public void onResponse(Call<GetAddressRespones> call, Response<GetAddressRespones> response) {
                     if(response.isSuccessful()) {
-                        addressModels = response.body().getAddress();
-                        addressAdapter = new AddressAdapter(addressModels, 0);
-                        addressRecyclerView.setAdapter(addressAdapter);
-                        ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-                        addressAdapter.notifyDataSetChanged();
+                        try {
+                            addressModels = response.body().getAddress();
+                            addressAdapter = new AddressAdapter(addressModels, 0);
+                            addressRecyclerView.setAdapter(addressAdapter);
+                            ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+                            addressAdapter.notifyDataSetChanged();
+                        }catch (Exception e){
+                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }else{
                         try {
                             JSONObject jsonObject = new JSONObject(response.errorBody().string());

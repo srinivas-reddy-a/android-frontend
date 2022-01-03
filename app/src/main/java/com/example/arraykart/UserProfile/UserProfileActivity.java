@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.AuthRespones;
+import com.example.arraykart.AllApiModels.LogInIdRespones;
 import com.example.arraykart.AllApiModels.UserId;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
@@ -91,26 +92,19 @@ public class UserProfileActivity extends AppCompatActivity {
         call.enqueue(new Callback<AuthRespones>() {
             @Override
             public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
-                if(response.isSuccessful()){
-                    AuthRespones authRespones = response.body();
-                    String name = authRespones.getUser().getName();
-                    UserName.setText(name);
 
-                }else{
-                    try {
-                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(UserProfileActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                AuthRespones authRespones = response.body();
+//                    String name = logInIdRespones.getName();
 
-                    } catch (Exception e) {
-                        Toast.makeText(UserProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                    UserName.setText(authRespones.getUser().getName());
+                    Toast.makeText(UserProfileActivity.this,authRespones.getUser().getEmail() , Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onFailure(Call<AuthRespones> call, Throwable t) {
-                Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this,user,Toast.LENGTH_SHORT).show();
+
             }
         });
 

@@ -158,8 +158,11 @@ public class Signin extends AppCompatActivity {
                 if(response.isSuccessful()){
                     UserToken = logInOtpRespones.getToken();
                     sharedPrefManager.setValue_string("token",UserToken);
-                    startActivity(new Intent(Signin.this,UserProfileActivity.class));
-                    Toast.makeText(Signin.this,logInOtpRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Signin.this,"Logged in successfully", Toast.LENGTH_SHORT).show();
+                    Intent in = new Intent(Signin.this, UserProfileActivity.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(in);
+
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());

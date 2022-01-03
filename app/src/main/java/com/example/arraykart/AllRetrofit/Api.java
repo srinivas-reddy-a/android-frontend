@@ -9,18 +9,16 @@ import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllApiModels.SignUpRespones;
 import com.example.arraykart.AllApiModels.SignUpTopRespones;
-import com.example.arraykart.AllApiModels.UserId;
 import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
@@ -48,8 +46,8 @@ public interface Api {
     @POST("/api/user/login/otp")
     Call<LogInOtpRespones>loginOtp(@Field("otp") String otp);
 
-    @GET("/api/user/:id")
-    Call<LogInIdRespones>loginId();
+    @GET("/api/user/")
+    Call<LogInIdRespones>loginId(@Header("Authorization") String Authorization);
 
     @FormUrlEncoded
     @PUT("/api/user/")
@@ -135,10 +133,12 @@ public interface Api {
     @GET("/api/cart/")
     Call<ResponseBody>getCartItem();
 
+    @PUT("/api/cart/")
+    Call<ResponseBody>updateCart(@Field("product_id") String product_id,
+                                 @Field("quantity") String quantity
+    );
 
-
-
-
-
+    @DELETE("/api/cart/")
+    Call<ResponseBody>deleteCartItem();
 
 }
