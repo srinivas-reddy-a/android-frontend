@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.AuthRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
+import com.example.arraykart.AllApiModels.User;
 import com.example.arraykart.AllApiModels.UserId;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
@@ -71,7 +72,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView UserEmail;
 
     SharedPrefManager sharedPrefManager;
-    List<UserId> userIds;
+    List<User> users;
 
 
     @Override
@@ -84,29 +85,35 @@ public class UserProfileActivity extends AppCompatActivity {
         UserEmail = findViewById(R.id.UserEmail);
         UserProfileImage = findViewById(R.id.UserProfileImage);
 
-        sharedPrefManager = new SharedPrefManager(this);
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
-        String user = sharedPrefManager.getValue_string("token");
+        if(user_token.contains("token")) {
+            sharedPrefManager = new SharedPrefManager(this);
+            String user = sharedPrefManager.getValue_string("token");
 
-        Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(user);
-        call.enqueue(new Callback<AuthRespones>() {
-            @Override
-            public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
+            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(user);
+            call.enqueue(new Callback<AuthRespones>() {
+                @Override
+                public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
+                    AuthRespones authRespones = response.body();
+                    try {
+                        users = authRespones.getUser();
+                        UserName.setText(users.get(0).getName());
+                        UserEmail.setText(users.get(0).getEmail());
+                    }catch (Exception e){
+                        Toast.makeText(UserProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
-                AuthRespones authRespones = response.body();
-//                    String name = logInIdRespones.getName();
+                }
 
-                    UserName.setText(authRespones.getUser().getName());
-                    Toast.makeText(UserProfileActivity.this,authRespones.getUser().getEmail() , Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailure(Call<AuthRespones> call, Throwable t) {
+                    Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
-            }
+                }
+            });
 
-            @Override
-            public void onFailure(Call<AuthRespones> call, Throwable t) {
-                Toast.makeText(UserProfileActivity.this,user,Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(UserProfileActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -196,6 +203,13 @@ public class UserProfileActivity extends AppCompatActivity {
             logout_of_this_app.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(user_token.contains("token")){
+                        sharedPrefManager.clear();
+                        startActivity(new Intent(UserProfileActivity.this,HomeNavigationActivity.class));
+                    }else {
+                        signOut();
+                    }
+                    finish();
 
                 }
             });
@@ -208,21 +222,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        logout_of_this_app = findViewById(R.id.logout_of_this_app);
-        logout_of_this_app.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
-                if(user_token.contains("token")){
-                    sharedPrefManager.clear();
-                    startActivity(new Intent(UserProfileActivity.this,HomeNavigationActivity.class));
-                    finish();
-                }else {
-                    signOut();
-                    finish();
-                }
-            }
-        });
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {

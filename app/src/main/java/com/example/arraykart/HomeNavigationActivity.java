@@ -261,6 +261,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                                 for (int i = 0; i < maiModel.size(); i++) {
                                     if (position == i-1) {
                                         startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                                        Toast.makeText(HomeNavigationActivity.this, maiModel.get(position).getId(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 if(position==maiModel.size()-1){
@@ -275,6 +276,25 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
                     HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
                     recyclerView1.setAdapter(hAdapters);
+                    try{
+                    hAdapters.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+                            @Override
+                            public void onClickListener(int position) {
+                                for (int i = 0; i < maiModel.size(); i++) {
+                                    if (position == i-1) {
+                                        startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                                        Toast.makeText(HomeNavigationActivity.this, maiModel.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                if(position==maiModel.size()-1){
+                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
+                                }
+                            }
+                        });
+
+                    }catch(Exception e){
+
+                    }
 
 
                 }else {

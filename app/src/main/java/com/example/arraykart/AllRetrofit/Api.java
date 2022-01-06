@@ -23,8 +23,8 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface Api {
-     //User Api
 
+    //User Api
     @FormUrlEncoded
     @POST("/api/user/register/")
     Call<SignUpRespones>signUp(@Field("phoneNumber") String userNumber);
@@ -51,17 +51,13 @@ public interface Api {
 
     @FormUrlEncoded
     @PUT("/api/user/")
-    Call<UserUpdateResponse>updateUser(
+    Call<UserUpdateResponse>updateUser(@Header("Authorization") String Authorization,
                                        @Field("phone_number") String phone_number ,
                                        @Field(" email") String email,
                                        @Field("name") String name
     );
 
     @FormUrlEncoded
-//    @Headers({
-//            "Content-Type : application/json",
-//            "Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMDAxfSwiaWF0IjoxNjQwNTI3MjA3LCJleHAiOjE2NDA4ODcyMDd9.XFXChA4iO36elzx3naqJfImDj6S-qsQnI4XuHjA9NrI"
-//    })
     @POST("/api/user/address/")
     Call<AddressFormRespones>UserAddressForm(
             @Header("Content-Type") String Content_Type,
@@ -82,7 +78,6 @@ public interface Api {
     Call<ResponseBody>getAddressId();
 
     ////products api
-
     @GET("/api/product/")
     Call<ProductsRespones>getProduct();
 
@@ -102,15 +97,14 @@ public interface Api {
 
 
     ///orders api
-
     @FormUrlEncoded
-    @POST("'/api/order/")
+    @POST("/api/order/")
     Call<ResponseBody>OrderInsert(@Field("total") String total,
                                   @Field("address_id") String address_id
     );
 
     @FormUrlEncoded
-    @POST("'/api/order/detail/")
+    @POST("/api/order/detail/")
     Call<ResponseBody>OrderDetail(@Field("order_id") String order_id,
                                   @Field("product_id") String product_id,
                                   @Field("quantity") String quantity
@@ -140,5 +134,15 @@ public interface Api {
 
     @DELETE("/api/cart/")
     Call<ResponseBody>deleteCartItem();
+
+    //wishlist api
+    @FormUrlEncoded
+    @POST("/api/wishlist/")
+    Call<ResponseBody> addWishlist();
+
+    @GET("/api/wishlist/")
+    Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
+
+
 
 }

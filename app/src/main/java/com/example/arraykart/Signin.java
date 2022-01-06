@@ -159,7 +159,7 @@ public class Signin extends AppCompatActivity {
                     UserToken = logInOtpRespones.getToken();
                     sharedPrefManager.setValue_string("token",UserToken);
                     Toast.makeText(Signin.this,"Logged in successfully", Toast.LENGTH_SHORT).show();
-                    Intent in = new Intent(Signin.this, UserProfileActivity.class);
+                    Intent in = new Intent(Signin.this, HomeNavigationActivity.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(in);
 

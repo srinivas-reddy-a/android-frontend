@@ -75,7 +75,10 @@ public class moreCategoryProducts extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                                     if (position < moreCotegoryModels.size()) {
-                                        startActivity(new Intent(moreCategoryProducts.this, ItemsForSingleProduct.class));
+                                        Intent in = new Intent(moreCategoryProducts.this, ItemsForSingleProduct.class);
+                                        in.putExtra("id",moreCotegoryModels.get(position).getId());
+                                        startActivity(in);
+                                        Toast.makeText(moreCategoryProducts.this,moreCotegoryModels.get(position).getId(),Toast.LENGTH_SHORT).show();
                                     }
 
 

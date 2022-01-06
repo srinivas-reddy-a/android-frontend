@@ -3,6 +3,8 @@ package com.example.arraykart.AddressActivity;
 import static com.example.arraykart.AddressActivity.MyAddressActivity.SELECTED_ADDRESS;
 import static com.example.arraykart.AddressActivity.MyAddressActivity.refreshAddress;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     private  int ADDRESSMODE ;
     int allReadySelected;
     int pp ;
+    Context context;
 
     private OnItemClickListener aListener;
 
@@ -36,9 +39,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     }
 
 
-    public AddressAdapter(List<AddressModel> addressModelList,int ADDRESSMODE) {
+    public AddressAdapter(List<AddressModel> addressModelList,int ADDRESSMODE,Context context) {
         this.addressModelList = addressModelList;
         this.ADDRESSMODE = ADDRESSMODE;
+        this.context  = context;
     }
 
     @NonNull
@@ -75,6 +79,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         private TextView pinCode;
         private TextView phone;
         private ImageView icon ;
+        private Button removeAddress , EditAddress;
         public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             fullName = itemView.findViewById(R.id.personName);
@@ -85,14 +90,38 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             pinCode = itemView.findViewById(R.id.addressPinCode);
             phone= itemView.findViewById(R.id.addressPhone);
             icon = itemView.findViewById(R.id.addressSelectTick);
+            removeAddress = itemView.findViewById(R.id.removeAddress);
+            EditAddress = itemView.findViewById(R.id.EditAddress);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            pp = getAdapterPosition();
+
+            removeAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    addressModelList.remove(getAdapterPosition());
+                    notifyDataSetChanged();
+                }
+            });
+
+            EditAddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(context,AddressFormActivity.class);
+                    in.putExtra("id",addressModelList.get(getAdapterPosition()).getId());
+                    in.putExtra("user_id",addressModelList.get(getAdapterPosition()).getUser_id());
+                    in.putExtra("address_name",addressModelList.get(getAdapterPosition()).getAddress_name());
+                    in.putExtra("address_line1",addressModelList.get(getAdapterPosition()).getAddress_line1());
+                    in.putExtra("address_line2",addressModelList.get(getAdapterPosition()).getAddress_line2());
+                    in.putExtra("city",addressModelList.get(getAdapterPosition()).getCity());
+                    in.putExtra("postal_code",addressModelList.get(getAdapterPosition()).getPostal_code());
+                    in.putExtra("state",addressModelList.get(getAdapterPosition()).getState());
+                    in.putExtra("phone_number",addressModelList.get(getAdapterPosition()).getPhone_number());
+                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(in);
 
                 }
             });
-            pp = getAdapterPosition();
+
 
         }
         private void SetData(String name,String addresses1,String addresses2,String states,String citys,String pin,String phones,boolean selected,int position){

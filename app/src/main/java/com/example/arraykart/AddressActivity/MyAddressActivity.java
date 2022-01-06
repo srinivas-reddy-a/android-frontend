@@ -56,47 +56,50 @@ public class MyAddressActivity extends AppCompatActivity {
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             addressRecyclerView.setLayoutManager(layoutManager);
 
-//            addressModels= new ArrayList<>();
+            addressModels= new ArrayList<>();
+            addressModels.add(new AddressModel("1","1","sachin","cghjvki","hgvfyfvj","hcytvj","11987","fufjvj","476586",true));
+            addressModels.add(new AddressModel("2","1","rahul","cghjvki","hgvfyfvj","hcytvj","11987","fufjvj","476586",false));
+            addressModels.add(new AddressModel("3","1","rohan","cghjvki","hgvfyfvj","hcytvj","11987","fufjvj","476586",false));
+            addressModels.add(new AddressModel("4","1","panda","cghjvki","hgvfyfvj","hcytvj","11987","fufjvj","476586",false));
+
+            addressAdapter = new AddressAdapter(addressModels,0,getApplicationContext());
+            addressRecyclerView.setAdapter(addressAdapter);
+            ((SimpleItemAnimator)addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+            addressAdapter.notifyDataSetChanged();
+
+//            Call<GetAddressRespones> call = RetrofitClient
+//                    .getInstance()
+//                    .getApi().getAddress(token);
+//            call.enqueue(new Callback<GetAddressRespones>() {
+//                @Override
+//                public void onResponse(Call<GetAddressRespones> call, Response<GetAddressRespones> response) {
+//                    if(response.isSuccessful()) {
+//                        try {
+//                            addressModels = response.body().getAddress();
+//                            addressAdapter = new AddressAdapter(addressModels, 0);
+//                            addressRecyclerView.setAdapter(addressAdapter);
+//                            ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+//                            addressAdapter.notifyDataSetChanged();
+//                        }catch (Exception e){
+//                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }else{
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
+//                            Toast.makeText(MyAddressActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
 //
 //
-//            addressAdapter = new AddressAdapter(addressModels,0);
-//            addressRecyclerView.setAdapter(addressAdapter);
-//            ((SimpleItemAnimator)addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-//            addressAdapter.notifyDataSetChanged();
-
-            Call<GetAddressRespones> call = RetrofitClient
-                    .getInstance()
-                    .getApi().getAddress(token);
-            call.enqueue(new Callback<GetAddressRespones>() {
-                @Override
-                public void onResponse(Call<GetAddressRespones> call, Response<GetAddressRespones> response) {
-                    if(response.isSuccessful()) {
-                        try {
-                            addressModels = response.body().getAddress();
-                            addressAdapter = new AddressAdapter(addressModels, 0);
-                            addressRecyclerView.setAdapter(addressAdapter);
-                            ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-                            addressAdapter.notifyDataSetChanged();
-                        }catch (Exception e){
-                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        try {
-                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                            Toast.makeText(MyAddressActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-
-
-                        } catch (Exception e) {
-                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<GetAddressRespones> call, Throwable t) {
-                    Toast.makeText(MyAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+//                        } catch (Exception e) {
+//                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<GetAddressRespones> call, Throwable t) {
+//                    Toast.makeText(MyAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
 
             addNewAddress = findViewById(R.id.AddNewAddress);
             addNewAddress.setOnClickListener(new View.OnClickListener() {

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,7 +64,11 @@ public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategory
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   context.startActivity(new Intent(context, ItemsForSingleProduct.class));
+                   Intent in = new Intent(context, ItemsForSingleProduct.class);
+                   in.putExtra("id",homeAllCategoryModels.get(getAdapterPosition()).getId());
+                   context.startActivity(in);
+                   String id = homeAllCategoryModels.get(getAdapterPosition()).getId();
+                    Toast.makeText(context,id,Toast.LENGTH_SHORT).show();
                 }
             });
         }
