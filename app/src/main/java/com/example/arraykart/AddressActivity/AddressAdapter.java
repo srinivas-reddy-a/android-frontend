@@ -150,6 +150,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                                 addressModelList.get(allReadySelected).setSelected(false);
                                 refreshAddress(allReadySelected, position);
                                 allReadySelected = position;
+                                Toast.makeText(context, addressModelList.get(position).getId(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

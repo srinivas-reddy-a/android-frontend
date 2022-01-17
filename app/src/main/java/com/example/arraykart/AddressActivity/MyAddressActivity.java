@@ -38,13 +38,15 @@ public class MyAddressActivity extends AppCompatActivity {
 
     private static AddressAdapter addressAdapter;
 
-    private Button SaveAddressDelete ;
+    private Button AddressContinue ;
     SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_address);
+
+        AddressContinue = findViewById(R.id.AddressContinue);
 
         sharedPrefManager = new SharedPrefManager(this);
         String token = sharedPrefManager.getValue_string("token");
@@ -122,24 +124,28 @@ public class MyAddressActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
-//        try {
-//            SaveAddressDelete= findViewById(R.id.SaveAddressDelete);
-//            SaveAddressDelete.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    addressModels.remove(addressAdapter.allReadySelected);
-//                    addressAdapter.notifyItemRemoved(addressAdapter.allReadySelected);
-//                }
-//
-//            });
-//        }catch (Exception e){
-//            Toast.makeText(this,"2 add shld be",Toast.LENGTH_LONG);
-//
-//        }
+
+        try {
+            AddressContinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    continues();
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+
     }
     public static void refreshAddress (int deselected,int selected){
         addressAdapter.notifyItemChanged(deselected);
         addressAdapter.notifyItemChanged(selected);
+    }
+
+    private void continues(){
+
+
     }
 
 }

@@ -116,7 +116,7 @@ public interface Api {
     @GET("/api/order/detail/:id/")
     Call<ResponseBody>orderDetailId();
 
-    ///cart api
+        ///cart api
     @FormUrlEncoded
     @POST("/api/cart/")
     Call<ResponseBody>addToCart(@Header("Authorization") String Authorization,
@@ -140,7 +140,7 @@ public interface Api {
     @POST("/api/wishlist/")
     Call<ResponseBody> addWishlist();
 
-    @GET("/api/wishlist/")
+    @GET("c")
     Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
 
 
