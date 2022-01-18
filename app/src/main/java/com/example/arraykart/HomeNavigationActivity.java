@@ -260,7 +260,9 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                             public void onClickListener(int position) {
                                 for (int i = 0; i < maiModel.size(); i++) {
                                     if (position == i-1) {
-                                        startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+                                        in.putExtra("id",maiModel.get(position).getId());
+                                        startActivity(in);
                                         Toast.makeText(HomeNavigationActivity.this, maiModel.get(position).getId(), Toast.LENGTH_SHORT).show();
                                     }
                                 }

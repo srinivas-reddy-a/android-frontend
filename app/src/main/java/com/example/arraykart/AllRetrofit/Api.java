@@ -125,24 +125,30 @@ public interface Api {
     );
 
     @GET("/api/cart/")
-    Call<ResponseBody>getCartItem();
+    Call<ResponseBody>getCartItem(@Header("Authorization") String Authorization);
 
     @PUT("/api/cart/")
-    Call<ResponseBody>updateCart(@Field("product_id") String product_id,
+    Call<ResponseBody>updateCart(@Header("Authorization") String Authorization,
+                                 @Field("product_id") String product_id,
                                  @Field("quantity") String quantity
     );
 
     @DELETE("/api/cart/")
-    Call<ResponseBody>deleteCartItem();
+    Call<ResponseBody>deleteCartItem(@Header("Authorization") String Authorization);
 
     //wishlist api
     @FormUrlEncoded
     @POST("/api/wishlist/")
-    Call<ResponseBody> addWishlist();
+    Call<ResponseBody> addWishlist(@Header("Authorization") String Authorization,
+                                   @Field("product_id") String product_id);
 
-    @GET("c")
+    @GET("/api/wishlist/")
     Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
 
+    @PUT("/api/wishlist/")
+    Call<ResponseBody> updateWishList(@Header("Authorization") String Authorization);
 
+    @DELETE("/api/wishlist/")
+    Call<ResponseBody> deleteWishList(@Header("Authorization") String Authorization);
 
 }

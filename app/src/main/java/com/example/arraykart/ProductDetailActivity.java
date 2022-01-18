@@ -12,12 +12,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.RatingReviewPage.ReviewAdapter;
@@ -30,6 +34,11 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -79,11 +88,20 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ReviewAdapter reviewAdapter;
     private TextView MoreReview;
 
+    private CheckBox wishListProductsDetail;
+    SharedPrefManager sharedPrefManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+
+        String id = getIntent().getStringExtra("id");
+
 
         carouselView = findViewById(R.id.carouselViewProductDetail);
         carouselView.setPageCount(sampleImages.length);
@@ -255,6 +273,30 @@ public class ProductDetailActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
+
+//        call for add product in wishlist.
+//        try{
+//            wishListProductsDetail = findViewById(R.id.wishListProductsDetail);
+//            wishListProductsDetail.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Call<ResponseBody> call = RetrofitClient.getInstance().getApi().addWishlist(token,id);
+//                    call.enqueue(new Callback<ResponseBody>() {
+//                        @Override
+//                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//            });
+//        }catch (Exception e){
+//
+//        }
 
     }
 
