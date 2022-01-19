@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,22 +28,14 @@ import com.example.arraykart.Sort.BottomSheetFragmentSort;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.google.android.material.chip.Chip;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemsForSingleProduct extends AppCompatActivity {
 
     private GridView gridView;
     private ImageView back_all_products;
-    private String[] name = {"Herbicides", "Insecticides",
-            "Insecticides", "Pesticides", "name","name", "name", "name", "name", "name"};
 
-    private String[] price = {"Price", "Price", "Price", "Price", "Price","Price", "Price", "Price", "Price", "Price"};
-
-    private String[] rate = {"4.3", "4.3", "4.3", "4.3", "4.3",
-            "4.3", "4.3", "4.3", "4.3", "4.3"};
-
-    private String[] ribbon ={"new","new","new","new","new","new","new","new","new","new"};
-
-    private int[] imgs = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img,R.drawable.img,
-            R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
 
     ///cart icon on item product page
     private LottieAnimationView cart_item_product_page;
@@ -54,25 +47,42 @@ public class ItemsForSingleProduct extends AppCompatActivity {
     private Chip chip1;
     ///filter fo page
 
+    List<ModelForSingleProduct> modelForSingleProducts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.items_for_single_product);
 
+
+        modelForSingleProducts = new ArrayList<>();
+        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
+
         gridView = findViewById(R.id.gridView);
 
-        GridAdapter gridAdapter = new GridAdapter(this, name, price, rate, ribbon, imgs);
+        GridAdapter gridAdapter = new GridAdapter(this, modelForSingleProducts);
         gridView.setAdapter(gridAdapter);
 
-        try{
-            back_all_products=findViewById(R.id.back_all_products);
+        try {
+            back_all_products = findViewById(R.id.back_all_products);
             back_all_products.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -85,7 +95,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
                     startActivity(in);
                 }
             });
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
         //bottom sheet for filter and sort
@@ -96,39 +106,31 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
-                bottomSheetFragment.show(getSupportFragmentManager(),"TAG");
+                bottomSheetFragment.show(getSupportFragmentManager(), "TAG");
             }
         });
         sortBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BottomSheetFragmentSort bottomSheetFragmentSort = new BottomSheetFragmentSort();
-                bottomSheetFragmentSort.show(getSupportFragmentManager(),"TAG");
+                bottomSheetFragmentSort.show(getSupportFragmentManager(), "TAG");
             }
         });
         //bottom sheet for filter and sort
     }
+
     public class GridAdapter extends BaseAdapter {
         Context context;
-        String[] name;
-        String[] price;
-        String[] rate;
-        String[] ribbon;
-        int[] imgs;
+        List<ModelForSingleProduct> modelForSingleProducts;
 
-        public GridAdapter(Context context, String[] name,String[] price,String[] rate, String[] ribbon, int[] imgs) {
+        public GridAdapter(Context context, List<ModelForSingleProduct> modelForSingleProducts) {
             this.context = context;
-            this.name = name;
-            this.price = price;
-            this.rate = rate;
-            this.ribbon = ribbon;
-            this.imgs = imgs;
+            this.modelForSingleProducts = modelForSingleProducts;
         }
-
 
         @Override
         public int getCount() {
-            return name.length;
+            return modelForSingleProducts.size();
         }
 
         @Override
@@ -145,7 +147,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(R.layout.item_frame_single_product, parent, false);
+            View view = layoutInflater.inflate(R.layout.item_frame_single_product, null, false);
 
             // it will help take item from single product and put that item in this page
             try {
@@ -154,32 +156,40 @@ public class ItemsForSingleProduct extends AppCompatActivity {
                 TextView prc = view.findViewById(R.id.priceGrid);
                 TextView rt = view.findViewById(R.id.rateGrid);
                 TextView rb = view.findViewById(R.id.ribbonTag);
+                CheckBox wish = view.findViewById(R.id.wishListSingleProducts);
 
-                cImg.setImageResource(imgs[position]);
-                txt.setText(name[position]);
-                prc.setText(price[position]);
-                rt.setText(rate[position]);
+                wish.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, modelForSingleProducts.get(position).getId(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                if (position >= 0 && position <= 2) {
-                    rb.setText(ribbon[position]);
-                    rb.setTextColor(Color.parseColor("#FFFFFF"));
+                if (position <= modelForSingleProducts.size()) {
+                    cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
+                    txt.setText(modelForSingleProducts.get(position).getName());
+                    prc.setText(modelForSingleProducts.get(position).getPrice());
+                    rt.setText(modelForSingleProducts.get(position).getRate());
 
-                } else {
-                    rb.setBackgroundResource(R.color.white);
-                    rb.setText(null);
+                    if (position == 3) {
+                        rb.setText(modelForSingleProducts.get(position).getRibbon());
+                        rb.setTextColor(Color.parseColor("#FFFFFF"));
+                    } else {
+                        rb.setBackgroundResource(R.color.white);
+                        rb.setText(null);
+                    }
                 }
 
             } catch (Exception ex) {
 
             }
+
             try {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        for (int i = 0; i < imgs.length; i++) {
-                            if (position == i) {
-                                startActivity(new Intent(ItemsForSingleProduct.this, ProductDetailActivity.class));
-                            }
+                        if (position <= modelForSingleProducts.size()) {
+                            context.startActivity(new Intent(context, ProductDetailActivity.class));
                         }
                     }
                 });

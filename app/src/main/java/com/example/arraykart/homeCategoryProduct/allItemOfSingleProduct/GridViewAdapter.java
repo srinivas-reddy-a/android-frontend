@@ -8,35 +8,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+
 public class GridViewAdapter extends BaseAdapter {
     Context context;
-    String[] name;
-    String[] price;
-    String[] rate;
-    String[] ribbon;
-    int[] imgs;
+    List<ModelForSingleProduct> modelForSingleProducts;
 
-    public GridViewAdapter(Context context, String[] name,String[] price,String[] rate, String[] ribbon, int[] imgs) {
+    public GridViewAdapter(Context context, List<ModelForSingleProduct> modelForSingleProducts) {
         this.context = context;
-        this.name = name;
-        this.price = price;
-        this.rate = rate;
-        this.ribbon = ribbon;
-        this.imgs = imgs;
+        this.modelForSingleProducts = modelForSingleProducts;
     }
-
 
     @Override
     public int getCount() {
-        return name.length;
+        return modelForSingleProducts.size();
     }
 
     @Override
@@ -62,14 +60,24 @@ public class GridViewAdapter extends BaseAdapter {
             TextView prc = view.findViewById(R.id.priceGrid);
             TextView rt = view.findViewById(R.id.rateGrid);
             TextView rb = view.findViewById(R.id.ribbonTag);
-            if(position<=name.length) {
-                cImg.setImageResource(imgs[position]);
-                txt.setText(name[position]);
-                prc.setText(price[position]);
-                rt.setText(rate[position]);
+            CheckBox wish = view.findViewById(R.id.wishListSingleProducts);
+
+            wish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, modelForSingleProducts.get(position).getId(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            if(position<=modelForSingleProducts.size()) {
+                cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
+                txt.setText(modelForSingleProducts.get(position).getName());
+                prc.setText(modelForSingleProducts.get(position).getPrice());
+                rt.setText(modelForSingleProducts.get(position).getRate());
 
                 if (position == 3) {
-                    rb.setText(ribbon[position]);
+                    rb.setText(modelForSingleProducts.get(position).getRibbon());
                     rb.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
                     rb.setBackgroundResource(R.color.white);
@@ -85,7 +93,7 @@ public class GridViewAdapter extends BaseAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(position<= imgs.length) {
+                    if(position<= modelForSingleProducts.size()) {
                         context.startActivity(new Intent(context, ProductDetailActivity.class));
                     }
                 }

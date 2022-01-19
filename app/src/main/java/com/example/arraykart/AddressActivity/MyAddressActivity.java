@@ -36,10 +36,11 @@ public class MyAddressActivity extends AppCompatActivity {
     private List<AddressModel> addressModels;
     public static  final  int SELECTED_ADDRESS = 0;
 
-    private static AddressAdapter addressAdapter;
 
     private Button AddressContinue ;
     SharedPrefManager sharedPrefManager;
+
+    private static AddressAdapter addressAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arraykart.AddressActivity.AddressFormActivity;
+import com.example.arraykart.AddressActivity.AddressModel;
 import com.example.arraykart.NotificationPage.NotificationAdapter;
 import com.example.arraykart.R;
 
@@ -106,7 +108,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             EditAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(context,AddressFormActivity.class);
+                    Intent in = new Intent(context, AddressFormActivity.class);
                     in.putExtra("id",addressModelList.get(getAdapterPosition()).getId());
                     in.putExtra("user_id",addressModelList.get(getAdapterPosition()).getUser_id());
                     in.putExtra("address_name",addressModelList.get(getAdapterPosition()).getAddress_name());

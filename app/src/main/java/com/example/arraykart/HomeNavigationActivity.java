@@ -33,6 +33,7 @@ import com.example.arraykart.homeCategoryProduct.HomeAllCategory.HomeAllCategory
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
+import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ModelForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.MoreCotegoryModel;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.google.android.material.snackbar.Snackbar;
@@ -88,10 +89,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private  List<MoreCotegoryModel> homeAllCategoryModels;
 
     ///grid view on home page
-    private GridView gridView;
     private GridView gridView2;
-    
-
+    List<ModelForSingleProduct> modelForSingleProducts;
     //grid view on home page
 
     //banner slider on home page
@@ -319,22 +318,18 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
 
         ///1st grid view for home page
-        String[] namess = {"Herbicides", "Insecticides",
-                "Insecticides", "name"};
 
-        String[] pricess = {"2400", "2400", "2400", "2400"};
-
-        String[] rate = {"4.3","4.3", "4.3", "4.3"};
-
-        String[] ribbon ={"new","new","new","new"};
-
-        int[] imgss = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
 
         gridView2 = findViewById(R.id.gridView2);
 
-        GridViewAdapter gridAdapters = new GridViewAdapter(this, namess, pricess, rate, ribbon, imgss);
-        gridView2.setAdapter(gridAdapters);
+        modelForSingleProducts = new ArrayList<>();
+        modelForSingleProducts.add(new ModelForSingleProduct("1","name","price","rate","ribbon",R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("2","name","price","rate","ribbon",R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("3","name","price","rate","ribbon",R.drawable.img));
+        modelForSingleProducts.add(new ModelForSingleProduct("4","name","price","rate","ribbon",R.drawable.img));
 
+        GridViewAdapter gridAdapters = new GridViewAdapter(this, modelForSingleProducts);
+        gridView2.setAdapter(gridAdapters);
 
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
