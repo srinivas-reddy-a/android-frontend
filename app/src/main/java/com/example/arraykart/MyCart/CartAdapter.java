@@ -6,20 +6,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.NotificationPage.NotificationAdapter;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CartAdapter extends RecyclerView.Adapter {
 
     private List<CartItemModel> cartItemModelList;
+
+    SharedPrefManager sharedPrefManager;
+
 
     private OnItemClickListeners cListener;
 
@@ -93,7 +104,7 @@ public class CartAdapter extends RecyclerView.Adapter {
     }
 
     class CartItemViewHolder extends RecyclerView.ViewHolder{
-        private ImageView productImage;
+        private ImageView productImage,Add_quantity_cart,mini_quantity_cart;
         private ImageView freeCouponIcon;
         private TextView productTitle;
         private TextView freeCoupons;
@@ -114,8 +125,79 @@ public class CartAdapter extends RecyclerView.Adapter {
             cuttedPrice = itemView.findViewById(R.id.cart_item_off_price);
             offerApplied = itemView.findViewById(R.id.offer_applied);
             couponsApplied = itemView.findViewById(R.id.coupon_applied);
-            productQuantity = itemView.findViewById(R.id.product_quantity);
+            productQuantity = itemView.findViewById(R.id.product_quantity_text);
             remove_item_btn=itemView.findViewById(R.id.remove_item_btn);
+            Add_quantity_cart = itemView.findViewById(R.id.Add_quantity_cart);
+            mini_quantity_cart = itemView.findViewById(R.id.mini_quantity_cart);
+
+            sharedPrefManager = new SharedPrefManager(itemView.getContext());
+            String token = sharedPrefManager.getValue_string("token");
+
+            try{
+                Add_quantity_cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String Atext = productQuantity.getText().toString();
+                        int Aqlt = Integer.parseInt(Atext);
+                        Aqlt +=1;
+                        String nATxt = Integer.toString(Aqlt);
+                        productQuantity.setText(nATxt);
+
+//            api call to update cart quantity
+//                        int p = getAdapterPosition();
+//                        String id = cartItemModelList.get(p).getId();
+//                        Call<ResponseBody> callU = RetrofitClient.getInstance().getApi().updateCart("token",id,nATxt);
+//                        callU.enqueue(new Callback<ResponseBody>() {
+//                            @Override
+//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                                Toast.makeText(v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+                    }
+                });
+            }catch (Exception e){
+
+            }
+
+            try{
+                mini_quantity_cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String stext = productQuantity.getText().toString();
+                        int sqlt = Integer.parseInt(stext);
+                        if(sqlt==1) {
+                            String nSTxt = Integer.toString(sqlt);
+                            productQuantity.setText(nSTxt);
+                        }else if(sqlt>1){
+                            sqlt -=1;
+                            String nSTxt = Integer.toString(sqlt);
+                            productQuantity.setText(nSTxt);
+//      api call to update cart quantity
+//                        int p = getAdapterPosition();
+//                        String id = cartItemModelList.get(p).getId();
+//                        Call<ResponseBody> callU = RetrofitClient.getInstance().getApi().updateCart("token",id,nSTxt);
+//                        callU.enqueue(new Callback<ResponseBody>() {
+//                            @Override
+//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                                Toast.makeText(v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+                        }
+                    }
+                });
+            }catch (Exception e){
+
+            }
 
             try{
                 itemView.setOnClickListener(new View.OnClickListener() {

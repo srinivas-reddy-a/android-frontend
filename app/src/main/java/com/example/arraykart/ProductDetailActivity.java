@@ -205,7 +205,21 @@ public class ProductDetailActivity extends AppCompatActivity {
             cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//          api call for add cart
+//                    Call<ResponseBody> callC = RetrofitClient.getInstance().getApi().addToCart(token,id,"2");
+//                    callC.enqueue(new Callback<ResponseBody>() {
+//                        @Override
+//                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
                     startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+
                 }
             });
         }catch (Exception e){

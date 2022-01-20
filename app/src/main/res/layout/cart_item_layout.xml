@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:layout_margin="10dp"
+    android:background="@color/white"
     android:elevation="8dp">
 
     <ImageView
@@ -57,8 +57,8 @@
         android:id="@+id/cart_item_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
         android:padding="1dp"
         android:text="RS.40000/-"
         android:textColor="#000000"
@@ -71,7 +71,8 @@
         android:id="@+id/cart_item_off_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:text="RS.50000/-"
         app:layout_constraintBottom_toBottomOf="@+id/cart_item_price"
         app:layout_constraintEnd_toStartOf="@+id/cart_item_price"
@@ -92,7 +93,8 @@
         android:id="@+id/offer_applied"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
         android:text="offer applied"
         android:textColor="#91F495"
         android:textSize="12sp"
@@ -103,26 +105,41 @@
         android:id="@+id/coupon_applied"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:text="coupon applied"
         android:textColor="#D81B1B"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offer_applied" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/product_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/boarder_background"
-        android:drawableEnd="@drawable/ic_drop_down"
+        android:orientation="horizontal"
         android:padding="3dp"
-        android:text="Qty: 1"
-        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/coupon_applied"
-        app:layout_constraintStart_toEndOf="@+id/product_image"
-        app:layout_constraintTop_toBottomOf="@+id/cart_item_off_price" />
+        app:layout_constraintStart_toEndOf="@+id/mini_quantity_cart"
+        app:layout_constraintTop_toBottomOf="@+id/cart_item_off_price">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QTY:"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/product_quantity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_drop_down"
+            android:text="1"
+            android:textColor="#000000" />
+    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coupon_redemption_layout"
@@ -191,5 +208,25 @@
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/Add_quantity_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
+        app:layout_constraintStart_toEndOf="@+id/product_quantity"
+        app:layout_constraintTop_toTopOf="@+id/product_quantity"
+        app:srcCompat="@drawable/ic_baseline_control_point" />
+
+    <ImageView
+        android:id="@+id/mini_quantity_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
+        app:layout_constraintStart_toEndOf="@+id/product_image"
+        app:layout_constraintTop_toTopOf="@+id/product_quantity"
+        app:srcCompat="@drawable/ic_baseline_mini" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
