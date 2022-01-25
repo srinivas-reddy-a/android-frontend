@@ -83,6 +83,8 @@ public class MyOrderFragment extends Fragment {
         OrderAdapter orderAdapter = new OrderAdapter(orderItemModelList);
         orderRecyclerView.setAdapter(orderAdapter);
         orderAdapter.notifyDataSetChanged();
+
+
         return view ;
     }
 }

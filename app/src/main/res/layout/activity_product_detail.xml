@@ -80,6 +80,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ProductDetailActivity">
+
+        <LinearLayout
+            android:id="@+id/ProductDetailPageAddressShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <ImageView
+                android:id="@+id/close_address_Prouct_detail_page"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="340dp"
+                app:srcCompat="@drawable/ic_baseline_close_24"
+
+                />
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2">
+                <include layout="@layout/shipping_details_layout" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
@@ -98,20 +130,46 @@
                     android:textSize="20sp"
                     tools:ignore="DuplicateClickableBoundsCheck" />
 
-                <Button
-                    android:id="@+id/buy_on_product_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/green"
-                    android:padding="10sp"
-                    android:text="BUY NOW"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    tools:ignore="TextContrastCheck" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="210dp"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buy_on_product_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/green"
+                        android:text="BUY NOW"
+                        android:textColor="#FFFFFF"
+                        android:textSize="22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
+                    <Button
+                        android:id="@+id/delivery_continue_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        android:backgroundTint="@color/green"
+                        android:textAlignment="textStart"
+                        android:text="Place Order"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 

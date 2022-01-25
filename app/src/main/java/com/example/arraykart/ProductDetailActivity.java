@@ -22,6 +22,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
+import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.RatingReviewPage.ReviewAdapter;
@@ -69,18 +70,18 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     //productdetail chemicalComposition
     private LinearLayout chemCompLL;
-    private ImageView chemCompIV;
+    private ImageView chemCompIV,close_address_Prouct_detail_page;
     private TextView textView25;
 
     //product detail offers
     private LinearLayout offerLL1;
     private ImageView closeBsdOffers1;
     private LinearLayout offerLL2;
+    private LinearLayout ProductDetailPageAddressShow;
     private ImageView closeBsdOffers2;
 
     ///buttons on product detail page
-    private Button cart_on_product_detail;
-    private Button buy_on_product_detail;
+    private Button cart_on_product_detail,buy_on_product_detail,changeAddress,delivery_continue_btn;
 
     //review for this page
     private RecyclerView ReviewRecyclerView;
@@ -101,6 +102,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         String token = sharedPrefManager.getValue_string("token");
 
         String id = getIntent().getStringExtra("id");
+
+        ProductDetailPageAddressShow = findViewById(R.id.ProductDetailPageAddressShow);
+        close_address_Prouct_detail_page = findViewById(R.id.close_address_Prouct_detail_page);
+        changeAddress = findViewById(R.id.changeAddress);
+        delivery_continue_btn = findViewById(R.id.delivery_continue_btn);
+        buy_on_product_detail = findViewById(R.id.buy_on_product_detail);
 
 
         carouselView = findViewById(R.id.carouselViewProductDetail);
@@ -226,8 +233,34 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         }
         try{
-            buy_on_product_detail = findViewById(R.id.buy_on_product_detail);
             buy_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeAddress.setVisibility(View.VISIBLE);
+                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                    buy_on_product_detail.setVisibility(View.GONE);
+                    delivery_continue_btn.setVisibility(View.VISIBLE);
+//                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
+        try {
+            close_address_Prouct_detail_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProductDetailPageAddressShow.setVisibility(View.GONE);
+                    delivery_continue_btn.setVisibility(View.GONE);
+                    buy_on_product_detail.setVisibility(View.VISIBLE);
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+        try {
+            changeAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));

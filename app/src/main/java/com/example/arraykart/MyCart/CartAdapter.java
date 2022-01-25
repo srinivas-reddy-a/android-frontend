@@ -203,6 +203,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Toast.makeText(itemView.getContext(), cartItemModelList.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(itemView.getContext(), ProductDetailActivity.class);
                         itemView.getContext().startActivity(i);
                     }
