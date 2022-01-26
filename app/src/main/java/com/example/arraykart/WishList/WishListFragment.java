@@ -94,13 +94,13 @@ public class WishListFragment extends Fragment {
         wishListRecyclerView.setLayoutManager(linearLayoutManager);
 
         wishListModelList = new ArrayList<>();
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",2,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",0,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",1,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",4,"2.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",2,"3.7","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",5,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
-        wishListModelList.add(new WishListModel(R.drawable.img,"Product Name ",0,"5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+        wishListModelList.add(new WishListModel("1",R.drawable.img,"Product Name ",2,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+        wishListModelList.add(new WishListModel("2",R.drawable.img,"Product Name ",0,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
+        wishListModelList.add(new WishListModel("3",R.drawable.img,"Product Name ",1,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+        wishListModelList.add(new WishListModel("4",R.drawable.img,"Product Name ",4,"2.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
+        wishListModelList.add(new WishListModel("5",R.drawable.img,"Product Name ",2,"3.7","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+        wishListModelList.add(new WishListModel("6",R.drawable.img,"Product Name ",5,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
+        wishListModelList.add(new WishListModel("7",R.drawable.img,"Product Name ",0,"5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
 
         wishListAdapter = new WishListAdapter(wishListModelList);
         wishListRecyclerView.setAdapter(wishListAdapter);

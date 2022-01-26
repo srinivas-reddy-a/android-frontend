@@ -205,6 +205,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                     public void onClick(View v) {
                         Toast.makeText(itemView.getContext(), cartItemModelList.get(getAdapterPosition()).getId(), Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(itemView.getContext(), ProductDetailActivity.class);
+                        i.putExtra("id",cartItemModelList.get(getAdapterPosition()).getId());
                         itemView.getContext().startActivity(i);
                     }
                 });

@@ -102,6 +102,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String token = sharedPrefManager.getValue_string("token");
 
         String id = getIntent().getStringExtra("id");
+        Toast.makeText(ProductDetailActivity.this, id, Toast.LENGTH_SHORT).show();
 
         ProductDetailPageAddressShow = findViewById(R.id.ProductDetailPageAddressShow);
         close_address_Prouct_detail_page = findViewById(R.id.close_address_Prouct_detail_page);

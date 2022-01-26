@@ -1,6 +1,7 @@
 package com.example.arraykart.WishList;
 
 public class WishListModel {
+    private String id;
     private int productImage;
     private String productTitle;
     private int freeOffer;
@@ -9,7 +10,8 @@ public class WishListModel {
     private String cuttedPrice;
     private String paymentMethod;
 
-    public WishListModel(int productImage, String productTitle,  int freeOffer, String rating, String productPrice, String cuttedPrice, String paymentMethod) {
+    public WishListModel(String id,int productImage, String productTitle,  int freeOffer, String rating, String productPrice, String cuttedPrice, String paymentMethod) {
+        this.id = id;
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.freeOffer = freeOffer;
@@ -17,6 +19,14 @@ public class WishListModel {
         this.productPrice = productPrice;
         this.cuttedPrice = cuttedPrice;
         this.paymentMethod = paymentMethod;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getProductImage() {

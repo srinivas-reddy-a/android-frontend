@@ -89,6 +89,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(itemView.getContext(), ProductDetailActivity.class);
+                        i.putExtra("id",wishListModelList.get(getAdapterPosition()).getId());
                         itemView.getContext().startActivity(i);
                     }
                 });
