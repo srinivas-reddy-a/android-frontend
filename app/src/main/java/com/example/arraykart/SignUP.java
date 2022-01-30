@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.arraykart.AllApiModels.SignUpRespones;
+import com.example.arraykart.AllApiModels.SignUpTopRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.UserProfile.UserProfileActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -60,6 +63,7 @@ public class SignUP extends AppCompatActivity {
     CallbackManager callbackManager;
     GoogleSignInClient mGoogleSignInClient;
     private static  int RC_SIGN_IN = 100;
+    SharedPrefManager sharedPrefManager;
 
     private ImageView imageView;
     private TextView signintv;
@@ -78,6 +82,7 @@ public class SignUP extends AppCompatActivity {
         signUpUserOtp = findViewById(R.id.signUpUserOtp);
         signupbtn = findViewById(R.id.button4);
         submit = findViewById(R.id.submit);
+        sharedPrefManager = new SharedPrefManager(this);
         try{
             imageView = findViewById(R.id.imageView6);
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -259,15 +264,17 @@ public class SignUP extends AppCompatActivity {
             return;
         }
 
-        Call<ResponseBody> call = RetrofitClient
+        Call<SignUpTopRespones> call = RetrofitClient
                 .getInstance()
                 .getApi().registerOtp(userNumber,otp);
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<SignUpTopRespones>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                ResponseBody responseBody = response.body();
+            public void onResponse(Call<SignUpTopRespones> call, Response<SignUpTopRespones> response) {
+                SignUpTopRespones responseBody = response.body();
                 if(response.isSuccessful()){
-                    Toast.makeText(SignUP.this,responseBody.toString(), Toast.LENGTH_SHORT).show();
+                    String token = responseBody.getToken();
+                    sharedPrefManager.setValue_string("token",token);
+                    Toast.makeText(SignUP.this,responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -283,7 +290,7 @@ public class SignUP extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<SignUpTopRespones> call, Throwable t) {
                 Toast.makeText(SignUP.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -412,5 +419,12 @@ public class SignUP extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+        if(userToken.contains("token")){
 
+        }
+    }
 }

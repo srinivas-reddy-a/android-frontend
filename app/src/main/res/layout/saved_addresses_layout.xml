@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FDFCFC"
@@ -25,35 +26,89 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/personAddress"
-        android:layout_width="match_parent"
+        android:id="@+id/personAddress1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:maxLines="2"
         android:padding="2dp"
         android:text="Address"
         android:textColor="#000000"
-        android:maxLines="2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personName" />
+
+    <TextView
+        android:id="@+id/personAddress2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:maxLines="2"
+        android:padding="2dp"
+        android:text="Address"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/personAddress1"
+        app:layout_constraintTop_toBottomOf="@+id/personName" />
+
+    <TextView
+        android:id="@+id/addressState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="2dp"
+        android:text="state"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
+
+    <TextView
+        android:id="@+id/addressCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:padding="2dp"
+        android:text="City"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/addressState"
+        app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
 
     <TextView
         android:id="@+id/addressPinCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:padding="2dp"
         android:text="PinCode"
-        android:textStyle="bold"
-        android:textSize="12sp"
         android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/addressCity"
+        app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
+
+    <TextView
+        android:id="@+id/addressPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:padding="2dp"
+        android:text="PhoneNumber"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/addressState" />
 
     <ImageView
         android:id="@+id/addressSelectTick"
@@ -70,36 +125,31 @@
         android:id="@+id/addressEditRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        android:visibility="gone"
-        android:background="#BDB9B9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="3dp"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
+        <Button
             android:id="@+id/EditAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:textSize="12sp"
-            android:textColor="#000000"
-            android:layout_marginTop="4dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="6dp"
-            android:textAlignment="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="3dp"
+            android:text="edit"
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/removeAddress"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:text="remove"
-            android:textSize="12sp"
-            android:textColor="#000000"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="6dp"
-            android:textAlignment="center"/>
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

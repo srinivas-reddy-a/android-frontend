@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -33,6 +34,8 @@ public class Signin extends AppCompatActivity {
     private TextView Sign_in_page_otp,Sign_in_page_email;
     private Button Sign_in,Submit;
 
+    public String UserToken;
+
     SharedPrefManager sharedPrefManager;
 
 
@@ -45,7 +48,7 @@ public class Signin extends AppCompatActivity {
         Submit = findViewById(R.id.Submit);
         Sign_in = findViewById(R.id.Sign_in);
 
-        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        sharedPrefManager = new SharedPrefManager(this);
         try {
             imageView = findViewById(R.id.imageView5);
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -153,19 +156,14 @@ public class Signin extends AppCompatActivity {
             public void onResponse(Call<LogInOtpRespones> call, Response<LogInOtpRespones> response) {
                 LogInOtpRespones logInOtpRespones = response.body();
                 if(response.isSuccessful()){
-
-                    if(logInOtpRespones.equals("200")){
-                        sharedPrefManager.saveUser(logInOtpRespones.getUser());
-                        startActivity(new Intent(Signin.this,UserProfileActivity.class));
-                        Toast.makeText(Signin.this,logInOtpRespones.getMsg(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    Toast.makeText(Signin.this,logInOtpRespones.getToken(), Toast.LENGTH_SHORT).show();
+                    UserToken = logInOtpRespones.getToken();
+                    sharedPrefManager.setValue_string("token",UserToken);
+                    startActivity(new Intent(Signin.this,UserProfileActivity.class));
+                    Toast.makeText(Signin.this,logInOtpRespones.getMsg(), Toast.LENGTH_SHORT).show();
                 }else {
                     try {
-                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(Signin.this,jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(Signin.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(Signin.this, SignUP.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(in);
@@ -187,8 +185,9 @@ public class Signin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(sharedPrefManager.isLoggedIn()){
-            startActivity(new Intent(Signin.this,UserProfileActivity.class));
+
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+        if(userToken.contains("token")){
 
         }
     }

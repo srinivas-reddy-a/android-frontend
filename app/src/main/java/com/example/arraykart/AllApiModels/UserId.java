@@ -1,21 +1,23 @@
 package com.example.arraykart.AllApiModels;
 
 public class UserId {
-    int id ;
-    String name,phone_number,email;
+    String id ;
+    String name;
+    String phone_number;
+    String email;
 
-    public UserId(int id, String name, String phone_number, String email) {
+    public UserId(String id, String name, String phone_number, String email) {
         this.id = id;
         this.name = name;
         this.phone_number = phone_number;
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -13,12 +13,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.GetAddressRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.R;
+import com.example.arraykart.SignUP;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MyAddressActivity extends AppCompatActivity {
+
+    public static final String TOKEN ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMDAxfSwiaWF0IjoxNjQwNTI3MjA3LCJleHAiOjE2NDA4ODcyMDd9.XFXChA4iO36elzx3naqJfImDj6S-qsQnI4XuHjA9NrI";
 
     private RecyclerView addressRecyclerView;
     private LinearLayout addNewAddress;
@@ -42,20 +53,43 @@ public class MyAddressActivity extends AppCompatActivity {
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             addressRecyclerView.setLayoutManager(layoutManager);
 
-            addressModels= new ArrayList<>();
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
-                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",true));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
-                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
-                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
-            addressModels.add(new AddressModel("ram Lal", "gupt nagar street 420," +
-                    "choro wali gali ,near bhoot ghati drna mnaa park ", "9211420",false));
+//            addressModels= new ArrayList<>();
+//
+//
+//            addressAdapter = new AddressAdapter(addressModels,0);
+//            addressRecyclerView.setAdapter(addressAdapter);
+//            ((SimpleItemAnimator)addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+//            addressAdapter.notifyDataSetChanged();
 
-            addressAdapter = new AddressAdapter(addressModels,0);
-            addressRecyclerView.setAdapter(addressAdapter);
-            ((SimpleItemAnimator)addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-            addressAdapter.notifyDataSetChanged();
+            Call<GetAddressRespones> call = RetrofitClient
+                    .getInstance()
+                    .getApi().getAddress(TOKEN);
+            call.enqueue(new Callback<GetAddressRespones>() {
+                @Override
+                public void onResponse(Call<GetAddressRespones> call, Response<GetAddressRespones> response) {
+                    if(response.isSuccessful()) {
+                        addressModels = response.body().getAddress();
+                        addressAdapter = new AddressAdapter(addressModels, 0);
+                        addressRecyclerView.setAdapter(addressAdapter);
+                        ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+                        addressAdapter.notifyDataSetChanged();
+                    }else{
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                            Toast.makeText(MyAddressActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+
+                        } catch (Exception e) {
+                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GetAddressRespones> call, Throwable t) {
+                    Toast.makeText(MyAddressActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
             addNewAddress = findViewById(R.id.AddNewAddress);
             addNewAddress.setOnClickListener(new View.OnClickListener() {
