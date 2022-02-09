@@ -106,6 +106,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout2">
+
+                <include layout="@layout/quility_inc_dec_layout"/>
                 <include layout="@layout/shipping_details_layout" />
 
             </LinearLayout>
