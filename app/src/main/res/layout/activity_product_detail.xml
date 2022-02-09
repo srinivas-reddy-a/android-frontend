@@ -11,7 +11,8 @@
         android:id="@+id/appbar"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/appbarSmokeWhite">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="3dp" />
+
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
@@ -53,7 +55,7 @@
                     android:layout_marginEnd="15sp"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/cart"/>
+                    app:lottie_rawRes="@raw/cart" />
 
                 <SearchView
                     android:layout_width="wrap_content"

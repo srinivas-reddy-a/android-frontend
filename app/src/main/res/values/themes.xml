@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/green</item>
         <!-- Customize your theme here. -->
+<!--        hamburger color-->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
     <style name="Theme.Arraykart.NoActionBar">
@@ -23,6 +25,9 @@
 
     <style name="Theme.Arraykart.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
-
+    <!--        hamburger color-->
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/black</item>
+    </style>
 </resources>
