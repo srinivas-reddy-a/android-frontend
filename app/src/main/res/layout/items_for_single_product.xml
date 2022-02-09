@@ -12,6 +12,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/appbarSmokeWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +48,7 @@
                     android:layout_marginLeft="40sp"
                     android:text="All Products"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/appbarComponentsblack"
                     android:textSize="24sp" />
 
                 <com.airbnb.lottie.LottieAnimationView

@@ -16,6 +16,7 @@ public class CartItemModel {
     }
 
     /////cart item
+    private String id;
     private  int productImage ;
     private String productTitle;
     private int freeCoupons;
@@ -25,8 +26,9 @@ public class CartItemModel {
     private int offersApplied;
     private int couponApplied;
 
-    public CartItemModel(int type, int productImage, String productTitle, int freeCoupons, String productPrice,String cuttedPerice,int productQuantity,int offersApplied,int couponApplied) {
+    public CartItemModel(int type, String id,int productImage, String productTitle, int freeCoupons, String productPrice,String cuttedPerice,int productQuantity,int offersApplied,int couponApplied) {
         this.type = type;
+        this.id = id;
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.freeCoupons = freeCoupons;
@@ -35,6 +37,14 @@ public class CartItemModel {
         this.productQuantity = productQuantity;
         this.offersApplied = offersApplied;
         this.couponApplied = couponApplied;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getProductImage() {

@@ -61,32 +61,30 @@ public class MyAdapter extends BaseAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View More_item = convertView;
         ViewHolder holder;
-        if (convertView==null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            More_item = layoutInflater.inflate(R.layout.products_category_morepage_item, parent, false);
 
-            holder = new ViewHolder();
+        LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        More_item = layoutInflater.inflate(R.layout.products_category_morepage_item, parent, false);
 
-                holder.img = More_item.findViewById(R.id.imageView);
-                holder.tvName = More_item.findViewById(R.id.textView3);
-                holder.tvDescription = More_item.findViewById(R.id.textView4);
+        holder = new ViewHolder();
 
-                More_item.setTag(holder);
+        holder.img = More_item.findViewById(R.id.imageView);
+        holder.tvName = More_item.findViewById(R.id.textView3);
+        holder.tvDescription = More_item.findViewById(R.id.textView4);
+
+        More_item.setTag(holder);
 
 
-        }else {
+        holder = (ViewHolder) More_item.getTag();
 
-            holder = (ViewHolder) More_item.getTag();
+        Glide.with(context.getApplicationContext())
+                .load(moreCotegoryModels.get(position).getImage())
+                .placeholder(R.drawable.categories)
+                .centerInside()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.img);
+        holder.tvName.setText(moreCotegoryModels.get(position).getName());
+        holder.tvDescription.setText(moreCotegoryModels.get(position).getDescription());
 
-            Glide.with(context.getApplicationContext())
-                    .load(moreCotegoryModels.get(position).getImage())
-                    .placeholder(R.drawable.categories)
-                    .centerInside()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.img);
-            holder.tvName.setText(moreCotegoryModels.get(position).getName());
-            holder.tvDescription.setText(moreCotegoryModels.get(position).getDescription());
-        }
 
 
         return More_item;

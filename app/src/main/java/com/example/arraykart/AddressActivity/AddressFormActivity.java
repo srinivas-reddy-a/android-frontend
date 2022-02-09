@@ -41,6 +41,24 @@ public class AddressFormActivity extends AppCompatActivity {
         UserAlternativeNumber = findViewById(R.id.UserAlternativeNumber);
         UserAddAddress = findViewById(R.id.UserAddAddress);
 
+
+        String id = getIntent().getStringExtra("id");
+        String address_name = getIntent().getStringExtra("address_name");
+        String address_line1 = getIntent().getStringExtra("address_line1");
+        String address_line2 = getIntent().getStringExtra("address_line2");
+        String city= getIntent().getStringExtra("city");
+        String postal_code = getIntent().getStringExtra("postal_code");
+        String state = getIntent().getStringExtra("state");
+        String phone_number = getIntent().getStringExtra("phone_number");
+
+        UserCity.setText(city);
+        USerFullName.setText(address_name);
+        UserAddressLine1.setText(address_line1);
+        UserAddressLine2.setText(address_line2);
+        UserPinCode.setText(postal_code);
+        UserState.setText(state);
+        UserMobileNumber.setText(phone_number);
+
         try{
             back_addressForm_page = findViewById(R.id.back_addressForm_page);
             back_addressForm_page.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +91,7 @@ public class AddressFormActivity extends AppCompatActivity {
         String pinCode = UserPinCode.getText().toString();
         String state = UserState.getText().toString();
         String number =UserMobileNumber.getText().toString();
+
 
         Call<AddressFormRespones> call = RetrofitClient
                 .getInstance()

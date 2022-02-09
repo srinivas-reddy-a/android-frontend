@@ -12,4 +12,6 @@
     <color name="blue">#2874F0</color>
     <color name="black">#000000</color>
     <color name="smokeWhite">#F5F5F5</color>
+    <color name="appbarComponentsblack">#5F5A5A</color>
+    <color name="appbarSmokeWhite">#F5F5F5</color>
 </resources>

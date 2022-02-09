@@ -9,24 +9,22 @@ import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllApiModels.SignUpRespones;
 import com.example.arraykart.AllApiModels.SignUpTopRespones;
-import com.example.arraykart.AllApiModels.UserId;
 import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface Api {
-     //User Api
 
+    //User Api
     @FormUrlEncoded
     @POST("/api/user/register/")
     Call<SignUpRespones>signUp(@Field("phoneNumber") String userNumber);
@@ -48,22 +46,18 @@ public interface Api {
     @POST("/api/user/login/otp")
     Call<LogInOtpRespones>loginOtp(@Field("otp") String otp);
 
-    @GET("/api/user/:id")
-    Call<LogInIdRespones>loginId();
+    @GET("/api/user/")
+    Call<LogInIdRespones>loginId(@Header("Authorization") String Authorization);
 
     @FormUrlEncoded
     @PUT("/api/user/")
-    Call<UserUpdateResponse>updateUser(
+    Call<UserUpdateResponse>updateUser(@Header("Authorization") String Authorization,
                                        @Field("phone_number") String phone_number ,
                                        @Field(" email") String email,
                                        @Field("name") String name
     );
 
     @FormUrlEncoded
-//    @Headers({
-//            "Content-Type : application/json",
-//            "Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMDAxfSwiaWF0IjoxNjQwNTI3MjA3LCJleHAiOjE2NDA4ODcyMDd9.XFXChA4iO36elzx3naqJfImDj6S-qsQnI4XuHjA9NrI"
-//    })
     @POST("/api/user/address/")
     Call<AddressFormRespones>UserAddressForm(
             @Header("Content-Type") String Content_Type,
@@ -84,7 +78,6 @@ public interface Api {
     Call<ResponseBody>getAddressId();
 
     ////products api
-
     @GET("/api/product/")
     Call<ProductsRespones>getProduct();
 
@@ -104,15 +97,14 @@ public interface Api {
 
 
     ///orders api
-
     @FormUrlEncoded
-    @POST("'/api/order/")
+    @POST("/api/order/")
     Call<ResponseBody>OrderInsert(@Field("total") String total,
                                   @Field("address_id") String address_id
     );
 
     @FormUrlEncoded
-    @POST("'/api/order/detail/")
+    @POST("/api/order/detail/")
     Call<ResponseBody>OrderDetail(@Field("order_id") String order_id,
                                   @Field("product_id") String product_id,
                                   @Field("quantity") String quantity
@@ -124,7 +116,7 @@ public interface Api {
     @GET("/api/order/detail/:id/")
     Call<ResponseBody>orderDetailId();
 
-    ///cart api
+        ///cart api
     @FormUrlEncoded
     @POST("/api/cart/")
     Call<ResponseBody>addToCart(@Header("Authorization") String Authorization,
@@ -133,12 +125,30 @@ public interface Api {
     );
 
     @GET("/api/cart/")
-    Call<ResponseBody>getCartItem();
+    Call<ResponseBody>getCartItem(@Header("Authorization") String Authorization);
 
+    @PUT("/api/cart/")
+    Call<ResponseBody>updateCart(@Header("Authorization") String Authorization,
+                                 @Field("product_id") String product_id,
+                                 @Field("quantity") String quantity
+    );
 
+    @DELETE("/api/cart/")
+    Call<ResponseBody>deleteCartItem(@Header("Authorization") String Authorization);
 
+    //wishlist api
+    @FormUrlEncoded
+    @POST("/api/wishlist/")
+    Call<ResponseBody> addWishlist(@Header("Authorization") String Authorization,
+                                   @Field("product_id") String product_id);
 
+    @GET("/api/wishlist/")
+    Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
 
+    @PUT("/api/wishlist/")
+    Call<ResponseBody> updateWishList(@Header("Authorization") String Authorization);
 
+    @DELETE("/api/wishlist/")
+    Call<ResponseBody> deleteWishList(@Header("Authorization") String Authorization);
 
 }

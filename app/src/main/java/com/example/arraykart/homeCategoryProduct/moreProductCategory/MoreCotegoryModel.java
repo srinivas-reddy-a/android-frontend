@@ -1,23 +1,23 @@
                                        package com.example.arraykart.homeCategoryProduct.moreProductCategory;
 
 public class MoreCotegoryModel {
-    private int id ;
+    private String id ;
     private String name;
     private String description;
     private String image ;
 
-    public MoreCotegoryModel(int id, String name, String description, String image) {
+    public MoreCotegoryModel(String id, String name, String description, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
     }
 
-    public int getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

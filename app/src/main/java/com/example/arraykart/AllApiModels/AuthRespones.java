@@ -6,17 +6,17 @@ import java.util.List;
 
 public class AuthRespones {
     @SerializedName("user")
-    UserId user;
+    List<User> user;
 
-    public AuthRespones(UserId user) {
+    public AuthRespones(List<User> user) {
         this.user = user;
     }
 
-    public UserId getUser() {
+    public List<User> getUser() {
         return user;
     }
 
-    public void setUser(UserId user) {
+    public void setUser(List<User> user) {
         this.user = user;
     }
 }

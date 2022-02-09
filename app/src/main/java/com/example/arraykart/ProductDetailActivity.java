@@ -12,12 +12,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
+import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.RatingReviewPage.ReviewAdapter;
@@ -30,6 +35,11 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -60,18 +70,18 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     //productdetail chemicalComposition
     private LinearLayout chemCompLL;
-    private ImageView chemCompIV;
+    private ImageView chemCompIV,close_address_Prouct_detail_page;
     private TextView textView25;
 
     //product detail offers
     private LinearLayout offerLL1;
     private ImageView closeBsdOffers1;
     private LinearLayout offerLL2;
+    private LinearLayout ProductDetailPageAddressShow;
     private ImageView closeBsdOffers2;
 
     ///buttons on product detail page
-    private Button cart_on_product_detail;
-    private Button buy_on_product_detail;
+    private Button cart_on_product_detail,buy_on_product_detail,changeAddress,delivery_continue_btn;
 
     //review for this page
     private RecyclerView ReviewRecyclerView;
@@ -79,12 +89,28 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ReviewAdapter reviewAdapter;
     private TextView MoreReview;
 
+    private CheckBox wishListProductsDetail;
+    SharedPrefManager sharedPrefManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+
+        String id = getIntent().getStringExtra("id");
+        Toast.makeText(ProductDetailActivity.this, id, Toast.LENGTH_SHORT).show();
+
+        ProductDetailPageAddressShow = findViewById(R.id.ProductDetailPageAddressShow);
+        close_address_Prouct_detail_page = findViewById(R.id.close_address_Prouct_detail_page);
+        changeAddress = findViewById(R.id.changeAddress);
+        delivery_continue_btn = findViewById(R.id.delivery_continue_btn);
+        buy_on_product_detail = findViewById(R.id.buy_on_product_detail);
+
 
         carouselView = findViewById(R.id.carouselViewProductDetail);
         carouselView.setPageCount(sampleImages.length);
@@ -188,15 +214,55 @@ public class ProductDetailActivity extends AppCompatActivity {
             cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//          api call for add cart
+//                    Call<ResponseBody> callC = RetrofitClient.getInstance().getApi().addToCart(token,id,"2");
+//                    callC.enqueue(new Callback<ResponseBody>() {
+//                        @Override
+//                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
                     startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+
                 }
             });
         }catch (Exception e){
 
         }
         try{
-            buy_on_product_detail = findViewById(R.id.buy_on_product_detail);
             buy_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeAddress.setVisibility(View.VISIBLE);
+                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                    buy_on_product_detail.setVisibility(View.GONE);
+                    delivery_continue_btn.setVisibility(View.VISIBLE);
+//                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
+        try {
+            close_address_Prouct_detail_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProductDetailPageAddressShow.setVisibility(View.GONE);
+                    delivery_continue_btn.setVisibility(View.GONE);
+                    buy_on_product_detail.setVisibility(View.VISIBLE);
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+        try {
+            changeAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
@@ -256,6 +322,30 @@ public class ProductDetailActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
+
+//        call for add product in wishlist.
+//        try{
+//            wishListProductsDetail = findViewById(R.id.wishListProductsDetail);
+//            wishListProductsDetail.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Call<ResponseBody> call = RetrofitClient.getInstance().getApi().addWishlist(token,id);
+//                    call.enqueue(new Callback<ResponseBody>() {
+//                        @Override
+//                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//            });
+//        }catch (Exception e){
+//
+//        }
 
     }
 

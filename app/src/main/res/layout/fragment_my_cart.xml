@@ -68,6 +68,7 @@
             android:id="@+id/cart_continue_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:layout_marginStart="5dp"
             android:layout_marginRight="20sp"
             android:backgroundTint="@color/green"

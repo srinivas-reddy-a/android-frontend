@@ -1,17 +1,17 @@
 package com.example.arraykart.AllApiModels;
 
 public class LogInIdRespones {
-    public UserId user ;
+    User user;
 
-    public LogInIdRespones(UserId user) {
+    public LogInIdRespones(User user) {
         this.user = user;
     }
 
-    public UserId getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserId user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }
