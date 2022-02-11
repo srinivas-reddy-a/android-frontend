@@ -27,6 +27,7 @@ import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.google.android.material.chip.Chip;
 
@@ -48,6 +49,8 @@ public class moreCategoryProducts extends AppCompatActivity {
     ///cart icon on moreProductsPage
 
     private List<MoreCotegoryModel> moreCotegoryModels;
+
+    private TextView searchMoreCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,5 +137,14 @@ public class moreCategoryProducts extends AppCompatActivity {
         }
         ///cart icon clicklistener
         ///cart icon on more page click
+
+        //searchview
+        searchMoreCategory = findViewById(R.id.searchMoreCategory);
+        searchMoreCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(moreCategoryProducts.this, SearchPageActivity.class));
+            }
+        });
     }
 }

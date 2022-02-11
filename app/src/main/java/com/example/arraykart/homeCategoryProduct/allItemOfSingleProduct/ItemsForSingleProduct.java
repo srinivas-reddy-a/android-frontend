@@ -24,6 +24,7 @@ import com.example.arraykart.Filter.BottomSheetFragment;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.Sort.BottomSheetFragmentSort;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.google.android.material.chip.Chip;
@@ -48,6 +49,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
     ///filter fo page
 
     List<ModelForSingleProduct> modelForSingleProducts;
+    private TextView searchAllProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,19 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             }
         });
         //bottom sheet for filter and sort
+
+        //searchview
+        try {
+            searchAllProducts = findViewById(R.id.searchAllProducts);
+            searchAllProducts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ItemsForSingleProduct.this, SearchPageActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
     }
 
     public class GridAdapter extends BaseAdapter {

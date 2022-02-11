@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.SearchPage.SearchPageActivity;
 
 public class OrderDetail extends AppCompatActivity {
     private ImageView backOrderDetailPage;
@@ -19,6 +21,8 @@ public class OrderDetail extends AppCompatActivity {
     private LottieAnimationView orderDetailPageCartIcon;
 
     private ConstraintLayout detail_container;
+
+    private TextView searchOrderDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,19 @@ public class OrderDetail extends AppCompatActivity {
                  startActivity(new Intent(OrderDetail.this, ProductDetailActivity.class));
              }
          });
+        }catch (Exception e){
+
+        }
+
+        //searchview
+        try {
+            searchOrderDetail = findViewById(R.id.searchOrderDetail);
+            searchOrderDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(OrderDetail.this, SearchPageActivity.class));
+                }
+            });
         }catch (Exception e){
 
         }

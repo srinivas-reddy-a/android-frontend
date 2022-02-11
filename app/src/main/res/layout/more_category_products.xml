@@ -59,15 +59,25 @@
                     tools:layout_editor_absoluteX="376dp"
                     tools:layout_editor_absoluteY="10dp" />
 
-                <SearchView
+<!--                <SearchView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50sp"-->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:goIcon="@drawable/ic_baseline_search_24"-->
+<!--                    android:queryHint="Search Arraykart.in"-->
+<!--                    android:searchIcon="@drawable/ic_baseline_search_24"-->
+<!--                    tools:layout_editor_absoluteX="328dp"-->
+<!--                    tools:layout_editor_absoluteY="3dp" />-->
+                <TextView
+                    android:id="@+id/searchMoreCategory"
                     android:layout_width="wrap_content"
-                    android:layout_height="50sp"
+                    android:layout_height="35sp"
                     android:layout_gravity="right"
-                    android:goIcon="@drawable/ic_baseline_search_24"
-                    android:queryHint="Search Arraykart.in"
-                    android:searchIcon="@drawable/ic_baseline_search_24"
-                    tools:layout_editor_absoluteX="328dp"
-                    tools:layout_editor_absoluteY="3dp" />
+                    android:layout_marginEnd="10sp"
+                    android:drawableStart="@drawable/ic_baseline_search_24"
+                    android:padding="9sp"
+                    ></TextView>
+
 
             </androidx.appcompat.widget.Toolbar>
 
