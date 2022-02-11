@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.arraykart.MyOrder.OrderDetail;
 import com.example.arraykart.R;
+import com.example.arraykart.SearchPage.SearchPageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,7 @@ public class NotificationActivity extends AppCompatActivity {
     private ImageView notification_delete;
     private NotificationAdapter notificationAdapter;
     private List<NotificationModel> notificationModelList;
+    private TextView searchNotifications;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,18 @@ public class NotificationActivity extends AppCompatActivity {
                 }
             });
 
+        }catch (Exception e){
+
+        }
+        //searchview
+        try {
+            searchNotifications = findViewById(R.id.searchNotifications);
+            searchNotifications.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(NotificationActivity.this, SearchPageActivity.class));
+                }
+            });
         }catch (Exception e){
 
         }

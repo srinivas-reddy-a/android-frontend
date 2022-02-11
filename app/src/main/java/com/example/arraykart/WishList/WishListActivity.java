@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.MyOrder.OrderDetail;
 import com.example.arraykart.R;
+import com.example.arraykart.SearchPage.SearchPageActivity;
 
 public class WishListActivity extends AppCompatActivity {
 
     private ImageView back_wishList_Page;
     private LottieAnimationView wishListPageCartIcon;
+    private TextView searchWishList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,18 @@ public class WishListActivity extends AppCompatActivity {
                 }
             });
 
+        }catch (Exception e){
+
+        }
+        //searchview
+        try {
+            searchWishList = findViewById(R.id.searchWishList);
+            searchWishList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(WishListActivity.this, SearchPageActivity.class));
+                }
+            });
         }catch (Exception e){
 
         }

@@ -47,12 +47,21 @@
                     android:layout_marginRight="15sp"
                     android:layout_marginBottom="15sp"
                     android:background="@drawable/squared_corners"
-                    android:drawableStart="@drawable/ic_baseline_search_24"
                     android:ems="10"
                     android:hint="Search Arraykart.com"
                     android:inputType="textPersonName"
                     android:padding="10sp"
                     android:paddingStart="16sp" />
+
+                <ImageView
+                    android:id="@+id/SearchPP"
+                    android:layout_width="35dp"
+                    android:layout_height="37dp"
+                    android:layout_gravity="right"
+                    android:background="@color/white"
+                    android:layout_marginEnd="32dp"
+                    app:srcCompat="@drawable/ic_baseline_search_24_black" />
+
             </androidx.appcompat.widget.Toolbar>
 
 
