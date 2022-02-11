@@ -17,7 +17,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/appbarSmokeWhite"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
 
             app:toolbarId="@+id/toolbar">
@@ -133,14 +133,14 @@
                     tools:ignore="DuplicateClickableBoundsCheck" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="210dp"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
                     <Button
                         android:id="@+id/buy_on_product_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:backgroundTint="@color/green"
                         android:text="BUY NOW"
                         android:textColor="#FFFFFF"
@@ -150,17 +150,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TextContrastCheck" />
+
                     <Button
                         android:id="@+id/delivery_continue_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:visibility="gone"
                         android:backgroundTint="@color/green"
-                        android:textAlignment="textStart"
                         android:text="Place Order"
+                        android:textAlignment="textStart"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
