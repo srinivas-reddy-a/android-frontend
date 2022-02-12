@@ -51,7 +51,8 @@
                     android:hint="Search Arraykart.com"
                     android:inputType="textPersonName"
                     android:padding="10sp"
-                    android:paddingStart="16sp" />
+                    android:paddingStart="16sp"
+                    />
 
                 <ImageView
                     android:id="@+id/SearchPP"
