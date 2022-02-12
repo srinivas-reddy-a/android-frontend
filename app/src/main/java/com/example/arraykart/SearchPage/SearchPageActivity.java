@@ -1,6 +1,7 @@
 package com.example.arraykart.SearchPage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +9,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,7 +24,7 @@ import com.example.arraykart.R;
 
 import java.util.ArrayList;
 
-public class SearchPageActivity extends AppCompatActivity implements SearchAdapter.OnRecentSearchListener {
+public class SearchPageActivity extends AppCompatActivity implements SearchAdapter.OnRecentSearchListener{//implements SearchAdapter.OnRecentSearchListener
     private RecyclerView recyclerView;
     private SearchAdapter searchAdapter;
     private ArrayList<String> recentSearches;
@@ -47,6 +53,24 @@ public class SearchPageActivity extends AppCompatActivity implements SearchAdapt
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         searchAdapter = new SearchAdapter(this, recentSearches);
         recyclerView.setAdapter(searchAdapter);
+
+        edt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchFilter(s.toString());
+            }
+        });
+
         searchPageBackIV = findViewById(R.id.searchPageBackIV);
         searchPageBackIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,4 +105,16 @@ public class SearchPageActivity extends AppCompatActivity implements SearchAdapt
         searchPageET.setText(recentSearch);
         searchPageET.setSelection(recentSearch.length());
     }
+
+    /// search filter
+    private void searchFilter(String text){
+        ArrayList<String> filteredList = new ArrayList<>();
+        for(String item : recentSearches){
+            if(item.toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        searchAdapter.filterList(filteredList);
+    }
+
 }

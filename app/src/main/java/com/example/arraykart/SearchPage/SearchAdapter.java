@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,9 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.arraykart.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
-    private ArrayList<String> recentSearches;
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>  {
+    private List<String> recentSearches;
     private Context context;
     private OnRecentSearchListener onRecentSearchListener;
 
@@ -87,4 +90,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public interface OnRecentSearchListener{
         public void onRecentSearchListener(Intent intent);
     }
+
+    public void filterList(ArrayList<String> filteredList){
+        recentSearches =filteredList;
+        notifyDataSetChanged();
+    }
+
 }
