@@ -2,6 +2,9 @@ package com.example.arraykart;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -21,6 +24,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
 import com.example.arraykart.MyCart.MYCartActivity;
@@ -74,6 +78,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     private ImageView notification_home_page;
 
+    SharedPrefManager sharedPrefManager;
+
     //homePageCategoryProductItem
 
     private  RecyclerView recyclerView;
@@ -103,11 +109,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     final private  long DELAY_TIME =3000;
     final private  long PERIOD_TIME = 3000;
     //banner slider on home page
+    MenuItem id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
+        sharedPrefManager = new SharedPrefManager(this);
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -506,6 +514,14 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         }
 
+//
+//        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+//        if(user_token.contains("token")) {
+//            id.setVisible(false);
+//        }else {
+//            id.setVisible(true);
+//        }
+
     }
 
 
@@ -597,29 +613,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-        return true;
-    }
 //    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+//        id = menu.findItem(R.id.nav_SignUp);
+//        return true;
 //
-//        if (id == R.id.nav_slideshow) {
-//            Intent intent1 = new Intent(this,MyOrder.class);
-//            this.startActivity(intent1);
-//            return true;
-//        }
-//
-////            if (id == R.id.settings) {
-////                Toast.makeText(this, "Setting", Toast.LENGTH_LONG).show();
-////                return true;
-////            }
-//
-//        return super.onOptionsItemSelected(item);
 //    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
