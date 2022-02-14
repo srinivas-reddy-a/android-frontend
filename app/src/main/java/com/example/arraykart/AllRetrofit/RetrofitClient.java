@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.0.2.2:3000/";
+    private static final String BASE_URL = "http://ec2-13-233-27-210.ap-south-1.compute.amazonaws.com:3000";
     OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(50, TimeUnit.SECONDS)
             .readTimeout(50,TimeUnit.SECONDS)

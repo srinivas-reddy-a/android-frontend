@@ -66,6 +66,7 @@ public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategory
                 public void onClick(View v) {
                    Intent in = new Intent(context, ItemsForSingleProduct.class);
                    in.putExtra("id",homeAllCategoryModels.get(getAdapterPosition()).getId());
+                   in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                    context.startActivity(in);
                    String id = homeAllCategoryModels.get(getAdapterPosition()).getId();
                     Toast.makeText(context,id,Toast.LENGTH_SHORT).show();

@@ -27,6 +27,8 @@ import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.RatingReviewPage.ReviewAdapter;
 import com.example.arraykart.RatingReviewPage.ReviewModel;
+import com.example.arraykart.SearchPage.SearchPageActivity;
+import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -66,7 +68,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     //productdetail description
     private LinearLayout descriptionLL;
     private ImageView desArrowDownIV;
-    private TextView textView11;
+    private TextView textView11,searchProductDetail;
 
     //productdetail chemicalComposition
     private LinearLayout chemCompLL;
@@ -266,6 +268,19 @@ public class ProductDetailActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+        //searchview
+        try {
+            searchProductDetail = findViewById(R.id.searchProductDetail);
+            searchProductDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ProductDetailActivity.this, SearchPageActivity.class));
                 }
             });
         }catch (Exception e){

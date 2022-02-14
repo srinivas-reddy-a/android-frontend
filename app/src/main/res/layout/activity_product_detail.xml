@@ -44,7 +44,7 @@
                     android:layout_marginLeft="40sp"
                     android:text="Product Details"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#5F5A5A"
                     android:textSize="24sp" />
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -57,15 +57,15 @@
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/cart" />
 
-                <SearchView
+                <TextView
+                    android:id="@+id/searchProductDetail"
                     android:layout_width="wrap_content"
-                    android:layout_height="50sp"
+                    android:layout_height="35sp"
                     android:layout_gravity="right"
-                    android:goIcon="@drawable/ic_baseline_search_24"
-                    android:queryHint="Search Arraykart.in"
-                    android:searchIcon="@drawable/ic_baseline_search_24"
-                    tools:layout_editor_absoluteX="328dp"
-                    tools:layout_editor_absoluteY="3dp" />
+                    android:layout_marginEnd="10sp"
+                    android:drawableStart="@drawable/ic_baseline_search_24"
+                    android:padding="9sp"
+                    ></TextView>
             </androidx.appcompat.widget.Toolbar>
 
 
