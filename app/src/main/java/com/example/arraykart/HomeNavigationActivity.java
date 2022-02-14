@@ -427,6 +427,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
             @Override
             public void onFailure(Call<ProductsCategoryRespones> call, Throwable t) {
+                Toast.makeText(HomeNavigationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
