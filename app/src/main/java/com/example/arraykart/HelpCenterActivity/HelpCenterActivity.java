@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.arraykart.R;
@@ -16,14 +17,17 @@ public class HelpCenterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_center);
-//        assert getSupportActionBar() != null;
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+        ImageView imgView = (ImageView) findViewById(R.id.backButton);
+        imgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+ }
 
-    @Override
-    public boolean onSupportNavigateUp() {
+    public void onSupportNavigateUp(View view) {
         finish();
-        return true;
     }
 
     public void sendEmail(View view){

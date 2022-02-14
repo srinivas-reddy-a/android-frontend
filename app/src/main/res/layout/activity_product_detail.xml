@@ -44,7 +44,7 @@
                     android:layout_marginLeft="40sp"
                     android:text="Product Details"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/appbarComponentsblack"
                     android:textSize="24sp" />
 
                 <com.airbnb.lottie.LottieAnimationView

@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="worth every penny"
+        android:textColor="@color/heading"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/rateGrid"
         app:layout_constraintStart_toEndOf="@+id/rateGrid"
         app:layout_constraintTop_toTopOf="@+id/rateGrid" />
@@ -48,7 +48,7 @@
         android:maxWidth="150dp"
         android:maxLines="3"
         android:text="write about products in details"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/rateGrid"
         app:layout_constraintTop_toBottomOf="@+id/rateGrid" />
