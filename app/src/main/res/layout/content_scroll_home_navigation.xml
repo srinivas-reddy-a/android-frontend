@@ -83,7 +83,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:padding="5dp"
-                android:text="category"
+                android:text="Products"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -224,25 +224,33 @@
 <!--                tools:ignore="MissingConstraints" />-->
 
 
-        <HorizontalScrollView
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:fillViewport="true"-->
+<!--            android:paddingLeft="20sp"-->
+<!--            android:paddingTop="0sp"-->
+<!--            android:paddingRight="20sp"-->
+<!--            android:scrollbars="none"-->
+<!--            tools:ignore="SpeakableTextPresentCheck">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/horizontalscrollview2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingBottom="20sp" />-->
+<!--        </HorizontalScrollView>-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/HorizontalRecyclerView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:fillViewport="true"
-            android:paddingLeft="20sp"
-            android:paddingTop="0sp"
-            android:paddingRight="20sp"
-            android:scrollbars="none"
-            tools:ignore="SpeakableTextPresentCheck">
-
-            <LinearLayout
-                android:id="@+id/horizontalscrollview2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="20sp" />
-        </HorizontalScrollView>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint1.3"

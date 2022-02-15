@@ -20,22 +20,35 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.arraykart.AllApiModels.CategoryIdRespones;
+import com.example.arraykart.AllApiModels.ProductsRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.Filter.BottomSheetFragment;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.Sort.BottomSheetFragmentSort;
+import com.example.arraykart.homeCategoryProduct.moreProductCategory.MyAdapter;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
 import com.google.android.material.chip.Chip;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ItemsForSingleProduct extends AppCompatActivity {
 
     private GridView gridView;
     private ImageView back_all_products;
+    private TextView gridViewProductNAme;
 
 
     ///cart icon on item product page
@@ -56,25 +69,64 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.items_for_single_product);
 
+        String id = getIntent().getStringExtra("id");
+        String name = getIntent().getStringExtra("name");
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+        gridViewProductNAme = findViewById(R.id.gridViewProductNAme);
+        gridViewProductNAme.setText(name);
 
-        modelForSingleProducts = new ArrayList<>();
-        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
+
+//        modelForSingleProducts = new ArrayList<>();
+//        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
 
         gridView = findViewById(R.id.gridView);
 
-        GridAdapter gridAdapter = new GridAdapter(this, modelForSingleProducts);
-        gridView.setAdapter(gridAdapter);
+//        GridAdapter gridAdapter = new GridAdapter(this, modelForSingleProducts);
+//        gridView.setAdapter(gridAdapter);
+
+        String url = "/api/product/?category="+id;
+        Call<CategoryIdRespones> call = RetrofitClient.getInstance().getApi().getCategory(url);
+        call.enqueue(new Callback<CategoryIdRespones>() {
+            @Override
+            public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
+//                ProductsRespones productsRespones = response.body();
+                if(response.isSuccessful()){
+                    try {
+                        modelForSingleProducts = response.body().getProducts();
+                        GridViewAdapter gridAdapter = new GridViewAdapter(getApplicationContext(), modelForSingleProducts);
+                        gridView.setAdapter(gridAdapter);
+                    }catch (Exception e){
+                        Toast.makeText(ItemsForSingleProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(ItemsForSingleProduct.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(ItemsForSingleProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<CategoryIdRespones> call, Throwable t) {
+
+            }
+        });
+
+
 
         try {
             back_all_products = findViewById(R.id.back_all_products);
@@ -143,6 +195,15 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             this.modelForSingleProducts = modelForSingleProducts;
         }
 
+        public class ViewHolder{
+           public ImageView cImg;
+           public TextView txt;
+           public TextView prc;
+           public TextView rt;
+           public TextView rb;
+        }
+
+
         @Override
         public int getCount() {
             return modelForSingleProducts.size();
@@ -161,16 +222,19 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         @SuppressLint("ResourceAsColor")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(R.layout.item_frame_single_product, null, false);
 
+            holder = new ViewHolder();
+
             // it will help take item from single product and put that item in this page
             try {
-                ImageView cImg = view.findViewById(R.id.gridImage);
-                TextView txt = view.findViewById(R.id.gridText);
-                TextView prc = view.findViewById(R.id.priceGrid);
-                TextView rt = view.findViewById(R.id.rateGrid);
-                TextView rb = view.findViewById(R.id.ribbonTag);
+                holder.cImg = view.findViewById(R.id.gridImage);
+                holder.txt = view.findViewById(R.id.gridText);
+                holder.prc = view.findViewById(R.id.priceGrid);
+                holder.rt = view.findViewById(R.id.rateGrid);
+                holder.rb = view.findViewById(R.id.ribbonTag);
                 CheckBox wish = view.findViewById(R.id.wishListSingleProducts);
 
                 wish.setOnClickListener(new View.OnClickListener() {
@@ -180,19 +244,29 @@ public class ItemsForSingleProduct extends AppCompatActivity {
                     }
                 });
 
-                if (position <= modelForSingleProducts.size()) {
-                    cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
-                    txt.setText(modelForSingleProducts.get(position).getName());
-                    prc.setText(modelForSingleProducts.get(position).getPrice());
-                    rt.setText(modelForSingleProducts.get(position).getRate());
+                view.setTag(holder);
 
-                    if (position == 3) {
-                        rb.setText(modelForSingleProducts.get(position).getRibbon());
-                        rb.setTextColor(Color.parseColor("#FFFFFF"));
-                    } else {
-                        rb.setBackgroundResource(R.color.white);
-                        rb.setText(null);
-                    }
+                holder = (ViewHolder) view.getTag();
+
+                if (position <= modelForSingleProducts.size()) {
+//                    cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
+                    Glide.with(context.getApplicationContext())
+                            .load(modelForSingleProducts.get(position).getImgs())
+                            .placeholder(R.drawable.categories)
+                            .centerInside()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(holder.cImg);
+                    holder.txt.setText(modelForSingleProducts.get(position).getName());
+                    holder.prc.setText(modelForSingleProducts.get(position).getPrice());
+//                    holder.rt.setText(modelForSingleProducts.get(position).getRate());
+//
+//                    if (position == 3) {
+//                        holder.rb.setText(modelForSingleProducts.get(position).getRibbon());
+//                        holder.rb.setTextColor(Color.parseColor("#FFFFFF"));
+//                    } else {
+//                        holder.rb.setBackgroundResource(R.color.white);
+//                        holder.rb.setText(null);
+//                    }
                 }
 
             } catch (Exception ex) {
@@ -214,6 +288,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
             return view;
         }
+
 
 
     }

@@ -21,6 +21,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
@@ -43,6 +44,7 @@ import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategor
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -115,10 +117,10 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     protected void onCreate(Bundle savedInstanceState) {
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         sharedPrefManager = new SharedPrefManager(this);
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
           setSupportActionBar(binding.appBarHomeNavigation.toolbar);
 //        binding.appBarHomeNavigation.fab.setOnClickListener(new View.OnClickListener() {
@@ -331,14 +333,45 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         gridView2 = findViewById(R.id.gridView2);
 
-        modelForSingleProducts = new ArrayList<>();
-        modelForSingleProducts.add(new ModelForSingleProduct("1","name","price","rate","ribbon",R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("2","name","price","rate","ribbon",R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("3","name","price","rate","ribbon",R.drawable.img));
-        modelForSingleProducts.add(new ModelForSingleProduct("4","name","price","rate","ribbon",R.drawable.img));
+//        modelForSingleProducts = new ArrayList<>();
+//        modelForSingleProducts.add(new ModelForSingleProduct("1","name","price","rate","ribbon",R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("2","name","price","rate","ribbon",R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("3","name","price","rate","ribbon",R.drawable.img));
+//        modelForSingleProducts.add(new ModelForSingleProduct("4","name","price","rate","ribbon",R.drawable.img));
+//
+//        GridViewAdapter gridAdapters = new GridViewAdapter(this, modelForSingleProducts);
+//        gridView2.setAdapter(gridAdapters);
 
-        GridViewAdapter gridAdapters = new GridViewAdapter(this, modelForSingleProducts);
-        gridView2.setAdapter(gridAdapters);
+        String url = "/api/product/?category=2";
+        Call<CategoryIdRespones> callg = RetrofitClient.getInstance().getApi().getCategory(url);
+        callg.enqueue(new Callback<CategoryIdRespones>() {
+            @Override
+            public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
+//                ProductsRespones productsRespones = response.body();
+                if(response.isSuccessful()){
+                    try {
+                        modelForSingleProducts = response.body().getProducts();
+                        GridViewAdapter gridAdapter = new GridViewAdapter(getApplicationContext(), modelForSingleProducts);
+                        gridView2.setAdapter(gridAdapter);
+                    }catch (Exception e){
+                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<CategoryIdRespones> call, Throwable t) {
+
+            }
+        });
 
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
@@ -411,6 +444,16 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     homeAllCategoryModels =  response.body().getCategories();
                     HomeAllCategoryAdapter homeAllCategoryAdapter = new HomeAllCategoryAdapter(homeAllCategoryModels,getApplicationContext());
                     HorizontalRecyclerView.setAdapter(homeAllCategoryAdapter);
+                    homeAllCategoryAdapter.setOnItemClickListener(new HomeAllCategoryAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClickListener(int position) {
+                            Intent in = new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class);
+                            in.putExtra("id",homeAllCategoryModels.get(position).getId());
+                            in.putExtra("name",homeAllCategoryModels.get(position).getName());
+                            in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(in);
+                        }
+                    });
 
 //
                 }else {
@@ -433,21 +476,30 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         });
 
 
-        for(int i=1;i<9;i++){
-            LinearLayout brandhsv = findViewById(R.id.horizontalscrollview2);
-            View v = getLayoutInflater().inflate(R.layout.home_brand, null);
-            ImageView isv = v.findViewById(R.id.imageView2);
-            isv.setImageResource(R.drawable.img);
-            TextView tsv = v.findViewById(R.id.textView2);
-            tsv.setText("brand"+i);
-            isv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
-                }
-            });
-            brandhsv.addView(v);
-        }
+//        for(int i=1;i<9;i++){
+//            LinearLayout brandhsv = findViewById(R.id.horizontalscrollview2);
+//            View v = getLayoutInflater().inflate(R.layout.home_brand, null);
+//            ImageView isv = v.findViewById(R.id.imageView2);
+//            isv.setImageResource(R.drawable.img);
+//            TextView tsv = v.findViewById(R.id.textView2);
+//            tsv.setText("brand"+i);
+//            isv.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivity(new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class));
+//                }
+//            });
+//            brandhsv.addView(v);
+//        }
+
+        ///brands on home
+
+        RecyclerView HorizontalRecyclerViews = findViewById(R.id.HorizontalRecyclerView1);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
+        HorizontalRecyclerView.setLayoutManager(layoutManager2);
+
+        HomeAllCategoryAdapter homeAllCategoryAdapters = new HomeAllCategoryAdapter(homeAllCategoryModels,this);
+        HorizontalRecyclerViews.setAdapter(homeAllCategoryAdapters);
 
 
 

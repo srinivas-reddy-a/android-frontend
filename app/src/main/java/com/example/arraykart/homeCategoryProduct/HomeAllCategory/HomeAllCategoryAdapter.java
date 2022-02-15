@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.arraykart.R;
+import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.MoreCotegoryModel;
 
@@ -23,6 +24,17 @@ import java.util.List;
 public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategoryAdapter.ViewHolder> {
 
     List<MoreCotegoryModel> homeAllCategoryModels;
+
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onClickListener(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener=listener;
+    }
+
     Context context;
 
     public HomeAllCategoryAdapter(List<MoreCotegoryModel> homeAllCategoryModels, Context context) {
@@ -34,7 +46,7 @@ public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategory
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_brand,parent,false);
-        return new ViewHolder(v);
+        return new ViewHolder(v,mListener);
     }
 
     @Override
@@ -56,7 +68,7 @@ public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategory
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img ;
         TextView txt;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             img = itemView.findViewById(R.id.imageView2);
             txt = itemView.findViewById(R.id.textView2);
@@ -64,12 +76,12 @@ public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategory
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   Intent in = new Intent(context, ItemsForSingleProduct.class);
-                   in.putExtra("id",homeAllCategoryModels.get(getAdapterPosition()).getId());
-                   in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                   context.startActivity(in);
-                   String id = homeAllCategoryModels.get(getAdapterPosition()).getId();
-                    Toast.makeText(context,id,Toast.LENGTH_SHORT).show();
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onClickListener(position);
+                        }
+                    }
                 }
             });
         }

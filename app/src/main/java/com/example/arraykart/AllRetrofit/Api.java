@@ -1,6 +1,7 @@
 package com.example.arraykart.AllRetrofit;
 
 import com.example.arraykart.AllApiModels.AuthRespones;
+import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
 import com.example.arraykart.AllApiModels.LogInOtpRespones;
@@ -21,6 +22,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface Api {
 
@@ -80,6 +84,12 @@ public interface Api {
     ////products api
     @GET("/api/product/")
     Call<ProductsRespones>getProduct();
+
+//    @GET("/api/product/?category=")
+//    Call<CategoryIdRespones>getCategory(@Query("id") String Id);
+
+    @GET
+    Call<CategoryIdRespones>getCategory(@Url String Url);
 
     @GET("/api/product/category/")
     Call<ProductsCategoryRespones>productCategory();
