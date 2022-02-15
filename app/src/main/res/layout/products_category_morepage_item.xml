@@ -24,15 +24,14 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="130dp"
-            android:layout_height="110dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginStart="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/categories"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
@@ -52,9 +51,9 @@
                 android:layout_margin="5dp"
                 android:padding="1dp"
                 android:text="Main Title"
-                android:textColor="#000"
+                android:textColor="@color/heading"
                 android:textSize="18sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +66,7 @@
                 android:maxLines="4"
                 android:padding="1dp"
                 android:text="description"
-                android:textColor="#777373"
+                android:textColor="@color/text"
                 android:textSize="15sp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"

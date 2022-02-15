@@ -37,7 +37,7 @@
             android:maxLines="1"
             android:padding="2dp"
             android:text="Product Name"
-            android:textColor="#000000"
+            android:textColor="@color/heading"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
             android:layout_marginStart="16dp"
             android:padding="2dp"
             android:text="Rs.---/-"
-            android:textColor="#000000"
+            android:textColor="@color/text"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/order_detail_productImage"
@@ -65,7 +65,7 @@
             android:background="@drawable/boarder_background"
             android:padding="2dp"
             android:text="Qty: 1"
-            android:textColor="#000000"
+            android:textColor="@color/text"
             app:layout_constraintBottom_toBottomOf="@+id/order_detail_productImage"
             app:layout_constraintEnd_toStartOf="@+id/order_detail_productImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -177,8 +177,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="order Placed"
+        android:textColor="@color/text"
         android:textSize="12sp"
-        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/orderIndicator"
         app:layout_constraintStart_toEndOf="@+id/orderIndicator"
         app:layout_constraintTop_toTopOf="@+id/orderIndicator" />
@@ -189,6 +189,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Mon,12th dec 2021 12:24"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/orderedTitle"
         app:layout_constraintStart_toEndOf="@+id/orderedTitle"
@@ -199,8 +200,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="order has been placed succesfully"
+        android:textColor="@color/text"
         android:textSize="10sp"
-        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/orderedTitle"
         app:layout_constraintTop_toBottomOf="@+id/order_packed_progressBar" />
 
@@ -210,7 +211,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="order packed"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/packedIndicator"
         app:layout_constraintStart_toEndOf="@+id/packedIndicator"
@@ -222,6 +223,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Tus,13th dec 2021 9:45"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/packedTitle"
         app:layout_constraintStart_toEndOf="@+id/packedTitle"
@@ -232,8 +234,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="order has been packed "
+        android:textColor="@color/text"
         android:textSize="10sp"
-        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/packedTitle"
         app:layout_constraintTop_toBottomOf="@+id/packed_shipping_progressBar" />
 
@@ -243,7 +245,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="order shipped"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/shippedIndicator"
         app:layout_constraintStart_toEndOf="@+id/shippedIndicator"
@@ -256,6 +258,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Wed,14Th dec 2021 10:40"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/shippedTitle"
         app:layout_constraintStart_toEndOf="@+id/shippedTitle"
@@ -266,7 +269,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ored has been shipped succesfully"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/shippedTitle"
         app:layout_constraintTop_toBottomOf="@+id/shipped_delivery_progressBar" />
@@ -277,7 +280,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="order delivered"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/deliveredIndicator"
         app:layout_constraintStart_toEndOf="@+id/deliveredIndicator"
@@ -289,6 +292,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Wed,15th dec 2021 9:43"
+        android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/deliveredTitle"
         app:layout_constraintStart_toEndOf="@+id/deliveredTitle"
@@ -300,7 +304,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="order delivered on time "
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/deliveredTitle"
         app:layout_constraintTop_toBottomOf="@+id/deliveredTitle" />
@@ -332,10 +336,10 @@
         android:id="@+id/rating_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -346,28 +350,30 @@
             android:id="@+id/cancelOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:elevation="3dp"
             android:background="@color/white"
+            android:elevation="3dp"
+            android:padding="2dp"
             android:text="Cancel your order"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:textStyle="normal"/>
+            android:textStyle="normal" />
+
         <View
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp" />
+
         <TextView
             android:id="@+id/returnOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:elevation="3dp"
             android:background="@color/white"
+            android:elevation="3dp"
+            android:padding="2dp"
             android:text="Return your order"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:textStyle="normal"/>
+            android:textStyle="normal" />
 
     </LinearLayout>
 

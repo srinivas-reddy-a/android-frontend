@@ -9,6 +9,7 @@
     android:layout_marginBottom="10dp"
     android:layout_margin="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <TextView
         android:id="@+id/personName"
         android:layout_width="0dp"
@@ -18,9 +19,9 @@
         android:layout_marginEnd="28dp"
         android:padding="2dp"
         android:text="FullName"
-        android:textColor="#000000"
+        android:textColor="@color/heading"
         android:textSize="16sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintEnd_toStartOf="@+id/addressSelectTick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +35,7 @@
         android:maxLines="2"
         android:padding="2dp"
         android:text="Address"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personName" />
 
@@ -47,7 +48,7 @@
         android:maxLines="2"
         android:padding="2dp"
         android:text="Address"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/personAddress1"
         app:layout_constraintTop_toBottomOf="@+id/personName" />
@@ -60,9 +61,9 @@
         android:layout_marginTop="16dp"
         android:padding="2dp"
         android:text="state"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
 
@@ -74,9 +75,9 @@
         android:layout_marginTop="16dp"
         android:padding="2dp"
         android:text="City"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/addressState"
         app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
 
@@ -88,9 +89,9 @@
         android:layout_marginTop="16dp"
         android:padding="2dp"
         android:text="PinCode"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/addressCity"
         app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
 
@@ -103,9 +104,9 @@
         android:layout_marginBottom="16dp"
         android:padding="2dp"
         android:text="PhoneNumber"
-        android:textColor="#000000"
+        android:textColor="@color/text"
         android:textSize="12sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressState" />
@@ -137,7 +138,8 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginEnd="3dp"
-            android:text="edit"
+            android:backgroundTint="@color/gray"
+            android:text="Edit"
             android:textSize="16sp"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -145,7 +147,8 @@
             android:id="@+id/removeAddress"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="remove"
+            android:backgroundTint="@color/gray"
+            android:text="Remove"
             android:textSize="16sp"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 

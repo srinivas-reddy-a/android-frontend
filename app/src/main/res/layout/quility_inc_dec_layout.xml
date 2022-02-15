@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="QTY:"
-            android:textColor="#000000"
+            android:textColor="@color/text"
             android:textSize="25dp" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_drop_down"
             android:text="1"
-            android:textColor="#000000"
+            android:textColor="@color/text"
             android:textSize="25dp" />
     </LinearLayout>
 
@@ -75,7 +75,7 @@
         android:text="Add Quality of Products"
         android:textColor="#000000"
         android:textSize="16dp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/productImageQualityLayout"
         app:layout_constraintTop_toTopOf="@+id/productImageQualityLayout" />
 

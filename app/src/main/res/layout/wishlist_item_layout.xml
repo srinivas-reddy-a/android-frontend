@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/wishListImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Product Name here"
-        android:textSize="16sp"
-        android:textColor="#000000"
         android:maxLines="1"
-        android:textStyle="bold"
+        android:text="Product Name here"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/wishListImage"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +53,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="4dp"
         android:text="free offer"
-        android:textColor="#DE5EF4"
+        android:textColor="@color/coupon"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/wishListCouponIndicator"
         app:layout_constraintTop_toBottomOf="@+id/wishListTitle" />
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="#82E60D"
+        android:background="@color/rating"
         android:orientation="horizontal"
         android:padding="2dp"
         app:layout_constraintStart_toEndOf="@+id/wishListImage"
@@ -95,9 +95,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Rs.499999/-"
-        android:textStyle="bold"
-        android:textSize="18dp"
         android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

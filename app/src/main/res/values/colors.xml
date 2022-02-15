@@ -16,5 +16,7 @@
     <color name="appbarSmokeWhite">#F5F5F5</color>
     <color name="text">#5F5A5A</color>
     <color name="heading">#000000</color>
-    <color name="rating">#00D66C</color>
+    <color name="rating">#1A711D</color>
+    <color name="coupon">#DE5EF4</color>
+    <color name="couponApplied">#D81B1B</color>
 </resources>
