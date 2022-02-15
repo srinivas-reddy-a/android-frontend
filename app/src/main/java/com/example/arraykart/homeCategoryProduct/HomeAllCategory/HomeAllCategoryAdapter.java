@@ -53,9 +53,6 @@ public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategory
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context.getApplicationContext())
                 .load(homeAllCategoryModels.get(position).getImage())
-                .placeholder(R.drawable.categories)
-                .centerInside()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.img);
         holder.txt.setText(homeAllCategoryModels.get(position).getName());
     }

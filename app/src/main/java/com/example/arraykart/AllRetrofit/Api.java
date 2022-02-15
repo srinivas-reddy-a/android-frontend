@@ -1,6 +1,7 @@
 package com.example.arraykart.AllRetrofit;
 
 import com.example.arraykart.AllApiModels.AuthRespones;
+import com.example.arraykart.AllApiModels.BrandRespones;
 import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
@@ -8,10 +9,12 @@ import com.example.arraykart.AllApiModels.LogInOtpRespones;
 import com.example.arraykart.AllApiModels.LogInRespones;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
+import com.example.arraykart.AllApiModels.SearchProducRespones;
 import com.example.arraykart.AllApiModels.SignUpRespones;
 import com.example.arraykart.AllApiModels.SignUpTopRespones;
 import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
+import com.example.arraykart.SearchPage.SearchProductModel;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -85,11 +88,11 @@ public interface Api {
     @GET("/api/product/")
     Call<ProductsRespones>getProduct();
 
-//    @GET("/api/product/?category=")
-//    Call<CategoryIdRespones>getCategory(@Query("id") String Id);
-
     @GET
     Call<CategoryIdRespones>getCategory(@Url String Url);
+
+    @GET
+    Call<SearchProducRespones>getSearchProduct(@Url String Url);
 
     @GET("/api/product/category/")
     Call<ProductsCategoryRespones>productCategory();
@@ -105,6 +108,10 @@ public interface Api {
                                     @Field("comment") String comment
     );
 
+
+    ////Brand
+    @GET("/api/brand/")
+    Call<BrandRespones> getBrand();
 
     ///orders api
     @FormUrlEncoded

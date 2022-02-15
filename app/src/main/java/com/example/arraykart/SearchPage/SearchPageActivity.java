@@ -19,15 +19,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.SearchProducRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchPageActivity extends AppCompatActivity implements SearchAdapter.OnRecentSearchListener{//implements SearchAdapter.OnRecentSearchListener
     private RecyclerView recyclerView;
     private SearchAdapter searchAdapter;
     private ArrayList<String> recentSearches;
+    private List<SearchProductModel> searchProductModels;
     private EditText searchPageET;
     private ImageView searchPageBackIV , Search;
     SharedPrefManager sharedPrefManager;
@@ -89,11 +97,34 @@ public class SearchPageActivity extends AppCompatActivity implements SearchAdapt
                             Toast.LENGTH_SHORT).show();
 
                 }
-//                else {
+                else {
 //
 //                    String text = edt.getText().toString();
 //                   sharedPrefManager.setValue_list("search",text);
-//                }
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                    String p = edt.getText().toString();
+                    String url = "/api/product/?search="+p;
+
+                    Call<SearchProducRespones> call = RetrofitClient.getInstance().getApi().getSearchProduct(url);
+                    call.enqueue(new Callback<SearchProducRespones>() {
+                        @Override
+                        public void onResponse(Call<SearchProducRespones> call, Response<SearchProducRespones> response) {
+                            try{
+                                searchProductModels = response.body().getProducts();
+                                SearchProductAdapter searchProductAdapter = new SearchProductAdapter(searchProductModels,getApplicationContext());
+                                recyclerView.setAdapter(searchProductAdapter);
+                            }catch (Exception e){
+                                Toast.makeText(SearchPageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SearchProducRespones> call, Throwable t) {
+
+                        }
+                    });
+                }
             }
         });
     }

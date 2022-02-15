@@ -71,36 +71,19 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
         String id = getIntent().getStringExtra("id");
         String name = getIntent().getStringExtra("name");
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
         gridViewProductNAme = findViewById(R.id.gridViewProductNAme);
         gridViewProductNAme.setText(name);
 
 
-//        modelForSingleProducts = new ArrayList<>();
-//        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("1", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("2", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("3", "name", "price", "rate", "ribbon", R.drawable.img));
-//        modelForSingleProducts.add(new ModelForSingleProduct("4", "name", "price", "rate", "ribbon", R.drawable.img));
 
         gridView = findViewById(R.id.gridView);
 
-//        GridAdapter gridAdapter = new GridAdapter(this, modelForSingleProducts);
-//        gridView.setAdapter(gridAdapter);
-
-        String url = "/api/product/?category="+id;
+        String url = "/api/product/?category="+name;
         Call<CategoryIdRespones> call = RetrofitClient.getInstance().getApi().getCategory(url);
         call.enqueue(new Callback<CategoryIdRespones>() {
             @Override
             public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
-//                ProductsRespones productsRespones = response.body();
+
                 if(response.isSuccessful()){
                     try {
                         modelForSingleProducts = response.body().getProducts();

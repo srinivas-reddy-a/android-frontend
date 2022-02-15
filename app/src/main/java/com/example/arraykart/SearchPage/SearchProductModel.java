@@ -1,18 +1,16 @@
-package com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct;
+package com.example.arraykart.SearchPage;
 
-public class ModelForSingleProduct {
+public class SearchProductModel {
     private String id;
-    private String name ;
+    private String name;
     private String price;
-//    private String rate;
-//    private String ribbon;
     private String image;
 
-    public ModelForSingleProduct(String id, String name, String price, String imgs) {
+    public SearchProductModel(String id, String name, String price, String image) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.image = imgs;
+        this.image = image;
     }
 
     public String getId() {
@@ -39,13 +37,15 @@ public class ModelForSingleProduct {
         this.price = price;
     }
 
-    public String getImgs() {
+    public String getImage() {
         String[] img = image.split(",");
         String i = img[0];
         return "https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+i;
     }
 
-    public void setImgs(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
+
+
 }
