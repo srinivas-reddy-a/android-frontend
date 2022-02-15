@@ -43,7 +43,9 @@ public class MainModel {
     }
 
     public String getImage() {
-        return image;
+        String[] img = image.split(",");
+        String i = img[0];
+        return "https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+i;
     }
 
     public void setImage(String image) {

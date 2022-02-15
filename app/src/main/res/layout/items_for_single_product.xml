@@ -42,7 +42,7 @@
                     tools:layout_editor_absoluteY="3dp" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/gridViewProductNAme"
                     android:layout_width="wrap_content"
                     android:layout_height="35sp"
                     android:layout_marginLeft="40sp"

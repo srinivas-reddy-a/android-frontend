@@ -13,7 +13,7 @@ public class MoreCotegoryModel {
         this.image = image;
     }
 
-    public String getId(){
+    public String getId() {
         return id;
     }
 
@@ -38,10 +38,11 @@ public class MoreCotegoryModel {
     }
 
     public String getImage() {
-        return image;
+        return "https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+image ;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
+
 }

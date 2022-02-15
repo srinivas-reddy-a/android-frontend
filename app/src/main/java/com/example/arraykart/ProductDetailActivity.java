@@ -24,6 +24,8 @@ import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingAdapter;
+import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingModel;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.RatingReviewPage.ReviewAdapter;
 import com.example.arraykart.RatingReviewPage.ReviewModel;
@@ -90,6 +92,11 @@ public class ProductDetailActivity extends AppCompatActivity {
     private List<ReviewModel> reviewModelList ;
     private ReviewAdapter reviewAdapter;
     private TextView MoreReview;
+
+    //productDetailListing
+    private RecyclerView productDetailListing;
+    private List<ProductDetailListingModel> productDetailListingModels;
+    private ProductDetailListingAdapter productDetailListingAdapter;
 
     private CheckBox wishListProductsDetail;
     SharedPrefManager sharedPrefManager;
@@ -160,38 +167,6 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
-        ///product detail des clicklistener
-        descriptionLL = findViewById(R.id.descriptionLL);
-        descriptionLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textView11=findViewById(R.id.textView11);
-                desArrowDownIV = findViewById(R.id.imageView7);
-                if ((textView11.getVisibility() == View.GONE)) {
-                    textView11.setVisibility(View.VISIBLE);
-                    desArrowDownIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                } else {
-                    textView11.setVisibility(View.GONE);
-                    desArrowDownIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
-                }
-            }
-        });
-        ///product detail chemical comp clicklistener
-        chemCompLL = findViewById(R.id.chemCompLL);
-        chemCompLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                textView25=findViewById(R.id.textView25);
-                chemCompIV = findViewById(R.id.imageView8);
-                if ((textView25.getVisibility() == View.GONE)) {
-                    textView25.setVisibility(View.VISIBLE);
-                    chemCompIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                } else {
-                    textView25.setVisibility(View.GONE);
-                    chemCompIV.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
-                }
-            }
-        });
 
         //product detail offers clicklistener
         offerLL1 = findViewById(R.id.offerLL1);
@@ -361,6 +336,23 @@ public class ProductDetailActivity extends AppCompatActivity {
 //        }catch (Exception e){
 //
 //        }
+
+        //productDetailListing
+        try {
+            productDetailListing = findViewById(R.id.productDetailListing);
+            LinearLayoutManager layoutManagers = new LinearLayoutManager(this);
+            layoutManagers.setOrientation(LinearLayoutManager.VERTICAL);
+            productDetailListing.setLayoutManager(layoutManagers);
+
+            productDetailListingModels = new ArrayList<>();
+            productDetailListingModels.add(new ProductDetailListingModel("Description",R.drawable.ic_baseline_keyboard_arrow_up_24,"The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents"));
+            productDetailListingModels.add(new ProductDetailListingModel("Chemical composition",R.drawable.ic_baseline_keyboard_arrow_up_24,"Mancozeb 63% + Carbendazim 12% WP"));
+
+            productDetailListingAdapter = new ProductDetailListingAdapter(productDetailListingModels,ProductDetailActivity.this);
+            productDetailListing.setAdapter(productDetailListingAdapter);
+        }catch (Exception e){
+
+        }
 
     }
 
