@@ -7,6 +7,7 @@ import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
 import com.example.arraykart.AllApiModels.LogInOtpRespones;
 import com.example.arraykart.AllApiModels.LogInRespones;
+import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
 import com.example.arraykart.AllApiModels.SearchProducRespones;
@@ -93,6 +94,9 @@ public interface Api {
 
     @GET
     Call<SearchProducRespones>getSearchProduct(@Url String Url);
+
+    @GET
+    Call<ProductDetailPageRespones> getDetail(@Url String Url);
 
     @GET("/api/product/category/")
     Call<ProductsCategoryRespones>productCategory();

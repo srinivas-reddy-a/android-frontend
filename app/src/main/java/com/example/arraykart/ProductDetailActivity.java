@@ -20,12 +20,15 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
+import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingAdapter;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingModel;
+import com.example.arraykart.ProductDetailAboutListing.ProductDetailPageModel;
+import com.example.arraykart.ProductDetailAboutListing.ProductTableDetailPage;
 import com.example.arraykart.RatingReviewPage.AllReviewActivity;
 import com.example.arraykart.RatingReviewPage.ReviewAdapter;
 import com.example.arraykart.RatingReviewPage.ReviewModel;
@@ -33,9 +36,12 @@ import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
+import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +58,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
 
     ///rating layout
-    private LinearLayout linearLayout;
+    private LinearLayout linearLayout,MoreDetailButton;
     private List<Integer> list;
     private ImageView Rating_layout_image;
 
@@ -91,7 +97,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private RecyclerView ReviewRecyclerView;
     private List<ReviewModel> reviewModelList ;
     private ReviewAdapter reviewAdapter;
-    private TextView MoreReview;
+    private TextView MoreReview,pdProductName,productDetailPagePrice,listDetail,listDetail1,listDetail2;
 
     //productDetailListing
     private RecyclerView productDetailListing;
@@ -101,6 +107,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private CheckBox wishListProductsDetail;
     SharedPrefManager sharedPrefManager;
 
+    List<ProductDetailPageModel> product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +126,73 @@ public class ProductDetailActivity extends AppCompatActivity {
         changeAddress = findViewById(R.id.changeAddress);
         delivery_continue_btn = findViewById(R.id.delivery_continue_btn);
         buy_on_product_detail = findViewById(R.id.buy_on_product_detail);
+        MoreDetailButton = findViewById(R.id.MoreDetailButton);
+
+        pdProductName=findViewById(R.id.pdProductName);
+        productDetailPagePrice = findViewById(R.id.productDetailPagePrice);
+        listDetail = findViewById(R.id.listDetail);
+        listDetail1= findViewById(R.id.listDetail1);
+        listDetail2 = findViewById(R.id.listDetail2);
+
+        ////////////////
+       ImageView li = findViewById(R.id.listImage);
+       TextView lt = findViewById(R.id.listText);
+       TextView ld = findViewById(R.id.listDetail);
+       LinearLayout descriptionLL = findViewById(R.id.descriptionLL);
+
+        ImageView li1 = findViewById(R.id.listImage1);
+        TextView lt1 = findViewById(R.id.listText1);
+        TextView ld1= findViewById(R.id.listDetail1);
+        LinearLayout brandLL = findViewById(R.id.brandLL);
+
+        ImageView li2 = findViewById(R.id.listImage2);
+        TextView lt2 = findViewById(R.id.listText2);
+        TextView ld2= findViewById(R.id.listDetail2);
+        LinearLayout categoryLL = findViewById(R.id.categoryLL);
+
+
+       //////////
+        descriptionLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld.getVisibility() == View.GONE)) {
+                    ld.setVisibility(View.VISIBLE);
+                    li.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld.setVisibility(View.GONE);
+                    li.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        brandLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld1.getVisibility() == View.GONE)) {
+                    ld1.setVisibility(View.VISIBLE);
+                    li1.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld1.setVisibility(View.GONE);
+                    li1.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        categoryLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld2.getVisibility() == View.GONE)) {
+                    ld2.setVisibility(View.VISIBLE);
+                    li2.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld2.setVisibility(View.GONE);
+                    li2.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+
+
 
 
         carouselView = findViewById(R.id.carouselViewProductDetail);
@@ -337,22 +411,66 @@ public class ProductDetailActivity extends AppCompatActivity {
 //
 //        }
 
-        //productDetailListing
-        try {
-            productDetailListing = findViewById(R.id.productDetailListing);
-            LinearLayoutManager layoutManagers = new LinearLayoutManager(this);
-            layoutManagers.setOrientation(LinearLayoutManager.VERTICAL);
-            productDetailListing.setLayoutManager(layoutManagers);
+//        //productDetailListing
+//        try {
+//            productDetailListing = findViewById(R.id.productDetailListing);
+//            LinearLayoutManager layoutManagers = new LinearLayoutManager(this);
+//            layoutManagers.setOrientation(LinearLayoutManager.VERTICAL);
+//            productDetailListing.setLayoutManager(layoutManagers);
+//
+//            productDetailListingModels = new ArrayList<>();
+//            productDetailListingModels.add(new ProductDetailListingModel("Description",R.drawable.ic_baseline_keyboard_arrow_up_24,"The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents"));
+//            productDetailListingModels.add(new ProductDetailListingModel("Chemical composition",R.drawable.ic_baseline_keyboard_arrow_up_24,"Mancozeb 63% + Carbendazim 12% WP"));
+//
+//            productDetailListingAdapter = new ProductDetailListingAdapter(productDetailListingModels,ProductDetailActivity.this);
+//            productDetailListing.setAdapter(productDetailListingAdapter);
+//        }catch (Exception e){
+//
+//        }
 
-            productDetailListingModels = new ArrayList<>();
-            productDetailListingModels.add(new ProductDetailListingModel("Description",R.drawable.ic_baseline_keyboard_arrow_up_24,"The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents"));
-            productDetailListingModels.add(new ProductDetailListingModel("Chemical composition",R.drawable.ic_baseline_keyboard_arrow_up_24,"Mancozeb 63% + Carbendazim 12% WP"));
 
-            productDetailListingAdapter = new ProductDetailListingAdapter(productDetailListingModels,ProductDetailActivity.this);
-            productDetailListing.setAdapter(productDetailListingAdapter);
+        ///product detail page call
+
+        String url = "/api/product/"+id;
+        Call<ProductDetailPageRespones> CallDetail = RetrofitClient.getInstance().getApi().getDetail(url);
+        CallDetail.enqueue(new Callback<ProductDetailPageRespones>() {
+            @Override
+            public void onResponse(Call<ProductDetailPageRespones> call, Response<ProductDetailPageRespones> response) {
+
+                try {
+                    product = response.body().getProduct();
+                    pdProductName.setText(product.get(0).getName());
+                    productDetailPagePrice.setText(product.get(0).getPrice());
+                    listDetail.setText(product.get(0).getDescription());
+                    listDetail1.setText(product.get(0).getBrand());
+                    listDetail2.setText(product.get(0).getCategory());
+
+                }catch (Exception e){
+                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductDetailPageRespones> call, Throwable t) {
+                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        try{
+            MoreDetailButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(ProductDetailActivity.this, ProductTableDetailPage.class);
+                    in.putExtra("id",id);
+                    startActivity(in);
+                }
+            });
         }catch (Exception e){
-
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
 
     }
 

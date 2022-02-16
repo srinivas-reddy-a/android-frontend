@@ -34,6 +34,7 @@
             android:id="@+id/nav_Settings"
             android:icon="@drawable/ic_baseline_settings"
             android:title="Settings"
+            android:visible="false"
             />
         <item
             android:id="@+id/nav_SignUp"
