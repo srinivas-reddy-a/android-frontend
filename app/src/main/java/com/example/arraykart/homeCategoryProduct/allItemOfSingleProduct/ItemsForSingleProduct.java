@@ -71,16 +71,53 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
         String id = getIntent().getStringExtra("id");
         String name = getIntent().getStringExtra("name");
+        String idb = getIntent().getStringExtra("idb");
+        String nameB = getIntent().getStringExtra("nameB");
         gridViewProductNAme = findViewById(R.id.gridViewProductNAme);
         gridViewProductNAme.setText(name);
 
 
 
-        gridView = findViewById(R.id.gridView);
 
+
+        gridView = findViewById(R.id.gridView);
+        ////for home category
         String url = "/api/product/?category="+name;
         Call<CategoryIdRespones> call = RetrofitClient.getInstance().getApi().getCategory(url);
         call.enqueue(new Callback<CategoryIdRespones>() {
+            @Override
+            public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
+
+                if(response.isSuccessful()){
+                    try {
+                        modelForSingleProducts = response.body().getProducts();
+                        GridViewAdapter gridAdapter = new GridViewAdapter(getApplicationContext(), modelForSingleProducts);
+                        gridView.setAdapter(gridAdapter);
+                    }catch (Exception e){
+                        Toast.makeText(ItemsForSingleProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(ItemsForSingleProduct.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(ItemsForSingleProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<CategoryIdRespones> call, Throwable t) {
+
+            }
+        });
+
+        ///home page brand
+
+        String urll = "/api/product/?brand="+nameB;
+        Call<CategoryIdRespones> callB = RetrofitClient.getInstance().getApi().getCategory(urll);
+        callB.enqueue(new Callback<CategoryIdRespones>() {
             @Override
             public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
 

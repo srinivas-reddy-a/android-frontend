@@ -410,6 +410,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                             Intent in = new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class);
                             in.putExtra("id",homeAllCategoryModels.get(position).getId());
                             in.putExtra("name",homeAllCategoryModels.get(position).getName());
+                            in.putExtra("image",homeAllCategoryModels.get(position).getImage());
                             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(in);
                         }
@@ -448,6 +449,21 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                 List<MoreCotegoryModel> homeAllCategoryModel = response.body().getBrands();
                 HomeAllCategoryAdapter homeAllCategoryAdapters = new HomeAllCategoryAdapter(homeAllCategoryModel,getApplicationContext());
                 HorizontalRecyclerView1.setAdapter(homeAllCategoryAdapters);
+                try{
+                    homeAllCategoryAdapters.setOnItemClickListener(new HomeAllCategoryAdapter.OnItemClickListener() {
+                        @Override
+                        public void onClickListener(int position) {
+                            Intent in = new Intent(HomeNavigationActivity.this, ItemsForSingleProduct.class);
+                            in.putExtra("idb",homeAllCategoryModel.get(position).getId());
+                            in.putExtra("nameB",homeAllCategoryModel.get(position).getName());
+                            in.putExtra("image",homeAllCategoryModel.get(position).getImage());
+                            in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(in);
+                        }
+                    });
+                }catch (Exception e){
+                    Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
 
             }
 

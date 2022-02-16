@@ -59,19 +59,6 @@ public class ProductDetailListingAdapter extends RecyclerView.Adapter<ProductDet
             lt = itemView.findViewById(R.id.listText);
             ld = itemView.findViewById(R.id.listDetail);
             descriptionLL = itemView.findViewById(R.id.descriptionLL);
-            descriptionLL.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if ((ld.getVisibility() == View.GONE)) {
-                        ld.setVisibility(View.VISIBLE);
-                        li.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
-                    } else {
-                        ld.setVisibility(View.GONE);
-                        li.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
-                    }
-                }
-            });
         }
         private void setData(int lim, String ltx , String ldl){
             li.setImageResource(lim);

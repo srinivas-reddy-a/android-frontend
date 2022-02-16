@@ -127,6 +127,8 @@ public class GridViewAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent in = new Intent(context, ProductDetailActivity.class);
                     in.putExtra("id",modelForSingleProducts.get(position).getId());
+                    in.putExtra("qlt","1");
+                    in.putExtra("image",modelForSingleProducts.get(position).getImgs());
                     in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(in);
                 }
