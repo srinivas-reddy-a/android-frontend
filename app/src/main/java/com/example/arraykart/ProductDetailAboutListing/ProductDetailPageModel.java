@@ -298,8 +298,7 @@ public class ProductDetailPageModel {
     }
 
     public String getImage() {
-        String[] i = image.split(",");
-        return "https://arraykartandroid.s3.ap-south-1.amazonaws.com"+i;
+        return image;
     }
 
     public void setImage(String image) {

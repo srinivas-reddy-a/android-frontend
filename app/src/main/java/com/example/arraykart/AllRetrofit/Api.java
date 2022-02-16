@@ -161,7 +161,9 @@ public interface Api {
     @FormUrlEncoded
     @POST("/api/wishlist/")
     Call<ResponseBody> addWishlist(@Header("Authorization") String Authorization,
-                                   @Field("product_id") String product_id);
+                                   @Field("product_id") String product_id,
+                                   @Field("quantity") String quantity
+    );
 
     @GET("/api/wishlist/")
     Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
