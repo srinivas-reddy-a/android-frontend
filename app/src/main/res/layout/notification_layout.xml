@@ -7,7 +7,7 @@
     android:layout_margin="10dp"
     android:background="@drawable/shape"
     android:elevation="5dp"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/notifi_image"
@@ -27,8 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
 
+        android:paddingEnd="10dp"
         android:text="sachin"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -39,11 +40,14 @@
         android:id="@+id/notifi_normalTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="40dp"
+        android:paddingEnd="10dp"
         android:text="TextView"
         android:textSize="13sp"
-        app:layout_constraintStart_toEndOf="@+id/notifi_image"
+        app:layout_constraintEnd_toStartOf="@+id/notification_delete"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/notifi_boldTv"
         app:layout_constraintTop_toBottomOf="@+id/notifi_boldTv" />
 
     <ImageView

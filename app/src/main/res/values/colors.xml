@@ -19,4 +19,5 @@
     <color name="rating">#1A711D</color>
     <color name="coupon">#DE5EF4</color>
     <color name="couponApplied">#D81B1B</color>
+    <color name="offer">#2874F0</color>
 </resources>

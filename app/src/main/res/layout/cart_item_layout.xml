@@ -62,7 +62,7 @@
         android:padding="1dp"
         android:text="RS.40000/-"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="16sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_free_offer" />

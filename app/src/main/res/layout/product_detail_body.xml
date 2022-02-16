@@ -140,7 +140,7 @@
                     android:layout_weight="1"
                     android:padding="5sp"
                     android:text="20% off"
-                    android:textColor="#2874F0"
+                    android:textColor="@color/offer"
                     android:textSize="20sp" />
 
 

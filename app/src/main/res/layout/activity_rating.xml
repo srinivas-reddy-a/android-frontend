@@ -25,7 +25,7 @@
             android:text="Rating &amp; Review"
             android:textColor="#000000"
             android:textSize="16dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
             android:drawableTint="#000000"
             android:text="4.4"
             android:textColor="#000000"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RatingReview" />
 
