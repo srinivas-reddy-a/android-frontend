@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.arraykart.AllApiModels.AddressFormRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
 import com.example.arraykart.SignUP;
 
@@ -27,10 +28,16 @@ public class AddressFormActivity extends AppCompatActivity {
             UserMobileNumber,UserAlternativeNumber;
     private Button UserAddAddress;
 
+    SharedPrefManager sharedPrefManager ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_form);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+//
         UserCity = findViewById(R.id.UserCity);
         UserAddressLine1 = findViewById(R.id.UserAddressLine1);
         UserAddressLine2 = findViewById(R.id.UserAddressLine2);
@@ -40,24 +47,24 @@ public class AddressFormActivity extends AppCompatActivity {
         UserMobileNumber = findViewById(R.id.UserMobileNumber);
         UserAlternativeNumber = findViewById(R.id.UserAlternativeNumber);
         UserAddAddress = findViewById(R.id.UserAddAddress);
-
-
-        String id = getIntent().getStringExtra("id");
-        String address_name = getIntent().getStringExtra("address_name");
-        String address_line1 = getIntent().getStringExtra("address_line1");
-        String address_line2 = getIntent().getStringExtra("address_line2");
-        String city= getIntent().getStringExtra("city");
-        String postal_code = getIntent().getStringExtra("postal_code");
-        String state = getIntent().getStringExtra("state");
-        String phone_number = getIntent().getStringExtra("phone_number");
-
-        UserCity.setText(city);
-        USerFullName.setText(address_name);
-        UserAddressLine1.setText(address_line1);
-        UserAddressLine2.setText(address_line2);
-        UserPinCode.setText(postal_code);
-        UserState.setText(state);
-        UserMobileNumber.setText(phone_number);
+//
+//
+//        String id = getIntent().getStringExtra("id");
+//        String address_name = getIntent().getStringExtra("address_name");
+//        String address_line1 = getIntent().getStringExtra("address_line1");
+//        String address_line2 = getIntent().getStringExtra("address_line2");
+//        String city= getIntent().getStringExtra("city");
+//        String postal_code = getIntent().getStringExtra("postal_code");
+//        String state = getIntent().getStringExtra("state");
+//        String phone_number = getIntent().getStringExtra("phone_number");
+//
+//        UserCity.setText(city);
+//        USerFullName.setText(address_name);
+//        UserAddressLine1.setText(address_line1);
+//        UserAddressLine2.setText(address_line2);
+//        UserPinCode.setText(postal_code);
+//        UserState.setText(state);
+//        UserMobileNumber.setText(phone_number);
 
         try{
             back_addressForm_page = findViewById(R.id.back_addressForm_page);
@@ -76,14 +83,14 @@ public class AddressFormActivity extends AppCompatActivity {
             UserAddAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addAddress();
+                    addAddress(token);
                 }
             });
         }catch (Exception e){
 
         }
     }
-    private void addAddress(){
+    private void addAddress(String token){
         String name = USerFullName.getText().toString();
         String addr1 = UserAddressLine1.getText().toString();
         String addr2 = UserAddressLine2.getText().toString();
@@ -95,8 +102,7 @@ public class AddressFormActivity extends AppCompatActivity {
 
         Call<AddressFormRespones> call = RetrofitClient
                 .getInstance()
-                .getApi().UserAddressForm("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxMDAxfSwiaWF0IjoxNjQwNTI3MjA3LCJleHAiOjE2NDA4ODcyMDd9.XFXChA4iO36elzx3naqJfImDj6S-qsQnI4XuHjA9NrI",
-                        name,addr1,addr2,city,pinCode,state,number
+                .getApi().UserAddressForm(token, name,addr1,addr2,city,pinCode,state,number
                 );
         call.enqueue(new Callback<AddressFormRespones>() {
             @Override

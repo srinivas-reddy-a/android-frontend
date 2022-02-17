@@ -77,15 +77,11 @@ public class MyAddressActivity extends AppCompatActivity {
 //                @Override
 //                public void onResponse(Call<GetAddressRespones> call, Response<GetAddressRespones> response) {
 //                    if(response.isSuccessful()) {
-//                        try {
-//                            addressModels = response.body().getAddress();
-//                            addressAdapter = new AddressAdapter(addressModels, 0);
-//                            addressRecyclerView.setAdapter(addressAdapter);
-//                            ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-//                            addressAdapter.notifyDataSetChanged();
-//                        }catch (Exception e){
-//                            Toast.makeText(MyAddressActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
+//                        addressModels = response.body().getAddress();
+//                        addressAdapter = new AddressAdapter(addressModels, 0);
+//                        addressRecyclerView.setAdapter(addressAdapter);
+//                        ((SimpleItemAnimator) addressRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+//                        addressAdapter.notifyDataSetChanged();
 //                    }else{
 //                        try {
 //                            JSONObject jsonObject = new JSONObject(response.errorBody().string());

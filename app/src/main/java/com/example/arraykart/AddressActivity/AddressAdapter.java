@@ -108,7 +108,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             EditAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(context, AddressFormActivity.class);
+                    Intent in = new Intent(context, AddressEditForm.class);
                     in.putExtra("id",addressModelList.get(getAdapterPosition()).getId());
                     in.putExtra("user_id",addressModelList.get(getAdapterPosition()).getUser_id());
                     in.putExtra("address_name",addressModelList.get(getAdapterPosition()).getAddress_name());

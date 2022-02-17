@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddressActivity.AddressFormActivity">
+    tools:context=".AddressActivity.AddressEditForm">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35sp"
                     android:layout_marginLeft="40sp"
-                    android:text="Address Form"
+                    android:text="Edit Address"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
                     android:textSize="24sp" />
@@ -64,12 +64,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/img" />
 
             <EditText
                 android:id="@+id/UserCity"
@@ -190,9 +184,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
-                android:text="Add new address"
+                android:text="update your address"
                 android:textColor="@color/white"
-               />
+                />
 
         </LinearLayout>
     </ScrollView>

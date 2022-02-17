@@ -16,6 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/appbarSmokeWhite"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+
+            app:toolbarId="@+id/toolbar">
+
         <ImageView
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
@@ -28,8 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/help_center"
+            android:layout_marginLeft="40sp"
             android:textColor="@color/black"
             android:textSize="20sp" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
