@@ -52,7 +52,7 @@
                 android:padding="1dp"
                 android:text="Main Title"
                 android:textColor="@color/heading"
-                android:textSize="18sp"
+                android:textSize="@dimen/heading_size"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +67,7 @@
                 android:padding="1dp"
                 android:text="description"
                 android:textColor="@color/text"
-                android:textSize="15sp"
+                android:textSize="@dimen/text_size"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />

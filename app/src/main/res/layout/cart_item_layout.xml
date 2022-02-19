@@ -29,7 +29,7 @@
         android:maxLines="1"
         android:text="Insecticides most importent"
         android:textColor="@color/heading"
-        android:textSize="16sp"
+        android:textSize="@dimen/heading_size"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +49,7 @@
         android:layout_marginStart="2dp"
         android:text="Free coupons"
         android:textColor="@color/coupon"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size"
         app:layout_constraintStart_toEndOf="@+id/free_offer_icon"
         app:layout_constraintTop_toBottomOf="@+id/product_title" />
 
@@ -61,8 +61,8 @@
         android:layout_marginEnd="8dp"
         android:padding="1dp"
         android:text="RS.40000/-"
-        android:textColor="#000000"
-        android:textSize="22sp"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/heading_size"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_free_offer" />
@@ -74,6 +74,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:text="RS.50000/-"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toBottomOf="@+id/cart_item_price"
         app:layout_constraintEnd_toStartOf="@+id/cart_item_price"
         tools:ignore="MissingConstraints" />
@@ -96,8 +97,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:text="offer applied"
-        android:textColor="#91F495"
-        android:textSize="12sp"
+        android:textColor="@color/coupon"
+        android:textSize="@dimen/text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cart_item_price" />
 
@@ -108,7 +109,7 @@
         android:layout_marginEnd="8dp"
         android:text="coupon applied"
         android:textColor="@color/couponApplied"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offer_applied" />
 

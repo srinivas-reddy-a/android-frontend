@@ -20,7 +20,7 @@
         android:padding="2dp"
         android:text="FullName"
         android:textColor="@color/heading"
-        android:textSize="16sp"
+        android:textSize="@dimen/heading_size"
         android:textStyle="normal"
         app:layout_constraintEnd_toStartOf="@+id/addressSelectTick"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,7 @@
         android:padding="2dp"
         android:text="Address"
         android:textColor="@color/text"
+        android:textSize="@dimen/text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personName" />
 
@@ -49,6 +50,7 @@
         android:padding="2dp"
         android:text="Address"
         android:textColor="@color/text"
+        android:textSize="@dimen/text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/personAddress1"
         app:layout_constraintTop_toBottomOf="@+id/personName" />
@@ -62,7 +64,7 @@
         android:padding="2dp"
         android:text="state"
         android:textColor="@color/text"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
@@ -90,7 +92,7 @@
         android:padding="2dp"
         android:text="PinCode"
         android:textColor="@color/text"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/addressCity"
         app:layout_constraintTop_toBottomOf="@+id/personAddress1" />
@@ -105,7 +107,7 @@
         android:padding="2dp"
         android:text="PhoneNumber"
         android:textColor="@color/text"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

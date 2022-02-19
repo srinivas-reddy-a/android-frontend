@@ -29,8 +29,8 @@
 
                 <ImageView
                     android:id="@+id/back_productTableDetail_page"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="@dimen/back_image_width"
+                    android:layout_height="@dimen/back_image_height"
                     android:layout_gravity="left"
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
@@ -38,12 +38,12 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="35sp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="40sp"
                     android:text="Product All Details"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/page_name" />
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>

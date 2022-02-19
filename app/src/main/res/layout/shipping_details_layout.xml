@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="SHIPPING DETAIL"
         android:textColor="@color/heading"
-        android:textStyle="bold"
+        android:textSize="@dimen/heading_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,8 +37,7 @@
         android:layout_marginTop="16dp"
         android:text="FULL NAME"
         android:textColor="@color/text"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/heading_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
@@ -51,7 +50,7 @@
         android:maxLines="2"
         android:text="Full address"
         android:textColor="@color/text"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingDetailName" />
 
@@ -64,6 +63,7 @@
         android:layout_marginBottom="16dp"
         android:text="pincode"
         android:textColor="@color/text"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toTopOf="@+id/changeAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingDetailAddress" />

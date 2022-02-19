@@ -28,7 +28,7 @@
             android:padding="10sp"
             android:text="Recent Searches"
             android:textColor="@color/blue"
-            android:textSize="20sp" />
+            android:textSize="@dimen/heading_size" />
 
         <ImageView
             android:id="@+id/recentSearchesArrowIV"

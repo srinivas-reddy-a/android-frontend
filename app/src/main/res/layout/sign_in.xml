@@ -67,8 +67,8 @@
             android:layout_margin="20sp"
             android:minHeight="48dp"
             android:text="Sign into your account"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/heading_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,7 +118,8 @@
             android:layout_margin="18sp"
             android:layout_marginTop="8dp"
             android:text="Do not have an account?"
-            android:textSize="20sp"
+            android:textSize="@dimen/heading_size"
+            android:textColor="@color/text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Sign_in_page_otp" />
 
@@ -152,7 +153,8 @@
             android:layout_margin="20sp"
             android:padding="5sp"
             android:text="By signing in. you agree to Arraykart's Terms of Use and Privacy Policy"
-            android:textSize="14sp"
+            android:textSize="@dimen/text_size"
+            android:textColor="@color/text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -175,8 +177,8 @@
             android:backgroundTint="@color/green"
             android:text="Sign In"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/heading_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

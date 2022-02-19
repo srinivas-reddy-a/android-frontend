@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/searchPageBackIV"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="@dimen/back_image_width"
+                    android:layout_height="@dimen/back_image_height"
                     android:layout_gravity="left"
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
@@ -44,6 +44,7 @@
                     android:layout_marginLeft="15sp"
                     android:layout_marginTop="15sp"
                     android:layout_marginEnd="45sp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginRight="15sp"
                     android:layout_marginBottom="15sp"
                     android:background="@drawable/squared_corners"
