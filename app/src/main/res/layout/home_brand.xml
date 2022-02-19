@@ -26,6 +26,8 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textSize="@dimen/font_size"
+        android:textColor="@color/heading"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

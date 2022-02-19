@@ -22,7 +22,7 @@
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carouselViewProductDetail"
                 android:layout_width="match_parent"
-                android:layout_height="300sp"
+                android:layout_height="470dp"
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
