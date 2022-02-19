@@ -5,16 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HelpCenterActivity.HelpCenterActivity">
-
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/appbar"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/appbarSmokeWhite"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -24,23 +21,34 @@
 
             app:toolbarId="@+id/toolbar">
 
-        <ImageView
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_west_24"
-            android:layout_marginRight="10dp"/>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/help_center"
-            android:layout_marginLeft="40sp"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="35sp"
+                    android:layout_height="35sp"
+                    android:layout_gravity="left"
+                    app:srcCompat="@drawable/ic_baseline_west_24"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="3dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35sp"
+                    android:layout_marginLeft="40sp"
+                    android:text="Help Center"
+                    android:textAlignment="center"
+                    android:textColor="@color/appbarComponentsblack"
+                    android:textSize="24sp" />
+
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"

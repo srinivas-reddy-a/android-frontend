@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -377,6 +378,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     buy_on_product_detail.setVisibility(View.GONE);
                     delivery_continue_btn.setVisibility(View.VISIBLE);
 //                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+
                 }
             });
         }catch (Exception e){
@@ -389,6 +391,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     ProductDetailPageAddressShow.setVisibility(View.GONE);
                     delivery_continue_btn.setVisibility(View.GONE);
                     buy_on_product_detail.setVisibility(View.VISIBLE);
+
                 }
             });
         }catch (Exception e){

@@ -37,15 +37,14 @@
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="3dp" />
 
-                <SearchView
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50sp"
-                    android:layout_gravity="right"
-                    android:goIcon="@drawable/ic_baseline_search_24"
-                    android:queryHint="Search Arraykart.in"
-                    android:searchIcon="@drawable/ic_baseline_search_24"
-                    tools:layout_editor_absoluteX="328dp"
-                    tools:layout_editor_absoluteY="3dp" />
+                    android:layout_height="35sp"
+                    android:layout_marginLeft="40sp"
+                    android:text="My Address"
+                    android:textAlignment="center"
+                    android:textColor="@color/appbarComponentsblack"
+                    android:textSize="24sp" />
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>

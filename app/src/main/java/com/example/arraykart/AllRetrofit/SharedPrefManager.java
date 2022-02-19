@@ -8,6 +8,8 @@ import com.example.arraykart.AllApiModels.LogInOtpRespones;
 import com.example.arraykart.AllApiModels.User;
 import com.example.arraykart.AllApiModels.UserId;
 
+import java.util.Set;
+
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME="arraykartuser"; ////name of class
     private SharedPreferences sharedPreferences;
@@ -36,6 +38,16 @@ public class SharedPrefManager {
     public void setValue_string(String key,String value){
         editor.putString(key,value).commit();
     }
+
+    //set string
+    public Set<String> getSetString(String key){
+        return  sharedPreferences.getStringSet(key,null);
+    }
+
+    public void setStringList(String key ,Set<String> value){
+        editor.putStringSet(key,value).commit();
+    }
+
 
     //boolean
 
