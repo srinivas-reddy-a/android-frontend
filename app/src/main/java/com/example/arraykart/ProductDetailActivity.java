@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -24,8 +25,11 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
+import com.example.arraykart.AllApiModels.CartAddRespones;
 import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
+import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
@@ -340,21 +344,20 @@ public class ProductDetailActivity extends AppCompatActivity {
                     // api call for add cart
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
-                        Call<ResponseBody> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty);
-                        callC.enqueue(new Callback<ResponseBody>() {
+                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty);
+                        callC.enqueue(new Callback<CartAddRespones>() {
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                try {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(ProductDetailActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (Exception e) {
-                                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
+                                if (response.isSuccessful()) {
+                                    CartAddRespones cartAddRespones = response.body();
+                                    Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            public void onFailure(Call<CartAddRespones> call, Throwable t) {
                                 Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -376,6 +379,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     buy_on_product_detail.setVisibility(View.GONE);
                     delivery_continue_btn.setVisibility(View.VISIBLE);
 //                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+
                 }
             });
         }catch (Exception e){
@@ -388,6 +392,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     ProductDetailPageAddressShow.setVisibility(View.GONE);
                     delivery_continue_btn.setVisibility(View.GONE);
                     buy_on_product_detail.setVisibility(View.VISIBLE);
+
                 }
             });
         }catch (Exception e){
@@ -477,27 +482,27 @@ public class ProductDetailActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
-                        Call<ResponseBody> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
-                        call.enqueue(new Callback<ResponseBody>() {
+                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+                        call.enqueue(new Callback<WishListAddRespones>() {
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                try {
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(ProductDetailActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (Exception e) {
-                                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+                                WishListAddRespones wishListAddRespones = response.body();
+                                if (response.isSuccessful()) {
+                                    Toast.makeText(ProductDetailActivity.this, wishListAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
 
                             @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
                                 Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }else{
                         Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                        wishListProductsDetail.setChecked(false);
                     }
                 }
             });

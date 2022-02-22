@@ -2,6 +2,7 @@ package com.example.arraykart.AllRetrofit;
 
 import com.example.arraykart.AllApiModels.AuthRespones;
 import com.example.arraykart.AllApiModels.BrandRespones;
+import com.example.arraykart.AllApiModels.CartAddRespones;
 import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
@@ -15,6 +16,7 @@ import com.example.arraykart.AllApiModels.SignUpRespones;
 import com.example.arraykart.AllApiModels.SignUpTopRespones;
 import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
+import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.SearchPage.SearchProductModel;
 
 import okhttp3.ResponseBody;
@@ -68,7 +70,6 @@ public interface Api {
     @FormUrlEncoded
     @POST("/api/user/address/")
     Call<AddressFormRespones>UserAddressForm(
-            @Header("Content-Type") String Content_Type,
             @Header("Authorization") String Authorization,
             @Field("address_name") String address_name,
             @Field("addressLine1") String addressLine1,
@@ -140,9 +141,9 @@ public interface Api {
         ///cart api
     @FormUrlEncoded
     @POST("/api/cart/")
-    Call<ResponseBody>addToCart(@Header("Authorization") String Authorization,
-                                @Field("product_id") String product_id,
-                                @Field("quantity") String quantity
+    Call<CartAddRespones>addToCart(@Header("Authorization") String Authorization,
+                                   @Field("product_id") String product_id,
+                                   @Field("quantity") String quantity
     );
 
     @GET("/api/cart/")
@@ -155,23 +156,29 @@ public interface Api {
     );
 
     @DELETE("/api/cart/")
-    Call<ResponseBody>deleteCartItem(@Header("Authorization") String Authorization);
+    Call<ResponseBody>deleteCartItem(@Header("Authorization") String Authorization,
+                                     @Field("product_id") String product_id
+    );
 
     //wishlist api
     @FormUrlEncoded
     @POST("/api/wishlist/")
-    Call<ResponseBody> addWishlist(@Header("Authorization") String Authorization,
-                                   @Field("product_id") String product_id,
-                                   @Field("quantity") String quantity
+    Call<WishListAddRespones> addWishlist(@Header("Authorization") String Authorization,
+                                          @Field("product_id") String product_id,
+                                          @Field("quantity") String quantity
     );
 
     @GET("/api/wishlist/")
     Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
 
     @PUT("/api/wishlist/")
-    Call<ResponseBody> updateWishList(@Header("Authorization") String Authorization);
+    Call<ResponseBody> updateWishList(@Header("Authorization") String Authorization,
+                                      @Field("product_id") String product_id
+    );
 
     @DELETE("/api/wishlist/")
-    Call<ResponseBody> deleteWishList(@Header("Authorization") String Authorization);
+    Call<ResponseBody> deleteWishList(@Header("Authorization") String Authorization,
+                                      @Field("product_id") String product_id
+    );
 
 }

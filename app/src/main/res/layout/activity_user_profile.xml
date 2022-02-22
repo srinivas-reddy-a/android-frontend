@@ -30,20 +30,20 @@
 
                 <ImageView
                     android:id="@+id/back_user_profile_page"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="@dimen/back_image_width"
+                    android:layout_height="@dimen/back_image_height"
                     android:layout_gravity="left"
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="3dp" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="35sp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="40sp"
                     android:text="My Profile"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/page_name" />
 
 
             </androidx.appcompat.widget.Toolbar>
@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="User name "
+            android:textSize="@dimen/text_size"
             android:textColor="@color/appbarComponentsblack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Email id"
+            android:textSize="@dimen/text_size"
             android:textColor="@color/appbarComponentsblack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

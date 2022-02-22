@@ -22,7 +22,7 @@
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carouselViewProductDetail"
                 android:layout_width="match_parent"
-                android:layout_height="300sp"
+                android:layout_height="470dp"
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="15dp"
                 android:text="Product Name"
                 android:textColor="@color/heading"
-                android:textSize="20sp" />
+                android:textSize="@dimen/heading_size" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -90,6 +90,7 @@
                     android:background="#00FFFFFF"
                     android:padding="5sp"
                     android:text="150 ratings"
+                    android:textSize="@dimen/text_size"
                     android:textColor="@color/text" />
             </LinearLayout>
 
@@ -119,29 +120,26 @@
                     android:layout_weight="1"
                     android:padding="5sp"
                     android:text="₹___"
-                    android:textColor="#808080"
-                    android:textSize="20sp" />
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text_size" />
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="5sp"
+                    android:padding="2sp"
                     android:text="₹"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/heading_size" />
 
                 <TextView
                     android:id="@+id/productDetailPagePrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="5sp"
+                    android:padding="3sp"
                     android:text="___"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/heading"
+                    android:textSize="@dimen/heading_size" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -150,10 +148,8 @@
                     android:layout_weight="1"
                     android:padding="5sp"
                     android:text="20% off"
-                    android:textColor="@color/offer"
-                    android:textSize="20sp" />
-
-
+                    android:textColor="#2874F0"
+                    android:textSize="@dimen/heading_size" />
             </LinearLayout>
 
         </LinearLayout>
@@ -171,8 +167,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Offers and Coupons"
+                android:layout_marginStart="5dp"
                 android:textColor="@color/heading"
-                android:textSize="20sp" />
+                android:textSize="@dimen/heading_size" />
 
             <LinearLayout
                 android:id="@+id/offerLL1"
@@ -194,7 +191,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5sp"
-                    android:text="Special PriceGet extra 14% off (price inclusive of discount)" />
+                    android:text="Special PriceGet extra 14% off (price inclusive of discount)"
+                    android:textSize="@dimen/text_size"
+                    android:textColor="@color/text"/>
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -224,7 +223,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5sp"
-                    android:text="Bank OfferFlat ₹100 off on first Flipkart Pay Later order of ₹500 and above" />
+                    android:text="Bank OfferFlat ₹100 off on first Flipkart Pay Later order of ₹500 and above"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/text_size"/>
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -277,8 +278,8 @@
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:text="Description"
-                    android:textColor="#5F5A5A"
-                    android:textSize="20sp" />
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/heading_size" />
 
                 <ImageView
                     android:id="@+id/listImage"
@@ -328,8 +329,8 @@
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:text="Brand"
-                    android:textColor="#5F5A5A"
-                    android:textSize="20sp" />
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/heading_size" />
 
                 <ImageView
                     android:id="@+id/listImage1"
@@ -380,8 +381,8 @@
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:text="category"
-                    android:textColor="#5F5A5A"
-                    android:textSize="20sp" />
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/heading_size" />
 
                 <ImageView
                     android:id="@+id/listImage2"
@@ -409,7 +410,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FDFBFB"
-            android:layout_marginStart="235dp"
+            android:layout_gravity="right"
             android:layout_marginTop="5dp"
             android:elevation="5dp"
             android:padding="5dp"
@@ -418,8 +419,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Click for More Details"
-                android:textColor="#000000"
-                android:textSize="16dp"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text_size"
                 />
         </LinearLayout>
 
@@ -442,10 +443,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="3dp"
             android:elevation="5dp"
             android:padding="8dp"
             android:background="#FDFBFB"
@@ -456,9 +459,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Click for more review"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/heading"
+                android:textSize="@dimen/text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -481,8 +483,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="15dp"
                 android:text="Suggested Products"
-                android:textSize="15sp"
-                android:textColor="#000000"
+                android:textSize="@dimen/heading_size"
+                android:textColor="@color/heading"
                 android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView

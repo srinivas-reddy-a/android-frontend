@@ -74,7 +74,11 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         String idb = getIntent().getStringExtra("idb");
         String nameB = getIntent().getStringExtra("nameB");
         gridViewProductNAme = findViewById(R.id.gridViewProductNAme);
-        gridViewProductNAme.setText(name);
+        if(name!=null) {
+            gridViewProductNAme.setText(name);
+        }else{
+            gridViewProductNAme.setText(nameB);
+        }
 
 
 

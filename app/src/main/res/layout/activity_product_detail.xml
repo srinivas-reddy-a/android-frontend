@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/back_all_products"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="@dimen/back_image_width"
+                    android:layout_height="@dimen/back_image_height"
                     android:layout_gravity="left"
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
@@ -40,12 +40,12 @@
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
-                    android:layout_height="35sp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="40sp"
                     android:text="Product Details"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/page_name" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/cart_product_detail_page"
@@ -131,7 +131,7 @@
                     android:background="#FFFFFF"
                     android:padding="10sp"
                     android:text="ADD TO CART"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/heading_size"
                     tools:ignore="DuplicateClickableBoundsCheck" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -145,8 +145,8 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/green"
                         android:text="BUY NOW"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/heading_size"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -161,8 +161,8 @@
                         android:backgroundTint="@color/green"
                         android:text="Place Order"
                         android:textAlignment="textStart"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
+                        android:textColor="@color/heading"
+                        android:textSize="@dimen/heading_size"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

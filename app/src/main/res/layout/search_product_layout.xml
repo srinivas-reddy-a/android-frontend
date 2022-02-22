@@ -29,8 +29,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:text="Produc name"
-        android:textColor="#000000"
-        android:textSize="22dp"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/heading_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/afterSearchProductImage"
@@ -42,7 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:text="Price of product"
-        android:textSize="16dp"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="@+id/afterSearchProductImage"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/afterSearchProductName" />
@@ -52,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RS"
-        android:textSize="16dp"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="@+id/afterSearchProductName"
         app:layout_constraintTop_toTopOf="@+id/afterSearchProductPrice" />
 

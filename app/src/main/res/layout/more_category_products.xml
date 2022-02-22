@@ -30,8 +30,8 @@
 
                 <ImageView
                     android:id="@+id/back_more"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
+                    android:layout_width="@dimen/back_image_width"
+                    android:layout_height="@dimen/back_image_height"
                     android:layout_gravity="left"
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
@@ -40,12 +40,12 @@
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
-                    android:layout_height="35sp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="40sp"
                     android:text="All Categories"
                     android:textAlignment="center"
                     android:textColor="@color/gray"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/page_name" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/cart_more_page"

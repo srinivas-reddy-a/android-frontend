@@ -23,9 +23,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Rating &amp; Review"
-            android:textColor="#000000"
-            android:textSize="16dp"
             android:textStyle="normal"
+            android:textColor="@color/heading"
+            android:textSize="@dimen/heading_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,10 +37,10 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:drawableEnd="@drawable/ic_baseline_star_24"
-            android:drawableTint="#000000"
+            android:drawableTint="@color/rating"
             android:text="4.4"
-            android:textColor="#000000"
             android:textStyle="normal"
+            android:textColor="@color/rating"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RatingReview" />
 
@@ -51,7 +51,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="6dp"
             android:text="232232 ratings"
-            android:textSize="12dp"
+            android:textSize="@dimen/text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RatingNumber" />
 
@@ -63,7 +63,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
             android:text="and 42565 Review"
-            android:textSize="12dp"
+            android:textSize="@dimen/text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TotalRating" />

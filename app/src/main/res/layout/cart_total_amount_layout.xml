@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:text="PRICE DETAIL"
         android:textColor="@color/heading"
-        android:textSize="16sp"
+        android:textSize="@dimen/heading_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +91,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="Total amount"
-        android:textColor="#000000"
+        android:textColor="@color/heading"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

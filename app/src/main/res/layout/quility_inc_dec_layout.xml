@@ -10,19 +10,19 @@
         android:id="@+id/product_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/boarder_background"
         android:orientation="horizontal"
         android:padding="3dp"
-        app:layout_constraintStart_toEndOf="@+id/Add_quantity_product_page"
-        app:layout_constraintTop_toTopOf="@+id/Add_quantity_product_page">
+        app:layout_constraintStart_toEndOf="@+id/mini_quantity_product_page"
+        app:layout_constraintTop_toTopOf="@+id/mini_quantity_product_page">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="QTY:"
             android:textColor="@color/text"
-            android:textSize="25dp" />
+            android:textSize="@dimen/heading_size" />
 
         <TextView
             android:id="@+id/product_quantity_text_product_detail_page"
@@ -31,28 +31,28 @@
             android:drawableEnd="@drawable/ic_drop_down"
             android:text="1"
             android:textColor="@color/text"
-            android:textSize="25dp" />
+            android:textSize="@dimen/heading_size" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/Add_quantity_product_page"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/productImageQualityLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/product_quantity"
+        app:layout_constraintTop_toTopOf="@+id/product_quantity"
         app:srcCompat="@drawable/ic_baseline_control_point" />
 
     <ImageView
         android:id="@+id/mini_quantity_product_page"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/product_quantity"
-        app:layout_constraintTop_toTopOf="@+id/product_quantity"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productImageQualityLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView33"
         app:srcCompat="@drawable/ic_baseline_mini" />
 
     <ImageView
@@ -60,8 +60,9 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/categories" />
@@ -73,8 +74,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Add Quality of Products"
-        android:textColor="#000000"
-        android:textSize="16dp"
+        android:textColor="@color/heading"
+        android:textSize="@dimen/heading_size"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/productImageQualityLayout"
         app:layout_constraintTop_toTopOf="@+id/productImageQualityLayout" />
