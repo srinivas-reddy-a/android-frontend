@@ -23,6 +23,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Rating &amp; Review"
+            android:textStyle="normal"
             android:textColor="@color/heading"
             android:textSize="@dimen/heading_size"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +39,8 @@
             android:drawableEnd="@drawable/ic_baseline_star_24"
             android:drawableTint="@color/rating"
             android:text="4.4"
+            android:textStyle="normal"
             android:textColor="@color/rating"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RatingReview" />
 

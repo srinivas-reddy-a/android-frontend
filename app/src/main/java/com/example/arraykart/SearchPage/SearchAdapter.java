@@ -49,7 +49,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("recentSearch", recentSearches.get(holder.getAdapterPosition()));
+                onRecentSearchListener.onRecentSearchListener(intent);
             }
         });
         holder.rrecentSearchesArrowIV.setOnClickListener(new View.OnClickListener() {
