@@ -3,6 +3,7 @@ package com.example.arraykart.AddressActivity;
 import static com.example.arraykart.AddressActivity.MyAddressActivity.SELECTED_ADDRESS;
 import static com.example.arraykart.AddressActivity.MyAddressActivity.refreshAddress;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,10 +19,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arraykart.AddressActivity.AddressFormActivity;
 import com.example.arraykart.AddressActivity.AddressModel;
+import com.example.arraykart.AllApiModels.AddressDeleteRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.NotificationPage.NotificationAdapter;
 import com.example.arraykart.R;
+import com.example.arraykart.Signin;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
     private List<AddressModel> addressModelList;
@@ -29,6 +43,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     int allReadySelected;
     int pp ;
     Context context;
+    SharedPrefManager sharedPrefManager;
 
     private OnItemClickListener aListener;
 
@@ -63,7 +78,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         String city = addressModelList.get(position).getCity();
         String pin = addressModelList.get(position).getPostal_code();
         String phone = addressModelList.get(position).getPhone_number();
-        Boolean selected = addressModelList.get(position).getSelected();
+        String selected = addressModelList.get(position).getSelected();
         holder.SetData(name,address1,address2,state,city,pin,phone,selected,position);
     }
 
@@ -95,13 +110,44 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             removeAddress = itemView.findViewById(R.id.removeAddress);
             EditAddress = itemView.findViewById(R.id.EditAddress);
 
+            sharedPrefManager = new SharedPrefManager(context);
+
+
             pp = getAdapterPosition();
 
             removeAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addressModelList.remove(getAdapterPosition());
-                    notifyDataSetChanged();
+                    String id = addressModelList.get(getAdapterPosition()).getId();
+                    String token = sharedPrefManager.getValue_string("token");
+
+                    Call<AddressDeleteRespones> callDelete = RetrofitClient.getInstance().getApi().deleteAddress(token,id);
+
+                    callDelete.enqueue(new Callback<AddressDeleteRespones>() {
+                        @Override
+                        public void onResponse(Call<AddressDeleteRespones> call, Response<AddressDeleteRespones> response) {
+//                            addressModelList.remove(addressModelList.get(getAdapterPosition()));
+//                            notifyDataSetChanged();
+//                            notifyItemRemoved(getAdapterPosition());
+                            if(response.isSuccessful()) {
+                                Toast.makeText(context, "delete successfully", Toast.LENGTH_SHORT).show();
+                            }else {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                    Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                } catch (JSONException | IOException e) {
+                                    e.printStackTrace();
+                                } 
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<AddressDeleteRespones> call, Throwable t) {
+                            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
             });
 
@@ -118,6 +164,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                     in.putExtra("postal_code",addressModelList.get(getAdapterPosition()).getPostal_code());
                     in.putExtra("state",addressModelList.get(getAdapterPosition()).getState());
                     in.putExtra("phone_number",addressModelList.get(getAdapterPosition()).getPhone_number());
+                    in.putExtra("alt_num",addressModelList.get(getAdapterPosition()).getAlternate_number());
                     in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(in);
 
@@ -126,7 +173,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
 
         }
-        private void SetData(String name,String addresses1,String addresses2,String states,String citys,String pin,String phones,boolean selected,int position){
+        private void SetData(String name,String addresses1,String addresses2,String states,String citys,String pin,String phones,String selected,int position){
             fullName.setText(name);
             address1.setText(addresses1);
             address2.setText(addresses2);
@@ -135,30 +182,57 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             pinCode.setText(pin);
             phone.setText(phones);
 
-            try {
-                if (ADDRESSMODE == SELECTED_ADDRESS) {
-                    icon.setImageResource(R.drawable.ic_check);
-                    if (selected) {
-                        icon.setVisibility(View.VISIBLE);
-                        allReadySelected = position;
-                    } else {
-                        icon.setVisibility(View.GONE);
-                    }
-                    itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (allReadySelected != position) {
-                                addressModelList.get(position).setSelected(true);
-                                addressModelList.get(allReadySelected).setSelected(false);
-                                refreshAddress(allReadySelected, position);
-                                allReadySelected = position;
-                                Toast.makeText(context, addressModelList.get(position).getId(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+//            boolean s = false;
+//
+//            if(selected == "1"){
+//                s = true;
+//            }else if(selected=="0"){
+//                s = false;
+//            }
 
+            if (ADDRESSMODE == SELECTED_ADDRESS) {
+                icon.setImageResource(R.drawable.ic_check);
+                if (selected == "1") {
+                    icon.setVisibility(View.VISIBLE);
+                    allReadySelected = position;
+                } else {
+                    icon.setVisibility(View.GONE);
                 }
-            }catch (Exception e){
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String id = addressModelList.get(position).getId();
+                        String token = sharedPrefManager.getValue_string("token");
+                        if (allReadySelected != position) {
+                            addressModelList.get(position).setSelected("1");
+                            addressModelList.get(allReadySelected).setSelected("0");
+                            refreshAddress(allReadySelected, position);
+                            allReadySelected = position;
+
+                            Call<ResponseBody> callSelect = RetrofitClient.getInstance().getApi().SelectAddress(token,id);
+                            callSelect.enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if(response.isSuccessful()) {
+                                        Toast.makeText(context.getApplicationContext(), "selected successfully", Toast.LENGTH_LONG).show();
+                                    }else {
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                            Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                        } catch (JSONException | IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
 
             }
 

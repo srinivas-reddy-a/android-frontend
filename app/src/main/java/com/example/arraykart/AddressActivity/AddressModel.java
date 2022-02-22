@@ -1,13 +1,8 @@
 package com.example.arraykart.AddressActivity;
 
+import com.google.gson.annotations.SerializedName;
+
 public class AddressModel {
-    //"address_line1": "lk nagar",
-    //            "address_line2": "palamaner",
-    //            "city": "chittoor",
-    //            "postal_code": 517408,
-    //            "country": "India",
-    //            "phone_number": 9999999999,
-    //            "address_name": "sumit"
     private String id;
     private String user_id;
     private String address_name;
@@ -17,9 +12,10 @@ public class AddressModel {
     private String postal_code;
     private String state;
     private String phone_number;
-    private Boolean selected;
+    private String alternate_number;
+    private String is_default;
 
-    public AddressModel(String id, String user_id, String address_name, String address_line1, String address_line2, String city, String postal_code, String state, String phone_number, Boolean selected) {
+    public AddressModel(String id, String user_id, String address_name, String address_line1, String address_line2, String city, String postal_code, String state, String phone_number, String alternate_number, String selected) {
         this.id = id;
         this.user_id = user_id;
         this.address_name = address_name;
@@ -29,7 +25,8 @@ public class AddressModel {
         this.postal_code = postal_code;
         this.state = state;
         this.phone_number = phone_number;
-        this.selected = selected;
+        this.alternate_number = alternate_number;
+        this.is_default = selected;
     }
 
     public String getId() {
@@ -104,11 +101,19 @@ public class AddressModel {
         this.phone_number = phone_number;
     }
 
-    public Boolean getSelected() {
-        return selected;
+    public String getAlternate_number() {
+        return alternate_number;
     }
 
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
+    public void setAlternate_number(String alternate_number) {
+        this.alternate_number = alternate_number;
+    }
+
+    public String getSelected() {
+        return is_default;
+    }
+
+    public void setSelected(String is_default) {
+        this.is_default = is_default;
     }
 }

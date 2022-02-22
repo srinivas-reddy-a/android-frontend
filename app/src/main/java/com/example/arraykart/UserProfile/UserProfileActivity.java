@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.AuthRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
+import com.example.arraykart.AllApiModels.LogOutRespones;
 import com.example.arraykart.AllApiModels.User;
 import com.example.arraykart.AllApiModels.UserId;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
@@ -87,11 +88,12 @@ public class UserProfileActivity extends AppCompatActivity {
 
         SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
-        if(user_token.contains("token")) {
-            sharedPrefManager = new SharedPrefManager(this);
-            String user = sharedPrefManager.getValue_string("token");
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
 
-            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(user);
+        if(user_token.contains("token")) {
+
+            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(token);
             call.enqueue(new Callback<AuthRespones>() {
                 @Override
                 public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
@@ -205,6 +207,21 @@ public class UserProfileActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if(user_token.contains("token")){
                         sharedPrefManager.clear();
+
+
+                        Call<LogOutRespones> callOut = RetrofitClient.getInstance().getApi().logout(token);
+                        callOut.enqueue(new Callback<LogOutRespones>() {
+                            @Override
+                            public void onResponse(Call<LogOutRespones> call, Response<LogOutRespones> response) {
+                                LogOutRespones logOutRespones = response.body();
+                                Toast.makeText(UserProfileActivity.this, logOutRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<LogOutRespones> call, Throwable t) {
+                                Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         startActivity(new Intent(UserProfileActivity.this,HomeNavigationActivity.class));
                     }else {
                         signOut();

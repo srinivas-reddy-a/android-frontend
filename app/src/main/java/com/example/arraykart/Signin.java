@@ -105,13 +105,14 @@ public class Signin extends AppCompatActivity {
                 LogInRespones logInRespones = response.body();
                 if(response.isSuccessful()){
                     Toast.makeText(Signin.this, logInRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                    String user_id = logInRespones.getId();
                     Sign_in_page_otp.setVisibility(View.VISIBLE);
                     Sign_in.setVisibility(View.GONE);
                     Submit.setVisibility(View.VISIBLE);
                     Submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            loginOtp();
+                            loginOtp(user_id);
                             Submit.setVisibility(View.GONE);
                             Sign_in.setVisibility(View.VISIBLE);
                             Sign_in_page_otp.setVisibility(View.GONE);
@@ -140,7 +141,7 @@ public class Signin extends AppCompatActivity {
 
     }
 
-    private void loginOtp(){
+    private void loginOtp(String user_id){
         String otp = Sign_in_page_otp.getText().toString();
 
         if(otp.isEmpty()){
@@ -150,7 +151,7 @@ public class Signin extends AppCompatActivity {
         }
         Call<LogInOtpRespones> call = RetrofitClient
                 .getInstance()
-                .getApi().loginOtp(otp);
+                .getApi().loginOtp(user_id,otp);
         call.enqueue(new Callback<LogInOtpRespones>() {
             @Override
             public void onResponse(Call<LogInOtpRespones> call, Response<LogInOtpRespones> response) {

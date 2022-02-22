@@ -324,7 +324,9 @@ public class SignUP extends AppCompatActivity {
                         String gender = jsonObject.getString("gender");
                         String profile_name = jsonObject.getString("name");
                         String fb_id = jsonObject.getString("id"); ///we will use this for logout
+                        String token = jsonObject.getString("token");
 
+                        sharedPrefManager.setValue_string("token",token);
 
                         Log.d("email_id","email_id");
                         Log.d("gender","gender");
@@ -404,9 +406,14 @@ public class SignUP extends AppCompatActivity {
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
-            }
+//                String token = account.getServerAuthCode();
+//
+//                sharedPrefManager.setValue_string("id",personId);
+//
+//                Toast.makeText(this, personId, Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(SignUP.this,UserProfileActivity.class));
+            }
+            startActivity(new Intent(SignUP.this,HomeNavigationActivity.class));
 
             // Signed in successfully, show authenticated UI.
             //updateUI(account);

@@ -2,6 +2,8 @@ package com.example.arraykart.AddressActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +68,7 @@ public class AddressFormActivity extends AppCompatActivity {
 //        UserState.setText(state);
 //        UserMobileNumber.setText(phone_number);
 
+
         try{
             back_addressForm_page = findViewById(R.id.back_addressForm_page);
             back_addressForm_page.setOnClickListener(new View.OnClickListener() {
@@ -79,53 +82,55 @@ public class AddressFormActivity extends AppCompatActivity {
 
         }
 
-        try {
+
             UserAddAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addAddress(token);
+                    String name = USerFullName.getText().toString();
+                    String addr1 = UserAddressLine1.getText().toString();
+                    String addr2 = UserAddressLine2.getText().toString();
+                    String city = UserCity.getText().toString();
+                    String pinCode = UserPinCode.getText().toString();
+                    String state = UserState.getText().toString();
+                    String number =UserMobileNumber.getText().toString();
+                    String AlNumber = UserAlternativeNumber.getText().toString();
+
+                    Call<AddressFormRespones> call = RetrofitClient
+                            .getInstance()
+                            .getApi().UserAddressForm(token, name,addr1,addr2,city,pinCode,state,number,AlNumber,"0");
+                    call.enqueue(new Callback<AddressFormRespones>() {
+                        @Override
+                        public void onResponse(Call<AddressFormRespones> call, Response<AddressFormRespones> response) {
+                            AddressFormRespones addressFormRespones = response.body();
+                            if(response.isSuccessful()) {
+                                Toast.makeText(AddressFormActivity.this, addressFormRespones.getMsg(), Toast.LENGTH_LONG).show();
+                                Intent refresh = new Intent(getApplicationContext(),AddressEditForm.class);
+                                overridePendingTransition( 5, 5);
+                                getApplicationContext().startActivity(refresh);
+                                overridePendingTransition( 5, 5);
+                                ((Activity)getApplicationContext()).finish();
+                                finish();
+                            }else {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                    Toast.makeText(AddressFormActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                } catch (Exception e) {
+                                    Toast.makeText(AddressFormActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<AddressFormRespones> call, Throwable t) {
+                            Toast.makeText(AddressFormActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
                 }
             });
-        }catch (Exception e){
 
-        }
     }
-    private void addAddress(String token){
-        String name = USerFullName.getText().toString();
-        String addr1 = UserAddressLine1.getText().toString();
-        String addr2 = UserAddressLine2.getText().toString();
-        String city = UserCity.getText().toString();
-        String pinCode = UserPinCode.getText().toString();
-        String state = UserState.getText().toString();
-        String number =UserMobileNumber.getText().toString();
 
 
-        Call<AddressFormRespones> call = RetrofitClient
-                .getInstance()
-                .getApi().UserAddressForm(token, name,addr1,addr2,city,pinCode,state,number
-                );
-        call.enqueue(new Callback<AddressFormRespones>() {
-            @Override
-            public void onResponse(Call<AddressFormRespones> call, Response<AddressFormRespones> response) {
-                AddressFormRespones addressFormRespones = response.body();
-                if(response.isSuccessful()) {
-                    Toast.makeText(AddressFormActivity.this, addressFormRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                }else {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(AddressFormActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-                    } catch (Exception e) {
-                        Toast.makeText(AddressFormActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AddressFormRespones> call, Throwable t) {
-                Toast.makeText(AddressFormActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.arraykart;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -26,10 +27,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.arraykart.AddressActivity.AddressModel;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.CartAddRespones;
 import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
+import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
@@ -120,6 +123,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     ImageView Add_quantity_product_page,mini_quantity_product_page,productImageQualityLayout;
     TextView product_quantity_text_product_detail_page;
+    ///shipping address
+    TextView shoppingDetailName,shoppingDetailAddress,textView6;
+    List<AddressModel> addressModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +138,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra("id");
         String qlty = getIntent().getStringExtra("qlt");
         String imgs = getIntent().getStringExtra("image");
-
-
-//        String im = product.get(0).getImage();
-//        String[] si = im.split(",");
-
 
 
         ProductDetailPageAddressShow = findViewById(R.id.ProductDetailPageAddressShow);
@@ -157,6 +158,41 @@ public class ProductDetailActivity extends AppCompatActivity {
         mini_quantity_product_page = findViewById(R.id.mini_quantity_product_page);
         product_quantity_text_product_detail_page = findViewById(R.id.product_quantity_text_product_detail_page);
         productImageQualityLayout = findViewById(R.id.productImageQualityLayout);
+
+        ///shipping address
+        shoppingDetailName = findViewById(R.id.shoppingDetailName);
+        shoppingDetailAddress = findViewById(R.id.shoppingDetailAddress);
+        textView6 = findViewById(R.id.textView6);
+        final String[] add1 = new String[1];
+        final String[] add2 = new String[1];
+        final String[] city = new String[1];
+        final String[] state = new String[1];
+
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+        if(userToken.contains("token")) {
+            Call<getSelectedAddressRespones> callSelectedAddress = RetrofitClient.getInstance().getApi().getSelectedAddress(token);
+            callSelectedAddress.enqueue(new Callback<getSelectedAddressRespones>() {
+                @Override
+                public void onResponse(Call<getSelectedAddressRespones> call, Response<getSelectedAddressRespones> response) {
+                    getSelectedAddressRespones getSelectedAddressRespones = response.body();
+                    addressModels = getSelectedAddressRespones.getAddress();
+                    shoppingDetailName.setText(addressModels.get(0).getAddress_name());
+                    add1[0] = addressModels.get(0).getAddress_line1();
+                    add2[0] = addressModels.get(0).getAddress_line2();
+                    state[0] = addressModels.get(0).getState();
+                    city[0] = addressModels.get(0).getCity();
+                    textView6.setText(addressModels.get(0).getPostal_code());
+                    shoppingDetailAddress.setText(add1[0] + "," + add2[0] + "," + state[0] + "," + city[0]);
+
+                }
+
+                @Override
+                public void onFailure(Call<getSelectedAddressRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+        }
 
         if(qlty!=null) {
             product_quantity_text_product_detail_page.setText(qlty);
@@ -312,8 +348,13 @@ public class ProductDetailActivity extends AppCompatActivity {
         cart_product_detail_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(ProductDetailActivity.this, AllReviewActivity.class);
-                startActivity(in);
+                SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                if(userToken.contains("token")) {
+                    Intent in = new Intent(ProductDetailActivity.this, AllReviewActivity.class);
+                    startActivity(in);
+                }else{
+                    Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -336,49 +377,52 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
         ///buttons on product detail page
-        try {
-            cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
-            cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // api call for add cart
-                    SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
-                    if(userToken.contains("token")) {
-                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty);
-                        callC.enqueue(new Callback<CartAddRespones>() {
-                            @Override
-                            public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
-                                if (response.isSuccessful()) {
-                                    CartAddRespones cartAddRespones = response.body();
-                                    Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
-                                }
+        cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
+        cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // api call for add cart
+                SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                if(userToken.contains("token")) {
+                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty);
+                    callC.enqueue(new Callback<CartAddRespones>() {
+                        @Override
+                        public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
+                            if (response.isSuccessful()) {
+                                CartAddRespones cartAddRespones = response.body();
+                                Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
                             }
+                        }
 
-                            @Override
-                            public void onFailure(Call<CartAddRespones> call, Throwable t) {
-                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        @Override
+                        public void onFailure(Call<CartAddRespones> call, Throwable t) {
+                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
 //                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
-                    }else{
-                        Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
-                    }
+                }else{
+                    Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }catch (Exception e){
+            }
+        });
 
-        }
+
         try{
             buy_on_product_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeAddress.setVisibility(View.VISIBLE);
-                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-                    buy_on_product_detail.setVisibility(View.GONE);
-                    delivery_continue_btn.setVisibility(View.VISIBLE);
+                    SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                    if(userToken.contains("token")) {
+                        changeAddress.setVisibility(View.VISIBLE);
+                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                        buy_on_product_detail.setVisibility(View.GONE);
+                        delivery_continue_btn.setVisibility(View.VISIBLE);
 //                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                    }else {
+                        Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_LONG).show();
+                    }
 
                 }
             });
@@ -602,4 +646,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public boolean supportShouldUpRecreateTask(@NonNull Intent targetIntent) {
+        return super.supportShouldUpRecreateTask(targetIntent);
+    }
 }

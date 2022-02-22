@@ -2,15 +2,24 @@ package com.example.arraykart.AddressActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.AddressUpdateRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddressEditForm extends AppCompatActivity {
 
@@ -49,6 +58,7 @@ public class AddressEditForm extends AppCompatActivity {
         String postal_code = getIntent().getStringExtra("postal_code");
         String state = getIntent().getStringExtra("state");
         String phone_number = getIntent().getStringExtra("phone_number");
+        String altNum = getIntent().getStringExtra("alt_num");
 
         UserCity.setText(city);
         USerFullName.setText(address_name);
@@ -57,6 +67,8 @@ public class AddressEditForm extends AppCompatActivity {
         UserPinCode.setText(postal_code);
         UserState.setText(state);
         UserMobileNumber.setText(phone_number);
+        UserAlternativeNumber.setText(altNum);
+
 
         try{
             back_addressForm_page = findViewById(R.id.back_addressForm_page);
@@ -71,18 +83,37 @@ public class AddressEditForm extends AppCompatActivity {
 
         }
 
-        try {
-            UserAddAddress.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    updateAddress(token,id);
-                }
-            });
-        }catch (Exception e){
+        UserAddAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = USerFullName.getText().toString();
+                String addr1 = UserAddressLine1.getText().toString();
+                String addr2 = UserAddressLine2.getText().toString();
+                String city = UserCity.getText().toString();
+                String pinCode = UserPinCode.getText().toString();
+                String state = UserState.getText().toString();
+                String number =UserMobileNumber.getText().toString();
+                String AlNumber = UserAlternativeNumber.getText().toString();
+                Call<AddressUpdateRespones> callUpdate = RetrofitClient.getInstance().getApi().updateAddress(token,id,name,addr1,addr2,city,pinCode,state,number,AlNumber,"0");
 
-        }
+                callUpdate.enqueue(new Callback<AddressUpdateRespones>() {
+                    @Override
+                    public void onResponse(Call<AddressUpdateRespones> call, Response<AddressUpdateRespones> response) {
+                        Toast.makeText(AddressEditForm.this, "Edit Successfully", Toast.LENGTH_LONG).show();
+                        Intent refresh = new Intent(getApplicationContext(),AddressEditForm.class);
+                        getApplicationContext().startActivity(refresh);
+                        ((Activity)getApplicationContext()).finish();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AddressUpdateRespones> call, Throwable t) {
+                        Toast.makeText(AddressEditForm.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
     }
-//    private void updateAddress(String token , String id){
-//
-//    }
+
 }

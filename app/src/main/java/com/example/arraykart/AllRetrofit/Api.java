@@ -1,5 +1,7 @@
 package com.example.arraykart.AllRetrofit;
 
+import com.example.arraykart.AllApiModels.AddressDeleteRespones;
+import com.example.arraykart.AllApiModels.AddressUpdateRespones;
 import com.example.arraykart.AllApiModels.AuthRespones;
 import com.example.arraykart.AllApiModels.BrandRespones;
 import com.example.arraykart.AllApiModels.CartAddRespones;
@@ -8,6 +10,7 @@ import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
 import com.example.arraykart.AllApiModels.LogInOtpRespones;
 import com.example.arraykart.AllApiModels.LogInRespones;
+import com.example.arraykart.AllApiModels.LogOutRespones;
 import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
@@ -17,6 +20,7 @@ import com.example.arraykart.AllApiModels.SignUpTopRespones;
 import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
+import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.SearchPage.SearchProductModel;
 
 import okhttp3.ResponseBody;
@@ -54,7 +58,13 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("/api/user/login/otp")
-    Call<LogInOtpRespones>loginOtp(@Field("otp") String otp);
+    Call<LogInOtpRespones>loginOtp(@Field("id") String id,
+                                   @Field("otp") String otp
+    );
+
+    @POST("/api/user/logout/")
+    Call<LogOutRespones>logout(@Header("Authorization") String Authorization
+    );
 
     @GET("/api/user/")
     Call<LogInIdRespones>loginId(@Header("Authorization") String Authorization);
@@ -63,28 +73,57 @@ public interface Api {
     @PUT("/api/user/")
     Call<UserUpdateResponse>updateUser(@Header("Authorization") String Authorization,
                                        @Field("phone_number") String phone_number ,
-                                       @Field(" email") String email,
+                                       @Field("email") String email,
                                        @Field("name") String name
     );
 
     @FormUrlEncoded
     @POST("/api/user/address/")
-    Call<AddressFormRespones>UserAddressForm(
-            @Header("Authorization") String Authorization,
-            @Field("address_name") String address_name,
-            @Field("addressLine1") String addressLine1,
-            @Field("addressLine2") String addressLine2,
-            @Field("city") String city,
-            @Field("postalCode") String postalCode,
-            @Field("country") String country,
-            @Field("phoneNumber") String phoneNumber
-    );
+    Call<AddressFormRespones>UserAddressForm(@Header("Authorization") String Authorization,
+                                             @Field("address_name") String address_name,
+                                             @Field("addressLine1") String addressLine1,
+                                             @Field("addressLine2") String addressLine2,
+                                             @Field("city") String city,
+                                             @Field("postalCode") String postalCode,
+                                             @Field("state") String country,
+                                             @Field("phoneNumber") String phoneNumber,
+                                             @Field("alternate_number") String alternate_number,
+                                             @Field("is_default") String is_default);
 
     @GET("/api/user/address/")
     Call<GetAddressRespones>getAddress(@Header("Authorization") String Authorization);
 
-    @GET("/api/user/address/:id/")
-    Call<ResponseBody>getAddressId();
+    @GET("/api/user/address/default/")
+    Call<getSelectedAddressRespones>getSelectedAddress(@Header("Authorization") String Authorization);
+
+    @FormUrlEncoded
+    @PUT("/api/user/address/")
+    Call<AddressUpdateRespones>updateAddress(
+                                             @Header("Authorization") String Authorization,
+                                             @Field("id") String id,
+                                             @Field("address_name") String address_name ,
+                                             @Field("addressLine1") String addressLine1,
+                                             @Field("addressLine2") String addressLine2,
+                                             @Field("city") String city,
+                                             @Field("postalCode") String postalCode,
+                                             @Field("state") String country,
+                                             @Field("phoneNumber") String phoneNumber,
+                                             @Field("alternate_number") String alternate_number,
+                                             @Field("is_default") String is_default
+    );
+
+
+
+    @DELETE("/api/user/address/{id}")
+    Call<AddressDeleteRespones>deleteAddress(
+                                             @Header("Authorization") String Authorization,
+                                             @Path("id") String id
+    );
+
+    @FormUrlEncoded
+    @PUT("/api/user/address/default/")
+    Call<ResponseBody>SelectAddress(@Header("Authorization") String Authorization,
+                        @Field("id") String id);
 
     ////products api
     @GET("/api/product/")
