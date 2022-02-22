@@ -245,7 +245,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
 
-        String qty = product_quantity_text_product_detail_page.getText().toString();
+        //String qty = product_quantity_text_product_detail_page.getText().toString();
 
 
         ////////////////
@@ -381,6 +381,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String qty = product_quantity_text_product_detail_page.getText().toString();
                 // api call for add cart
                 SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                 if(userToken.contains("token")) {
@@ -390,7 +391,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
                             if (response.isSuccessful()) {
                                 CartAddRespones cartAddRespones = response.body();
-                                Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
                             }
@@ -523,6 +524,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             wishListProductsDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String qty = product_quantity_text_product_detail_page.getText().toString();
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
 //                        if(!wishListProductsDetail.isChecked()) {

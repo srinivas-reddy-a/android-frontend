@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.GetCartRespones;
+import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.R;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,34 +58,44 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         cartItemModelList= new ArrayList<>();
-        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"Rs.---/-","RS.",1,0,0));
-        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"Rs.---/-","RS.",2,1,0));
-        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"Rs.---/-","RS.",3,0,1));
-        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.----","Free","RS.-----"));
-
-        cartAdapter = new CartAdapter(cartItemModelList);
-        cartItemsRecyclerView.setAdapter(cartAdapter);
-        cartAdapter.notifyDataSetChanged();
+//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"Rs.---/-","RS.",1,0,0));
+//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"Rs.---/-","RS.",2,1,0));
+//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"Rs.---/-","RS.",3,0,1));
+//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.----","Free","RS.-----"));
+//
+//        cartAdapter = new CartAdapter(cartItemModelList);
+//        cartItemsRecyclerView.setAdapter(cartAdapter);
+//        cartAdapter.notifyDataSetChanged();
 
 //       api call to get cart items
-//        try{
-//            Call<ResponseBody> callG = RetrofitClient.getInstance().getApi().getCartItem(token);
-//            callG.enqueue(new Callback<ResponseBody>() {
-//                @Override
-//                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                    cartAdapter = new CartAdapter(cartItemModelList);
-//                    cartItemsRecyclerView.setAdapter(cartAdapter);
-//                    cartAdapter.notifyDataSetChanged();
-//                }
-//
-//                @Override
-//                public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }catch (Exception e){
-//
-//        }
+
+        Call<GetCartRespones> callG = RetrofitClient.getInstance().getApi().getCartItem(token);
+        callG.enqueue(new Callback<GetCartRespones>() {
+            @Override
+            public void onResponse(Call<GetCartRespones> call, Response<GetCartRespones> response) {
+                GetCartRespones getCartRespones = response.body();
+                if(response.isSuccessful()) {
+                    cartItemModelList = getCartRespones.getProducts();
+                    cartAdapter = new CartAdapter(cartItemModelList, getContext());
+                    cartItemsRecyclerView.setAdapter(cartAdapter);
+                    cartAdapter.notifyDataSetChanged();
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetCartRespones> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         try {
             cart_continue_btn.setOnClickListener(new View.OnClickListener() {
@@ -94,33 +108,39 @@ public class MyCartFragment extends Fragment {
 
         }
 
-        try {
-            cartAdapter.setOnItemClickListener(new CartAdapter.OnItemClickListeners() {
-                @Override
-                public void onDeleteClick(int position) {
-                    cartItemModelList.remove(position);
-                    cartAdapter.notifyItemRemoved(position);
-
-//         api call delete cart item
-//                String id = cartItemModelList.get(position).getId;
-//                Call<ResponseBody> callD = RetrofitClient.getInstance().getApi().deleteCartItem(token);
-//                callD.enqueue(new Callback<ResponseBody>() {
+//        cartAdapter.setOnItemClickListener(new CartAdapter.OnItemClickListeners() {
+//            @Override
+//            public void onDeleteClick(int position) {
+//
+////         api call delete cart item
+//                String id = cartItemModelList.get(position).getId();
+//                Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteCartItem(token,id);
+//                callD.enqueue(new Callback<deleteWishListRespones>() {
 //                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        cartItemModelList.remove(position);
-//                        cartAdapter.notifyItemRemoved(position);
+//                    public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+//                        deleteWishListRespones deleteWishListRespones = response.body();
+//                        if(response.isSuccessful()){
+//                            Toast.makeText(getContext(), deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+//                        }else {
+//                            try {
+//                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+//                                Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+//
+//
+//                            } catch (Exception e) {
+//                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
 //                    }
 //
 //                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                    public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
 //                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-                }
-            });
-        }catch (Exception e){
+//            }
+//        });
 
-        }
 
         return view;
     }

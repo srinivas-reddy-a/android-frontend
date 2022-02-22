@@ -7,6 +7,7 @@ import com.example.arraykart.AllApiModels.BrandRespones;
 import com.example.arraykart.AllApiModels.CartAddRespones;
 import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.GetAddressRespones;
+import com.example.arraykart.AllApiModels.GetCartRespones;
 import com.example.arraykart.AllApiModels.LogInIdRespones;
 import com.example.arraykart.AllApiModels.LogInOtpRespones;
 import com.example.arraykart.AllApiModels.LogInRespones;
@@ -188,7 +189,7 @@ public interface Api {
     );
 
     @GET("/api/cart/")
-    Call<ResponseBody>getCartItem(@Header("Authorization") String Authorization);
+    Call<GetCartRespones>getCartItem(@Header("Authorization") String Authorization);
 
     @PUT("/api/cart/")
     Call<ResponseBody>updateCart(@Header("Authorization") String Authorization,
@@ -196,9 +197,9 @@ public interface Api {
                                  @Field("quantity") String quantity
     );
 
-    @DELETE("/api/cart/")
-    Call<ResponseBody>deleteCartItem(@Header("Authorization") String Authorization,
-                                     @Field("product_id") String product_id
+    @DELETE("/api/cart/{id}")
+    Call<deleteWishListRespones>deleteCartItem(@Header("Authorization") String Authorization,
+                                     @Path("id") String product_id
     );
 
     //wishlist api

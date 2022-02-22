@@ -1,17 +1,17 @@
 package com.example.arraykart.AllApiModels;
 
 public class CartAddRespones {
-    private String msg;
+    private String message;
 
-    public CartAddRespones(String msg) {
-        this.msg = msg;
+    public CartAddRespones(String message) {
+        this.message = message;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
