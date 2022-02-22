@@ -98,6 +98,7 @@ public class GridViewAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     if(userToken.contains("token")) {
                         String id = modelForSingleProducts.get(position).getId();
+                        Toast.makeText(context, id, Toast.LENGTH_SHORT).show();
                         String qty ="1";
                         Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
                         call.enqueue(new Callback<WishListAddRespones>() {

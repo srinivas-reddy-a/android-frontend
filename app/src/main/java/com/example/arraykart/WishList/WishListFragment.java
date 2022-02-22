@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllApiModels.getWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
@@ -123,10 +124,22 @@ public class WishListFragment extends Fragment {
         call.enqueue(new Callback<getWishListRespones>() {
             @Override
             public void onResponse(Call<getWishListRespones> call, Response<getWishListRespones> response) {
-                wishListModelList = response.body().getProducts();
-                wishListAdapter = new WishListAdapter(wishListModelList, getContext());
-                wishListRecyclerView.setAdapter(wishListAdapter);
-                wishListAdapter.notifyDataSetChanged();
+                getWishListRespones getWishListRespones = response.body();
+                if(response.isSuccessful()) {
+                    wishListModelList = getWishListRespones.getProducts();
+                    wishListAdapter = new WishListAdapter(wishListModelList, getContext());
+                    wishListRecyclerView.setAdapter(wishListAdapter);
+                    wishListAdapter.notifyDataSetChanged();
+                }else{
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
             @Override
@@ -146,7 +159,7 @@ public class WishListFragment extends Fragment {
 //                String id = wishListModelList.get(position).getId();
 ////                remove wishlist call
 //
-//                Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList(token,id);
+//                Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList("application/json",token,id);
 //                callD.enqueue(new Callback<deleteWishListRespones>() {
 //                    @Override
 //                    public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
