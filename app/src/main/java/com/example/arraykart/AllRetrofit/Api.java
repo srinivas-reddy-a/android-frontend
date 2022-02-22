@@ -20,7 +20,9 @@ import com.example.arraykart.AllApiModels.SignUpTopRespones;
 import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
+import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
+import com.example.arraykart.AllApiModels.getWishListRespones;
 import com.example.arraykart.SearchPage.SearchProductModel;
 
 import okhttp3.ResponseBody;
@@ -208,16 +210,16 @@ public interface Api {
     );
 
     @GET("/api/wishlist/")
-    Call<ResponseBody> getWishList(@Header("Authorization") String Authorization);
+    Call<getWishListRespones> getWishList(@Header("Authorization") String Authorization);
 
     @PUT("/api/wishlist/")
     Call<ResponseBody> updateWishList(@Header("Authorization") String Authorization,
                                       @Field("product_id") String product_id
     );
 
-    @DELETE("/api/wishlist/")
-    Call<ResponseBody> deleteWishList(@Header("Authorization") String Authorization,
-                                      @Field("product_id") String product_id
+    @DELETE("/api/wishlist/{id}/")
+    Call<deleteWishListRespones> deleteWishList(@Header("Content-Type") String Content_Type,@Header("Authorization") String Authorization,
+                                                @Path("id") String product_id
     );
 
 }

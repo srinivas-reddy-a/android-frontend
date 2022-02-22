@@ -105,10 +105,6 @@ public class AddressFormActivity extends AppCompatActivity {
                             if(response.isSuccessful()) {
                                 Toast.makeText(AddressFormActivity.this, addressFormRespones.getMsg(), Toast.LENGTH_LONG).show();
                                 Intent refresh = new Intent(getApplicationContext(),AddressEditForm.class);
-                                overridePendingTransition( 5, 5);
-                                getApplicationContext().startActivity(refresh);
-                                overridePendingTransition( 5, 5);
-                                ((Activity)getApplicationContext()).finish();
                                 finish();
                             }else {
                                 try {

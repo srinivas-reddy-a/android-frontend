@@ -100,9 +100,6 @@ public class AddressEditForm extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<AddressUpdateRespones> call, Response<AddressUpdateRespones> response) {
                         Toast.makeText(AddressEditForm.this, "Edit Successfully", Toast.LENGTH_LONG).show();
-                        Intent refresh = new Intent(getApplicationContext(),AddressEditForm.class);
-                        getApplicationContext().startActivity(refresh);
-                        ((Activity)getApplicationContext()).finish();
                         finish();
                     }
 

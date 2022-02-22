@@ -1,9 +1,9 @@
 package com.example.arraykart.AllApiModels;
 
-public class WishListAddRespones {
+public class deleteWishListRespones {
     private String message;
 
-    public WishListAddRespones(String message) {
+    public deleteWishListRespones(String message) {
         this.message = message;
     }
 

@@ -72,7 +72,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     List<ProductDetailPageModel> product;
     String im;
     String[] si;
-    private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+//    private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
     ///rating layout
     private LinearLayout linearLayout,MoreDetailButton;
     private List<Integer> list;
@@ -518,41 +518,41 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         }
 
-//        call for add product in wishlist.
-        try{
+//    call for add product in wishlist.
             wishListProductsDetail = findViewById(R.id.wishListProductsDetail);
             wishListProductsDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
-                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
-                        call.enqueue(new Callback<WishListAddRespones>() {
-                            @Override
-                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
-                                WishListAddRespones wishListAddRespones = response.body();
-                                if (response.isSuccessful()) {
-                                    Toast.makeText(ProductDetailActivity.this, wishListAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
-                                }else {
-                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
+//                        if(!wishListProductsDetail.isChecked()) {
+                            Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+                            call.enqueue(new Callback<WishListAddRespones>() {
+                                @Override
+                                public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+                                    WishListAddRespones wishListAddRespones = response.body();
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(ProductDetailActivity.this, wishListAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
+                                    }
+
                                 }
 
-                            }
-
-                            @Override
-                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<WishListAddRespones> call, Throwable t) {
+                                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+//                        }else{
+//
+//                        }
                     }else{
                         Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
                         wishListProductsDetail.setChecked(false);
                     }
                 }
             });
-        }catch (Exception e){
-
-        }
 
 //        //productDetailListing
 //        try {
@@ -649,5 +649,49 @@ public class ProductDetailActivity extends AppCompatActivity {
     @Override
     public boolean supportShouldUpRecreateTask(@NonNull Intent targetIntent) {
         return super.supportShouldUpRecreateTask(targetIntent);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+
+        ///shipping address
+        shoppingDetailName = findViewById(R.id.shoppingDetailName);
+        shoppingDetailAddress = findViewById(R.id.shoppingDetailAddress);
+        textView6 = findViewById(R.id.textView6);
+        final String[] add1 = new String[1];
+        final String[] add2 = new String[1];
+        final String[] city = new String[1];
+        final String[] state = new String[1];
+
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+        if(userToken.contains("token")) {
+            Call<getSelectedAddressRespones> callSelectedAddress = RetrofitClient.getInstance().getApi().getSelectedAddress(token);
+            callSelectedAddress.enqueue(new Callback<getSelectedAddressRespones>() {
+                @Override
+                public void onResponse(Call<getSelectedAddressRespones> call, Response<getSelectedAddressRespones> response) {
+                    getSelectedAddressRespones getSelectedAddressRespones = response.body();
+                    addressModels = getSelectedAddressRespones.getAddress();
+                    shoppingDetailName.setText(addressModels.get(0).getAddress_name());
+                    add1[0] = addressModels.get(0).getAddress_line1();
+                    add2[0] = addressModels.get(0).getAddress_line2();
+                    state[0] = addressModels.get(0).getState();
+                    city[0] = addressModels.get(0).getCity();
+                    textView6.setText(addressModels.get(0).getPostal_code());
+                    shoppingDetailAddress.setText(add1[0] + "," + add2[0] + "," + state[0] + "," + city[0]);
+
+                }
+
+                @Override
+                public void onFailure(Call<getSelectedAddressRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+        }
+
     }
 }

@@ -126,9 +126,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                     callDelete.enqueue(new Callback<AddressDeleteRespones>() {
                         @Override
                         public void onResponse(Call<AddressDeleteRespones> call, Response<AddressDeleteRespones> response) {
-//                            addressModelList.remove(addressModelList.get(getAdapterPosition()));
-//                            notifyDataSetChanged();
-//                            notifyItemRemoved(getAdapterPosition());
                             if(response.isSuccessful()) {
                                 Toast.makeText(context, "delete successfully", Toast.LENGTH_SHORT).show();
                             }else {

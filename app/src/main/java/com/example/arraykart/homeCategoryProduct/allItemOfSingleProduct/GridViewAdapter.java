@@ -83,7 +83,7 @@ public class GridViewAdapter extends BaseAdapter {
         holder = new ViewHolders();
 
         // it will help take item from single product and put that item in this page
-        try {
+
             holder.cImg = view.findViewById(R.id.gridImage);
             holder.txt = view.findViewById(R.id.gridText);
             holder.prc = view.findViewById(R.id.priceGrid);
@@ -105,7 +105,7 @@ public class GridViewAdapter extends BaseAdapter {
                             public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
                                 WishListAddRespones wishListAddRespones = response.body();
                                     if (response.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), wishListAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), wishListAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
                                     }else {
                                         Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
                                     }
@@ -154,9 +154,6 @@ public class GridViewAdapter extends BaseAdapter {
 ////                    }
 //            }
 
-        } catch (Exception ex) {
-
-        }
 
         try {
             view.setOnClickListener(new View.OnClickListener() {

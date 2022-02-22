@@ -1,5 +1,8 @@
 package com.example.arraykart.WishList;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,9 +17,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.deleteWishListRespones;
+import com.example.arraykart.AllApiModels.getWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
+import com.example.arraykart.SignUP;
+import com.example.arraykart.Signin;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +93,7 @@ public class WishListFragment extends Fragment {
 
         sharedPrefManager = new SharedPrefManager(getContext());
         String token = sharedPrefManager.getValue_string("token");
+        SharedPreferences user_token = getContext().getSharedPreferences("arraykartuser", Activity.MODE_PRIVATE);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wish_list, container, false);
 
@@ -94,60 +104,78 @@ public class WishListFragment extends Fragment {
         wishListRecyclerView.setLayoutManager(linearLayoutManager);
 
         wishListModelList = new ArrayList<>();
-        wishListModelList.add(new WishListModel("1",R.drawable.img,"Product Name ",2,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
-        wishListModelList.add(new WishListModel("2",R.drawable.img,"Product Name ",0,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
-        wishListModelList.add(new WishListModel("3",R.drawable.img,"Product Name ",1,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
-        wishListModelList.add(new WishListModel("4",R.drawable.img,"Product Name ",4,"2.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
-        wishListModelList.add(new WishListModel("5",R.drawable.img,"Product Name ",2,"3.7","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
-        wishListModelList.add(new WishListModel("6",R.drawable.img,"Product Name ",5,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
-        wishListModelList.add(new WishListModel("7",R.drawable.img,"Product Name ",0,"5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+//        wishListModelList.add(new WishListModel("1",R.drawable.img,"Product Name ",2,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+//        wishListModelList.add(new WishListModel("2",R.drawable.img,"Product Name ",0,"4.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
+//        wishListModelList.add(new WishListModel("3",R.drawable.img,"Product Name ",1,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+//        wishListModelList.add(new WishListModel("4",R.drawable.img,"Product Name ",4,"2.5","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
+//        wishListModelList.add(new WishListModel("5",R.drawable.img,"Product Name ",2,"3.7","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
+//        wishListModelList.add(new WishListModel("6",R.drawable.img,"Product Name ",5,"3.3","Rs.4999/-","Rs.5999/-","Cash on delivery not available"));
+//        wishListModelList.add(new WishListModel("7",R.drawable.img,"Product Name ",0,"5","Rs.4999/-","Rs.5999/-","Cash on delivery available"));
 
-        wishListAdapter = new WishListAdapter(wishListModelList);
-        wishListRecyclerView.setAdapter(wishListAdapter);
-
-        wishListAdapter.notifyDataSetChanged();
-
-//      call wishlist products
-
-//        Call<ResponseBody> call = RetrofitClient.getInstance().getApi().getWishList(token);
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                wishListModelList = response.body();
-//                wishListAdapter = new WishListAdapter(wishListModelList);
-//                wishListRecyclerView.setAdapter(wishListAdapter);
-//                wishListAdapter.notifyDataSetChanged();
-//            }
+//        wishListAdapter = new WishListAdapter(wishListModelList,getContext());
+//        wishListRecyclerView.setAdapter(wishListAdapter);
 //
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+//        wishListAdapter.notifyDataSetChanged();
 
-        wishListAdapter.setOnItemClickListener(new WishListAdapter.onItemClickListener() {
+      //call wishlist products
+    if(user_token.contains("token")) {
+        Call<getWishListRespones> call = RetrofitClient.getInstance().getApi().getWishList(token);
+        call.enqueue(new Callback<getWishListRespones>() {
             @Override
-            public void onDeleteClick(int position) {
-                wishListModelList.remove(position);
-                wishListAdapter.notifyItemRemoved(position);
+            public void onResponse(Call<getWishListRespones> call, Response<getWishListRespones> response) {
+                wishListModelList = response.body().getProducts();
+                wishListAdapter = new WishListAdapter(wishListModelList, getContext());
+                wishListRecyclerView.setAdapter(wishListAdapter);
+                wishListAdapter.notifyDataSetChanged();
+            }
 
-//                remove wishlist call
+            @Override
+            public void onFailure(Call<getWishListRespones> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }else{
+        Toast.makeText(getContext(), "SignUp first", Toast.LENGTH_SHORT).show();
+    }
 
-//                Call<ResponseBody> callD = RetrofitClient.getInstance().getApi().deleteWishList(token);
-//                callD.enqueue(new Callback<ResponseBody>() {
+//        wishListAdapter = new WishListAdapter(wishListModelList,getContext());
+//        wishListRecyclerView.setAdapter(wishListAdapter);
+//        wishListAdapter.setOnItemClickListener(new WishListAdapter.onItemClickListener() {
+//            @Override
+//            public void onDeleteClick(int position) {
+//                String id = wishListModelList.get(position).getId();
+////                remove wishlist call
+//
+//                Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList(token,id);
+//                callD.enqueue(new Callback<deleteWishListRespones>() {
 //                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        wishListModelList.remove(position);
-//                        wishListAdapter.notifyItemRemoved(position);
+//                    public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+//                        deleteWishListRespones deleteWishListRespones = response.body();
+//                        if (response.isSuccessful()){
+//                            Toast.makeText(getContext(), deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+//                        }else {
+//                            try {
+//                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+//                                Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+//
+//                            } catch (Exception e) {
+//                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
 //                    }
 //
 //                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                    public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
 //                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-            }
-        });
+//
+////                Intent re = new Intent(getContext(),WishListFragment.class);
+////                re.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                getContext().startActivity(re);
+////                ((Activity)getContext()).finish();
+//            }
+//        });
 
         return view;
     }
