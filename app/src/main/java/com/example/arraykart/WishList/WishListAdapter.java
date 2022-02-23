@@ -138,6 +138,8 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
                         public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
                             deleteWishListRespones deleteWishListRespones = response.body();
                             if (response.isSuccessful()){
+                                wishListModelList.remove(getAdapterPosition());
+                                notifyDataSetChanged();
                                 Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
                             }else {
                                 try {

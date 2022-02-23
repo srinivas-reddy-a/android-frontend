@@ -127,6 +127,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                         @Override
                         public void onResponse(Call<AddressDeleteRespones> call, Response<AddressDeleteRespones> response) {
                             if(response.isSuccessful()) {
+                                addressModelList.remove(getAdapterPosition());
+                                notifyDataSetChanged();
                                 Toast.makeText(context, "delete successfully", Toast.LENGTH_SHORT).show();
                             }else {
                                 try {
@@ -201,7 +203,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                         String id = addressModelList.get(position).getId();
                         String token = sharedPrefManager.getValue_string("token");
                         if (allReadySelected != position) {
-                            addressModelList.get(position).setSelected("1");
+                            addressModelList.get(position).setSelected("0");
                             addressModelList.get(allReadySelected).setSelected("0");
                             refreshAddress(allReadySelected, position);
                             allReadySelected = position;

@@ -40,6 +40,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 //    private OnItemClickListeners cListener;
 
     Context context;
+
+
 //
 //    public  interface OnItemClickListeners{
 //        void  onDeleteClick(int position);
@@ -122,6 +124,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
         View cartItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item_layout,parent,false);
         return new CartItemViewHolder(cartItemView);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
@@ -270,6 +273,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
                                 deleteWishListRespones deleteWishListRespones = response.body();
                                 if(response.isSuccessful()){
+                                    cartItemModelList.remove(getAdapterPosition());
+                                    notifyDataSetChanged();
                                     Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
                                 }else {
                                     try {

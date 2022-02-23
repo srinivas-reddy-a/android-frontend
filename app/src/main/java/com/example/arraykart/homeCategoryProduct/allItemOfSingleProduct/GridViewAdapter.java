@@ -21,12 +21,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
+import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -91,31 +93,84 @@ public class GridViewAdapter extends BaseAdapter {
             holder.rb = view.findViewById(R.id.ribbonTag);
             CheckBox wish = view.findViewById(R.id.wishListSingleProducts);
 
-            wish.setOnClickListener(new View.OnClickListener() {
-                String token = sharedPrefManager.getValue_string("token");
+            String token = sharedPrefManager.getValue_string("token");
 
+            wish.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(userToken.contains("token")) {
                         String id = modelForSingleProducts.get(position).getId();
-                        Toast.makeText(context, id, Toast.LENGTH_SHORT).show();
                         String qty ="1";
+//                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+//                        call.enqueue(new Callback<WishListAddRespones>() {
+//                            @Override
+//                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+//                                WishListAddRespones wishListAddRespones = response.body();
+//                                    if (response.isSuccessful()) {
+//                                        Toast.makeText(getApplicationContext(), wishListAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
+//                                         wish.setChecked(true);
+//                                    }else {
+//                                        Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+//                                    }
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
+//                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+
                         Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
                         call.enqueue(new Callback<WishListAddRespones>() {
                             @Override
                             public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
                                 WishListAddRespones wishListAddRespones = response.body();
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), wishListAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }else {
-                                        Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                                if (response.isSuccessful()) {
+                                    String msg = wishListAddRespones.getMessage();
+
+                                    if(msg.contains("Product already exists in wish list!")){
+                                        //delete products from wishlist
+                                        wish.setChecked(false);
+                                        Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList("application/json",token,id);
+                                        callD.enqueue(new Callback<deleteWishListRespones>() {
+                                            @Override
+                                            public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                                                deleteWishListRespones deleteWishListRespones = response.body();
+                                                if (response.isSuccessful()){
+                                                    Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                                }else {
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                                                    } catch (Exception e) {
+                                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                                    } else {
+                                        Toast.makeText(context, wishListAddRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                        wish.setChecked(true);
                                     }
+
+                                } else {
+                                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+                                }
 
                             }
 
                             @Override
                             public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }else{
