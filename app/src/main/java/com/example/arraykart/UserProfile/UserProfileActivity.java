@@ -91,31 +91,7 @@ public class UserProfileActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         String token = sharedPrefManager.getValue_string("token");
 
-        if(user_token.contains("token")) {
-
-            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(token);
-            call.enqueue(new Callback<AuthRespones>() {
-                @Override
-                public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
-                    AuthRespones authRespones = response.body();
-                    try {
-                        users = authRespones.getUser();
-                        UserName.setText(users.get(0).getName());
-                        UserEmail.setText(users.get(0).getEmail());
-                    }catch (Exception e){
-                        Toast.makeText(UserProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<AuthRespones> call, Throwable t) {
-                    Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
-
-        }
+        UserProfile();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(UserProfileActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -271,5 +247,44 @@ public class UserProfileActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        UserProfile();
+    }
+
+    private void UserProfile(){
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+
+        if(user_token.contains("token")) {
+
+            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(token);
+            call.enqueue(new Callback<AuthRespones>() {
+                @Override
+                public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
+                    AuthRespones authRespones = response.body();
+                    try {
+                        users = authRespones.getUser();
+                        UserName.setText(users.get(0).getName());
+                        UserEmail.setText(users.get(0).getEmail());
+                    }catch (Exception e){
+                        Toast.makeText(UserProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<AuthRespones> call, Throwable t) {
+                    Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        }
     }
 }

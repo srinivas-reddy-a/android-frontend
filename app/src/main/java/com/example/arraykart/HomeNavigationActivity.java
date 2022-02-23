@@ -115,10 +115,9 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         sharedPrefManager = new SharedPrefManager(this);
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -558,7 +557,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
+        startActivity(getIntent());
+        finish();
 
+    }
     //
 
     @Override
