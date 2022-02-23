@@ -5,6 +5,7 @@ import com.example.arraykart.AllApiModels.AddressUpdateRespones;
 import com.example.arraykart.AllApiModels.AuthRespones;
 import com.example.arraykart.AllApiModels.BrandRespones;
 import com.example.arraykart.AllApiModels.CartAddRespones;
+import com.example.arraykart.AllApiModels.CartUPdateRespones;
 import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.GetAddressRespones;
 import com.example.arraykart.AllApiModels.GetCartRespones;
@@ -188,13 +189,18 @@ public interface Api {
                                    @Field("quantity") String quantity
     );
 
+    @POST("/api/cart/status/{id}/")
+    Call<CartUPdateRespones> getStatusCart(@Header("Authorization") String Authorization,
+                                     @Path("id") String product_id);
+
     @GET("/api/cart/")
     Call<GetCartRespones>getCartItem(@Header("Authorization") String Authorization);
 
+    @FormUrlEncoded
     @PUT("/api/cart/")
-    Call<ResponseBody>updateCart(@Header("Authorization") String Authorization,
-                                 @Field("product_id") String product_id,
-                                 @Field("quantity") String quantity
+    Call<CartUPdateRespones>updateCart(@Header("Authorization") String Authorization,
+                                       @Field("product_id") String product_id,
+                                       @Field("quantity") String quantity
     );
 
     @DELETE("/api/cart/{id}")
@@ -209,6 +215,11 @@ public interface Api {
                                           @Field("product_id") String product_id,
                                           @Field("quantity") String quantity
     );
+
+    @POST("/api/wishlist/status/{id}/")
+    Call<CartUPdateRespones> getStatusWishList(@Header("Authorization") String Authorization,
+                                           @Path("id") String product_id);
+
 
     @GET("/api/wishlist/")
     Call<getWishListRespones> getWishList(@Header("Authorization") String Authorization);

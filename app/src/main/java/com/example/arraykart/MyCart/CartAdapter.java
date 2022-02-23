@@ -14,6 +14,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.arraykart.AllApiModels.CartUPdateRespones;
+import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
@@ -132,10 +134,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
         String title = cartItemModelList.get(position).getName();
 //        int freeCoupon = cartItemModelList.get(position).getFreeCoupons();
         String productPrice = cartItemModelList.get(position).getPrice();
+        String productQuantity = cartItemModelList.get(position).getQuantity();
 //        String cuttedPrice = cartItemModelList.get(position).getCuttedPerice();
 //        int offerApplied = cartItemModelList.get(position).getOffersApplied();
 
-        holder.cartItemDetail(resource,title,productPrice);
+        holder.cartItemDetail(resource,title,productPrice,productQuantity);
 
     }
 
@@ -185,20 +188,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                         productQuantity.setText(nATxt);
 
 //            api call to update cart quantity
-//                        int p = getAdapterPosition();
-//                        String id = cartItemModelList.get(p).getId();
-//                        Call<ResponseBody> callU = RetrofitClient.getInstance().getApi().updateCart("token",id,nATxt);
-//                        callU.enqueue(new Callback<ResponseBody>() {
-//                            @Override
-//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                                Toast.makeText(v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+                        String id = cartItemModelList.get(getAdapterPosition()).getId();
+                        Call<CartUPdateRespones> callU = RetrofitClient.getInstance().getApi().updateCart(token,id,nATxt);
+                        callU.enqueue(new Callback<CartUPdateRespones>() {
+                            @Override
+                            public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                                 CartUPdateRespones cartUPdateRespones = response.body();
+                                if (response.isSuccessful()) {
+//                                    Toast.makeText(context, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                }else {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                                    } catch (Exception e) {
+                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                                Toast.makeText(v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
             }catch (Exception e){
@@ -220,20 +233,31 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             productQuantity.setText(nSTxt);
 
 //      api call to update cart quantity
-//                        int p = getAdapterPosition();
-//                        String id = cartItemModelList.get(p).getId();
-//                        Call<ResponseBody> callU = RetrofitClient.getInstance().getApi().updateCart("token",id,nSTxt);
-//                        callU.enqueue(new Callback<ResponseBody>() {
-//                            @Override
-//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                                Toast.makeText(v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+                        String id = cartItemModelList.get(getAdapterPosition()).getId();
+                        Call<CartUPdateRespones> callU = RetrofitClient.getInstance().getApi().updateCart(token,id,nSTxt);
+                        callU.enqueue(new Callback<CartUPdateRespones>() {
+                            @Override
+                            public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                                CartUPdateRespones cartUPdateRespones = response.body();
+                                if (response.isSuccessful()) {
+//                                    Toast.makeText(context, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                }else {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                                    } catch (Exception e) {
+                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                                Toast.makeText(v.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         }
                     }
                 });
@@ -300,7 +324,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 
             }
         }
-        private void cartItemDetail(String image,String title,String productPriceText){
+        private void cartItemDetail(String image,String title,String productPriceText,String qty){
             try {
 
 //                productImage.setImageResource(image);
@@ -311,6 +335,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                 productPrice.setText("RS"+" "+productPriceText+"/--");
                 cuttedPrice.setVisibility(View.GONE);
                 offerApplied.setVisibility(View.GONE);
+                productQuantity.setText(qty);
 //                if (freeCoupon > 0) {
 //                    freeCouponIcon.setVisibility(View.VISIBLE);
 //                    freeCoupons.setVisibility(View.VISIBLE);
