@@ -25,6 +25,7 @@ import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.AllApiModels.getWishListRespones;
+import com.example.arraykart.AllApiModels.nestedCategoryRespones;
 import com.example.arraykart.SearchPage.SearchProductModel;
 
 import okhttp3.ResponseBody;
@@ -136,6 +137,11 @@ public interface Api {
     @GET
     Call<CategoryIdRespones>getCategory(@Url String Url);
 
+    //ProductsRespones
+
+    @GET
+    Call<ProductsRespones>getNestedCategory(@Url String Url);
+
     @GET
     Call<SearchProducRespones>getSearchProduct(@Url String Url);
 
@@ -144,6 +150,9 @@ public interface Api {
 
     @GET("/api/product/category/")
     Call<ProductsCategoryRespones>productCategory();
+
+    @GET("/api/product/category/")
+    Call<nestedCategoryRespones>productsCategory();
 
     @GET("/api/product/:id/")
     Call<ResponseBody>productId();

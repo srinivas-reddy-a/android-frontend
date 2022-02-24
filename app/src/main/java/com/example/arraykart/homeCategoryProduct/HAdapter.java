@@ -1,6 +1,7 @@
 package com.example.arraykart.homeCategoryProduct;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -8,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
 import java.util.ArrayList;
@@ -105,6 +108,13 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
                                 listener.onClickListener(position);
                             }
                         }
+
+                        Intent in = new Intent(context, ProductDetailActivity.class);
+                        in.putExtra("id",mainModel.get(getAdapterPosition()).getId());
+                        in.putExtra("qlt","1");
+                        in.putExtra("image",mainModel.get(getAdapterPosition()).getImage());
+                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(in);
 
                     }
                 });

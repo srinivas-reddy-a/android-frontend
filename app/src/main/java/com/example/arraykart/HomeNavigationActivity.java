@@ -25,6 +25,7 @@ import com.example.arraykart.AllApiModels.BrandRespones;
 import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
+import com.example.arraykart.AllApiModels.nestedCategoryRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.BannerSlider.SliderAdapter;
@@ -37,11 +38,13 @@ import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.HomeAllCategory.HomeAllCategoryAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
+import com.example.arraykart.homeCategoryProduct.NestedAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ModelForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.MoreCotegoryModel;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
+import com.example.arraykart.homeCategoryProduct.nestedModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
@@ -95,7 +98,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     //homePageCategoryProductItem
 
-    private  List<MoreCotegoryModel> homeAllCategoryModels;
+    private  List<MoreCotegoryModel> homeAllCategoryModels,homeAllCategoryModelsss;
 
     ///grid view on home page
     private GridView gridView2;
@@ -249,15 +252,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         //homePageCategoryProductItem
 
         recyclerView=findViewById(R.id.recyclerView);
-        recyclerView1 = findViewById(R.id.recyclerView1);
+//        recyclerView1 = findViewById(R.id.recyclerView1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView1.setLayoutManager(layoutManagers);
-        recyclerView1.setItemAnimator(new DefaultItemAnimator());
+//        LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
+//        recyclerView1.setLayoutManager(layoutManagers);
+//        recyclerView1.setItemAnimator(new DefaultItemAnimator());
 
 
         ///call for home products
@@ -300,32 +303,32 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
                     }
 
-                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
-                    recyclerView1.setAdapter(hAdapters);
-                    try{
-                    hAdapters.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-                            @Override
-                            public void onClickListener(int position) {
-//                                for (int i = 0; i < maiModel.size(); i++) {
-//                                    if (position == i-1) {
-//                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-//                                        in.putExtra("id",maiModel.get(position).getId());
-//                                        in.putExtra("image",maiModel.get(position).getImage());
-//                                        startActivity(in);                                    }
-//                                }
-//                                if(position==maiModel.size()-1){
-//                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
-//                                }
-                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-                                in.putExtra("id",maiModel.get(position).getId());
-                                in.putExtra("image",maiModel.get(position).getImage());
-                                startActivity(in);
-                            }
-                        });
-
-                    }catch(Exception e){
-
-                    }
+//                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
+//                    recyclerView1.setAdapter(hAdapters);
+//                    try{
+//                    hAdapters.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+//                            @Override
+//                            public void onClickListener(int position) {
+////                                for (int i = 0; i < maiModel.size(); i++) {
+////                                    if (position == i-1) {
+////                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+////                                        in.putExtra("id",maiModel.get(position).getId());
+////                                        in.putExtra("image",maiModel.get(position).getImage());
+////                                        startActivity(in);                                    }
+////                                }
+////                                if(position==maiModel.size()-1){
+////                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
+////                                }
+//                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+//                                in.putExtra("id",maiModel.get(position).getId());
+//                                in.putExtra("image",maiModel.get(position).getImage());
+//                                startActivity(in);
+//                            }
+//                        });
+//
+//                    }catch(Exception e){
+//
+//                    }
 
 
                 }else {
@@ -567,6 +570,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 //            id.setVisible(true);
 //        }
 
+        nestedRecyclerView();
+
     }
 
     @Override
@@ -578,7 +583,66 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         finish();
 
     }
-    //
+    //nested recyclerView
+
+    private void nestedRecyclerView() {
+        List<nestedModel> nestedModels = new ArrayList<>();
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+
+
+        RecyclerView recyclerView2 = findViewById(R.id.recyclerView2);
+
+        LinearLayoutManager layoutManager4 = new LinearLayoutManager(HomeNavigationActivity.this);
+
+//        NestedAdapter nestedAdapter = new NestedAdapter(nestedModels, HomeNavigationActivity.this);
+//
+//        recyclerView2.setLayoutManager(layoutManager4);
+//        recyclerView2.setAdapter(nestedAdapter);
+
+        Call<ProductsCategoryRespones> call4 = RetrofitClient
+                .getInstance()
+                .getApi().productCategory();
+        call4.enqueue(new Callback<ProductsCategoryRespones>() {
+            @Override
+            public void onResponse(Call<ProductsCategoryRespones> call, Response<ProductsCategoryRespones> response) {
+
+                if(response.isSuccessful()){
+                    homeAllCategoryModelsss =  response.body().getCategories();
+                    NestedAdapter nestedAdapter = new NestedAdapter(homeAllCategoryModelsss, HomeNavigationActivity.this);
+
+                    recyclerView2.setLayoutManager(layoutManager4);
+                    recyclerView2.setAdapter(nestedAdapter);
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductsCategoryRespones> call, Throwable t) {
+                Toast.makeText(HomeNavigationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+
+
+    }
+
+
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
