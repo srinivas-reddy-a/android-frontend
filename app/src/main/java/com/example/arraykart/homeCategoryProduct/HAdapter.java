@@ -56,7 +56,6 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
 
         Glide.with(context.getApplicationContext())
                 .load(mainModel.get(position).getImage())
-                .placeholder(R.drawable.categories)
                 .centerInside()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.img);

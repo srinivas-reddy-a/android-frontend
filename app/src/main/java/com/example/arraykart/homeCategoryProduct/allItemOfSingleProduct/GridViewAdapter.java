@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.arraykart.AllApiModels.CartUPdateRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
@@ -95,32 +96,39 @@ public class GridViewAdapter extends BaseAdapter {
 
             String token = sharedPrefManager.getValue_string("token");
 
+       // wishlist status
+        if(userToken.contains("token")){
+            String Id = modelForSingleProducts.get(position).getId();
+            Call<CartUPdateRespones> callWishStatus = RetrofitClient.getInstance().getApi().getStatusWishList(token,Id);
+            callWishStatus.enqueue(new Callback<CartUPdateRespones>() {
+                @Override
+                public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                    CartUPdateRespones cartUPdateRespones = response.body();
+                    if(response.isSuccessful()){
+                        String wstr = cartUPdateRespones.getMessage();
+                        if(wstr.contains("Product already exists in wishlist!")){
+                            wish.setChecked(true);
+                        }
+                    }else {
+                        wish.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+        ///// wish list add and delete
             wish.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(userToken.contains("token")) {
                         String id = modelForSingleProducts.get(position).getId();
                         String qty ="1";
-//                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
-//                        call.enqueue(new Callback<WishListAddRespones>() {
-//                            @Override
-//                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
-//                                WishListAddRespones wishListAddRespones = response.body();
-//                                    if (response.isSuccessful()) {
-//                                        Toast.makeText(getApplicationContext(), wishListAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
-//                                         wish.setChecked(true);
-//                                    }else {
-//                                        Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-//                                    }
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-//                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-
                         Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
                         call.enqueue(new Callback<WishListAddRespones>() {
                             @Override
@@ -188,7 +196,6 @@ public class GridViewAdapter extends BaseAdapter {
 //            cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
             Glide.with(context.getApplicationContext())
                     .load(modelForSingleProducts.get(position).getImgs())
-                    .placeholder(R.drawable.categories)
                     .centerInside()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.cImg);

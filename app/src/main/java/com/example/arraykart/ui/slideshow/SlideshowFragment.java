@@ -1,6 +1,9 @@
 package com.example.arraykart.ui.slideshow;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.arraykart.MyOrder.MyOrder;
 import com.example.arraykart.R;
+import com.example.arraykart.SignUP;
 import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.databinding.FragmentSlideshowBinding;
 
@@ -32,6 +36,9 @@ public class SlideshowFragment extends Fragment {
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        SharedPreferences user_token = getContext().getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
+
 //        final TextView textView = binding.textSlideshow;
 //        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -39,8 +46,11 @@ public class SlideshowFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
-
-        getContext().startActivity(new Intent(getContext(), MyOrder.class));
+        if(user_token.contains("token")) {
+            getContext().startActivity(new Intent(getContext(), MyOrder.class));
+        }else {
+            startActivity(new Intent(getContext(), SignUP.class));
+        }
         return root;
     }
 

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.SearchPage.SearchPageActivity;
+import com.example.arraykart.SignUP;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.google.android.material.chip.Chip;
 
@@ -57,6 +59,9 @@ public class moreCategoryProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.more_category_products);
 
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
+
         listView = findViewById(R.id.listView);
 
         Call<ProductsCategoryRespones> call = RetrofitClient
@@ -80,8 +85,10 @@ public class moreCategoryProducts extends AppCompatActivity {
                                     if (position < moreCotegoryModels.size()) {
                                         Intent in = new Intent(moreCategoryProducts.this, ItemsForSingleProduct.class);
                                         in.putExtra("id",moreCotegoryModels.get(position).getId());
+                                        in.putExtra("name",moreCotegoryModels.get(position).getName());
+                                        in.putExtra("image",moreCotegoryModels.get(position).getImage());
+                                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(in);
-                                        Toast.makeText(moreCategoryProducts.this,moreCotegoryModels.get(position).getId(),Toast.LENGTH_SHORT).show();
                                     }
 
 
@@ -104,6 +111,7 @@ public class moreCategoryProducts extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProductsCategoryRespones> call, Throwable t) {
+                Toast.makeText(moreCategoryProducts.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -128,8 +136,12 @@ public class moreCategoryProducts extends AppCompatActivity {
             cart_more_products_page.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(moreCategoryProducts.this, MYCartActivity.class);
-                    startActivity(in);
+                    if(user_token.contains("token")) {
+                        Intent in = new Intent(moreCategoryProducts.this, MYCartActivity.class);
+                        startActivity(in);
+                    }else{
+                        startActivity(new Intent(moreCategoryProducts.this, SignUP.class));
+                    }
                 }
             });
         }catch(Exception e){

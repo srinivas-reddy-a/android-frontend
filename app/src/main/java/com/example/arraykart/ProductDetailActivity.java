@@ -362,7 +362,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         delivery_continue_btn.setVisibility(View.VISIBLE);
 //                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
                     }else {
-                        Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                     }
 
                 }
@@ -561,7 +561,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     Intent in = new Intent(ProductDetailActivity.this, MYCartActivity.class);
                     startActivity(in);
                 }else{
-                    Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                 }
             }
         });
@@ -595,7 +595,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
-
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -639,7 +639,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     });
 //                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
                 }else{
-                    Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                 }
             }
         });
@@ -742,8 +742,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 //
                 }else{
-                    Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
                     wishListProductsDetail.setChecked(false);
+                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                 }
             }
         });

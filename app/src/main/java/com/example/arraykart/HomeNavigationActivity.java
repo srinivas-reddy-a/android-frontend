@@ -118,6 +118,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
         sharedPrefManager = new SharedPrefManager(this);
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -210,7 +212,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getId()==3){
-                    startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    if(user_token.contains("token")) {
+                        startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    }else {
+                        Toast.makeText(HomeNavigationActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
@@ -222,7 +228,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getId()==3){
-                    startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    if(user_token.contains("token")) {
+                        startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    }else {
+                        Toast.makeText(HomeNavigationActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -384,10 +394,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         lottieAnimationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
-                startActivity(in);
-//                Intent in = new Intent(HomeNavigationActivity.this, MyOrder.class);
-//                startActivity(in);
+                if(user_token.contains("token")) {
+                    Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
+                    startActivity(in);
+                }else{
+                    Toast.makeText(HomeNavigationActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

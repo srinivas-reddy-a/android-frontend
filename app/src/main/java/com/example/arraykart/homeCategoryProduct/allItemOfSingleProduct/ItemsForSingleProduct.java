@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.SearchPage.SearchPageActivity;
+import com.example.arraykart.SignUP;
 import com.example.arraykart.Sort.BottomSheetFragmentSort;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.MyAdapter;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
@@ -67,6 +69,10 @@ public class ItemsForSingleProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
+
         setContentView(R.layout.items_for_single_product);
 
         String id = getIntent().getStringExtra("id");
@@ -169,8 +175,12 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             cart_item_product_page.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ItemsForSingleProduct.this, MYCartActivity.class);
-                    startActivity(in);
+                    if(user_token.contains("token")) {
+                        Intent in = new Intent(ItemsForSingleProduct.this, MYCartActivity.class);
+                        startActivity(in);
+                    }else {
+                        startActivity(new Intent(ItemsForSingleProduct.this, SignUP.class));
+                    }
                 }
             });
         } catch (Exception e) {
