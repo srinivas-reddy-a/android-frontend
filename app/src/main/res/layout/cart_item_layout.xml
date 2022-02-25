@@ -136,8 +136,9 @@
             android:id="@+id/product_quantity_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_drop_down"
+            android:padding="4dp"
             android:text="1"
+            android:textSize="@dimen/heading_size"
             android:textColor="@color/text" />
     </LinearLayout>
 
@@ -187,7 +188,6 @@
         android:id="@+id/remove_item_btn"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="1dp"
         android:background="#ECDFDF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -197,27 +197,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:background="#ECDFDF"
-            >
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/add_wishList_cart_page"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_baseline_favorite_24_black"
+                android:background="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_favorite_24_black"
                 android:drawablePadding="4dp"
                 android:gravity="center"
-                android:background="@color/white"
                 android:text="Add to WishList"
                 android:textSize="@dimen/heading_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
+
             <TextView
                 android:id="@+id/remove_item_btn_cartPage"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableEnd="@drawable/ic_delete_cart_item"
@@ -235,7 +240,7 @@
 
     <ImageView
         android:id="@+id/Add_quantity_cart"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="0dp"
         android:layout_marginStart="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
@@ -245,7 +250,7 @@
 
     <ImageView
         android:id="@+id/mini_quantity_cart"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="45dp"
         android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/product_quantity"

@@ -332,7 +332,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             add_wishList_cart_page.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ///wishlist
+                    ///add to wishlist on cart
+
                     String id = cartItemModelList.get(getAdapterPosition()).getId();
                     String qty = productQuantity.getText().toString();
                     Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
@@ -343,6 +344,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             if (response.isSuccessful()) {
                                 String msg = wishListAddRespones.getMessage();
 
+                                //////delete item to cart and add to wishlist
                                 Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteCartItem(token,id);
                                 callD.enqueue(new Callback<deleteWishListRespones>() {
                                     @Override

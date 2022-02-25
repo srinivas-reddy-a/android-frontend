@@ -66,11 +66,11 @@ public class SignUP extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
 
     private ImageView imageView;
-    private TextView signintv;
+//    private TextView signintv;
     private Button signupbtn,submit;
     private EditText signUpUserNumber,signUpUserOtp;
     private LoginButton loginButton;
-    private  Button fb;
+    private  ImageView fb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,18 +95,18 @@ public class SignUP extends AppCompatActivity {
 
         }
 
-        try {
-            signintv = findViewById(R.id.textView21);
-            signintv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    startActivity(new Intent(SignUP.this, Signin.class));
-                }
-            });
-        }catch (Exception e){
+//        try {
+//            signintv = findViewById(R.id.textView21);
+//            signintv.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    finish();
+//                    startActivity(new Intent(SignUP.this, Signin.class));
+//                }
+//            });
+//        }catch (Exception e){
 
-        }
+//        }
 
         try {
 
@@ -123,7 +123,7 @@ public class SignUP extends AppCompatActivity {
 
         //facebook access
         callbackManager =CallbackManager.Factory.create();
-        fb = (Button) findViewById(R.id.fb);
+        fb = (ImageView) findViewById(R.id.fb);
         loginButton = (LoginButton) findViewById(R.id.login_button);
 
         List< String > permissionNeeds = Arrays.asList("user_photos", "email",
@@ -165,8 +165,8 @@ public class SignUP extends AppCompatActivity {
         //updateUI(account);
 
         // Set the dimensions of the sign-in button.
-        SignInButton signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        ImageView signInButton = findViewById(R.id.sign_in_button);
+//        signInButton.setSize(SignInButton.SIZE_STANDARD);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,15 +226,15 @@ public class SignUP extends AppCompatActivity {
                             signUpUserOtp.setVisibility(View.GONE);
                             submit.setVisibility(View.GONE);
                             signupbtn.setVisibility(View.VISIBLE);
-                           // startActivity(new Intent(SignUP.this,HomeNavigationActivity.class));
                         }
                     });
                 }else{
                     try{
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
                         Toast.makeText(SignUP.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
+                        finish();
                         Intent in = new Intent(SignUP.this,Signin.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(in);
 
                     }catch (Exception e){
@@ -255,7 +255,7 @@ public class SignUP extends AppCompatActivity {
         String otp = signUpUserOtp.getText().toString();
         if(userNumber.isEmpty()){
             signUpUserNumber.requestFocus();
-            signUpUserNumber.setError("please enter you name");
+            signUpUserNumber.setError("please enter you number");
             return;
         }
         if(otp.isEmpty()){
@@ -275,6 +275,7 @@ public class SignUP extends AppCompatActivity {
                     String token = responseBody.getToken();
                     sharedPrefManager.setValue_string("token",token);
                     Toast.makeText(SignUP.this,responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());

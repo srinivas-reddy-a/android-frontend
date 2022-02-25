@@ -6,240 +6,252 @@
     android:layout_height="match_parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout7"
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constraintLayout7"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#00D66C"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView6"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+
+<!--            app:srcCompat="@drawable/ic_baseline_close_24" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="10sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/companynameiv"-->
+<!--                android:layout_width="136sp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/company_name" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/logo"-->
+<!--                android:layout_width="50sp"-->
+<!--                android:layout_height="50sp"-->
+<!--                android:layout_weight="1"-->
+<!--                app:srcCompat="@drawable/logo" />-->
+<!--        </LinearLayout>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constraintLayout12"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginBottom="104dp"-->
+<!--        android:padding="20sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/constraintLayout13"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView18"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20sp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Sign Up to create new account"-->
+<!--            android:textColor="@color/heading"-->
+<!--            android:textSize="@dimen/heading_size"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/signUpUserName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20sp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:background="@drawable/rounded_corners"-->
+<!--            android:ems="10"-->
+<!--            android:hint="username"-->
+<!--            android:inputType="number"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView18" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/signUpUserOtp"-->
+<!--            android:layout_width="140dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20sp"-->
+<!--            android:visibility="gone"-->
+<!--            android:background="@drawable/rounded_corners"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Enter otp"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:padding="10sp"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/signUpUserName"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/signUpUserName" />-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView20"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="18sp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Already have an account?"-->
+<!--            android:textSize="@dimen/heading_size"-->
+<!--            android:textColor="@color/text"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/textView21"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/signUpUserOtp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/signUpUserOtp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView21"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:text="Sign in"-->
+<!--            android:textColor="#3084C5"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/FrameLayout1"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textView20"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/textView20" />-->
+
+<!--        &lt;!&ndash;        <com.facebook.login.widget.LoginButton&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/login_button"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_gravity="center_horizontal"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:onClick="logIn"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_marginTop="20dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;            app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;            app:layout_constraintTop_toBottomOf="@+id/textView20" />&ndash;&gt;-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/FrameLayout1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView20">-->
+
+<!--            <com.facebook.login.widget.LoginButton-->
+<!--                android:id="@+id/login_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:onClick="logIn"-->
+<!--                android:visibility="visible" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/fb"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:backgroundTint="#416BC1"-->
+<!--                android:onClick="onClick"-->
+<!--                android:text="FaceBook"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:textStyle="bold" />-->
+<!--        </FrameLayout>-->
+
+<!--        <com.google.android.gms.common.SignInButton-->
+<!--            android:id="@+id/sign_in_button"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/FrameLayout1"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/FrameLayout1" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView22"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="20sp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:padding="5sp"-->
+<!--            android:text="By signing up. you agree to Arraykart's Terms of Use and Privacy Policy"-->
+<!--            android:textSize="@dimen/text_size"-->
+<!--            android:textColor="@color/text"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />-->
+
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constraintLayout13"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="10sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/button4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/green"-->
+<!--            android:text="Sign Up"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/heading"-->
+<!--            android:textSize="@dimen/heading_size"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--        <Button-->
+<!--            android:id="@+id/submit"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/green"-->
+<!--            android:visibility="gone"-->
+<!--            android:text="submit"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00D66C"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            app:srcCompat="@drawable/ic_baseline_close_24" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/companynameiv"
-                android:layout_width="136sp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/company_name" />
-
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="50sp"
-                android:layout_height="50sp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/logo" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
-        android:padding="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:text="Sign Up to create new account"
-            android:textColor="@color/heading"
-            android:textSize="@dimen/heading_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/signUpUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/rounded_corners"
-            android:ems="10"
-            android:hint="username"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-        <EditText
-            android:id="@+id/signUpUserOtp"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:visibility="gone"
-            android:background="@drawable/rounded_corners"
-            android:ems="10"
-            android:hint="Enter otp"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:padding="10sp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/signUpUserName"
-            app:layout_constraintTop_toBottomOf="@+id/signUpUserName" />
-
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="18sp"
-            android:layout_marginTop="20dp"
-            android:text="Already have an account?"
-            android:textSize="@dimen/heading_size"
-            android:textColor="@color/text"
-            app:layout_constraintEnd_toStartOf="@+id/textView21"
-            app:layout_constraintStart_toStartOf="@+id/signUpUserOtp"
-            app:layout_constraintTop_toBottomOf="@+id/signUpUserOtp" />
-
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="60dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="40dp"
-            android:text="Sign in"
-            android:textColor="#3084C5"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/FrameLayout1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toTopOf="@+id/textView20" />
-
-        <!--        <com.facebook.login.widget.LoginButton-->
-        <!--            android:id="@+id/login_button"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="center_horizontal"-->
-        <!--            android:onClick="logIn"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/textView20" />-->
-        <FrameLayout
-            android:id="@+id/FrameLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20">
-
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="logIn"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/fb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#416BC1"
-                android:onClick="onClick"
-                android:text="FaceBook"
-                android:textColor="#ffffff"
-                android:textStyle="bold" />
-        </FrameLayout>
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/FrameLayout1"
-            app:layout_constraintTop_toBottomOf="@+id/FrameLayout1" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:layout_marginBottom="8dp"
-            android:padding="5sp"
-            android:text="By signing up. you agree to Arraykart's Terms of Use and Privacy Policy"
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:text="Sign Up"
-            android:textAlignment="center"
-            android:textColor="@color/heading"
-            android:textSize="@dimen/heading_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:visibility="gone"
-            android:text="submit"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/sign_up_items_layout" />
+    </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
