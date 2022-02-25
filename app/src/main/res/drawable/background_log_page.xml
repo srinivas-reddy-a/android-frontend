@@ -4,10 +4,10 @@
     <item android:drawable="@drawable/main_material_design"/>
     <item>
         <rotate android:fromDegrees="-80."
-            android:pivotX="75.9999%"
-            android:pivotY="85%"
+            android:pivotX="85.9999%"
+            android:pivotY="80%"
             >
-        <shape android:shape="rectangle">
+        <shape android:shape="oval">
             <solid
                 android:color="@color/white">
 

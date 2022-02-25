@@ -254,4 +254,4 @@
 
         <include layout="@layout/sign_up_items_layout" />
     </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

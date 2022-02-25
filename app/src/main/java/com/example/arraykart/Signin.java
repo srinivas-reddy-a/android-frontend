@@ -60,18 +60,18 @@ public class Signin extends AppCompatActivity {
         }catch (Exception e){
 
         }
-        try {
-            signup = findViewById(R.id.textView17);
-            signup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    startActivity(new Intent(Signin.this, SignUP.class));
-                }
-            });
-        }catch (Exception e){
-
-        }
+//        try {
+//            signup = findViewById(R.id.textView17);
+//            signup.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    finish();
+//                    startActivity(new Intent(Signin.this, SignUP.class));
+//                }
+//            });
+//        }catch (Exception e){
+//
+//        }
         try {
             Sign_in.setOnClickListener(new View.OnClickListener() {
                 @Override
