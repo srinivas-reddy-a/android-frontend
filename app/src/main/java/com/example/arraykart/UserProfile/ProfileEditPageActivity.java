@@ -124,8 +124,12 @@ public class ProfileEditPageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserUpdateResponse> call, Response<UserUpdateResponse> response) {
                 UserUpdateResponse responseBody = response.body();
-                Toast.makeText(ProfileEditPageActivity.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
-                finish();
+                if(response.isSuccessful()) {
+                    Toast.makeText(ProfileEditPageActivity.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+
+                }
 
             }
 

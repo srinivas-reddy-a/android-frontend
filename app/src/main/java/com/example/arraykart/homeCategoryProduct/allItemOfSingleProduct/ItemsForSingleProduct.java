@@ -80,13 +80,6 @@ public class ItemsForSingleProduct extends AppCompatActivity {
         String idb = getIntent().getStringExtra("idb");
         String nameB = getIntent().getStringExtra("nameB");
         gridViewProductNAme = findViewById(R.id.gridViewProductNAme);
-        if(name!=null) {
-            gridViewProductNAme.setText(name);
-        }else{
-            gridViewProductNAme.setText(nameB);
-        }
-
-
 
 
 
@@ -99,13 +92,10 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
 
                 if(response.isSuccessful()){
-                    try {
                         modelForSingleProducts = response.body().getProducts();
                         GridViewAdapter gridAdapter = new GridViewAdapter(getApplicationContext(), modelForSingleProducts);
                         gridView.setAdapter(gridAdapter);
-                    }catch (Exception e){
-                        Toast.makeText(ItemsForSingleProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                        gridAdapter.notifyDataSetChanged();
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -132,13 +122,9 @@ public class ItemsForSingleProduct extends AppCompatActivity {
             public void onResponse(Call<CategoryIdRespones> call, Response<CategoryIdRespones> response) {
 
                 if(response.isSuccessful()){
-                    try {
                         modelForSingleProducts = response.body().getProducts();
                         GridViewAdapter gridAdapter = new GridViewAdapter(getApplicationContext(), modelForSingleProducts);
                         gridView.setAdapter(gridAdapter);
-                    }catch (Exception e){
-                        Toast.makeText(ItemsForSingleProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -155,6 +141,13 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
             }
         });
+
+        if(name!=null) {
+            gridViewProductNAme.setText(name);
+        }else{
+            gridViewProductNAme.setText(nameB);
+        }
+
 
 
 

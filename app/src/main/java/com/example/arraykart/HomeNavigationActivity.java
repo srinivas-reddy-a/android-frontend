@@ -277,31 +277,20 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
                     /// this helps click on every item present in home_products_category and open new activity of all item_product
 
-                    try {
-                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-                            @Override
-                            public void onClickListener(int position) {
-//                                for (int i = 0; i < maiModel.size(); i++) {
-//                                    if (position == i-1) {
-//                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-//                                        in.putExtra("id",maiModel.get(position).getId());
-//                                        in.putExtra("image",maiModel.get(position).getImage());
-//                                        startActivity(in);
-//                                    }
-//                                }
-//                                if(position==maiModel.size()-1){
-//                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
-//                                }
-                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-                                in.putExtra("id",maiModel.get(position).getId());
-                                in.putExtra("image",maiModel.get(position).getImage());
-                                startActivity(in);
-                            }
-                        });
+//                    try {
+//                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+//                            @Override
+//                            public void onClickListener(int position) {
+//                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+//                                in.putExtra("id",maiModel.get(position).getId());
+//                                in.putExtra("image",maiModel.get(position).getImage());
+//                                startActivity(in);
+//                            }
+//                        });
 
-                    }catch(Exception e){
-
-                    }
+//                    }catch(Exception e){
+//
+//                    }
 
 //                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
 //                    recyclerView1.setAdapter(hAdapters);

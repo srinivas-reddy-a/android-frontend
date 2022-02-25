@@ -87,10 +87,10 @@ public class AddressFormActivity extends AppCompatActivity {
                     addressModels = response.body().getAddress();
                     if(!addressModels.isEmpty()){
                         it_default[0] ="0";
-                        savedAddress.setVisibility(View.GONE);
+//                        savedAddress.setVisibility(View.GONE);
                     }else {
                         it_default[0] = "1";
-                        savedAddress.setVisibility(View.VISIBLE);
+//                        savedAddress.setVisibility(View.VISIBLE);
                     }
                 }else{
                     try {

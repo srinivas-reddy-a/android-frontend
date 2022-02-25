@@ -22,6 +22,7 @@ import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.NotificationPage.NotificationAdapter;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
+import com.example.arraykart.SignUP;
 
 import org.json.JSONObject;
 
@@ -158,6 +159,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
         private TextView couponsApplied;
         private TextView productQuantity;
         private ConstraintLayout remove_item_btn;
+        private TextView add_wishList_cart_page,remove_item_btn_cartPage;
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -173,6 +175,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             remove_item_btn=itemView.findViewById(R.id.remove_item_btn);
             Add_quantity_cart = itemView.findViewById(R.id.Add_quantity_cart);
             mini_quantity_cart = itemView.findViewById(R.id.mini_quantity_cart);
+            remove_item_btn_cartPage = itemView.findViewById(R.id.remove_item_btn_cartPage);
+            add_wishList_cart_page = itemView.findViewById(R.id.add_wishList_cart_page);
 
             sharedPrefManager = new SharedPrefManager(itemView.getContext());
             String token = sharedPrefManager.getValue_string("token");
@@ -281,7 +285,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 
             }
             try{
-                remove_item_btn.setOnClickListener(new View.OnClickListener() {
+                remove_item_btn_cartPage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 //                        if (listener != null) {
@@ -298,6 +302,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                                 deleteWishListRespones deleteWishListRespones = response.body();
                                 if(response.isSuccessful()){
                                     cartItemModelList.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
                                     notifyDataSetChanged();
                                     Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
                                 }else {
@@ -323,7 +328,68 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             }catch (Exception e){
 
             }
+
+            add_wishList_cart_page.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ///wishlist
+                    String id = cartItemModelList.get(getAdapterPosition()).getId();
+                    String qty = productQuantity.getText().toString();
+                    Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+                    call.enqueue(new Callback<WishListAddRespones>() {
+                        @Override
+                        public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+                            WishListAddRespones wishListAddRespones = response.body();
+                            if (response.isSuccessful()) {
+                                String msg = wishListAddRespones.getMessage();
+
+                                Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteCartItem(token,id);
+                                callD.enqueue(new Callback<deleteWishListRespones>() {
+                                    @Override
+                                    public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                                        deleteWishListRespones deleteWishListRespones = response.body();
+                                        if(response.isSuccessful()){
+                                            cartItemModelList.remove(getAdapterPosition());
+                                            notifyItemRemoved(getAdapterPosition());
+                                            notifyDataSetChanged();
+                                            Toast.makeText(context, "Product Added to WishList", Toast.LENGTH_LONG).show();
+                                        }else {
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                                Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+
+                                            } catch (Exception e) {
+                                                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                                        Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+
+                            } else {
+                                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<WishListAddRespones> call, Throwable t) {
+                            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+
+
+//
         }
+
         private void cartItemDetail(String image,String title,String productPriceText,String qty){
             try {
 

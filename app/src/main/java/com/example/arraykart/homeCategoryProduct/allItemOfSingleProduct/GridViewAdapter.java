@@ -96,7 +96,23 @@ public class GridViewAdapter extends BaseAdapter {
 
             String token = sharedPrefManager.getValue_string("token");
 
-       // wishlist status
+
+            view.setTag(holder);
+
+            holder = (ViewHolders) view.getTag();
+
+//            cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
+            Glide.with(context.getApplicationContext())
+                    .load(modelForSingleProducts.get(position).getImgs())
+                    .centerInside()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.cImg);
+            holder.txt.setText(modelForSingleProducts.get(position).getName());
+            holder.prc.setText(modelForSingleProducts.get(position).getPrice());
+            holder.rb.setVisibility(View.GONE);
+            holder.rt.setVisibility(View.GONE);
+
+        // wishlist status
         if(userToken.contains("token")){
             String Id = modelForSingleProducts.get(position).getId();
             Call<CartUPdateRespones> callWishStatus = RetrofitClient.getInstance().getApi().getStatusWishList(token,Id);
@@ -123,86 +139,71 @@ public class GridViewAdapter extends BaseAdapter {
         }
 
         ///// wish list add and delete
-            wish.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(userToken.contains("token")) {
-                        String id = modelForSingleProducts.get(position).getId();
-                        String qty ="1";
-                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
-                        call.enqueue(new Callback<WishListAddRespones>() {
-                            @Override
-                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
-                                WishListAddRespones wishListAddRespones = response.body();
-                                if (response.isSuccessful()) {
-                                    String msg = wishListAddRespones.getMessage();
+        wish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userToken.contains("token")) {
+                    String id = modelForSingleProducts.get(position).getId();
+                    String qty ="1";
+                    Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+                    call.enqueue(new Callback<WishListAddRespones>() {
+                        @Override
+                        public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+                            WishListAddRespones wishListAddRespones = response.body();
+                            if (response.isSuccessful()) {
+                                String msg = wishListAddRespones.getMessage();
 
-                                    if(msg.contains("Product already exists in wish list!")){
-                                        //delete products from wishlist
-                                        wish.setChecked(false);
-                                        Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList("application/json",token,id);
-                                        callD.enqueue(new Callback<deleteWishListRespones>() {
-                                            @Override
-                                            public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
-                                                deleteWishListRespones deleteWishListRespones = response.body();
-                                                if (response.isSuccessful()){
-                                                    Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
-                                                }else {
-                                                    try {
-                                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                if(msg.contains("Product already exists in wish list!")){
+                                    //delete products from wishlist
+                                    wish.setChecked(false);
+                                    Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList("application/json",token,id);
+                                    callD.enqueue(new Callback<deleteWishListRespones>() {
+                                        @Override
+                                        public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                                            deleteWishListRespones deleteWishListRespones = response.body();
+                                            if (response.isSuccessful()){
+                                                Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                            }else {
+                                                try {
+                                                    JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                                    Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
 
-                                                    } catch (Exception e) {
-                                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    }
+                                                } catch (Exception e) {
+                                                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                                                 }
                                             }
+                                        }
 
-                                            @Override
-                                            public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                        @Override
+                                        public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                                            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
 
-
-                                    } else {
-                                        Toast.makeText(context, wishListAddRespones.getMessage(), Toast.LENGTH_LONG).show();
-                                        wish.setChecked(true);
-                                    }
 
                                 } else {
-                                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, wishListAddRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                    wish.setChecked(true);
                                 }
 
+                            } else {
+                                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
                             }
 
-                            @Override
-                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }else{
-                        Toast.makeText(getApplicationContext(), "SignUp First", Toast.LENGTH_SHORT).show();
-                        wish.setChecked(false);
-                    }
+                        }
 
+                        @Override
+                        public void onFailure(Call<WishListAddRespones> call, Throwable t) {
+                            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(getApplicationContext(), "SignUp First", Toast.LENGTH_SHORT).show();
+                    wish.setChecked(false);
                 }
-            });
 
-            view.setTag(holder);
-
-            holder = (ViewHolders) view.getTag();
-
-//            cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
-            Glide.with(context.getApplicationContext())
-                    .load(modelForSingleProducts.get(position).getImgs())
-                    .centerInside()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.cImg);
-            holder.txt.setText(modelForSingleProducts.get(position).getName());
-            holder.prc.setText(modelForSingleProducts.get(position).getPrice());
-            holder.rb.setVisibility(View.GONE);
-            holder.rt.setVisibility(View.GONE);
+            }
+        });
 
 //            if (position <= modelForSingleProducts.size()) {
 ////

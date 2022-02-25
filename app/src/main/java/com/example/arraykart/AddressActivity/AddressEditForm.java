@@ -17,6 +17,11 @@ import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,7 +85,7 @@ public class AddressEditForm extends AppCompatActivity {
             });
 
         }catch (Exception e){
-
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         UserAddAddress.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +104,17 @@ public class AddressEditForm extends AppCompatActivity {
                 callUpdate.enqueue(new Callback<AddressUpdateRespones>() {
                     @Override
                     public void onResponse(Call<AddressUpdateRespones> call, Response<AddressUpdateRespones> response) {
-                        Toast.makeText(AddressEditForm.this, "Edit Successfully", Toast.LENGTH_LONG).show();
-                        finish();
+                        if(response.isSuccessful()) {
+                            Toast.makeText(AddressEditForm.this, "Edit Successfully", Toast.LENGTH_LONG).show();
+                            finish();
+                        }else {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                Toast.makeText(AddressEditForm.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
 
                     @Override
