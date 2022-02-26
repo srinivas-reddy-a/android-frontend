@@ -198,11 +198,11 @@ public class UserProfileActivity extends AppCompatActivity {
                                 Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-                        startActivity(new Intent(UserProfileActivity.this,HomeNavigationActivity.class));
+                        finish();
                     }else {
                         signOut();
                     }
-                    finish();
+//                    finish();
 
                 }
             });

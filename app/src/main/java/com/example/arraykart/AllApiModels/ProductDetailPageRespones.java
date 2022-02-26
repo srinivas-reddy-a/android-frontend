@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProductDetailPageRespones {
     @SerializedName("product")
-    List<ProductDetailPageModel> product;
+    private List<ProductDetailPageModel> product;
 
     public ProductDetailPageRespones(List<ProductDetailPageModel> product) {
         this.product = product;

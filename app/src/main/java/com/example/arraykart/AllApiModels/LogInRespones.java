@@ -2,8 +2,8 @@ package com.example.arraykart.AllApiModels;
 
 public class LogInRespones {
 
-    String id;
-    String message ;
+    private String id;
+    private String message ;
 
     public LogInRespones(String id, String message) {
         this.id = id;

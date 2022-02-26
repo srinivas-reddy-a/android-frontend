@@ -81,7 +81,7 @@
 
     <EditText
         android:id="@+id/Sign_in_page_otp"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:background="@drawable/rounded_corners"
@@ -90,11 +90,11 @@
         android:drawableLeft="@drawable/ic_baseline_message_24"
         android:drawablePadding="10dp"
         android:textColorHint="@color/white"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:padding="15sp"
         android:textColor="#ffffff"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/Sign_in_page_email"
         app:layout_constraintStart_toStartOf="@+id/Sign_in_page_email"
@@ -168,7 +168,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/sign_in_button"
+            android:id="@+id/sign_in_google"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_margin="10dp"

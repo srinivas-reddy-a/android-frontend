@@ -1,7 +1,7 @@
 package com.example.arraykart.AllApiModels;
 
 public class AddressDeleteRespones {
-    String message;
+    private String message;
 
     public AddressDeleteRespones(String message) {
         this.message = message;

@@ -5,7 +5,7 @@ import com.example.arraykart.AddressActivity.AddressModel;
 import java.util.List;
 
 public class GetAddressRespones {
-    List<AddressModel> address;
+    private List<AddressModel> address;
 
     public GetAddressRespones(List<AddressModel> address) {
         this.address = address;

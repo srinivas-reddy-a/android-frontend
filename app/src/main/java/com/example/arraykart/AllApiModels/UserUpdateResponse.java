@@ -1,8 +1,8 @@
 package com.example.arraykart.AllApiModels;
 
 public class UserUpdateResponse {
-    String user;
-    String message;
+    private String user;
+    private String message;
 
     public UserUpdateResponse(String user, String message) {
         this.user = user;

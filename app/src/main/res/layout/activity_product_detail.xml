@@ -94,10 +94,10 @@
             app:layout_constraintStart_toStartOf="parent">
             <ImageView
                 android:id="@+id/close_address_Prouct_detail_page"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="340dp"
-                app:srcCompat="@drawable/ic_baseline_close_24"
+                app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
 
                 />
             <LinearLayout
@@ -116,87 +116,90 @@
 
         </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/cart_on_product_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:padding="10sp"
+                    android:text="ADD TO CART"
+                    android:textSize="@dimen/heading_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/cart_on_product_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#FFFFFF"
-                        android:padding="10sp"
-                        android:text="ADD TO CART"
-                        android:textSize="@dimen/heading_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="DuplicateClickableBoundsCheck" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/go_cart_on_product_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:padding="10sp"
+                    android:text="Go to cart"
+                    android:textSize="@dimen/heading_size"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="DuplicateClickableBoundsCheck" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/go_cart_on_product_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#FFFFFF"
-                        android:padding="10sp"
-                        android:text="Go to cart"
-                        android:visibility="gone"
-                        android:textSize="@dimen/heading_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="DuplicateClickableBoundsCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <Button
+                    android:id="@+id/buy_on_product_detail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:backgroundTint="@color/green"
+                    android:text="BUY NOW"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/heading_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
 
-                    <Button
-                        android:id="@+id/buy_on_product_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/green"
-                        android:text="BUY NOW"
-                        android:textColor="@color/heading"
-                        android:textSize="@dimen/heading_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextContrastCheck" />
-
-                    <Button
-                        android:id="@+id/delivery_continue_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/green"
-                        android:text="Place Order"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/heading"
-                        android:textSize="@dimen/heading_size"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="TextContrastCheck" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+                <Button
+                    android:id="@+id/delivery_continue_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/green"
+                    android:text="Place Order"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/heading_size"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

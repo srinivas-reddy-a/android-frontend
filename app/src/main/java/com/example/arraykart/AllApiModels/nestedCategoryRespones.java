@@ -5,7 +5,7 @@ import com.example.arraykart.homeCategoryProduct.nestedModel;
 import java.util.List;
 
 public class nestedCategoryRespones {
-    List<nestedModel> categories;
+    private List<nestedModel> categories;
 
     public nestedCategoryRespones(List<nestedModel> categories) {
         this.categories = categories;

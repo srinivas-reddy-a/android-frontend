@@ -1,9 +1,9 @@
 package com.example.arraykart.AllApiModels;
 
 public class LogInOtpRespones {
-    UserId user ;
-    String token;
-    String msg;
+    private UserId user ;
+    private String token;
+    private String msg;
 
     public LogInOtpRespones(String token, String msg,UserId user) {
         this.token = token;

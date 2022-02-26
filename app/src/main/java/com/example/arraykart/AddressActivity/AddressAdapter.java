@@ -202,34 +202,34 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                     public void onClick(View v) {
                         String id = addressModelList.get(position).getId();
                         String token = sharedPrefManager.getValue_string("token");
-                        if (allReadySelected != position) {
-                            addressModelList.get(position).setSelected("0");
-                            addressModelList.get(allReadySelected).setSelected("0");
-                            refreshAddress(allReadySelected, position);
-                            allReadySelected = position;
+//                        if (allReadySelected != position) {
+//                            addressModelList.get(position).setSelected("0");
+//                            addressModelList.get(allReadySelected).setSelected("0");
+//                            refreshAddress(allReadySelected, position);
+//                            allReadySelected = position;
 
-                            Call<ResponseBody> callSelect = RetrofitClient.getInstance().getApi().SelectAddress(token,id);
-                            callSelect.enqueue(new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if(response.isSuccessful()) {
-                                        Toast.makeText(context.getApplicationContext(), "selected successfully", Toast.LENGTH_LONG).show();
-                                    }else {
-                                        try {
-                                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                                            Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-                                        } catch (JSONException | IOException e) {
-                                            e.printStackTrace();
-                                        }
+                        Call<ResponseBody> callSelect = RetrofitClient.getInstance().getApi().SelectAddress(token,id);
+                        callSelect.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(context.getApplicationContext(), "selected successfully", Toast.LENGTH_LONG).show();
+                                }else {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException | IOException e) {
+                                        e.printStackTrace();
                                     }
                                 }
+                            }
 
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+//                        }
                     }
                 });
 

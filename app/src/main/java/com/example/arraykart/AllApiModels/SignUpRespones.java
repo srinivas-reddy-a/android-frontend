@@ -1,8 +1,8 @@
 package com.example.arraykart.AllApiModels;
 
 public class SignUpRespones {
-    String err;
-    String message;
+    private String err;
+    private String message;
 
     public SignUpRespones(String err, String message) {
         this.err = err;

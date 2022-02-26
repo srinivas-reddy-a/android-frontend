@@ -149,20 +149,7 @@ public class SignUP extends AppCompatActivity {
             }
         });
 
-        //google access
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
+       createGoogleRequest();
 
         // Set the dimensions of the sign-in button.
         ImageView signInButton = findViewById(R.id.sign_in_button);
@@ -186,6 +173,7 @@ public class SignUP extends AppCompatActivity {
             signUpUserNumber.setError("please enter you name");
             return;
         }
+        String otp = signUpUserOtp.getText().toString();
 //        if(userEmail.isEmpty()){
 //            signUpUserEmail.requestFocus();
 //            signUpUserEmail.setError("please enter you email");
@@ -222,7 +210,12 @@ public class SignUP extends AppCompatActivity {
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            registerOtp();
+                            if(otp.isEmpty()){
+                                signUpUserOtp.requestFocus();
+                                signUpUserOtp.setError("please enter otp first");
+                                return;
+                            }
+                            registerOtp(userNumber);
                             signUpUserOtp.setVisibility(View.GONE);
                             submit.setVisibility(View.GONE);
                             signupbtn.setVisibility(View.VISIBLE);
@@ -250,14 +243,14 @@ public class SignUP extends AppCompatActivity {
         });
     }
 
-    private void registerOtp(){
-        String userNumber = signUpUserNumber.getText().toString();
+    private void registerOtp(String userNumber){
+//        String userNumber = signUpUserNumber.getText().toString();
         String otp = signUpUserOtp.getText().toString();
-        if(userNumber.isEmpty()){
-            signUpUserNumber.requestFocus();
-            signUpUserNumber.setError("please enter you number");
-            return;
-        }
+//        if(userNumber.isEmpty()){
+//            signUpUserNumber.requestFocus();
+//            signUpUserNumber.setError("please enter you number");
+//            return;
+//        }
         if(otp.isEmpty()){
             signUpUserOtp.requestFocus();
             signUpUserOtp.setError("please enter otp first");
@@ -302,9 +295,61 @@ public class SignUP extends AppCompatActivity {
     }
 
 
+    ////google sign
+    private void createGoogleRequest(){
+        //google access
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
-    //facebook
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        //updateUI(account);
+    }
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if (acct != null) {
+//                String personName = acct.getDisplayName();
+//                String personGivenName = acct.getGivenName();
+//                String personFamilyName = acct.getFamilyName();
+//                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+//                Uri personPhoto = acct.getPhotoUrl();
+
+//                Toast.makeText(this, personId, Toast.LENGTH_SHORT).show();
+//                sharedPrefManager.setValue_string("token", personId);
+
+            }
+            finish();
+
+            // Signed in successfully, show authenticated UI.
+            //updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+//            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+//            updateUI(null);
+            Log.d("message",e.toString());
+        }
+    }
+
+    /////google sign
+
+    /////facebook
     GraphRequest request1;
 
     private void handleFacebookToken(AccessToken token){
@@ -315,7 +360,7 @@ public class SignUP extends AppCompatActivity {
             String UName = profile.getName();
             String uLastName = profile.getId();
 
-            signUpUserNumber.setText(UName);
+//            Sign_in_page_email.setText(UName);
 
             request1 = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
                 @Override
@@ -344,11 +389,11 @@ public class SignUP extends AppCompatActivity {
 
         }
     }
-//    public void logIn(View view){
-//        LoginManager.getInstance().logInWithReadPermissions(this,
-//                Arrays.asList("public_profile", "email", "user_birthday")
-//        );
-//    }
+    public void logIn(View view){
+        LoginManager.getInstance().logInWithReadPermissions(this,
+                Arrays.asList("public_profile", "email", "user_birthday")
+        );
+    }
     public void onClick(View v) {
         if (v == fb) {
             loginButton.performClick();
@@ -358,6 +403,10 @@ public class SignUP extends AppCompatActivity {
             );
         }
     }
+
+    //facebook
+
+  //// for facebook and google
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -376,57 +425,18 @@ public class SignUP extends AppCompatActivity {
         }
     }
 
-    private void nextActivity(Profile profile){
-        if(profile != null){
-            Intent i = new Intent(SignUP.this, UserProfileActivity.class);
-            i.putExtra("name", profile.getFirstName());
-            i.putExtra("surname", profile.getLastName());
-            //i.putExtra("email", profile.get());
-            i.putExtra("imageUrl",
-                    profile.getProfilePictureUri(200,200).toString());
-            startActivity(i);
-            //finish();
-        }
-    }
-
-    ////google
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-            if (acct != null) {
-                String personName = acct.getDisplayName();
-                String personGivenName = acct.getGivenName();
-                String personFamilyName = acct.getFamilyName();
-                String personEmail = acct.getEmail();
-                String personId = acct.getId();
-                Uri personPhoto = acct.getPhotoUrl();
-//                String token = account.getServerAuthCode();
-//
-//                sharedPrefManager.setValue_string("id",personId);
-//
-//                Toast.makeText(this, personId, Toast.LENGTH_SHORT).show();
-
-            }
-            startActivity(new Intent(SignUP.this,HomeNavigationActivity.class));
-
-            // Signed in successfully, show authenticated UI.
-            //updateUI(account);
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-//            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-//            updateUI(null);
-            Log.d("message",e.toString());
-        }
-    }
-
+    //    private void nextActivity(Profile profile){
+//        if(profile != null){
+//            Intent i = new Intent(Signin.this, UserProfileActivity.class);
+//            i.putExtra("name", profile.getFirstName());
+//            i.putExtra("surname", profile.getLastName());
+//            //i.putExtra("email", profile.get());
+//            i.putExtra("imageUrl",
+//                    profile.getProfilePictureUri(200,200).toString());
+//            startActivity(i);
+//            //finish();
+//        }
+//    }
     @Override
     protected void onStart() {
         super.onStart();

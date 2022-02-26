@@ -1,7 +1,7 @@
 package com.example.arraykart.AllApiModels;
 
 public class LogInIdRespones {
-    User user;
+    private User user;
 
     public LogInIdRespones(User user) {
         this.user = user;

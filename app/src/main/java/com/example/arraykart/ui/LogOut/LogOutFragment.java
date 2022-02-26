@@ -2,6 +2,7 @@ package com.example.arraykart.ui.LogOut;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -72,7 +73,7 @@ public class LogOutFragment extends Fragment {
                     Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-            startActivity(new Intent(getContext(), HomeNavigationActivity.class));
+            ((Activity)getActivity()).finish();
             //signOut();
         }else {
             Toast.makeText(getContext(), "SignUp First", Toast.LENGTH_SHORT).show();
