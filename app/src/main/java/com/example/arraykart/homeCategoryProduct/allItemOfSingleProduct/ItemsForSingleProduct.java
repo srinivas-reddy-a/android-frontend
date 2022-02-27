@@ -63,7 +63,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
     private Chip chip1;
     ///filter fo page
 
-    List<ModelForSingleProduct> modelForSingleProducts;
+    private List<ModelForSingleProduct> modelForSingleProducts;
     private TextView searchAllProducts;
 
     @Override

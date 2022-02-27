@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Arraykart"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MyOrder.OrderPlacedPage"
+            android:exported="false" />
+        <activity
             android:name=".AddressActivity.AddressEditForm"
             android:exported="false" />
         <activity

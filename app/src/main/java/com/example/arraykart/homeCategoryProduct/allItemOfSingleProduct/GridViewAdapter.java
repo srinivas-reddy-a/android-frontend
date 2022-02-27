@@ -42,7 +42,7 @@ import retrofit2.Response;
 
 public class GridViewAdapter extends BaseAdapter {
     Context context;
-    List<ModelForSingleProduct> modelForSingleProducts;
+    private List<ModelForSingleProduct> modelForSingleProducts;
     SharedPrefManager sharedPrefManager = new SharedPrefManager(getApplicationContext());
     SharedPreferences userToken = getApplicationContext().getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
@@ -227,6 +227,7 @@ public class GridViewAdapter extends BaseAdapter {
                     in.putExtra("id",modelForSingleProducts.get(position).getId());
                     in.putExtra("qlt","1");
                     in.putExtra("image",modelForSingleProducts.get(position).getImgs());
+                    in.putExtra("price",modelForSingleProducts.get(position).getPrice());
                     in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(in);
                 }

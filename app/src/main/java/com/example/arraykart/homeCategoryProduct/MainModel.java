@@ -4,12 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class MainModel {
-    String id ;
-    String name;
-    String price;
+    private String id ;
+    private String name;
+    private String price;
     @SerializedName("image")
     @Expose
-    String image;
+    private String image;
 
     public MainModel(String id, String name, String price, String image) {
         this.id = id;

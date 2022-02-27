@@ -110,6 +110,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout2">
 
                 <include layout="@layout/quility_inc_dec_layout"/>
+                <include layout="@layout/payment_layout"/>
                 <include layout="@layout/shipping_details_layout" />
 
             </LinearLayout>

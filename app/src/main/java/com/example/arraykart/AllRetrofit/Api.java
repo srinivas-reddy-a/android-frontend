@@ -173,8 +173,9 @@ public interface Api {
     ///orders api
     @FormUrlEncoded
     @POST("/api/order/")
-    Call<ResponseBody>OrderInsert(@Field("total") String total,
-                                  @Field("address_id") String address_id
+    Call<deleteWishListRespones>orderAdd( @Header("Authorization") String Authorization,
+                                @Field("total") String total,
+                                @Field("address_id") String address_id
     );
 
     @FormUrlEncoded

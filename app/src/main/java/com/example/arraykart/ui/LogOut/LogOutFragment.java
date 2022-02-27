@@ -73,7 +73,6 @@ public class LogOutFragment extends Fragment {
                     Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-            ((Activity)getActivity()).finish();
             //signOut();
         }else {
             Toast.makeText(getContext(), "SignUp First", Toast.LENGTH_SHORT).show();

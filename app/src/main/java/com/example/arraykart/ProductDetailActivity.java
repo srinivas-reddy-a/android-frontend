@@ -40,6 +40,7 @@ import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.MyOrder.OrderPlacedPage;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingAdapter;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingModel;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailPageModel;
@@ -74,9 +75,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private CarouselView carouselView;
     private TextView striketextView;
-    List<ProductDetailPageModel> product;
-    String im;
-    String[] si;
+    private List<ProductDetailPageModel> product;
+    private String im;
+    private String[] si;
 //    private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
     ///rating layout
     private LinearLayout linearLayout,MoreDetailButton;
@@ -127,11 +128,13 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
 
-    ImageView Add_quantity_product_page,mini_quantity_product_page,productImageQualityLayout;
-    TextView product_quantity_text_product_detail_page;
+    private ImageView Add_quantity_product_page,mini_quantity_product_page,productImageQualityLayout;
+    private TextView product_quantity_text_product_detail_page;
     ///shipping address
-    TextView shoppingDetailName,shoppingDetailAddress,textView6;
-    List<AddressModel> addressModels;
+    private TextView shoppingDetailName,shoppingDetailAddress,textView6;
+    private List<AddressModel> addressModels;
+
+    String AddId ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -500,6 +503,13 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         carouselView.setImageListener(imageListener);
 
+        delivery_continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orederPlaced(AddId,token,id,imgs);
+            }
+        });
+
 
     }
 
@@ -543,6 +553,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         CartAll();
 
     }
+
     private  void CartAll(){
         ///cart status
 
@@ -808,6 +819,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     addressModels = getSelectedAddressRespones.getAddress();
                     if(!addressModels.isEmpty()) {
                         shoppingDetailName.setText(addressModels.get(0).getAddress_name());
+                        AddId = addressModels.get(0).getId();
                         add1[0] = addressModels.get(0).getAddress_line1();
                         add2[0] = addressModels.get(0).getAddress_line2();
                         state[0] = addressModels.get(0).getState();
@@ -818,6 +830,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         shoppingDetailName.setText("Full Name");
                         textView6.setText("PinCode");
                         shoppingDetailAddress.setText("Full Address");
+                        AddId = "null";
                     }
 
                 }
@@ -829,5 +842,60 @@ public class ProductDetailActivity extends AppCompatActivity {
             });
         }else {
         }
+    }
+
+    private void  orederPlaced(String AddIds,String token,String id,String imgs){
+        String qty = product_quantity_text_product_detail_page.getText().toString();
+        String price = getIntent().getStringExtra("price");
+        int t = Integer.parseInt(qty)*Integer.parseInt(price);;
+        String total = Integer.toString(t);
+        if(!AddIds.contains("null")){
+            Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token,total,AddIds);
+            callOrder.enqueue(new Callback<deleteWishListRespones>() {
+                @Override
+                public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                    deleteWishListRespones deleteWishListRespones = response.body();
+                    if(response.isSuccessful()){
+                        String order_id = deleteWishListRespones.getMessage();
+                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty);
+                        callDetail.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()){
+                                    Intent in = new Intent(ProductDetailActivity.this, OrderPlacedPage.class);
+                                    in.putExtra("page","pd");
+                                    in.putExtra("id",id);
+                                    in.putExtra("qlt",qty);
+                                    in.putExtra("image",imgs);
+                                    in.putExtra("total",total);
+                                    in.putExtra("order_id",order_id);
+                                    in.putExtra("Add",AddIds);
+                                    in.putExtra("name",pdProductName.getText().toString());
+                                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(in);
+                                    ProductDetailPageAddressShow.setVisibility(View.GONE);
+                                    delivery_continue_btn.setVisibility(View.GONE);
+                                    buy_on_product_detail.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }else{
+            Toast.makeText(this, "Please Add you Address First", Toast.LENGTH_LONG).show();
+        }
+
     }
 }

@@ -73,7 +73,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView UserEmail;
 
     SharedPrefManager sharedPrefManager;
-    List<User> users;
+    private List<User> users;
 
 
     @Override

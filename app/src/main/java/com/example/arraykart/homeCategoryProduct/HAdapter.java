@@ -113,6 +113,7 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
                         in.putExtra("id",mainModel.get(getAdapterPosition()).getId());
                         in.putExtra("qlt","1");
                         in.putExtra("image",mainModel.get(getAdapterPosition()).getImage());
+                        in.putExtra("price",mainModel.get(getAdapterPosition()).getPrice());
                         in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(in);
 
