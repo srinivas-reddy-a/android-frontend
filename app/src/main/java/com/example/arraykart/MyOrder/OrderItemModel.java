@@ -1,47 +1,72 @@
 package com.example.arraykart.MyOrder;
 
 public class OrderItemModel {
-    private int productImage;
-    private int rating;
-    private String productTitle;
-    private String deliveryStatus;
+    private String order_id;
+    private String products_id;
+    private String quantity;
+    private String delivery_date;
+    private String delivery_type;
+    private String address_id;
 
-    public OrderItemModel(int productImage, int rating, String productTitle, String deliveryStatus) {
-        this.productImage = productImage;
-        this.rating = rating;
-        this.productTitle = productTitle;
-        this.deliveryStatus = deliveryStatus;
+//    private int rating;
+//    private String productTitle;
+//    private String deliveryStatus;
+
+
+    public OrderItemModel(String order_id, String products_id, String quantity, String delivery_date, String delivery_type, String address_id) {
+        this.order_id = order_id;
+        this.products_id = products_id;
+        this.quantity = quantity;
+        this.delivery_date = delivery_date;
+        this.delivery_type = delivery_type;
+        this.address_id = address_id;
     }
 
-    public int getProductImage() {
-        return productImage;
+    public String getOrder_id() {
+        return order_id;
     }
 
-    public void setProductImage(int productImage) {
-        this.productImage = productImage;
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 
-    public int getRating() {
-        return rating;
+    public String getProducts_id() {
+        return products_id;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setProducts_id(String products_id) {
+        this.products_id = products_id;
     }
 
-    public String getProductTitle() {
-        return productTitle;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setProductTitle(String productTitle) {
-        this.productTitle = productTitle;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
-    public String getDeliveryStatus() {
-        return deliveryStatus;
+    public String getDelivery_date() {
+        return delivery_date;
     }
 
-    public void setDeliveryStatus(String deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
+    public void setDelivery_date(String delivery_date) {
+        this.delivery_date = delivery_date;
+    }
+
+    public String getDelivery_type() {
+        return delivery_type;
+    }
+
+    public void setDelivery_type(String delivery_type) {
+        this.delivery_type = delivery_type;
+    }
+
+    public String getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(String address_id) {
+        this.address_id = address_id;
     }
 }

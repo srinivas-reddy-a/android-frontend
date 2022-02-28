@@ -1,5 +1,7 @@
 package com.example.arraykart.MyCart;
 
+import retrofit2.http.Field;
+
 public class CartItemModel {
 
 //    public static final int CART_ITEM = 0;
@@ -21,18 +23,20 @@ public class CartItemModel {
     private  String image ;
     private String price;
     private String quantity;
+    private String volume;
 //    private int freeCoupons;
 //    private String cuttedPerice;
 //    private int productQuantity;
 //    private int offersApplied;
 //    private int couponApplied;
 
-    public CartItemModel(String id, String name, String image, String price,String quantity) {
+    public CartItemModel(String id, String name, String image, String price,String quantity,String volume) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.price = price;
         this.quantity= quantity;
+        this.volume = volume;
     }
 
     public String getId() {
@@ -75,6 +79,14 @@ public class CartItemModel {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
     }
 
     // ///cart item

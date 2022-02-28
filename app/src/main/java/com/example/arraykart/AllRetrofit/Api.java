@@ -23,6 +23,8 @@ import com.example.arraykart.AllApiModels.UserUpdateResponse;
 import com.example.arraykart.AllApiModels.AddressFormRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
+import com.example.arraykart.AllApiModels.getOrderRespones;
+import com.example.arraykart.AllApiModels.getProductsRespones;
 import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.AllApiModels.getWishListRespones;
 import com.example.arraykart.AllApiModels.nestedCategoryRespones;
@@ -101,6 +103,11 @@ public interface Api {
     @GET("/api/user/address/default/")
     Call<getSelectedAddressRespones>getSelectedAddress(@Header("Authorization") String Authorization);
 
+
+    @GET("/api/user/address/{id}")
+    Call<getSelectedAddressRespones> getAddressId(@Header("Authorization") String Authorization,
+                                                  @Path("id") String id);
+
     @FormUrlEncoded
     @PUT("/api/user/address/")
     Call<AddressUpdateRespones>updateAddress(
@@ -154,8 +161,9 @@ public interface Api {
     @GET("/api/product/category/")
     Call<nestedCategoryRespones>productsCategory();
 
-    @GET("/api/product/:id/")
-    Call<ResponseBody>productId();
+    @GET("/api/product/{id}/")
+    Call<getProductsRespones>productId(@Header("Authorization") String Authorization,
+                                       @Path("id") String id);
 
     @GET("/api/product/category/:id/")
     Call<ResponseBody>productCategoryId();
@@ -182,8 +190,12 @@ public interface Api {
     @POST("/api/order/detail/")
     Call<ResponseBody>OrderDetail(@Field("order_id") String order_id,
                                   @Field("product_id") String product_id,
-                                  @Field("quantity") String quantity
+                                  @Field("quantity") String quantity,
+                                  @Field("volume") String volume
     );
+
+    @GET("/api/order/")
+    Call<getOrderRespones>getOrder(@Header("Authorization") String Authorization);
 
     @GET("/api/order/:id/")
     Call<ResponseBody>orderId();
@@ -196,12 +208,16 @@ public interface Api {
     @POST("/api/cart/")
     Call<CartAddRespones>addToCart(@Header("Authorization") String Authorization,
                                    @Field("product_id") String product_id,
-                                   @Field("quantity") String quantity
+                                   @Field("quantity") String quantity,
+                                   @Field("volume") String volume
     );
 
+    @FormUrlEncoded
     @POST("/api/cart/status/{id}/")
     Call<CartUPdateRespones> getStatusCart(@Header("Authorization") String Authorization,
-                                     @Path("id") String product_id);
+                                           @Path("id") String product_id,
+                                           @Field("volume") String volume
+    );
 
     @GET("/api/cart/")
     Call<GetCartRespones>getCartItem(@Header("Authorization") String Authorization);
@@ -210,7 +226,18 @@ public interface Api {
     @PUT("/api/cart/")
     Call<CartUPdateRespones>updateCart(@Header("Authorization") String Authorization,
                                        @Field("product_id") String product_id,
-                                       @Field("quantity") String quantity
+                                       @Field("quantity") String quantity,
+                                       @Field("currentVolume") String currentVolume,
+                                       @Field("updatedVolume") String updatedVolume
+    );
+
+    @FormUrlEncoded
+    @PUT("/api/cart/")
+    Call<CartUPdateRespones>volumeUpdate(@Header("Authorization") String Authorization,
+                                         @Field("product_id") String product_id,
+                                         @Field("quantity") String quantity,
+                                         @Field("currentVolume") String currentVolume,
+                                         @Field("updatedVolume") String updatedVolume
     );
 
     @DELETE("/api/cart/{id}")

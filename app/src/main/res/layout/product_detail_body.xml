@@ -55,6 +55,36 @@
                 android:textSize="@dimen/heading_size" />
 
             <LinearLayout
+                android:id="@+id/spinnerLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
+                android:background="@color/smokeWhite"
+                android:padding="2dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volume"
+                    android:padding="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:textColor="@color/text"
+                    android:textSize="16dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

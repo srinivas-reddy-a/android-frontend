@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
@@ -16,10 +17,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,9 +80,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     private CarouselView carouselView;
     private TextView striketextView;
     private List<ProductDetailPageModel> product;
-    private String im;
+
     private String[] si;
-//    private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
     ///rating layout
     private LinearLayout linearLayout,MoreDetailButton;
     private List<Integer> list;
@@ -134,7 +137,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView shoppingDetailName,shoppingDetailAddress,textView6;
     private List<AddressModel> addressModels;
 
-    String AddId ;
+    private Spinner spinner;
+    private String AddId ;
+    private String vl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +152,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra("id");
         String qlty = getIntent().getStringExtra("qlt");
         String imgs = getIntent().getStringExtra("image");
+        String valume = getIntent().getStringExtra("volume");
 
 
         ProductDetailPageAddressShow = findViewById(R.id.ProductDetailPageAddressShow);
@@ -170,6 +176,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         wishListProductsDetail = findViewById(R.id.wishListProductsDetail);
         cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
         go_cart_on_product_detail= findViewById(R.id.go_cart_on_product_detail);
+        spinner = findViewById(R.id.spinner);
 
         ////ShippingAddress
 
@@ -474,6 +481,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                     yo= product.get(0).getImage();
                     si = yo.split(",");
                     carouselView.setPageCount(si.length);
+                    String sp = product.get(0).getVolume();
+                    String[] volume;
+                    volume = sp.split(",");
+                    volume(volume);
 
                 }catch (Exception e){
                     Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -511,6 +522,28 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
+    }
+    private void volume(String[] volume){
+
+        ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,android.R.layout.simple_spinner_item,volume);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    vl = (String) parent.getItemAtPosition(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void showOffersBottomSheetDialog() {
@@ -561,6 +594,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String token = sharedPrefManager.getValue_string("token");
 
         String id = getIntent().getStringExtra("id");
+        String valume = getIntent().getStringExtra("volume");
 
         ///cart icon clicklistener
         cart_product_detail_page = findViewById(R.id.cart_product_detail_page);
@@ -580,7 +614,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
         if(userToken.contains("token")) {
-            Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token, id);
+            if(vl==null){
+                vl = "1kg";
+            }
+            Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token, id,vl);
             callStatus.enqueue(new Callback<CartUPdateRespones>() {
                 @Override
                 public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
@@ -620,7 +657,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 // api call for add cart
                 SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                 if(userToken.contains("token")) {
-                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty);
+                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty , vl);
                     callC.enqueue(new Callback<CartAddRespones>() {
                         @Override
                         public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
@@ -857,7 +894,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                     deleteWishListRespones deleteWishListRespones = response.body();
                     if(response.isSuccessful()){
                         String order_id = deleteWishListRespones.getMessage();
-                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty);
+                        if(vl==null){
+                            vl = "1kg";
+                        }
+                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty,vl);
                         callDetail.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

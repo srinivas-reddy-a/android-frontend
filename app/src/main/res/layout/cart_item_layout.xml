@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/product_image"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -240,22 +240,24 @@
 
     <ImageView
         android:id="@+id/Add_quantity_cart"
-        android:layout_width="35dp"
-        android:layout_height="0dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="6dp"
         app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
         app:layout_constraintStart_toEndOf="@+id/product_quantity"
         app:layout_constraintTop_toTopOf="@+id/product_quantity"
-        app:srcCompat="@drawable/ic_baseline_control_point" />
+        app:srcCompat="@drawable/ic_baseline_control_point"
+        app:tint="@color/green"/>
 
     <ImageView
         android:id="@+id/mini_quantity_cart"
-        android:layout_width="35dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
         app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="@+id/product_quantity"
-        app:srcCompat="@drawable/ic_baseline_mini" />
+        app:srcCompat="@drawable/ic_baseline_mini"
+        app:tint="@color/green" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

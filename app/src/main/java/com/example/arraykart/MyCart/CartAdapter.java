@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.arraykart.AllApiModels.CartUPdateRespones;
+import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.NotificationPage.NotificationAdapter;
+import com.example.arraykart.ProductDetailAboutListing.ProductDetailPageModel;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 import com.example.arraykart.SignUP;
@@ -38,6 +43,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
     private List<CartItemModel> cartItemModelList;
 
     SharedPrefManager sharedPrefManager;
+
+    private List<ProductDetailPageModel> product;
 
 
 //    private OnItemClickListeners cListener;
@@ -133,13 +140,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position) {
         String resource = cartItemModelList.get(position).getImage();
         String title = cartItemModelList.get(position).getName();
+        String id = cartItemModelList.get(position).getId();
 //        int freeCoupon = cartItemModelList.get(position).getFreeCoupons();
         String productPrice = cartItemModelList.get(position).getPrice();
         String productQuantity = cartItemModelList.get(position).getQuantity();
 //        String cuttedPrice = cartItemModelList.get(position).getCuttedPerice();
-//        int offerApplied = cartItemModelList.get(position).getOffersApplied();
-
+//        int offerApplied = cartItemModelList.get(position).getOffersApplied()
         holder.cartItemDetail(resource,title,productPrice,productQuantity);
+
 
     }
 
@@ -178,8 +186,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             remove_item_btn_cartPage = itemView.findViewById(R.id.remove_item_btn_cartPage);
             add_wishList_cart_page = itemView.findViewById(R.id.add_wishList_cart_page);
 
+
             sharedPrefManager = new SharedPrefManager(itemView.getContext());
             String token = sharedPrefManager.getValue_string("token");
+
 
             try{
                 Add_quantity_cart.setOnClickListener(new View.OnClickListener() {
@@ -193,13 +203,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 
 //            api call to update cart quantity
                         String id = cartItemModelList.get(getAdapterPosition()).getId();
-                        Call<CartUPdateRespones> callU = RetrofitClient.getInstance().getApi().updateCart(token,id,nATxt);
+                        Call<CartUPdateRespones> callU = RetrofitClient.getInstance().getApi().updateCart(token,id,nATxt,cartItemModelList.get(getAdapterPosition()).getVolume(),cartItemModelList.get(getAdapterPosition()).getVolume());
                         callU.enqueue(new Callback<CartUPdateRespones>() {
                             @Override
                             public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
                                  CartUPdateRespones cartUPdateRespones = response.body();
                                 if (response.isSuccessful()) {
-//                                    Toast.makeText(context, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -238,7 +248,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 
 //      api call to update cart quantity
                         String id = cartItemModelList.get(getAdapterPosition()).getId();
-                        Call<CartUPdateRespones> callU = RetrofitClient.getInstance().getApi().updateCart(token,id,nSTxt);
+                        Call<CartUPdateRespones> callU = RetrofitClient.getInstance().getApi().updateCart(token,id,nSTxt,cartItemModelList.get(getAdapterPosition()).getVolume(),cartItemModelList.get(getAdapterPosition()).getVolume());
                         callU.enqueue(new Callback<CartUPdateRespones>() {
                             @Override
                             public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
@@ -277,6 +287,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                         i.putExtra("id",cartItemModelList.get(getAdapterPosition()).getId());
                         i.putExtra("qlt",productQuantity.getText().toString());
                         i.putExtra("image",cartItemModelList.get(getAdapterPosition()).getImage());
+                        i.putExtra("volume",cartItemModelList.get(getAdapterPosition()).getVolume());
                         itemView.getContext().startActivity(i);
                     }
                 });
@@ -387,6 +398,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                     });
                 }
             });
+
+
+
+
 
 
 //

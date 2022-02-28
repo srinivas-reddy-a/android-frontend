@@ -265,7 +265,7 @@ public class MyCartFragment extends Fragment {
                     if(response.isSuccessful()){
                         String order_id = deleteWishListRespones.getMessage();
                         for (int i = 0;i<cartItemModelList.size();i++) {
-                            Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, cartItemModelList.get(i).getId(),  cartItemModelList.get(i).getQuantity());
+                            Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, cartItemModelList.get(i).getId(),  cartItemModelList.get(i).getQuantity(),cartItemModelList.get(i).getVolume());
                             callDetail.enqueue(new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
