@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:visibility="gone"
         android:padding="5sp"
         android:text="cost/kg"
         android:textColor="@color/heading"
@@ -33,6 +34,7 @@
         android:layout_marginTop="5dp"
         android:padding="20sp"
         android:paddingStart="10dp"
+        android:visibility="gone"
         app:chipSpacing="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,32 +108,33 @@
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100" />
+            android:text="100-200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip7"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="200" />
+            android:text="200-300" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip8"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="300" />
+            android:text="300-400" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip9"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="400" />
+            android:text="upto 500" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip10"
             style="@style/CustomChipStyle"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="500" />

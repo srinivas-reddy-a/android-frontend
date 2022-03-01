@@ -1,6 +1,8 @@
 package com.example.arraykart.MyCart;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -305,34 +307,52 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 //                                listener.onDeleteClick(position);
 //                            }
 //                        }
-                        String id = cartItemModelList.get(getAdapterPosition()).getId();
-                        Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteCartItem(token,id);
-                        callD.enqueue(new Callback<deleteWishListRespones>() {
-                            @Override
-                            public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
-                                deleteWishListRespones deleteWishListRespones = response.body();
-                                if(response.isSuccessful()){
-                                    cartItemModelList.remove(getAdapterPosition());
-                                    notifyItemRemoved(getAdapterPosition());
-                                    notifyDataSetChanged();
-                                    Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
-                                }else {
-                                    try {
-                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                        AlertDialog alg = new AlertDialog.Builder(context)
+                                .setTitle("Message")
+                                .setMessage("Are you sure ?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        String id = cartItemModelList.get(getAdapterPosition()).getId();
+                                        Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteCartItem(token,id);
+                                        callD.enqueue(new Callback<deleteWishListRespones>() {
+                                            @Override
+                                            public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                                                deleteWishListRespones deleteWishListRespones = response.body();
+                                                if(response.isSuccessful()){
+                                                    cartItemModelList.remove(getAdapterPosition());
+                                                    notifyItemRemoved(getAdapterPosition());
+                                                    notifyDataSetChanged();
+                                                    Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                                }else {
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                                        Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
 
 
-                                    } catch (Exception e) {
-                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    } catch (Exception e) {
+                                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                })
+                                .create();
+                        alg.show();
 
                     }
                 });
@@ -451,6 +471,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 
         }
 
+    }
+
+    private void alert(String message){
+        AlertDialog alg = new AlertDialog.Builder(context)
+                .setTitle("Message")
+                .setMessage(message)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .create();
+        alg.show();
     }
 
 //    class CartTotalAmountViewHolder extends  RecyclerView.ViewHolder{

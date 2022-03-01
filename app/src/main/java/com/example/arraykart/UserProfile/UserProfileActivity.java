@@ -183,6 +183,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if(user_token.contains("token")){
                         sharedPrefManager.clear();
+                        sharedPrefManager.setValue_string("GPS","gps");
 
 
                         Call<LogOutRespones> callOut = RetrofitClient.getInstance().getApi().logout(token);

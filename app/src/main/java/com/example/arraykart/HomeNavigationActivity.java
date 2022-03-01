@@ -2,13 +2,16 @@ package com.example.arraykart;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -139,17 +142,22 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     //banner slider on home page
     MenuItem id;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
 
-        checkPermission();
-
         SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
         sharedPrefManager = new SharedPrefManager(this);
+
+
+        if(!user_token.contains("GPS")){
+            checkPermission();
+        }
+
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -244,7 +252,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     if(user_token.contains("token")) {
                         startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
                     }else {
-                        Toast.makeText(HomeNavigationActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeNavigationActivity.this,SignUP.class));
                     }
                 }
 
@@ -260,7 +268,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     if(user_token.contains("token")) {
                         startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
                     }else {
-                        Toast.makeText(HomeNavigationActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeNavigationActivity.this,SignUP.class));
                     }
                 }
             }
@@ -416,7 +424,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
                     startActivity(in);
                 }else{
-                    Toast.makeText(HomeNavigationActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeNavigationActivity.this,MYCartActivity.class));
                 }
             }
         });
@@ -830,12 +838,25 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                                         int index = locationResult.getLocations().size() - 1 ;
                                         double latitude = locationResult.getLocations().get(index).getLatitude();
                                         double longitude = locationResult.getLocations().get(index).getLongitude();
-                                        Toast.makeText(HomeNavigationActivity.this, latitude +" , " + longitude, Toast.LENGTH_LONG).show();
+                                        sharedPrefManager.setValue_string("GPS","gps");
+
+                                        float[] results = new float[1];
+                                        Location.distanceBetween(latitude, longitude, 27.8899595, 78.0989536, results);
+                                        float distanceInMeters = results[0];
+                                        boolean isWithinRange = distanceInMeters < 30000;
+
+
+                                        if (isWithinRange) {
+
+                                        }else {
+                                            alert("we are not servicing in your area we will reach you soon");
+                                        }
                                     }
                                 }
                             }, Looper.getMainLooper());
                 }else {
                     turnOnGPS();
+                    sharedPrefManager.setValue_string("GPS","gps");
                 }
             }else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
@@ -891,5 +912,19 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         return isEnabled ;
 
+    }
+
+    private void alert(String message){
+        AlertDialog alg = new AlertDialog.Builder(HomeNavigationActivity.this)
+                .setTitle("Sorry!!!!")
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alg.show();
     }
 }
