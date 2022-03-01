@@ -57,6 +57,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             String qty = orderItemModels.get(position).getQuantity();
             String productId = orderItemModels.get(position).getProducts_id();
             String deliveryStatus = orderItemModels.get(position).getDelivery_date();
+            String volume = orderItemModels.get(position).getVolume();
             final String[] title = new String[1];
             final String[] resource = new String[1];
 
@@ -94,6 +95,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                     i.putExtra("addId",addId);
                     i.putExtra("productId",productId);
                     i.putExtra("qty",qty);
+                    i.putExtra("volume",volume);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }

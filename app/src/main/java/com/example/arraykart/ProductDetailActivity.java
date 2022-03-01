@@ -134,7 +134,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ImageView Add_quantity_product_page,mini_quantity_product_page,productImageQualityLayout;
     private TextView product_quantity_text_product_detail_page;
     ///shipping address
-    private TextView shoppingDetailName,shoppingDetailAddress,textView6;
+    private TextView shoppingDetailName,shoppingDetailAddress,textView6,selected_volume;
     private List<AddressModel> addressModels;
 
     private Spinner spinner;
@@ -177,6 +177,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
         go_cart_on_product_detail= findViewById(R.id.go_cart_on_product_detail);
         spinner = findViewById(R.id.spinner);
+        selected_volume = findViewById(R.id.selected_volume);
 
         ////ShippingAddress
 
@@ -535,7 +536,40 @@ public class ProductDetailActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    vl = (String) parent.getItemAtPosition(position);
+                vl = (String) parent.getItemAtPosition(position);
+                selected_volume.setText(vl);
+                String token = sharedPrefManager.getValue_string("token");
+
+                String ids= getIntent().getStringExtra("id");
+                Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token,ids,selected_volume.getText().toString());
+                callStatus.enqueue(new Callback<CartUPdateRespones>() {
+                    @Override
+                    public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                        CartUPdateRespones cartUPdateRespones = response.body();
+                        if (response.isSuccessful()) {
+                            String str = cartUPdateRespones.getMessage();
+                            if (str.contains("Product already exists in cart!")) {
+                                cart_on_product_detail.setVisibility(View.GONE);
+                                go_cart_on_product_detail.setVisibility(View.VISIBLE);
+                                go_cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+                                    }
+                                });
+
+                            }
+                        }else {
+                            cart_on_product_detail.setVisibility(View.VISIBLE);
+                            go_cart_on_product_detail.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
 
@@ -614,10 +648,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
         if(userToken.contains("token")) {
-            if(vl==null){
-                vl = "1kg";
-            }
-            Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token, id,vl);
+
+            Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token, id,selected_volume.getText().toString());
             callStatus.enqueue(new Callback<CartUPdateRespones>() {
                 @Override
                 public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
@@ -657,7 +689,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 // api call for add cart
                 SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                 if(userToken.contains("token")) {
-                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty , vl);
+                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty , selected_volume.getText().toString());
                     callC.enqueue(new Callback<CartAddRespones>() {
                         @Override
                         public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
@@ -894,10 +926,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     deleteWishListRespones deleteWishListRespones = response.body();
                     if(response.isSuccessful()){
                         String order_id = deleteWishListRespones.getMessage();
-                        if(vl==null){
-                            vl = "1kg";
-                        }
-                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty,vl);
+                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty,selected_volume.getText().toString());
                         callDetail.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

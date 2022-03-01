@@ -38,7 +38,8 @@ public class OrderDetail extends AppCompatActivity {
     private ConstraintLayout detail_container;
 
     private TextView searchOrderDetail,order_detail_productTitle,order_detail_productPrice,
-            order_detail_productQuantity,shoppingDetailName,shoppingDetailAddress,textView6,total_item,total_item_price,saved_price;
+            order_detail_productQuantity,shoppingDetailName,shoppingDetailAddress,textView6,total_item,total_item_price,saved_price
+            ,selected_volume;
 
     private List<AddressModel> addressModels;
 
@@ -63,11 +64,15 @@ public class OrderDetail extends AppCompatActivity {
         total_item_price = findViewById(R.id.total_item_price);
         total_item = findViewById(R.id.total_item);
         saved_price = findViewById(R.id.saved_price);
+        selected_volume = findViewById(R.id.selected_volume);
 
         String order_id = getIntent().getStringExtra("order_id");
         String addId = getIntent().getStringExtra("addId");
         String productId = getIntent().getStringExtra("productId");
         String qty = getIntent().getStringExtra("qty");
+        String volume = getIntent().getStringExtra("volume");
+
+        selected_volume.setText(volume);
 
         ShippingAddress(Token,addId);
 

@@ -103,12 +103,13 @@
             android:textColor="@color/text"
             android:textSize="16dp"/>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            />
+      <TextView
+          android:id="@+id/selected_volume"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="2kg"
+          android:textSize="@dimen/heading_size"
+          android:textColor="@color/text"/>
 
     </LinearLayout>
 

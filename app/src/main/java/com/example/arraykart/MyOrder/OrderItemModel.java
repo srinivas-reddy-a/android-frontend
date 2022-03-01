@@ -7,19 +7,21 @@ public class OrderItemModel {
     private String delivery_date;
     private String delivery_type;
     private String address_id;
+    private String volume;
 
 //    private int rating;
 //    private String productTitle;
 //    private String deliveryStatus;
 
 
-    public OrderItemModel(String order_id, String products_id, String quantity, String delivery_date, String delivery_type, String address_id) {
+    public OrderItemModel(String order_id, String products_id, String quantity, String delivery_date, String delivery_type, String address_id,String volume) {
         this.order_id = order_id;
         this.products_id = products_id;
         this.quantity = quantity;
         this.delivery_date = delivery_date;
         this.delivery_type = delivery_type;
         this.address_id = address_id;
+        this.volume = volume;
     }
 
     public String getOrder_id() {
@@ -68,5 +70,13 @@ public class OrderItemModel {
 
     public void setAddress_id(String address_id) {
         this.address_id = address_id;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
     }
 }
