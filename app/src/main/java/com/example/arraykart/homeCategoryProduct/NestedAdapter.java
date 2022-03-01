@@ -61,7 +61,7 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 
         MoreCotegoryModel nestedModel = nestedModelss.get(position);
 
-        holder.nested_category_name.setText(nestedModel.getName() +"Products");
+        holder.nested_category_name.setText(nestedModel.getName());
 
         String name = nestedModel.getName();
 
