@@ -468,6 +468,7 @@
             android:id="@+id/ReviewRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -478,6 +479,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:visibility="gone"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="3dp"
@@ -508,6 +510,7 @@
             android:layout_marginTop="10dp"
             android:elevation="5dp"
             android:background="#FDFBFB"
+            android:visibility="gone"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
