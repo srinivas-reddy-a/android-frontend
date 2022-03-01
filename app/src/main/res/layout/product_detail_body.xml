@@ -152,6 +152,7 @@
                     android:layout_weight="1"
                     android:padding="5sp"
                     android:text="₹___"
+                    android:visibility="gone"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text_size" />
                 <TextView
@@ -180,6 +181,7 @@
                     android:layout_weight="1"
                     android:padding="5sp"
                     android:text="20% off"
+                    android:visibility="gone"
                     android:textColor="#2874F0"
                     android:textSize="@dimen/heading_size" />
             </LinearLayout>
@@ -192,6 +194,7 @@
             android:layout_marginBottom="20sp"
             android:layout_weight="1"
             android:elevation="5sp"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <TextView

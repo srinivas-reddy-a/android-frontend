@@ -21,7 +21,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="12dp"
             android:drawableTint="@color/green"
-            android:text="CASE  ON  DELIVERY"
+            android:text="CASH  ON  DELIVERY"
             android:textColor="@color/green"
             android:textSize="20dp" />
 
