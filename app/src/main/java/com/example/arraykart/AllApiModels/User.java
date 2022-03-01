@@ -2,10 +2,10 @@ package com.example.arraykart.AllApiModels;
 
 public class User {
 
-    String id ;
-    String name;
-    String phone_number;
-    String email;
+    private String id ;
+    private String name;
+    private String phone_number;
+    private String email;
 
     public User(String id, String name, String phone_number, String email) {
         this.id = id;

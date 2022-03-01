@@ -1,19 +1,19 @@
 package com.example.arraykart.AllApiModels;
 
 public class UserUpdateResponse {
-    UserId user;
-    String message;
+    private String user;
+    private String message;
 
-    public UserUpdateResponse(UserId user, String message) {
+    public UserUpdateResponse(String user, String message) {
         this.user = user;
         this.message = message;
     }
 
-    public UserId getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(UserId user) {
+    public void setUser(String user) {
         this.user = user;
     }
 

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class HomeAllCategoryAdapter extends RecyclerView.Adapter<HomeAllCategoryAdapter.ViewHolder> {
 
-    List<MoreCotegoryModel> homeAllCategoryModels;
+    private List<MoreCotegoryModel> homeAllCategoryModels;
 
     private OnItemClickListener mListener;
 

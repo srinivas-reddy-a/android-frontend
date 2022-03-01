@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CategoryIdRespones {
 
-    List<ModelForSingleProduct> products;
+   private List<ModelForSingleProduct> products;
 
     public CategoryIdRespones(List<ModelForSingleProduct> modelForSingleProducts) {
         this.products = modelForSingleProducts;

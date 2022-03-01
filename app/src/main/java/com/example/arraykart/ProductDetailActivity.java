@@ -1,11 +1,13 @@
 package com.example.arraykart;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
@@ -15,10 +17,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,14 +31,20 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.arraykart.AddressActivity.AddressModel;
 import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.CartAddRespones;
+import com.example.arraykart.AllApiModels.CartUPdateRespones;
 import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
+import com.example.arraykart.AllApiModels.deleteWishListRespones;
+import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
+import com.example.arraykart.AllApiModels.getWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
+import com.example.arraykart.MyOrder.OrderPlacedPage;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingAdapter;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailListingModel;
 import com.example.arraykart.ProductDetailAboutListing.ProductDetailPageModel;
@@ -43,6 +54,8 @@ import com.example.arraykart.RatingReviewPage.ReviewAdapter;
 import com.example.arraykart.RatingReviewPage.ReviewModel;
 import com.example.arraykart.SearchPage.SearchPageActivity;
 import com.example.arraykart.WishList.WishListActivity;
+import com.example.arraykart.WishList.WishListAdapter;
+import com.example.arraykart.WishList.WishListModel;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
@@ -66,10 +79,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private CarouselView carouselView;
     private TextView striketextView;
-    List<ProductDetailPageModel> product;
-    String im;
-    String[] si;
-    private int[] sampleImages = {R.drawable.img, R.drawable.img, R.drawable.img, R.drawable.img};
+    private List<ProductDetailPageModel> product;
+
+    private String[] si;
     ///rating layout
     private LinearLayout linearLayout,MoreDetailButton;
     private List<Integer> list;
@@ -105,7 +117,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ImageView closeBsdOffers2;
 
     ///buttons on product detail page
-    private Button cart_on_product_detail,buy_on_product_detail,changeAddress,delivery_continue_btn;
+    private Button cart_on_product_detail,buy_on_product_detail,changeAddress,delivery_continue_btn,go_cart_on_product_detail;
 
     //review for this page
     private RecyclerView ReviewRecyclerView;
@@ -114,12 +126,20 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TextView MoreReview,pdProductName,productDetailPagePrice,listDetail,listDetail1,listDetail2;
 
     private CheckBox wishListProductsDetail;
+    private List<WishListModel> wishListModelList ;
     SharedPrefManager sharedPrefManager;
 
 
 
-    ImageView Add_quantity_product_page,mini_quantity_product_page,productImageQualityLayout;
-    TextView product_quantity_text_product_detail_page;
+    private ImageView Add_quantity_product_page,mini_quantity_product_page,productImageQualityLayout;
+    private TextView product_quantity_text_product_detail_page;
+    ///shipping address
+    private TextView shoppingDetailName,shoppingDetailAddress,textView6,selected_volume;
+    private List<AddressModel> addressModels;
+
+    private Spinner spinner;
+    private String AddId ;
+    private String vl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +152,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra("id");
         String qlty = getIntent().getStringExtra("qlt");
         String imgs = getIntent().getStringExtra("image");
-
-
-//        String im = product.get(0).getImage();
-//        String[] si = im.split(",");
-
+        String valume = getIntent().getStringExtra("volume");
 
 
         ProductDetailPageAddressShow = findViewById(R.id.ProductDetailPageAddressShow);
@@ -157,6 +173,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         mini_quantity_product_page = findViewById(R.id.mini_quantity_product_page);
         product_quantity_text_product_detail_page = findViewById(R.id.product_quantity_text_product_detail_page);
         productImageQualityLayout = findViewById(R.id.productImageQualityLayout);
+        wishListProductsDetail = findViewById(R.id.wishListProductsDetail);
+        cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
+        go_cart_on_product_detail= findViewById(R.id.go_cart_on_product_detail);
+        spinner = findViewById(R.id.spinner);
+        selected_volume = findViewById(R.id.selected_volume);
+
+        ////ShippingAddress
+
+        ShippingAddress();
+
+        //////////
 
         if(qlty!=null) {
             product_quantity_text_product_detail_page.setText(qlty);
@@ -209,7 +236,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
 
-        String qty = product_quantity_text_product_detail_page.getText().toString();
+        //String qty = product_quantity_text_product_detail_page.getText().toString();
 
 
         ////////////////
@@ -307,15 +334,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 //        recyclerView.setAdapter(hAdapter);
         ///recyclerView for products in productdetailpage
 
-        ///cart icon clicklistener
-        cart_product_detail_page = findViewById(R.id.cart_product_detail_page);
-        cart_product_detail_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(ProductDetailActivity.this, AllReviewActivity.class);
-                startActivity(in);
-            }
-        });
 
 
         //product detail offers clicklistener
@@ -335,50 +353,28 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
-        ///buttons on product detail page
-        try {
-            cart_on_product_detail = findViewById(R.id.cart_on_product_detail);
-            cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // api call for add cart
-                    SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
-                    if(userToken.contains("token")) {
-                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty);
-                        callC.enqueue(new Callback<CartAddRespones>() {
-                            @Override
-                            public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
-                                if (response.isSuccessful()) {
-                                    CartAddRespones cartAddRespones = response.body();
-                                    Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
-                                }
-                            }
+       /////cart ////
+        CartAll();
+        /////cart///
 
-                            @Override
-                            public void onFailure(Call<CartAddRespones> call, Throwable t) {
-                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-//                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
-                    }else{
-                        Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }catch (Exception e){
+        ///WishLIst///
+        WishList();
+        ///WishList///
 
-        }
         try{
             buy_on_product_detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeAddress.setVisibility(View.VISIBLE);
-                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-                    buy_on_product_detail.setVisibility(View.GONE);
-                    delivery_continue_btn.setVisibility(View.VISIBLE);
+                    SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                    if(userToken.contains("token")) {
+                        changeAddress.setVisibility(View.VISIBLE);
+                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                        buy_on_product_detail.setVisibility(View.GONE);
+                        delivery_continue_btn.setVisibility(View.VISIBLE);
 //                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                    }else {
+                        startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
+                    }
 
                 }
             });
@@ -442,73 +438,13 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         }
 
-        //review layout
-        try{
-            ReviewRecyclerView = findViewById(R.id.ReviewRecyclerView);
-            LinearLayoutManager layoutManagers = new LinearLayoutManager(this);
-            layoutManagers.setOrientation(LinearLayoutManager.VERTICAL);
-            ReviewRecyclerView.setLayoutManager(layoutManagers);
+        ////review page
 
-            reviewModelList = new ArrayList<>();
-            reviewModelList.add(new ReviewModel("4.4","Cool Product",
-                    "hbvashbdjajdvbaschbjjacjacjjascjavscj a cjabcjavdab " +
-                            "d acj ajscdja dqochqwdb qjhd jhavc cjhs jaca cjhac dvbasjca " +
-                            " cjha sjcajc a cujhascb jc ahcjackwdbiwdb " +
-                            " wdi bxbxibISX  sx     djb dbuscbxhhxAXB   DDQ WKJDJBB WDKKw","sachin jha","noia","Jan,2021" ));
+        reviewAll();
 
-            reviewAdapter = new ReviewAdapter(reviewModelList);
-            ReviewRecyclerView.setAdapter(reviewAdapter);
-            reviewAdapter.notifyDataSetChanged();
-        }catch (Exception e){
+        /////////
 
-        }
-        try{
-           MoreReview = findViewById(R.id.MoreReview);
-           MoreReview.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   startActivity(new Intent(ProductDetailActivity.this,AllReviewActivity.class));
-               }
-           });
-        }catch (Exception e){
-
-        }
-
-//        call for add product in wishlist.
-        try{
-            wishListProductsDetail = findViewById(R.id.wishListProductsDetail);
-            wishListProductsDetail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
-                    if(userToken.contains("token")) {
-                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
-                        call.enqueue(new Callback<WishListAddRespones>() {
-                            @Override
-                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
-                                WishListAddRespones wishListAddRespones = response.body();
-                                if (response.isSuccessful()) {
-                                    Toast.makeText(ProductDetailActivity.this, wishListAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
-                                }else {
-                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }else{
-                        Toast.makeText(ProductDetailActivity.this, "SignUp First", Toast.LENGTH_SHORT).show();
-                        wishListProductsDetail.setChecked(false);
-                    }
-                }
-            });
-        }catch (Exception e){
-
-        }
+////
 
 //        //productDetailListing
 //        try {
@@ -546,6 +482,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                     yo= product.get(0).getImage();
                     si = yo.split(",");
                     carouselView.setPageCount(si.length);
+                    String sp = product.get(0).getVolume();
+                    String[] volume;
+                    volume = sp.split(",");
+                    volume(volume);
 
                 }catch (Exception e){
                     Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -575,7 +515,69 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         carouselView.setImageListener(imageListener);
 
+        delivery_continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orederPlaced(AddId,token,id,imgs);
+            }
+        });
 
+
+
+
+
+
+    }
+    private void volume(String[] volume){
+
+        ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,android.R.layout.simple_spinner_item,volume);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                vl = (String) parent.getItemAtPosition(position);
+                selected_volume.setText(vl);
+                String token = sharedPrefManager.getValue_string("token");
+
+                String ids= getIntent().getStringExtra("id");
+                Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token,ids,selected_volume.getText().toString());
+                callStatus.enqueue(new Callback<CartUPdateRespones>() {
+                    @Override
+                    public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                        CartUPdateRespones cartUPdateRespones = response.body();
+                        if (response.isSuccessful()) {
+                            String str = cartUPdateRespones.getMessage();
+                            if (str.contains("Product already exists in cart!")) {
+                                cart_on_product_detail.setVisibility(View.GONE);
+                                go_cart_on_product_detail.setVisibility(View.VISIBLE);
+                                go_cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+                                    }
+                                });
+
+                            }
+                        }else {
+                            cart_on_product_detail.setVisibility(View.VISIBLE);
+                            go_cart_on_product_detail.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void showOffersBottomSheetDialog() {
@@ -602,4 +604,367 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public boolean supportShouldUpRecreateTask(@NonNull Intent targetIntent) {
+        return super.supportShouldUpRecreateTask(targetIntent);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        ///shipping address
+        ShippingAddress();
+
+        /////cart page
+        CartAll();
+
+    }
+
+    private  void CartAll(){
+        ///cart status
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+
+        String id = getIntent().getStringExtra("id");
+        String valume = getIntent().getStringExtra("volume");
+
+        ///cart icon clicklistener
+        cart_product_detail_page = findViewById(R.id.cart_product_detail_page);
+        cart_product_detail_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                if(userToken.contains("token")) {
+                    Intent in = new Intent(ProductDetailActivity.this, MYCartActivity.class);
+                    startActivity(in);
+                }else{
+                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
+                }
+            }
+        });
+
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
+        if(userToken.contains("token")) {
+
+            Call<CartUPdateRespones> callStatus = RetrofitClient.getInstance().getApi().getStatusCart(token, id,selected_volume.getText().toString());
+            callStatus.enqueue(new Callback<CartUPdateRespones>() {
+                @Override
+                public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                    CartUPdateRespones cartUPdateRespones = response.body();
+                    if (response.isSuccessful()) {
+                        String str = cartUPdateRespones.getMessage();
+                        if (str.contains("Product already exists in cart!")) {
+                            cart_on_product_detail.setVisibility(View.GONE);
+                            go_cart_on_product_detail.setVisibility(View.VISIBLE);
+                            go_cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+                                }
+                            });
+
+                        }
+                    }else {
+                        cart_on_product_detail.setVisibility(View.VISIBLE);
+                        go_cart_on_product_detail.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        ///buttons on product detail page
+
+        cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String qty = product_quantity_text_product_detail_page.getText().toString();
+                // api call for add cart
+                SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+                if(userToken.contains("token")) {
+                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty , selected_volume.getText().toString());
+                    callC.enqueue(new Callback<CartAddRespones>() {
+                        @Override
+                        public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
+                            if (response.isSuccessful()) {
+                                CartAddRespones cartAddRespones = response.body();
+                                Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                String str = cartAddRespones.getMessage();
+                                if(str.contains("Successfully added!")) {
+                                    cart_on_product_detail.setVisibility(View.GONE);
+                                    go_cart_on_product_detail.setVisibility(View.VISIBLE);
+                                    go_cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            startActivity(new Intent(ProductDetailActivity.this, MYCartActivity.class));
+                                        }
+                                    });
+                                }
+                            } else {
+                                Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<CartAddRespones> call, Throwable t) {
+                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+//                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
+                }else{
+                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
+                }
+            }
+        });
+
+    }
+
+    private void WishList(){
+
+        String id = getIntent().getStringExtra("id");
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
+//        wishlist status
+        if(userToken.contains("token")){
+            Call<CartUPdateRespones> callWishStatus = RetrofitClient.getInstance().getApi().getStatusWishList(token,id);
+            callWishStatus.enqueue(new Callback<CartUPdateRespones>() {
+                @Override
+                public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                    CartUPdateRespones cartUPdateRespones = response.body();
+                    if(response.isSuccessful()){
+                        String wstr = cartUPdateRespones.getMessage();
+                        if(wstr.contains("Product already exists in wishlist!")){
+                            wishListProductsDetail.setChecked(true);
+                        }
+                    }else {
+                        wishListProductsDetail.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+
+//    call for add product in wishlist
+        wishListProductsDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String qty = product_quantity_text_product_detail_page.getText().toString();
+                if(userToken.contains("token")) {
+
+                    Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+                    call.enqueue(new Callback<WishListAddRespones>() {
+                        @Override
+                        public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+                            WishListAddRespones wishListAddRespones = response.body();
+                            if (response.isSuccessful()) {
+                                String msg = wishListAddRespones.getMessage();
+
+                                if(msg.contains("Product already exists in wish list!")){
+                                    //delete products from wishlist
+                                    wishListProductsDetail.setChecked(false);
+                                    Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList("application/json",token,id);
+                                    callD.enqueue(new Callback<deleteWishListRespones>() {
+                                        @Override
+                                        public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                                            deleteWishListRespones deleteWishListRespones = response.body();
+                                            if (response.isSuccessful()){
+                                                Toast.makeText(ProductDetailActivity.this, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                            }else {
+                                                try {
+                                                    JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                                    Toast.makeText(ProductDetailActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                                                } catch (Exception e) {
+                                                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+                                } else {
+                                    Toast.makeText(ProductDetailActivity.this, wishListAddRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                    wishListProductsDetail.setChecked(true);
+                                }
+
+                            } else {
+                                Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<WishListAddRespones> call, Throwable t) {
+                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+//
+                }else{
+                    wishListProductsDetail.setChecked(false);
+                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
+                }
+            }
+        });
+    }
+
+    private void reviewAll(){
+        //review layout
+        try{
+            ReviewRecyclerView = findViewById(R.id.ReviewRecyclerView);
+            LinearLayoutManager layoutManagers = new LinearLayoutManager(this);
+            layoutManagers.setOrientation(LinearLayoutManager.VERTICAL);
+            ReviewRecyclerView.setLayoutManager(layoutManagers);
+
+            reviewModelList = new ArrayList<>();
+            reviewModelList.add(new ReviewModel("4.4","Cool Product",
+                    "hbvashbdjajdvbaschbjjacjacjjascjavscj a cjabcjavdab " +
+                            "d acj ajscdja dqochqwdb qjhd jhavc cjhs jaca cjhac dvbasjca " +
+                            " cjha sjcajc a cujhascb jc ahcjackwdbiwdb " +
+                            " wdi bxbxibISX  sx     djb dbuscbxhhxAXB   DDQ WKJDJBB WDKKw","sachin jha","noia","Jan,2021" ));
+
+            reviewAdapter = new ReviewAdapter(reviewModelList);
+            ReviewRecyclerView.setAdapter(reviewAdapter);
+            reviewAdapter.notifyDataSetChanged();
+        }catch (Exception e){
+
+        }
+        try{
+            MoreReview = findViewById(R.id.MoreReview);
+            MoreReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ProductDetailActivity.this,AllReviewActivity.class));
+                }
+            });
+        }catch (Exception e){
+
+        }
+    }
+
+    private void ShippingAddress(){
+        ///shipping address
+
+
+        sharedPrefManager = new SharedPrefManager(this);
+        String token = sharedPrefManager.getValue_string("token");
+
+        shoppingDetailName = findViewById(R.id.shoppingDetailName);
+        shoppingDetailAddress = findViewById(R.id.shoppingDetailAddress);
+        textView6 = findViewById(R.id.textView6);
+        final String[] add1 = new String[1];
+        final String[] add2 = new String[1];
+        final String[] city = new String[1];
+        final String[] state = new String[1];
+
+        SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+        if(userToken.contains("token")) {
+            Call<getSelectedAddressRespones> callSelectedAddress = RetrofitClient.getInstance().getApi().getSelectedAddress(token);
+            callSelectedAddress.enqueue(new Callback<getSelectedAddressRespones>() {
+                @Override
+                public void onResponse(Call<getSelectedAddressRespones> call, Response<getSelectedAddressRespones> response) {
+                    getSelectedAddressRespones getSelectedAddressRespones = response.body();
+                    addressModels = getSelectedAddressRespones.getAddress();
+                    if(!addressModels.isEmpty()) {
+                        shoppingDetailName.setText(addressModels.get(0).getAddress_name());
+                        AddId = addressModels.get(0).getId();
+                        add1[0] = addressModels.get(0).getAddress_line1();
+                        add2[0] = addressModels.get(0).getAddress_line2();
+                        state[0] = addressModels.get(0).getState();
+                        city[0] = addressModels.get(0).getCity();
+                        textView6.setText(addressModels.get(0).getPostal_code());
+                        shoppingDetailAddress.setText(add1[0] + "," + add2[0] + "," + state[0] + "," + city[0]);
+                    }else {
+                        shoppingDetailName.setText("Full Name");
+                        textView6.setText("PinCode");
+                        shoppingDetailAddress.setText("Full Address");
+                        AddId = "null";
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<getSelectedAddressRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+        }
+    }
+
+    private void  orederPlaced(String AddIds,String token,String id,String imgs){
+        String qty = product_quantity_text_product_detail_page.getText().toString();
+        String price = getIntent().getStringExtra("price");
+        int t = Integer.parseInt(qty)*Integer.parseInt(price);;
+        String total = Integer.toString(t);
+        if(!AddIds.contains("null")){
+            Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token,total,AddIds);
+            callOrder.enqueue(new Callback<deleteWishListRespones>() {
+                @Override
+                public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                    deleteWishListRespones deleteWishListRespones = response.body();
+                    if(response.isSuccessful()){
+                        String order_id = deleteWishListRespones.getMessage();
+                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty,selected_volume.getText().toString());
+                        callDetail.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if(response.isSuccessful()){
+                                    Intent in = new Intent(ProductDetailActivity.this, OrderPlacedPage.class);
+                                    in.putExtra("page","pd");
+                                    in.putExtra("id",id);
+                                    in.putExtra("qlt",qty);
+                                    in.putExtra("image",imgs);
+                                    in.putExtra("total",total);
+                                    in.putExtra("order_id",order_id);
+                                    in.putExtra("Add",AddIds);
+                                    in.putExtra("name",pdProductName.getText().toString());
+                                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(in);
+                                    ProductDetailPageAddressShow.setVisibility(View.GONE);
+                                    delivery_continue_btn.setVisibility(View.GONE);
+                                    buy_on_product_detail.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }else{
+            Toast.makeText(this, "Please Add you Address First", Toast.LENGTH_LONG).show();
+        }
+
+    }
 }

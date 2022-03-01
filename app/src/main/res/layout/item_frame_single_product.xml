@@ -40,7 +40,7 @@
             android:id="@+id/wishListSingleProducts"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:button="@drawable/ic_baseline_favorite_border_gray_24"
+            android:button="@drawable/selector_wishlist_heart"
             app:layout_constraintEnd_toEndOf="@+id/gridImage"
             app:layout_constraintTop_toBottomOf="@+id/gridImage"
             app:useMaterialThemeColors="false"

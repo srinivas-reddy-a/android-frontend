@@ -9,11 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.arraykart.AllApiModels.getOrderRespones;
+import com.example.arraykart.AllRetrofit.RetrofitClient;
+import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -62,6 +70,8 @@ public class MyOrderFragment extends Fragment {
 //        }
 //    }
     private RecyclerView orderRecyclerView;
+    SharedPrefManager sharedPrefManager;
+    private List<OrderItemModel> orderItemModelList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,16 +83,38 @@ public class MyOrderFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         orderRecyclerView.setLayoutManager(layoutManager);
+        sharedPrefManager = new SharedPrefManager(getContext());
+        String token = sharedPrefManager.getValue_string("token");
 
-        List<OrderItemModel> orderItemModelList = new ArrayList<>();
-        orderItemModelList.add(new OrderItemModel(R.drawable.img,2,"product name","Delivered on MM/DD/YY"));
-        orderItemModelList.add(new OrderItemModel(R.drawable.img,1,"product name","Canceled"));
-        orderItemModelList.add(new OrderItemModel(R.drawable.img,0,"product name","Delivered on MM/DD/YY"));
-        orderItemModelList.add(new OrderItemModel(R.drawable.img,0,"product name","Canceled"));
+//        orderItemModelList.add(new OrderItemModel(R.drawable.img,2,"product name","Delivered on MM/DD/YY"));
+//        orderItemModelList.add(new OrderItemModel(R.drawable.img,1,"product name","Canceled"));
+//        orderItemModelList.add(new OrderItemModel(R.drawable.img,0,"product name","Delivered on MM/DD/YY"));
+//        orderItemModelList.add(new OrderItemModel(R.drawable.img,0,"product name","Canceled"));
 
-        OrderAdapter orderAdapter = new OrderAdapter(orderItemModelList);
-        orderRecyclerView.setAdapter(orderAdapter);
-        orderAdapter.notifyDataSetChanged();
+
+
+        Call<getOrderRespones> call = RetrofitClient.getInstance().getApi().getOrder(token);
+        call.enqueue(new Callback<getOrderRespones>() {
+            @Override
+            public void onResponse(Call<getOrderRespones> call, Response<getOrderRespones> response) {
+                getOrderRespones getOrderRespones = response.body();
+                if(response.isSuccessful()){
+                    orderItemModelList = getOrderRespones.getProducts();
+                    OrderAdapter orderAdapter = new OrderAdapter(getContext(),orderItemModelList);
+                    orderRecyclerView.setAdapter(orderAdapter);
+                    orderAdapter.notifyDataSetChanged();
+
+                }else {
+                    Toast.makeText(getContext(), "err", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<getOrderRespones> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         return view ;

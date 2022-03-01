@@ -26,6 +26,9 @@ import com.example.arraykart.databinding.FragmentSignUpBinding;
 public class SignUpFragment extends Fragment {
 
     private  FragmentSignUpBinding binding;
+
+    SharedPrefManager sharedPrefManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

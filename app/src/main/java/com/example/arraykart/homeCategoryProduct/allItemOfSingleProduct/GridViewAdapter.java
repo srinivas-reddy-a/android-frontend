@@ -20,13 +20,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.arraykart.AllApiModels.CartUPdateRespones;
 import com.example.arraykart.AllApiModels.WishListAddRespones;
+import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -39,7 +42,7 @@ import retrofit2.Response;
 
 public class GridViewAdapter extends BaseAdapter {
     Context context;
-    List<ModelForSingleProduct> modelForSingleProducts;
+    private List<ModelForSingleProduct> modelForSingleProducts;
     SharedPrefManager sharedPrefManager = new SharedPrefManager(getApplicationContext());
     SharedPreferences userToken = getApplicationContext().getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
@@ -83,7 +86,7 @@ public class GridViewAdapter extends BaseAdapter {
         holder = new ViewHolders();
 
         // it will help take item from single product and put that item in this page
-        try {
+
             holder.cImg = view.findViewById(R.id.gridImage);
             holder.txt = view.findViewById(R.id.gridText);
             holder.prc = view.findViewById(R.id.priceGrid);
@@ -91,39 +94,8 @@ public class GridViewAdapter extends BaseAdapter {
             holder.rb = view.findViewById(R.id.ribbonTag);
             CheckBox wish = view.findViewById(R.id.wishListSingleProducts);
 
-            wish.setOnClickListener(new View.OnClickListener() {
-                String token = sharedPrefManager.getValue_string("token");
+            String token = sharedPrefManager.getValue_string("token");
 
-                @Override
-                public void onClick(View v) {
-                    if(userToken.contains("token")) {
-                        String id = modelForSingleProducts.get(position).getId();
-                        String qty ="1";
-                        Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
-                        call.enqueue(new Callback<WishListAddRespones>() {
-                            @Override
-                            public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
-                                WishListAddRespones wishListAddRespones = response.body();
-                                    if (response.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), wishListAddRespones.getMsg(), Toast.LENGTH_SHORT).show();
-                                    }else {
-                                        Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                                    }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }else{
-                        Toast.makeText(getApplicationContext(), "SignUp First", Toast.LENGTH_SHORT).show();
-                        wish.setChecked(false);
-                    }
-
-                }
-            });
 
             view.setTag(holder);
 
@@ -132,7 +104,6 @@ public class GridViewAdapter extends BaseAdapter {
 //            cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
             Glide.with(context.getApplicationContext())
                     .load(modelForSingleProducts.get(position).getImgs())
-                    .placeholder(R.drawable.categories)
                     .centerInside()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.cImg);
@@ -140,6 +111,99 @@ public class GridViewAdapter extends BaseAdapter {
             holder.prc.setText(modelForSingleProducts.get(position).getPrice());
             holder.rb.setVisibility(View.GONE);
             holder.rt.setVisibility(View.GONE);
+
+        // wishlist status
+        if(userToken.contains("token")){
+            String Id = modelForSingleProducts.get(position).getId();
+            Call<CartUPdateRespones> callWishStatus = RetrofitClient.getInstance().getApi().getStatusWishList(token,Id);
+            callWishStatus.enqueue(new Callback<CartUPdateRespones>() {
+                @Override
+                public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                    CartUPdateRespones cartUPdateRespones = response.body();
+                    if(response.isSuccessful()){
+                        String wstr = cartUPdateRespones.getMessage();
+                        if(wstr.contains("Product already exists in wishlist!")){
+                            wish.setChecked(true);
+                        }
+                    }else {
+                        wish.setChecked(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+        ///// wish list add and delete
+        wish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userToken.contains("token")) {
+                    String id = modelForSingleProducts.get(position).getId();
+                    String qty ="1";
+                    Call<WishListAddRespones> call = RetrofitClient.getInstance().getApi().addWishlist(token, id, qty);
+                    call.enqueue(new Callback<WishListAddRespones>() {
+                        @Override
+                        public void onResponse(Call<WishListAddRespones> call, Response<WishListAddRespones> response) {
+                            WishListAddRespones wishListAddRespones = response.body();
+                            if (response.isSuccessful()) {
+                                String msg = wishListAddRespones.getMessage();
+
+                                if(msg.contains("Product already exists in wish list!")){
+                                    //delete products from wishlist
+                                    wish.setChecked(false);
+                                    Call<deleteWishListRespones> callD = RetrofitClient.getInstance().getApi().deleteWishList("application/json",token,id);
+                                    callD.enqueue(new Callback<deleteWishListRespones>() {
+                                        @Override
+                                        public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                                            deleteWishListRespones deleteWishListRespones = response.body();
+                                            if (response.isSuccessful()){
+                                                Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                            }else {
+                                                try {
+                                                    JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                                    Toast.makeText(context, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                                                } catch (Exception e) {
+                                                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                                            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+                                } else {
+                                    Toast.makeText(context, wishListAddRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                    wish.setChecked(true);
+                                }
+
+                            } else {
+                                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<WishListAddRespones> call, Throwable t) {
+                            Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(getApplicationContext(), "SignUp First", Toast.LENGTH_SHORT).show();
+                    wish.setChecked(false);
+                }
+
+            }
+        });
 
 //            if (position <= modelForSingleProducts.size()) {
 ////
@@ -154,9 +218,6 @@ public class GridViewAdapter extends BaseAdapter {
 ////                    }
 //            }
 
-        } catch (Exception ex) {
-
-        }
 
         try {
             view.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +227,7 @@ public class GridViewAdapter extends BaseAdapter {
                     in.putExtra("id",modelForSingleProducts.get(position).getId());
                     in.putExtra("qlt","1");
                     in.putExtra("image",modelForSingleProducts.get(position).getImgs());
+                    in.putExtra("price",modelForSingleProducts.get(position).getPrice());
                     in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(in);
                 }

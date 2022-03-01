@@ -176,7 +176,7 @@
                 android:layout_marginBottom="30dp"
                 android:ems="10"
                 android:hint="Alternative Mobile no(optional).*"
-                android:inputType="text"
+                android:inputType="number"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
             <Button

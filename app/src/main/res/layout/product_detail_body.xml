@@ -37,6 +37,7 @@
                     android:id="@+id/wishListProductsDetail"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:layout_gravity="right"
                     android:button="@drawable/selector_wishlist_heart"
                     app:useMaterialThemeColors="false"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -54,9 +55,40 @@
                 android:textSize="@dimen/heading_size" />
 
             <LinearLayout
+                android:id="@+id/spinnerLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
+                android:background="@color/smokeWhite"
+                android:padding="2dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volume"
+                    android:padding="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:textColor="@color/text"
+                    android:textSize="16dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginLeft="15sp"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
@@ -437,15 +469,18 @@
             android:id="@+id/ReviewRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            android:nestedScrollingEnabled="false"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:visibility="gone"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="3dp"
@@ -476,6 +511,7 @@
             android:layout_marginTop="10dp"
             android:elevation="5dp"
             android:background="#FDFBFB"
+            android:visibility="gone"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -494,7 +530,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:nestedScrollingEnabled="false"/>
 
         </LinearLayout>
 

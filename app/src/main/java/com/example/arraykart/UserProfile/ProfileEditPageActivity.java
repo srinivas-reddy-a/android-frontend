@@ -45,7 +45,7 @@ public class ProfileEditPageActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
     private List<User> userList;
-    private String user;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +59,12 @@ public class ProfileEditPageActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(this);
 
-        user = sharedPrefManager.getValue_string("token");
+        token = sharedPrefManager.getValue_string("token");
 
         SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
         if(user_token.contains("token")) {
-            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(user);
+            Call<AuthRespones> call = RetrofitClient.getInstance().getApi().auth(token);
             call.enqueue(new Callback<AuthRespones>() {
                 @Override
                 public void onResponse(Call<AuthRespones> call, Response<AuthRespones> response) {
@@ -78,7 +78,7 @@ public class ProfileEditPageActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<AuthRespones> call, Throwable t) {
-                    Toast.makeText(ProfileEditPageActivity.this, user, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileEditPageActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -119,17 +119,23 @@ public class ProfileEditPageActivity extends AppCompatActivity {
         String UserContent = UpdateUserContent.getText().toString();
         String UserEmail = UpdateUserEmail.getText().toString();
 
-        Call<UserUpdateResponse> call = RetrofitClient .getInstance().getApi().updateUser(user,UserContent,UserEmail,UserName);
+        Call<UserUpdateResponse> call = RetrofitClient .getInstance().getApi().updateUser(token,UserContent,UserEmail,UserName);
         call.enqueue(new Callback<UserUpdateResponse>() {
             @Override
             public void onResponse(Call<UserUpdateResponse> call, Response<UserUpdateResponse> response) {
-//                UserUpdateResponse responseBody = response.body();
-                finish();
+                UserUpdateResponse responseBody = response.body();
+                if(response.isSuccessful()) {
+                    Toast.makeText(ProfileEditPageActivity.this, responseBody.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+
+                }
+
             }
 
             @Override
             public void onFailure(Call<UserUpdateResponse> call, Throwable t) {
-                Toast.makeText(ProfileEditPageActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileEditPageActivity.this, "fail", Toast.LENGTH_SHORT).show();
 
             }
         });

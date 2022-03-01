@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ProductsCategoryRespones {
 
-    List<MoreCotegoryModel> categories;
+    private List<MoreCotegoryModel> categories;
 
     public ProductsCategoryRespones(List<MoreCotegoryModel> categories) {
         this.categories = categories;

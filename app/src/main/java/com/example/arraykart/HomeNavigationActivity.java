@@ -1,12 +1,22 @@
 package com.example.arraykart;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +35,7 @@ import com.example.arraykart.AllApiModels.BrandRespones;
 import com.example.arraykart.AllApiModels.CategoryIdRespones;
 import com.example.arraykart.AllApiModels.ProductsCategoryRespones;
 import com.example.arraykart.AllApiModels.ProductsRespones;
+import com.example.arraykart.AllApiModels.nestedCategoryRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.BannerSlider.SliderAdapter;
@@ -37,15 +48,31 @@ import com.example.arraykart.WishList.WishListActivity;
 import com.example.arraykart.homeCategoryProduct.HAdapter;
 import com.example.arraykart.homeCategoryProduct.HomeAllCategory.HomeAllCategoryAdapter;
 import com.example.arraykart.homeCategoryProduct.MainModel;
+import com.example.arraykart.homeCategoryProduct.NestedAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.GridViewAdapter;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ModelForSingleProduct;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.MoreCotegoryModel;
 import com.example.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts;
+import com.example.arraykart.homeCategoryProduct.nestedModel;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -77,6 +104,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private ActivityHomeNavigationBinding binding;
     private MeowBottomNavigation meowBottomNavigation;
 
+    private LocationRequest locationRequest;
+
     private LottieAnimationView lottieAnimationView;
 
     private ImageView notification_home_page;
@@ -95,7 +124,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     //homePageCategoryProductItem
 
-    private  List<MoreCotegoryModel> homeAllCategoryModels;
+    private  List<MoreCotegoryModel> homeAllCategoryModels,homeAllCategoryModelsss;
 
     ///grid view on home page
     private GridView gridView2;
@@ -113,13 +142,22 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     //banner slider on home page
     MenuItem id;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+
         sharedPrefManager = new SharedPrefManager(this);
+
+
+        if(!user_token.contains("GPS")){
+            checkPermission();
+        }
+
         binding = ActivityHomeNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -211,7 +249,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getId()==3){
-                    startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    if(user_token.contains("token")) {
+                        startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    }else {
+                        startActivity(new Intent(HomeNavigationActivity.this,SignUP.class));
+                    }
                 }
 
             }
@@ -223,7 +265,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                     Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getId()==3){
-                    startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    if(user_token.contains("token")) {
+                        startActivity(new Intent(HomeNavigationActivity.this, UserProfileActivity.class));
+                    }else {
+                        startActivity(new Intent(HomeNavigationActivity.this,SignUP.class));
+                    }
                 }
             }
         });
@@ -240,15 +286,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         //homePageCategoryProductItem
 
         recyclerView=findViewById(R.id.recyclerView);
-        recyclerView1 = findViewById(R.id.recyclerView1);
+//        recyclerView1 = findViewById(R.id.recyclerView1);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView1.setLayoutManager(layoutManagers);
-        recyclerView1.setItemAnimator(new DefaultItemAnimator());
+//        LinearLayoutManager layoutManagers = new LinearLayoutManager(HomeNavigationActivity.this,LinearLayoutManager.HORIZONTAL,false);
+//        recyclerView1.setLayoutManager(layoutManagers);
+//        recyclerView1.setItemAnimator(new DefaultItemAnimator());
 
 
         ///call for home products
@@ -265,58 +311,47 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
                     /// this helps click on every item present in home_products_category and open new activity of all item_product
 
-                    try {
-                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-                            @Override
-                            public void onClickListener(int position) {
-//                                for (int i = 0; i < maiModel.size(); i++) {
-//                                    if (position == i-1) {
-//                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-//                                        in.putExtra("id",maiModel.get(position).getId());
-//                                        in.putExtra("image",maiModel.get(position).getImage());
-//                                        startActivity(in);
-//                                    }
-//                                }
-//                                if(position==maiModel.size()-1){
-//                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
-//                                }
-                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-                                in.putExtra("id",maiModel.get(position).getId());
-                                in.putExtra("image",maiModel.get(position).getImage());
-                                startActivity(in);
-                            }
-                        });
+//                    try {
+//                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+//                            @Override
+//                            public void onClickListener(int position) {
+//                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+//                                in.putExtra("id",maiModel.get(position).getId());
+//                                in.putExtra("image",maiModel.get(position).getImage());
+//                                startActivity(in);
+//                            }
+//                        });
 
-                    }catch(Exception e){
+//                    }catch(Exception e){
+//
+//                    }
 
-                    }
-
-                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
-                    recyclerView1.setAdapter(hAdapters);
-                    try{
-                    hAdapters.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-                            @Override
-                            public void onClickListener(int position) {
-//                                for (int i = 0; i < maiModel.size(); i++) {
-//                                    if (position == i-1) {
-//                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-//                                        in.putExtra("id",maiModel.get(position).getId());
-//                                        in.putExtra("image",maiModel.get(position).getImage());
-//                                        startActivity(in);                                    }
-//                                }
-//                                if(position==maiModel.size()-1){
-//                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
-//                                }
-                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
-                                in.putExtra("id",maiModel.get(position).getId());
-                                in.putExtra("image",maiModel.get(position).getImage());
-                                startActivity(in);
-                            }
-                        });
-
-                    }catch(Exception e){
-
-                    }
+//                    HAdapter hAdapters = new HAdapter(getApplicationContext(), maiModel);
+//                    recyclerView1.setAdapter(hAdapters);
+//                    try{
+//                    hAdapters.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+//                            @Override
+//                            public void onClickListener(int position) {
+////                                for (int i = 0; i < maiModel.size(); i++) {
+////                                    if (position == i-1) {
+////                                        Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+////                                        in.putExtra("id",maiModel.get(position).getId());
+////                                        in.putExtra("image",maiModel.get(position).getImage());
+////                                        startActivity(in);                                    }
+////                                }
+////                                if(position==maiModel.size()-1){
+////                                    startActivity(new Intent(HomeNavigationActivity.this, moreCategoryProducts.class));
+////                                }
+//                                Intent in = new Intent(HomeNavigationActivity.this, ProductDetailActivity.class);
+//                                in.putExtra("id",maiModel.get(position).getId());
+//                                in.putExtra("image",maiModel.get(position).getImage());
+//                                startActivity(in);
+//                            }
+//                        });
+//
+//                    }catch(Exception e){
+//
+//                    }
 
 
                 }else {
@@ -385,10 +420,12 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         lottieAnimationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
-                startActivity(in);
-//                Intent in = new Intent(HomeNavigationActivity.this, MyOrder.class);
-//                startActivity(in);
+                if(user_token.contains("token")) {
+                    Intent in = new Intent(HomeNavigationActivity.this, MYCartActivity.class);
+                    startActivity(in);
+                }else{
+                    startActivity(new Intent(HomeNavigationActivity.this,MYCartActivity.class));
+                }
             }
         });
 
@@ -556,10 +593,79 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 //            id.setVisible(true);
 //        }
 
+        nestedRecyclerView();
+
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
+        startActivity(getIntent());
+        finish();
+
+    }
+    //nested recyclerView
+
+    private void nestedRecyclerView() {
+        List<nestedModel> nestedModels = new ArrayList<>();
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+//        nestedModels.add(new nestedModel("in",models));
+
+
+        RecyclerView recyclerView2 = findViewById(R.id.recyclerView2);
+
+        LinearLayoutManager layoutManager4 = new LinearLayoutManager(HomeNavigationActivity.this);
+
+//        NestedAdapter nestedAdapter = new NestedAdapter(nestedModels, HomeNavigationActivity.this);
+//
+//        recyclerView2.setLayoutManager(layoutManager4);
+//        recyclerView2.setAdapter(nestedAdapter);
+
+        Call<ProductsCategoryRespones> call4 = RetrofitClient
+                .getInstance()
+                .getApi().productCategory();
+        call4.enqueue(new Callback<ProductsCategoryRespones>() {
+            @Override
+            public void onResponse(Call<ProductsCategoryRespones> call, Response<ProductsCategoryRespones> response) {
+
+                if(response.isSuccessful()){
+                    homeAllCategoryModelsss =  response.body().getCategories();
+                    NestedAdapter nestedAdapter = new NestedAdapter(homeAllCategoryModelsss, HomeNavigationActivity.this);
+
+                    recyclerView2.setLayoutManager(layoutManager4);
+                    recyclerView2.setAdapter(nestedAdapter);
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(HomeNavigationActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Toast.makeText(HomeNavigationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductsCategoryRespones> call, Throwable t) {
+                Toast.makeText(HomeNavigationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+
+
     }
 
 
-    //
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -574,13 +680,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private void localCard(){
         sliderModels =  new ArrayList<>();
 
-        sliderModels.add(new SliderModel(R.drawable.img));
-        sliderModels.add(new SliderModel(R.drawable.img));
-        sliderModels.add(new SliderModel(R.drawable.img));
-        sliderModels.add(new SliderModel(R.drawable.img));
-        sliderModels.add(new SliderModel(R.drawable.img));
-        sliderModels.add(new SliderModel(R.drawable.img));
-        sliderModels.add(new SliderModel(R.drawable.img));
+        sliderModels.add(new SliderModel(R.drawable.marketingteam));
+        sliderModels.add(new SliderModel(R.drawable.marketing));
+        sliderModels.add(new SliderModel(R.drawable.marketingteam));
+        sliderModels.add(new SliderModel(R.drawable.arraykart_icon));
+        sliderModels.add(new SliderModel(R.drawable.marketing));
+        sliderModels.add(new SliderModel(R.drawable.marketingteam));
+        sliderModels.add(new SliderModel(R.drawable.marketing));
 
 
         sliderAdapter = new SliderAdapter(sliderModels);
@@ -676,5 +782,149 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+                if (isGPSEnabled()) {
+
+                    checkPermission();
+
+                }else {
+
+                    turnOnGPS();
+                }
+            }
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                checkPermission();
+            }
+        }
+    }
+
+    private void checkPermission(){
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(2000);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (ActivityCompat.checkSelfPermission(HomeNavigationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if(isGPSEnabled()){
+                    LocationServices.getFusedLocationProviderClient(HomeNavigationActivity.this)
+                            .requestLocationUpdates(locationRequest, new LocationCallback() {
+                                @Override
+                                public void onLocationResult(@NonNull LocationResult locationResult) {
+                                    super.onLocationResult(locationResult);
+                                    LocationServices.getFusedLocationProviderClient(HomeNavigationActivity.this)
+                                            .removeLocationUpdates(this);
+                                    if(locationResult != null && locationResult.getLocations().size() > 0){
+                                        int index = locationResult.getLocations().size() - 1 ;
+                                        double latitude = locationResult.getLocations().get(index).getLatitude();
+                                        double longitude = locationResult.getLocations().get(index).getLongitude();
+                                        sharedPrefManager.setValue_string("GPS","gps");
+
+                                        float[] results = new float[1];
+                                        Location.distanceBetween(latitude, longitude, 27.8899595, 78.0989536, results);
+                                        float distanceInMeters = results[0];
+                                        boolean isWithinRange = distanceInMeters < 30000;
+
+
+                                        if (isWithinRange) {
+
+                                        }else {
+                                            alert("we are not servicing in your area we will reach you soon");
+                                        }
+                                    }
+                                }
+                            }, Looper.getMainLooper());
+                }else {
+                    turnOnGPS();
+                    sharedPrefManager.setValue_string("GPS","gps");
+                }
+            }else {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            }
+        }
+    }
+
+    private void turnOnGPS() {
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+        builder.setAlwaysShow(true);
+
+        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(getApplicationContext())
+                .checkLocationSettings(builder.build());
+
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                    Toast.makeText(HomeNavigationActivity.this, "GPS is already tured on", Toast.LENGTH_SHORT).show();
+
+                } catch (ApiException e) {
+
+                    switch (e.getStatusCode()) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+
+                            try {
+                                ResolvableApiException resolvableApiException = (ResolvableApiException)e;
+                                resolvableApiException.startResolutionForResult(HomeNavigationActivity.this,2);
+                            } catch (IntentSender.SendIntentException ex) {
+                                ex.printStackTrace();
+                            }
+                            break;
+
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                            //Device does not have location
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
+    private Boolean isGPSEnabled(){
+        LocationManager locationManager = null;
+        boolean isEnabled =false;
+        if(locationManager == null){
+            locationManager =(LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        }
+        isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return isEnabled ;
+
+    }
+
+    private void alert(String message){
+        AlertDialog alg = new AlertDialog.Builder(HomeNavigationActivity.this)
+                .setTitle("Sorry!!!!")
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alg.show();
     }
 }

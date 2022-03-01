@@ -19,7 +19,7 @@ import com.example.arraykart.R;
 import java.util.List;
 
 public class SearchProductAdapter extends RecyclerView.Adapter<SearchProductAdapter.ViewHolder> {
-    List<SearchProductModel> searchProductModels;
+    private List<SearchProductModel> searchProductModels;
     Context context;
 
     public SearchProductAdapter(List<SearchProductModel> searchProductModels, Context context) {

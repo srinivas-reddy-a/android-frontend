@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AuthRespones {
     @SerializedName("user")
-    List<User> user;
+    private List<User> user;
 
     public AuthRespones(List<User> user) {
         this.user = user;
