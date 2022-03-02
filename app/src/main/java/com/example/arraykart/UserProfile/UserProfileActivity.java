@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -181,29 +183,47 @@ public class UserProfileActivity extends AppCompatActivity {
             logout_of_this_app.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(user_token.contains("token")){
-                        sharedPrefManager.clear();
-                        sharedPrefManager.setValue_string("GPS","gps");
+                    AlertDialog alg = new AlertDialog.Builder(UserProfileActivity.this)
+                            .setTitle("Message")
+                            .setMessage("Are You Sure You Want To LogOut ??")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    if(user_token.contains("token")){
+                                        sharedPrefManager.clear();
+                                        sharedPrefManager.setValue_string("GPS","gps");
 
 
-                        Call<LogOutRespones> callOut = RetrofitClient.getInstance().getApi().logout(token);
-                        callOut.enqueue(new Callback<LogOutRespones>() {
-                            @Override
-                            public void onResponse(Call<LogOutRespones> call, Response<LogOutRespones> response) {
-                                LogOutRespones logOutRespones = response.body();
-                                Toast.makeText(UserProfileActivity.this, logOutRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                                        Call<LogOutRespones> callOut = RetrofitClient.getInstance().getApi().logout(token);
+                                        callOut.enqueue(new Callback<LogOutRespones>() {
+                                            @Override
+                                            public void onResponse(Call<LogOutRespones> call, Response<LogOutRespones> response) {
+                                                LogOutRespones logOutRespones = response.body();
+                                                Toast.makeText(UserProfileActivity.this, logOutRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
 
-                            @Override
-                            public void onFailure(Call<LogOutRespones> call, Throwable t) {
-                                Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        finish();
-                    }else {
-                        signOut();
-                    }
-//                    finish();
+                                            @Override
+                                            public void onFailure(Call<LogOutRespones> call, Throwable t) {
+                                                Toast.makeText(UserProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        finish();
+                                    }else {
+                                        signOut();
+                                    }
+//
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .create();
+                    alg.show();
+                          // finish();
 
                 }
             });

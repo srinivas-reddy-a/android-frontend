@@ -71,7 +71,7 @@
             android:layout_marginBottom="35dp"
             android:background="#FDFBFB"
             android:scaleType="centerCrop"
-            android:src="@drawable/img"
+            android:src="@drawable/profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,45 +148,45 @@
             android:backgroundTint="@color/green"
             android:text="Save"
             android:textSize="@dimen/heading_size"
-            android:textColor="@color/heading"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
-        <View
-            android:id="@+id/divider12"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="12dp"
-            android:background="?android:attr/listDivider" />
+<!--        <View-->
+<!--            android:id="@+id/divider12"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:background="?android:attr/listDivider" />-->
 
-        <TextView
-            android:id="@+id/textView35"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="Change Password"
-            android:textColor="@color/text"
-            android:textSize="@dimen/heading_size"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView35"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:text="Change Password"-->
+<!--            android:textColor="@color/text"-->
+<!--            android:textSize="@dimen/heading_size"-->
+<!--            android:textStyle="bold" />-->
 
-        <View
-            android:id="@+id/divider13"
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="12dp"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
+<!--        <View-->
+<!--            android:id="@+id/divider13"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="?android:attr/listDivider" />-->
 
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="16dp"
-            android:text="Deactivate Account"
-            android:textColor="@color/text"
-            android:textSize="@dimen/heading_size"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView36"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="Deactivate Account"-->
+<!--            android:textColor="@color/text"-->
+<!--            android:textSize="@dimen/heading_size"-->
+<!--            android:textStyle="bold" />-->
 
 
     </LinearLayout>

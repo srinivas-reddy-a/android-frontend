@@ -87,7 +87,7 @@
                 android:padding="2dp"
                 android:text="Volume"
                 android:textColor="@color/text"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/selected_volume"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:text="2kg"
                 android:textColor="@color/text"
-                android:textSize="@dimen/heading_size" />
+                android:textSize="14dp" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

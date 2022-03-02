@@ -3,6 +3,8 @@ package com.example.arraykart.ui.LogOut;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -57,23 +59,40 @@ public class LogOutFragment extends Fragment {
 
         if(user_token.contains("token")){
 
-            sharedPrefManager.clear();
+            AlertDialog alg = new AlertDialog.Builder(getContext())
+                    .setTitle("Message")
+                    .setMessage("Are You Sure You Want To LogOut ??")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            sharedPrefManager.clear();
 
 
-            Call<LogOutRespones> callOut = RetrofitClient.getInstance().getApi().logout(token);
-            callOut.enqueue(new Callback<LogOutRespones>() {
-                @Override
-                public void onResponse(Call<LogOutRespones> call, Response<LogOutRespones> response) {
-                    LogOutRespones logOutRespones = response.body();
-                    Toast.makeText(getContext(), logOutRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                            Call<LogOutRespones> callOut = RetrofitClient.getInstance().getApi().logout(token);
+                            callOut.enqueue(new Callback<LogOutRespones>() {
+                                @Override
+                                public void onResponse(Call<LogOutRespones> call, Response<LogOutRespones> response) {
+                                    LogOutRespones logOutRespones = response.body();
+                                    Toast.makeText(getContext(), logOutRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
 
-                @Override
-                public void onFailure(Call<LogOutRespones> call, Throwable t) {
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-            //signOut();
+                                @Override
+                                public void onFailure(Call<LogOutRespones> call, Throwable t) {
+                                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            //signOut();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .create();
+            alg.show();
         }else {
             Toast.makeText(getContext(), "SignUp First", Toast.LENGTH_SHORT).show();
         }

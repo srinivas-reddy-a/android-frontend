@@ -80,6 +80,11 @@ public class Signin extends AppCompatActivity {
         Submit = findViewById(R.id.Submit);
         Sign_in = findViewById(R.id.Sign_in);
 
+        String number = getIntent().getStringExtra("number");
+//        if(number != null){
+//            Sign_in_page_email.setText(number);
+//        }
+
         sharedPrefManager = new SharedPrefManager(this);
         try {
             imageView = findViewById(R.id.imageView5);
@@ -168,10 +173,9 @@ public class Signin extends AppCompatActivity {
     private void login(){
         String email = Sign_in_page_email.getText().toString();
 
-
         if(email.isEmpty()){
             Sign_in_page_email.requestFocus();
-            Sign_in_page_email.setError("please enter you email");
+            Sign_in_page_email.setError("please enter you number");
             return;
         }
 

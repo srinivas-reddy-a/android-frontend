@@ -121,7 +121,7 @@ public class MyCartFragment extends Fragment {
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
 
                     } catch (Exception e) {
