@@ -92,7 +92,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:singleSelection="false"
+        app:singleLine="false"
+        app:singleSelection="true"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.chip.Chip
