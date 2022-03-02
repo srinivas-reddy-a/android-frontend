@@ -20,25 +20,24 @@
         android:id="@+id/linearLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="40dp"
         android:orientation="horizontal"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="36dp"
         android:padding="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/companyname_iv"
-            android:layout_width="136sp"
-            android:layout_height="match_parent"
+            android:layout_width="176sp"
+            android:layout_height="90dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/company_name" />
+            app:srcCompat="@drawable/arraykart_name" />
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
+            android:layout_width="50dp"
+            android:layout_height="88dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/logo" />
     </LinearLayout>
@@ -47,14 +46,12 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="170dp"
         android:text="Sign in"
         android:textColor="@color/white"
         android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
 
     <EditText
@@ -77,7 +74,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <EditText
         android:id="@+id/Sign_in_page_otp"
@@ -105,12 +103,12 @@
         android:id="@+id/constraintLayout11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10sp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="290dp"
         android:elevation="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+        android:padding="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14">
 
         <Button
             android:id="@+id/Sign_in"
@@ -148,11 +146,11 @@
         android:text="Options for sign in"
         android:textColor="@color/text"
         android:textSize="@dimen/heading_size"
+        android:visibility="gone"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <LinearLayout
@@ -161,6 +159,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

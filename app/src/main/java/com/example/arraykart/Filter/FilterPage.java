@@ -3,8 +3,10 @@ package com.example.arraykart.Filter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.example.arraykart.R;
 import com.google.android.material.chip.Chip;
@@ -23,6 +25,10 @@ public class FilterPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_page);
+
+
+        final String[] hi = new String[1];
+        final String[] lo = new String[1];
 
         chip1=findViewById(R.id.chip1);
         chip2=findViewById(R.id.chip2);
@@ -50,10 +56,19 @@ public class FilterPage extends AppCompatActivity {
             }
         };
 
-        chip1.setOnCheckedChangeListener(checkedChangeListener);
+        chip6.setOnCheckedChangeListener(checkedChangeListener);
         chip2.setOnCheckedChangeListener(checkedChangeListener);
         chip3.setOnCheckedChangeListener(checkedChangeListener);
         chip4.setOnCheckedChangeListener(checkedChangeListener);
         chip5.setOnCheckedChangeListener(checkedChangeListener);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(FilterPage.this, "hiii", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }

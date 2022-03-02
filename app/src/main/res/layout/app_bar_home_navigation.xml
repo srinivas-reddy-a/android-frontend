@@ -54,9 +54,9 @@
                 android:layout_height="25sp"
                 android:layout_gravity="right"
                 android:layout_marginLeft="10sp"
-                android:tint="#000000"
                 android:visibility="gone"
-                app:srcCompat="@drawable/ic_baseline_favorite_24_black" />
+                app:srcCompat="@drawable/ic_baseline_favorite_24_black"
+                app:tint="#000000" />
 
             <ImageView
                 android:id="@+id/notification_home_page"

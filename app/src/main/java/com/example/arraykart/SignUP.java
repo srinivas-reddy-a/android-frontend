@@ -170,7 +170,7 @@ public class SignUP extends AppCompatActivity {
 
         if(userNumber.isEmpty()){
             signUpUserNumber.requestFocus();
-            signUpUserNumber.setError("please enter you name");
+            signUpUserNumber.setError("please enter you number");
             return;
         }
         String otp = signUpUserOtp.getText().toString();
@@ -227,7 +227,8 @@ public class SignUP extends AppCompatActivity {
                         Toast.makeText(SignUP.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
                         finish();
                         Intent in = new Intent(SignUP.this,Signin.class);
-//                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.putExtra("number",userNumber);
+                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
 
                     }catch (Exception e){
