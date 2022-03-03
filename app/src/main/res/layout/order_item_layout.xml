@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="4dp"
+    android:layout_margin="10dp"
     android:elevation="5dp"
     android:background="#FBF9F9"
     android:layout_width="match_parent"
@@ -89,6 +89,7 @@
         android:id="@+id/rating_containers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -146,17 +147,25 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/grouping"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone"
-        android:background="@color/heading"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_containers" />
+        app:layout_constraintTop_toBottomOf="@+id/rating_containers">
+        >
+        <Button
+            android:id="@+id/RateAndReview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Rate and Review"
+            android:backgroundTint="@color/green"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

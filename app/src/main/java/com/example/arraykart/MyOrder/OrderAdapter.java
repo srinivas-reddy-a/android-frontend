@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.example.arraykart.AllApiModels.getProductsRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.R;
+import com.example.arraykart.RatingReviewPage.FeedbakRatingReview;
 import com.example.arraykart.homeCategoryProduct.MainModel;
 
 import java.util.List;
@@ -116,6 +118,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         private TextView deliveryStatus;
         private View grouping;
         private LinearLayout rateContainer ;
+        private Button RateAndReview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,7 +127,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             deliveryIndicator =itemView.findViewById(R.id.order_indicator);
             deliveryStatus =itemView.findViewById(R.id.order_delivery_date);
             rateContainer = itemView.findViewById(R.id.rating_containers);
-            grouping = itemView.findViewById(R.id.grouping);
+            RateAndReview = itemView.findViewById(R.id.RateAndReview);
+           // grouping = itemView.findViewById(R.id.grouping);
+
+
+            RateAndReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, FeedbakRatingReview.class));
+                }
+            });
+
 
 //            itemView.setOnClickListener(new View.OnClickListener() {
 //                @Override

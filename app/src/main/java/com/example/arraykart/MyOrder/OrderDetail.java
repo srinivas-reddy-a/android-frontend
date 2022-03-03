@@ -3,6 +3,7 @@ package com.example.arraykart.MyOrder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class OrderDetail extends AppCompatActivity {
 
     private TextView searchOrderDetail,order_detail_productTitle,order_detail_productPrice,
             order_detail_productQuantity,shoppingDetailName,shoppingDetailAddress,textView6,total_item,total_item_price,saved_price
-            ,selected_volume;
+            ,selected_volume,cancelOrder;
 
     private List<AddressModel> addressModels;
 
@@ -65,6 +66,7 @@ public class OrderDetail extends AppCompatActivity {
         total_item = findViewById(R.id.total_item);
         saved_price = findViewById(R.id.saved_price);
         selected_volume = findViewById(R.id.selected_volume);
+        cancelOrder = findViewById(R.id.cancelOrder);
 
         String order_id = getIntent().getStringExtra("order_id");
         String addId = getIntent().getStringExtra("addId");
@@ -131,6 +133,22 @@ public class OrderDetail extends AppCompatActivity {
         }catch (Exception e){
 
         }
+
+        //cancelOrder
+
+        try{
+            cancelOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowDialog();
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+
+
     }
 
     private void getProductDetail(String id ,String qty){
@@ -213,4 +231,12 @@ public class OrderDetail extends AppCompatActivity {
         }else {
         }
     }
+
+    private void ShowDialog(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.cancel_product_layout);
+        dialog.show();
+    }
+
+
 }

@@ -97,6 +97,16 @@
         app:layout_constraintEnd_toEndOf="@+id/signUpUserName"
         app:layout_constraintStart_toStartOf="@+id/signUpUserName"
         app:layout_constraintTop_toBottomOf="@+id/signUpUserName" />
+    <TextView
+        android:id="@+id/resendSingUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend"
+        android:visibility="gone"
+        android:textSize="@dimen/heading_size"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/signUpUserOtp"
+        app:layout_constraintTop_toBottomOf="@+id/signUpUserOtp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout13"

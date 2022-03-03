@@ -59,7 +59,7 @@ public class Signin extends AppCompatActivity {
     private static  int RC_SIGN_IN = 100;
 
     private ImageView imageView;
-    private TextView signup;
+    private TextView signup,resendSingIn;
     private TextView Sign_in_page_otp,Sign_in_page_email;
     private Button Sign_in,Submit;
 
@@ -79,6 +79,7 @@ public class Signin extends AppCompatActivity {
         Sign_in_page_otp = findViewById(R.id.Sign_in_page_otp);
         Submit = findViewById(R.id.Submit);
         Sign_in = findViewById(R.id.Sign_in);
+        resendSingIn = findViewById(R.id.resendSingIn);
 
         String number = getIntent().getStringExtra("number");
 //        if(number != null){
@@ -192,6 +193,7 @@ public class Signin extends AppCompatActivity {
                     Toast.makeText(Signin.this, logInRespones.getMessage(), Toast.LENGTH_SHORT).show();
                     String user_id = logInRespones.getId();
                     Sign_in_page_otp.setVisibility(View.VISIBLE);
+                    resendSingIn.setVisibility(View.VISIBLE);
                     Sign_in.setVisibility(View.GONE);
                     Submit.setVisibility(View.VISIBLE);
                     Submit.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +236,7 @@ public class Signin extends AppCompatActivity {
             Submit.setVisibility(View.GONE);
             Sign_in.setVisibility(View.VISIBLE);
             Sign_in_page_otp.setVisibility(View.GONE);
+            resendSingIn.setVisibility(View.GONE);
             Call<LogInOtpRespones> call = RetrofitClient
                     .getInstance()
                     .getApi().loginOtp(user_id, otp);
