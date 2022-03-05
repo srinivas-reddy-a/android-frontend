@@ -229,7 +229,7 @@ public class SignUP extends AppCompatActivity {
                                 signUpUserOtp.setError("please enter otp first");
                                 return;
                             }
-                            registerOtp(userNumber);
+                            registerOtp();
                             signUpUserOtp.setVisibility(View.GONE);
                             resendSingUp.setVisibility(View.GONE);
                             submit.setVisibility(View.GONE);
@@ -261,14 +261,9 @@ public class SignUP extends AppCompatActivity {
         });
     }
 
-    private void registerOtp(String userNumber){
-//        String userNumber = signUpUserNumber.getText().toString();
+    private void registerOtp(){
+        String userNumber = signUpUserNumber.getText().toString();
         String otp = signUpUserOtp.getText().toString();
-//        if(userNumber.isEmpty()){
-//            signUpUserNumber.requestFocus();
-//            signUpUserNumber.setError("please enter you number");
-//            return;
-//        }
         if(otp.isEmpty()){
             signUpUserOtp.requestFocus();
             signUpUserOtp.setError("please enter otp first");
