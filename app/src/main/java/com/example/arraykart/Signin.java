@@ -209,7 +209,7 @@ public class Signin extends AppCompatActivity {
                     Submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            loginOtp(user_id);
+                            loginOtp(user_id,number);
                             progressBar.setVisibility(View.GONE);
 
                         }
@@ -237,7 +237,7 @@ public class Signin extends AppCompatActivity {
 
     }
 
-    private void loginOtp(String user_id){
+    private void loginOtp(String user_id,String number){
         String otp = Sign_in_page_otp.getText().toString();
 
         if(otp.isEmpty()){
@@ -247,7 +247,7 @@ public class Signin extends AppCompatActivity {
         }else {
             Call<LogInOtpRespones> call = RetrofitClient
                     .getInstance()
-                    .getApi().loginOtp(user_id, otp);
+                    .getApi().loginOtp(user_id, otp,number);
             call.enqueue(new Callback<LogInOtpRespones>() {
                 @Override
                 public void onResponse(Call<LogInOtpRespones> call, Response<LogInOtpRespones> response) {

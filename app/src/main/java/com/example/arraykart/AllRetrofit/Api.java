@@ -70,7 +70,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("/api/user/login/otp")
     Call<LogInOtpRespones>loginOtp(@Field("id") String id,
-                                   @Field("otp") String otp
+                                   @Field("otp") String otp,
+                                   @Field("phoneNumber") String phoneNumber
     );
 
     @FormUrlEncoded
