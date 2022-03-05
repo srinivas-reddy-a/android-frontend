@@ -15,6 +15,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +70,7 @@ public class Signin extends AppCompatActivity {
 
     private LoginButton loginButton;
     private  ImageView fb;
-
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class Signin extends AppCompatActivity {
         Submit = findViewById(R.id.Submit);
         Sign_in = findViewById(R.id.Sign_in);
         resendSingIn = findViewById(R.id.resendSingIn);
+        progressBar = findViewById(R.id.progressBar);
 
         String number = getIntent().getStringExtra("number");
 //        if(number != null){
@@ -162,19 +164,27 @@ public class Signin extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     login();
+                    progressBar.setVisibility(View.VISIBLE);
                 }
             });
         }catch (Exception e){
 
         }
 
+        resendSingIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginOtpResend();
+            }
+        });
+
     }
 
 
     private void login(){
-        String email = Sign_in_page_email.getText().toString();
+        String number = Sign_in_page_email.getText().toString();
 
-        if(email.isEmpty()){
+        if(number.isEmpty()){
             Sign_in_page_email.requestFocus();
             Sign_in_page_email.setError("please enter you number");
             return;
@@ -184,7 +194,7 @@ public class Signin extends AppCompatActivity {
 
         Call<LogInRespones> call = RetrofitClient
                 .getInstance()
-                .getApi().login(email);
+                .getApi().login(number);
         call.enqueue(new Callback<LogInRespones>() {
             @Override
             public void onResponse(Call<LogInRespones> call, Response<LogInRespones> response) {
@@ -200,6 +210,8 @@ public class Signin extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             loginOtp(user_id);
+                            progressBar.setVisibility(View.GONE);
+
                         }
                     });
                 }else {
@@ -233,10 +245,6 @@ public class Signin extends AppCompatActivity {
             Sign_in_page_otp.setError("please enter otp first");
             return;
         }else {
-            Submit.setVisibility(View.GONE);
-            Sign_in.setVisibility(View.VISIBLE);
-            Sign_in_page_otp.setVisibility(View.GONE);
-            resendSingIn.setVisibility(View.GONE);
             Call<LogInOtpRespones> call = RetrofitClient
                     .getInstance()
                     .getApi().loginOtp(user_id, otp);
@@ -246,6 +254,10 @@ public class Signin extends AppCompatActivity {
                     LogInOtpRespones logInOtpRespones = response.body();
                     if (response.isSuccessful()) {
                         UserToken = logInOtpRespones.getToken();
+                        Submit.setVisibility(View.GONE);
+                        Sign_in.setVisibility(View.VISIBLE);
+                        Sign_in_page_otp.setVisibility(View.GONE);
+                        resendSingIn.setVisibility(View.GONE);
                         sharedPrefManager.setValue_string("token", UserToken);
                         Toast.makeText(Signin.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
 //                    Intent in = new Intent(Signin.this, HomeNavigationActivity.class);
@@ -253,7 +265,10 @@ public class Signin extends AppCompatActivity {
 //                    startActivity(in);
                         finish();
 
-                    } else {
+                    } else if(response.code()==401) {
+                        Sign_in_page_otp.setError("please enter valid otp");
+                    }else
+                    {
                         try {
                             JSONObject jsonObject = new JSONObject(response.errorBody().string());
                             Toast.makeText(Signin.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
@@ -274,6 +289,22 @@ public class Signin extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void loginOtpResend(){
+        String email = Sign_in_page_email.getText().toString();
+        Call<ResponseBody> callResend = RetrofitClient.getInstance().getApi().registerOtpResend(email);
+        callResend.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Signin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

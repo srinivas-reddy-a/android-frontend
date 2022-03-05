@@ -55,6 +55,10 @@ public interface Api {
     Call<SignUpTopRespones>registerOtp(@Field("phoneNumber") String userNumber,
                                        @Field("otp") String otp);
 
+    @FormUrlEncoded
+    @POST("/api/user/register/otp/resend/")
+    Call<ResponseBody>registerOtpResend(@Field("phoneNumber") String userNumber);
+
     @GET("/api/user/auth/")
     Call<AuthRespones>auth(@Header("Authorization") String Authorization);
 
@@ -68,6 +72,10 @@ public interface Api {
     Call<LogInOtpRespones>loginOtp(@Field("id") String id,
                                    @Field("otp") String otp
     );
+
+    @FormUrlEncoded
+    @POST("/api/user/login/otp/resend/")
+    Call<ResponseBody>loginOtpresend(@Field("phoneNumber") String phoneNumber);
 
     @POST("/api/user/logout/")
     Call<LogOutRespones>logout(@Header("Authorization") String Authorization

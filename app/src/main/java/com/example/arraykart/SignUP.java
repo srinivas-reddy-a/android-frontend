@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +72,7 @@ public class SignUP extends AppCompatActivity {
     private EditText signUpUserNumber,signUpUserOtp;
     private LoginButton loginButton;
     private  ImageView fb;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class SignUP extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         resendSingUp = findViewById(R.id.resendSingUp);
         sharedPrefManager = new SharedPrefManager(this);
+        progressBar = findViewById(R.id.progressBar);
         try{
             imageView = findViewById(R.id.imageView6);
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -160,8 +163,17 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
+
+        resendSingUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerOtpResend();
+            }
+        });
+
 
 
     }
@@ -222,9 +234,11 @@ public class SignUP extends AppCompatActivity {
                             resendSingUp.setVisibility(View.GONE);
                             submit.setVisibility(View.GONE);
                             signupbtn.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
                         }
                     });
-                }else{
+                }else
+                {
                     try{
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
                         Toast.makeText(SignUP.this, jsonObject.getString("err"), Toast.LENGTH_SHORT).show();
@@ -273,6 +287,8 @@ public class SignUP extends AppCompatActivity {
                     sharedPrefManager.setValue_string("token",token);
                     Toast.makeText(SignUP.this,responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                     finish();
+                }else if(response.code()==401) {
+                    signUpUserOtp.setError("please enter valid otp");
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -296,6 +312,23 @@ public class SignUP extends AppCompatActivity {
 
 
 
+    }
+
+    private void registerOtpResend(){
+        String userNumber = signUpUserNumber.getText().toString();
+        Call<ResponseBody> callRsend = RetrofitClient.getInstance().getApi().registerOtpResend(userNumber);
+
+        callRsend.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(SignUP.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -441,6 +474,7 @@ public class SignUP extends AppCompatActivity {
 //            //finish();
 //        }
 //    }
+
     @Override
     protected void onStart() {
         super.onStart();
