@@ -69,7 +69,6 @@
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:text="Price"
-            android:visibility="gone"
             android:textColor="@color/text"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/gridText"

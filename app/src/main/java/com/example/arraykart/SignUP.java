@@ -66,7 +66,7 @@ public class SignUP extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
 
     private ImageView imageView;
-//    private TextView signintv;
+    private TextView signintv,resendSingUp;
     private Button signupbtn,submit;
     private EditText signUpUserNumber,signUpUserOtp;
     private LoginButton loginButton;
@@ -82,6 +82,7 @@ public class SignUP extends AppCompatActivity {
         signUpUserOtp = findViewById(R.id.signUpUserOtp);
         signupbtn = findViewById(R.id.button4);
         submit = findViewById(R.id.submit);
+        resendSingUp = findViewById(R.id.resendSingUp);
         sharedPrefManager = new SharedPrefManager(this);
         try{
             imageView = findViewById(R.id.imageView6);
@@ -205,6 +206,7 @@ public class SignUP extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
                     signUpUserOtp.setVisibility(View.VISIBLE);
+                    resendSingUp.setVisibility(View.VISIBLE);
                     signupbtn.setVisibility(View.GONE);
                     submit.setVisibility(View.VISIBLE);
                     submit.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +219,7 @@ public class SignUP extends AppCompatActivity {
                             }
                             registerOtp(userNumber);
                             signUpUserOtp.setVisibility(View.GONE);
+                            resendSingUp.setVisibility(View.GONE);
                             submit.setVisibility(View.GONE);
                             signupbtn.setVisibility(View.VISIBLE);
                         }
