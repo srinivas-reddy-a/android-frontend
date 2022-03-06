@@ -120,6 +120,8 @@ public class Signin extends AppCompatActivity {
         fb = (ImageView) findViewById(R.id.fb);
         loginButton = (LoginButton) findViewById(R.id.login_button);
 
+
+
         List< String > permissionNeeds = Arrays.asList("user_photos", "email",
                 "user_birthday", "public_profile", "AccessToken");
 
@@ -157,8 +159,6 @@ public class Signin extends AppCompatActivity {
 
 
 
-
-
         try {
             Sign_in.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -175,6 +175,7 @@ public class Signin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loginOtpResend();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -210,7 +211,7 @@ public class Signin extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             loginOtp(user_id,number);
-                            progressBar.setVisibility(View.GONE);
+                            //progressBar.setVisibility(View.GONE);
 
                         }
                     });
@@ -228,7 +229,6 @@ public class Signin extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<LogInRespones> call, Throwable t) {
                 Toast.makeText(Signin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -254,16 +254,17 @@ public class Signin extends AppCompatActivity {
                     LogInOtpRespones logInOtpRespones = response.body();
                     if (response.isSuccessful()) {
                         UserToken = logInOtpRespones.getToken();
-                        Submit.setVisibility(View.GONE);
-                        Sign_in.setVisibility(View.VISIBLE);
-                        Sign_in_page_otp.setVisibility(View.GONE);
-                        resendSingIn.setVisibility(View.GONE);
                         sharedPrefManager.setValue_string("token", UserToken);
                         Toast.makeText(Signin.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
 //                    Intent in = new Intent(Signin.this, HomeNavigationActivity.class);
 //                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                    startActivity(in);
                         finish();
+                        Submit.setVisibility(View.GONE);
+                        Sign_in.setVisibility(View.VISIBLE);
+                        Sign_in_page_otp.setVisibility(View.GONE);
+                        resendSingIn.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
 
                     } else if(response.code()==401) {
                         Sign_in_page_otp.setError("please enter valid otp");
@@ -271,7 +272,7 @@ public class Signin extends AppCompatActivity {
                     {
                         try {
                             JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                            Toast.makeText(Signin.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Signin.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                             Intent in = new Intent(Signin.this, SignUP.class);
                             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(in);
@@ -420,11 +421,13 @@ public class Signin extends AppCompatActivity {
 
         }
     }
+
     public void logIn(View view){
         LoginManager.getInstance().logInWithReadPermissions(this,
                 Arrays.asList("public_profile", "email", "user_birthday")
         );
     }
+
     public void onClick(View v) {
         if (v == fb) {
             loginButton.performClick();
@@ -447,8 +450,6 @@ public class Signin extends AppCompatActivity {
 //            //finish();
 //        }
 //    }
-
-
 
     @Override
     protected void onStart() {

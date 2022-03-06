@@ -19,4 +19,9 @@
         <item name="android:scaleX">1</item>
         <item name="android:scaleY">1</item>
     </style>
+    
+    <style name="DialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="windowMinWidthMajor">100%</item>
+        <item name="windowMinWidthMinor">100%</item>
+    </style>
 </resources>

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.arraykart.AddressActivity.AddressModel;
+import com.example.arraykart.AddressActivity.MyAddressActivity;
 import com.example.arraykart.AllApiModels.GetCartRespones;
 import com.example.arraykart.AllApiModels.deleteWishListRespones;
 import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
@@ -203,6 +204,13 @@ public class MyCartFragment extends Fragment {
 //            }
 //        });
 
+        changeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContext().startActivity(new Intent(getContext(), MyAddressActivity.class));
+            }
+        });
+
 
         return view;
     }
@@ -210,7 +218,6 @@ public class MyCartFragment extends Fragment {
 
     private void ShippingAddress(){
         ///shipping address
-
 
         sharedPrefManager = new SharedPrefManager(getContext());
         String token = sharedPrefManager.getValue_string("token");

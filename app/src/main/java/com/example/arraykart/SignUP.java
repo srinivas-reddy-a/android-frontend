@@ -163,7 +163,7 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -171,6 +171,7 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerOtpResend();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -225,11 +226,6 @@ public class SignUP extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             registerOtp();
-                            signUpUserOtp.setVisibility(View.GONE);
-                            resendSingUp.setVisibility(View.GONE);
-                            submit.setVisibility(View.GONE);
-                            signupbtn.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
                         }
                     });
                 }else
@@ -272,6 +268,11 @@ public class SignUP extends AppCompatActivity {
                     sharedPrefManager.setValue_string("token",token);
                     Toast.makeText(SignUP.this,responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                     finish();
+                    signUpUserOtp.setVisibility(View.GONE);
+                    resendSingUp.setVisibility(View.GONE);
+                    submit.setVisibility(View.GONE);
+                    signupbtn.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }else if(response.code()==401) {
                     signUpUserOtp.requestFocus();
                     signUpUserOtp.setError("please enter valid otp");

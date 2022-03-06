@@ -37,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <TextView
+            android:id="@+id/reason_cancel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_default_dot"
@@ -47,17 +48,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_default_dot"
-            android:drawablePadding="5dp"
-            android:drawableTint="@color/couponApplied"
-            android:text="reason number  1 !!"
-            android:textColor="@color/text"
-            android:textSize="20dp" />
-
-        <TextView
+            android:id="@+id/reason_cancel2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -69,6 +60,7 @@
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/reason_cancel3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -80,6 +72,19 @@
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/reason_cancel4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_default_dot"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/couponApplied"
+            android:text="reason number  1 !!"
+            android:textColor="@color/text"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/reason_cancel5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

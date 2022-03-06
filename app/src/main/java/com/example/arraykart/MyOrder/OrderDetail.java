@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.arraykart.AddressActivity.AddressModel;
+import com.example.arraykart.AllApiModels.CartUPdateRespones;
 import com.example.arraykart.AllApiModels.ProductDetailPageRespones;
 import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
@@ -233,10 +234,89 @@ public class OrderDetail extends AppCompatActivity {
     }
 
     private void ShowDialog(){
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this,R.style.DialogStyle);
         dialog.setContentView(R.layout.cancel_product_layout);
+        ImageView backFeedback = dialog.findViewById(R.id.backFeedback);
+        backFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        TextView reason_cancel1 = dialog.findViewById(R.id.reason_cancel1);
+        TextView reason_cancel2 = dialog.findViewById(R.id.reason_cancel2);
+        TextView reason_cancel3 = dialog.findViewById(R.id.reason_cancel3);
+        TextView reason_cancel4 = dialog.findViewById(R.id.reason_cancel4);
+        TextView reason_cancel5 = dialog.findViewById(R.id.reason_cancel5);
+
+        reason_cancel1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = reason_cancel1.getText().toString();
+                cancelOrder(msg);
+                cancelOrder.setText("your order has been Canceled");
+                dialog.dismiss();
+            }
+        });
+        reason_cancel2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = reason_cancel2.getText().toString();
+                cancelOrder(msg);
+                cancelOrder.setText("your order has been Canceled");
+                dialog.dismiss();
+            }
+        });
+        reason_cancel3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = reason_cancel3.getText().toString();
+                cancelOrder(msg);
+                cancelOrder.setText("your order has been Canceled");
+                dialog.dismiss();
+            }
+        });
+        reason_cancel4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = reason_cancel4.getText().toString();
+                cancelOrder(msg);
+                cancelOrder.setText("your order has been Canceled");
+                dialog.dismiss();
+            }
+        });
+        reason_cancel5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String msg = reason_cancel5.getText().toString();
+                cancelOrder(msg);
+                cancelOrder.setText("your order has been Canceled");
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 
+
+    private void cancelOrder(String msg){
+        sharedPrefManager = new SharedPrefManager(this);
+        String Token = sharedPrefManager.getValue_string("token");
+        String order_id = getIntent().getStringExtra("order_id");
+        Call<CartUPdateRespones> callC = RetrofitClient.getInstance().getApi().cancelOrder(Token,order_id,msg);
+
+        callC.enqueue(new Callback<CartUPdateRespones>() {
+            @Override
+            public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
+                CartUPdateRespones cartUPdateRespones = response.body();
+                Toast.makeText(OrderDetail.this, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
+                Toast.makeText(OrderDetail.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }
