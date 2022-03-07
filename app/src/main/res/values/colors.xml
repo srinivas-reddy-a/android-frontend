@@ -15,6 +15,7 @@
     <color name="appbarComponentsblack">#000000</color>
     <color name="appbarSmokeWhite">#F5F5F5</color>
     <color name="text">#5F5A5A</color>
+    <color name="light_grey">#8D8D8D</color>
     <color name="heading">#000000</color>
     <color name="rating">#1A711D</color>
     <color name="coupon">#DE5EF4</color>

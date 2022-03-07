@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 
+import com.example.arraykart.OnBoardingPage.OnBoardingActivity;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, HomeNavigationActivity.class);
+                Intent i = new Intent(MainActivity.this, OnBoardingActivity.class);
                 startActivity(i);
                 finish();
             }
