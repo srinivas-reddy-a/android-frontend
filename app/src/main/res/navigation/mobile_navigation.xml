@@ -57,4 +57,9 @@
         android:name="com.example.arraykart.ui.Legal.LegalFragment"
         android:label="Arraykart"
         />
+    <fragment
+        android:id="@+id/nav_Return_Policy"
+        android:name="com.example.arraykart.ui.RetrunPollicy.ReturnPolicyFragment"
+        android:label="Arraykart"
+        />
 </navigation>

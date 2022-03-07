@@ -16,8 +16,12 @@
         android:theme="@style/Theme.Arraykart"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.RetrunPollicy.ReturnPolicy"
+            android:exported="false" />
+        <activity
             android:name=".OnBoardingPage.OnBoardingActivity"
             android:exported="false" />
+
         <activity
             android:name=".ui.PrivacyPolicy.PrivacyPolicy"
             android:exported="false" />

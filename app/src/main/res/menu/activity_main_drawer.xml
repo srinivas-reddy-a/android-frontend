@@ -58,5 +58,9 @@
             android:id="@+id/nav_Legal"
             android:enabled="true"
             android:title="Legal" />
+        <item
+            android:id="@+id/nav_Return_Policy"
+            android:enabled="true"
+            android:title="Return Policy"/>
     </group>
 </menu>
