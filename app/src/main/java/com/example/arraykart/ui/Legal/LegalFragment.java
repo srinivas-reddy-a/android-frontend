@@ -23,9 +23,7 @@ public class LegalFragment extends Fragment {
         // Inflate the layout for this fragment
         binding=FragmentLegalBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         getContext().startActivity(new Intent(getContext(),Legal.class));
-
         return  root;
     }
 }
