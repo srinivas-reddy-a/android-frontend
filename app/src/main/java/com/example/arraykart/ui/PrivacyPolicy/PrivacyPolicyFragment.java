@@ -1,5 +1,6 @@
 package com.example.arraykart.ui.PrivacyPolicy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ public class PrivacyPolicyFragment extends Fragment {
         binding=FragmentPrivacyPolicyBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        getContext().startActivity(new Intent(getContext(),PrivacyPolicy.class));
         return root;
     }
 }

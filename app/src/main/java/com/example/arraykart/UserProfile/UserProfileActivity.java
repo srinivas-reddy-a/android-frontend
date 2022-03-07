@@ -292,7 +292,7 @@ public class UserProfileActivity extends AppCompatActivity {
                     try {
                         users = authRespones.getUser();
                         UserName.setText(users.get(0).getName());
-                        UserEmail.setText(users.get(0).getEmail());
+                        UserEmail.setText(users.get(0).getPhone_number());
                     }catch (Exception e){
                         Toast.makeText(UserProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

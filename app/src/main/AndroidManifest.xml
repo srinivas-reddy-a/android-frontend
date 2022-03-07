@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".OnBoardingPage.OnBoardingActivity"
+            android:name=".ui.PrivacyPolicy.PrivacyPolicy"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Legal.Legal"
             android:exported="false" />
         <activity
             android:name=".RatingReviewPage.FeedbakRatingReview"
