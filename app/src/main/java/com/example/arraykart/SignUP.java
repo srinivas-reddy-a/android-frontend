@@ -163,7 +163,7 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -171,6 +171,7 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registerOtpResend();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -224,17 +225,7 @@ public class SignUP extends AppCompatActivity {
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(otp.isEmpty()){
-                                signUpUserOtp.requestFocus();
-                                signUpUserOtp.setError("please enter otp first");
-                                return;
-                            }
                             registerOtp();
-                            signUpUserOtp.setVisibility(View.GONE);
-                            resendSingUp.setVisibility(View.GONE);
-                            submit.setVisibility(View.GONE);
-                            signupbtn.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
                         }
                     });
                 }else
@@ -264,11 +255,6 @@ public class SignUP extends AppCompatActivity {
     private void registerOtp(){
         String userNumber = signUpUserNumber.getText().toString();
         String otp = signUpUserOtp.getText().toString();
-        if(otp.isEmpty()){
-            signUpUserOtp.requestFocus();
-            signUpUserOtp.setError("please enter otp first");
-            return;
-        }
 
         Call<SignUpTopRespones> call = RetrofitClient
                 .getInstance()
@@ -277,13 +263,20 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onResponse(Call<SignUpTopRespones> call, Response<SignUpTopRespones> response) {
                 SignUpTopRespones responseBody = response.body();
-                if(response.isSuccessful()){
+                if(response.code()==200){
                     String token = responseBody.getToken();
                     sharedPrefManager.setValue_string("token",token);
                     Toast.makeText(SignUP.this,responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                     finish();
+                    signUpUserOtp.setVisibility(View.GONE);
+                    resendSingUp.setVisibility(View.GONE);
+                    submit.setVisibility(View.GONE);
+                    signupbtn.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }else if(response.code()==401) {
+                    signUpUserOtp.requestFocus();
                     signUpUserOtp.setError("please enter valid otp");
+                    return;
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());

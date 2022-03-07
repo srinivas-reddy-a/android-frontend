@@ -206,6 +206,12 @@ public interface Api {
     @GET("/api/order/")
     Call<getOrderRespones>getOrder(@Header("Authorization") String Authorization);
 
+    @FormUrlEncoded
+    @PUT("/api/order/cancel/")
+    Call<CartUPdateRespones>cancelOrder(@Header("Authorization") String Authorization,
+                                        @Field("order_id") String order_id,
+                                        @Field("reason_cancel") String reason_cancel);
+
     @GET("/api/order/:id/")
     Call<ResponseBody>orderId();
 
