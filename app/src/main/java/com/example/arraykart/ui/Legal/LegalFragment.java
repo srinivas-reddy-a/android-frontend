@@ -1,5 +1,6 @@
 package com.example.arraykart.ui.Legal;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,8 @@ public class LegalFragment extends Fragment {
         // Inflate the layout for this fragment
         binding=FragmentLegalBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        getContext().startActivity(new Intent(getContext(),Legal.class));
 
         return  root;
     }

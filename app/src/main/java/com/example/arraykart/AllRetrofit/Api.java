@@ -63,6 +63,14 @@ public interface Api {
     Call<AuthRespones>auth(@Header("Authorization") String Authorization);
 
 
+    @GET("/api/user/community/register/")
+    Call<CartUPdateRespones> getPradhaan(@Header("Authorization") String Authorization);
+    @FormUrlEncoded
+    @PUT("/api/user/community/register/")
+    Call<CartUPdateRespones> addCommunity(@Header("Authorization") String Authorization,
+                                          @Field("aadhaar") String aadhaar,
+                                          @Field("name") String name);
+
     @FormUrlEncoded
     @POST("/api/user/login/")
     Call<LogInRespones>login(@Field("phoneNumber") String userNumber);
