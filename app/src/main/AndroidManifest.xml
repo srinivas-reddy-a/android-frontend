@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Arraykart"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".OnBoardingPage.OnBoardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".RatingReviewPage.FeedbakRatingReview"
             android:exported="false" />
         <activity

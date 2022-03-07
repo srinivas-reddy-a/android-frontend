@@ -26,6 +26,12 @@
     <style name="Theme.Arraykart.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--        hamburger color-->
+
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/black</item>
