@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.arraykart.MyOrder.OrderDetail;
 import com.example.arraykart.R;
@@ -42,16 +43,13 @@ public class NotificationActivity extends AppCompatActivity {
 
 
             notificationModelList = new ArrayList<>();
-            notificationModelList.add(new NotificationModel(R.drawable.img,
-                    "yuyigjgxccnccncnbmnvnvmvmvmmnnvnvnvvvvvvvbnbbnbnbnbnbnbnbnb","yobvusdj"));
-            notificationModelList.add(new NotificationModel(R.drawable.img,
-                    "yuyigjgxccnccncnbmnvnvmvmvmmnnvnvnvvvvvvvbnbbnbnbnbnbnbnbnb","yobvusdj"));
-            notificationModelList.add(new NotificationModel(R.drawable.img,
-                    "yuyigjgxccnccncnbmnvnvmvmvmmnnvnvnvvvvvvvbnbbnbnbnbnbnbnbnb","yobvusdj"));
-
-            notificationAdapter= new NotificationAdapter(notificationModelList);
-            notificationRecyclerView.setAdapter(notificationAdapter);
-            notificationAdapter.notifyDataSetChanged();
+            if(notificationModelList == null){
+                Toast.makeText(this, " ", Toast.LENGTH_SHORT).show();
+            }else {
+                notificationAdapter = new NotificationAdapter(notificationModelList);
+                notificationRecyclerView.setAdapter(notificationAdapter);
+                notificationAdapter.notifyDataSetChanged();
+            }
 
         }catch (Exception e){
 

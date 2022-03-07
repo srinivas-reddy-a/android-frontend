@@ -167,6 +167,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
             try {
                 Glide.with(context)
                         .load(resource)
+                        .placeholder(R.drawable.placeholder)
                         .centerCrop()
                         .into(productImage);
                 productTitle.setText(title);

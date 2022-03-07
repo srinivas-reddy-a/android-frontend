@@ -104,6 +104,7 @@ public class GridViewAdapter extends BaseAdapter {
 //            cImg.setImageResource(modelForSingleProducts.get(position).getImgs());
             Glide.with(context.getApplicationContext())
                     .load(modelForSingleProducts.get(position).getImgs())
+                    .placeholder(R.drawable.placeholder)
                     .centerInside()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.cImg);

@@ -431,7 +431,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             try {
 
 //                productImage.setImageResource(image);
-                Glide.with(context).load(image).centerCrop().into(productImage);
+                Glide.with(context)
+                        .load(image)
+                        .placeholder(R.drawable.placeholder)
+                        .centerCrop()
+                        .into(productImage);
                 productTitle.setText(title);
                 freeCoupons.setVisibility(View.GONE);
                 freeCouponIcon.setVisibility(View.GONE);

@@ -153,6 +153,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 //                productImage.setImageResource(image);
                 Glide.with(context)
                         .load(image)
+                        .placeholder(R.drawable.placeholder)
                         .centerCrop()
                         .into(productImage);
                 productTitle.setText(title);
