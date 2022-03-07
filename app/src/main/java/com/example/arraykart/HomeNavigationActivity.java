@@ -187,7 +187,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_wishList,
                 R.id.nav_MyCart, R.id.nav_Settings,R.id.nav_SignUp,R.id.nav_LogOut,
-                R.id.nav_HelpCenter,R.id.nav_PrivacyPolicy,R.id.nav_Legal)
+                R.id.nav_HelpCenter,R.id.nav_PrivacyPolicy,R.id.nav_Legal,R.id.nav_Return_Policy)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_navigation);
@@ -247,7 +247,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 if(item.getId()==1){
-                    startActivity(new Intent(HomeNavigationActivity.this, CommunityActivity.class));
+                    if(user_token.contains("token")) {
+                        startActivity(new Intent(HomeNavigationActivity.this, CommunityActivity.class));
+                    }else {
+                        startActivity(new Intent(HomeNavigationActivity.this, SignUP.class));
+                    }
                 }
                 if(item.getId()==3){
                     if(user_token.contains("token")) {
@@ -263,7 +267,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
                 if(item.getId()==1){
-                    Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                    if(user_token.contains("token")) {
+                        startActivity(new Intent(HomeNavigationActivity.this, CommunityActivity.class));
+                    }else {
+                        startActivity(new Intent(HomeNavigationActivity.this, SignUP.class));
+                    }
                 }
                 if(item.getId()==3){
                     if(user_token.contains("token")) {
