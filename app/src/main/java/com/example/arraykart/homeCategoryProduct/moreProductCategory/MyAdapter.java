@@ -78,6 +78,7 @@ public class MyAdapter extends BaseAdapter {
 
         Glide.with(context.getApplicationContext())
                 .load(moreCotegoryModels.get(position).getImage())
+                .placeholder(R.drawable.placeholder)
                 .centerInside()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.img);
