@@ -35,4 +35,5 @@
     <string name="enter_aadhaar_no">Enter aadhaar No</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="register_to_become_a_community_head">Register to become a Community Head</string>
+    <string name="skip">Skip</string>
 </resources>
