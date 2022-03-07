@@ -40,6 +40,7 @@ import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.BannerSlider.SliderAdapter;
 import com.example.arraykart.BannerSlider.SliderModel;
+import com.example.arraykart.Community.CommunityActivity;
 import com.example.arraykart.MyCart.MYCartActivity;
 import com.example.arraykart.NotificationPage.NotificationActivity;
 import com.example.arraykart.UserProfile.UserProfileActivity;
@@ -216,7 +217,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         });
 
                 meowBottomNavigation = findViewById(R.id.bottom_navigation);
-        meowBottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_baseline_agriculture_24));
+        meowBottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_baseline_people_24));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_baseline_home_24));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_account_circle_24));
 
@@ -246,7 +247,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 if(item.getId()==1){
-                    Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeNavigationActivity.this, CommunityActivity.class));
                 }
                 if(item.getId()==3){
                     if(user_token.contains("token")) {
