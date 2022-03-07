@@ -22,7 +22,6 @@ public class LegalFragment extends Fragment {
         // Inflate the layout for this fragment
         binding=FragmentLegalBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         return  root;
     }
 }
