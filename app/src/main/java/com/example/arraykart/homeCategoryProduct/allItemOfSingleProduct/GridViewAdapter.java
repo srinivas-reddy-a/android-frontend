@@ -109,7 +109,7 @@ public class GridViewAdapter extends BaseAdapter {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.cImg);
             holder.txt.setText(modelForSingleProducts.get(position).getName());
-            holder.prc.setText("RS."+modelForSingleProducts.get(position).getPrice()+"/--");
+            holder.prc.setText("₹ "+modelForSingleProducts.get(position).getPrice()+"---");
             holder.rb.setVisibility(View.GONE);
             holder.rt.setVisibility(View.GONE);
 

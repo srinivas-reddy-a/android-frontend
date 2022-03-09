@@ -439,7 +439,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                 productTitle.setText(title);
                 freeCoupons.setVisibility(View.GONE);
                 freeCouponIcon.setVisibility(View.GONE);
-                productPrice.setText("RS"+" "+productPriceText+"/--");
+                productPrice.setText("₹ "+" "+productPriceText+"---");
                 cuttedPrice.setVisibility(View.GONE);
                 offerApplied.setVisibility(View.GONE);
                 productQuantity.setText(qty);

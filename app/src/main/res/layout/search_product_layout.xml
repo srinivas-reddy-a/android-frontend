@@ -52,7 +52,7 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RS"
+        android:text="₹"
         android:textSize="@dimen/text_size"
         android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="@+id/afterSearchProductName"

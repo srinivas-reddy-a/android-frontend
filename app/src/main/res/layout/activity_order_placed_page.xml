@@ -147,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="RS. 500/--"
+                android:text="₹ 500/--"
                 android:textColor="@color/green"
                 android:textSize="@dimen/heading_size"
                 app:layout_constraintStart_toStartOf="@+id/orderPlacePName"

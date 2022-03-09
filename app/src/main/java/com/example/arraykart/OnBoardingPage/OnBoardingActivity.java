@@ -33,9 +33,9 @@ public class OnBoardingActivity extends AppCompatActivity {
             editor.putString("FirstTimeInstall", "Yes");
             editor.apply();
 
-            String original = "You can trust us with your money, products we deal in are 100% authentic.";
-            String homeDelivery = "We deliver at your door-step within 3 to 5 days, so no shopping out hustles.";
-            String factory = "We deal directly with the manufacturers, ofcourse we reduce the costs.";
+            String original = "You can trust us with your money, products are 100% authentic.";
+            String homeDelivery = "We deliver at your door-step, so no shopping out hustles.";
+            String factory = "We deal directly with the manufacturers and hence low costs.";
             TextView textView = (TextView) findViewById(R.id.textView);
             Button button = (Button) findViewById(R.id.button);
             Button skip = (Button) findViewById(R.id.skip);

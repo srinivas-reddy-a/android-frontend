@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
-                android:text="RS.30000/-"
+                android:text="₹ 30000/-"
                 android:textColor="@color/heading"
                 android:textSize="16sp"
                 android:textStyle="normal"
