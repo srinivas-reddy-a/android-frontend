@@ -475,7 +475,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                 try {
                     product = response.body().getProduct();
                     pdProductName.setText(product.get(0).getName());
-                    productDetailPagePrice.setText(product.get(0).getPrice());
+                    //productDetailPagePrice.setText(product.get(0).getPrice());
+                    productDetailPagePrice.setText("Price coming soon");
                     listDetail.setText(product.get(0).getDescription());
                     listDetail1.setText(product.get(0).getBrand());
                     listDetail2.setText(product.get(0).getCategory());
