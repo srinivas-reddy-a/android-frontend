@@ -65,8 +65,10 @@
 
         <TextView
             android:id="@+id/priceGrid"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:singleLine="true"
             android:padding="2dp"
             android:text="Price"
             android:textColor="@color/text"

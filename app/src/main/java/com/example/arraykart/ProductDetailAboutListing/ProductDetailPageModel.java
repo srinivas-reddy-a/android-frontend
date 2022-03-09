@@ -1,38 +1,50 @@
 package com.example.arraykart.ProductDetailAboutListing;
 
-public class ProductDetailPageModel {
-    String id;
-    String name;
-    String technical_name;
-    String price;
-    String description;
-    String target_disease;
-    String target_field_crops;
-    String target_vegetable_crops;
-    String target_fruit_crops;
-    String target_plantation_crops;
-    String mode_of_action;
-    String duration_of_effect;
-    String compatability_with_other_chemicals;
-    String frequency_of_application;
-    String dosage;
-    String water_requirement;
-    String time_of_applicationid;
-    String method_of_application;
-    String waiting_period;
-    String label_on_product;
-    String storage;
-    String country_of_origin;
-    String shelf_life;
-    String volume;
-    String dimensions;
-    String state;
-    String category;
-    String inventory_id;
-    String brand;
-    String image;
+import com.google.gson.annotations.SerializedName;
 
-    public ProductDetailPageModel(String id, String name, String technical_name, String price, String description, String target_disease, String target_field_crops, String target_vegetable_crops, String target_fruit_crops, String target_plantation_crops, String mode_of_action, String duration_of_effect, String compatability_with_other_chemicals, String frequency_of_application, String dosage, String water_requirement, String time_of_applicationid, String method_of_application, String waiting_period, String label_on_product, String storage, String country_of_origin, String shelf_life, String volume, String dimensions, String state, String category, String inventory_id, String brand, String image) {
+public class ProductDetailPageModel {
+    private String id;
+    private String name;
+    private String technical_name;
+    private String price;
+    private String description;
+    private String target_disease;
+    private String target_field_crops;
+    private String target_vegetable_crops;
+    private String target_fruit_crops;
+    private String target_plantation_crops;
+    private String mode_of_action;
+    private String duration_of_effect;
+    private String compatability_with_other_chemicals;
+    private String frequency_of_application;
+    private String dosage;
+    private String water_requirement;
+    private String time_of_applicationid;
+    private String method_of_application;
+    private String waiting_period;
+    private String label_on_product;
+    private String storage;
+    private String country_of_origin;
+    private String shelf_life;
+    private String volume;
+    private String dimensions;
+    private String state;
+    private String category;
+    private String inventory_id;
+    private String brand;
+    private String image;
+    private String sowing_time;
+
+    @SerializedName("seed_Rate(Kg/acre)")
+    private String seed_Rate;
+    private String maturity_duration;
+    private String colour;
+    private String usp;
+
+    @SerializedName("Number of Seeds/Packet")
+    private String NumberOfSeeds;
+
+    public ProductDetailPageModel(String id, String name, String technical_name, String price, String description, String target_disease, String target_field_crops, String target_vegetable_crops, String target_fruit_crops, String target_plantation_crops, String mode_of_action, String duration_of_effect, String compatability_with_other_chemicals, String frequency_of_application, String dosage, String water_requirement, String time_of_applicationid, String method_of_application, String waiting_period, String label_on_product, String storage, String country_of_origin, String shelf_life, String volume, String dimensions, String state, String category, String inventory_id, String brand, String image, String sowing_time, String seed_Rate, String maturity_duration, String colour, String usp, String numberOfSeeds) {
         this.id = id;
         this.name = name;
         this.technical_name = technical_name;
@@ -63,6 +75,12 @@ public class ProductDetailPageModel {
         this.inventory_id = inventory_id;
         this.brand = brand;
         this.image = image;
+        this.sowing_time = sowing_time;
+        this.seed_Rate = seed_Rate;
+        this.maturity_duration = maturity_duration;
+        this.colour = colour;
+        this.usp = usp;
+        NumberOfSeeds = numberOfSeeds;
     }
 
     public String getId() {
@@ -303,5 +321,53 @@ public class ProductDetailPageModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSowing_time() {
+        return sowing_time;
+    }
+
+    public void setSowing_time(String sowing_time) {
+        this.sowing_time = sowing_time;
+    }
+
+    public String getSeed_Rate() {
+        return seed_Rate;
+    }
+
+    public void setSeed_Rate(String seed_Rate) {
+        this.seed_Rate = seed_Rate;
+    }
+
+    public String getMaturity_duration() {
+        return maturity_duration;
+    }
+
+    public void setMaturity_duration(String maturity_duration) {
+        this.maturity_duration = maturity_duration;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public String getUsp() {
+        return usp;
+    }
+
+    public void setUsp(String usp) {
+        this.usp = usp;
+    }
+
+    public String getNumberOfSeeds() {
+        return NumberOfSeeds;
+    }
+
+    public void setNumberOfSeeds(String numberOfSeeds) {
+        NumberOfSeeds = numberOfSeeds;
     }
 }
