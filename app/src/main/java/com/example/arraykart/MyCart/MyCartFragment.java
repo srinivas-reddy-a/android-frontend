@@ -118,7 +118,9 @@ public class MyCartFragment extends Fragment {
                     }
                     total = Integer.toString(t);
 
-                    total_cart_amount.setText("RS."+total+"/--");
+                    //total_cart_amount.setText("RS."+total+"/--");
+                    total_cart_amount.setText("Price coming soon");
+
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -140,10 +142,11 @@ public class MyCartFragment extends Fragment {
             buy_on_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    changeAddress.setVisibility(View.VISIBLE);
-                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-                    buy_on_cart.setVisibility(View.GONE);
-                    delivery_continue_btn.setVisibility(View.VISIBLE);
+                    Toast.makeText(getContext(), "coming soon", Toast.LENGTH_SHORT).show();
+//                    changeAddress.setVisibility(View.VISIBLE);
+//                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+//                    buy_on_cart.setVisibility(View.GONE);
+//                    delivery_continue_btn.setVisibility(View.VISIBLE);
 
                 }
             });

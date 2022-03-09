@@ -64,7 +64,9 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.img);
         holder.tv.setText(mainModel.get(position).getName());
-        holder.tv1.setText("RS."+mainModel.get(position).getPrice()+"/--");
+        //holder.tv1.setText("RS."+mainModel.get(position).getPrice()+"/--");
+        holder.tv1.setText("Price coming soon");
+
 
 //        if(position<=p) {
 //            Glide.with(this.context)

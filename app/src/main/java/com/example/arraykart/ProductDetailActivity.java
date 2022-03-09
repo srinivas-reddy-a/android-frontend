@@ -367,11 +367,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
-                        changeAddress.setVisibility(View.VISIBLE);
-                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-                        buy_on_product_detail.setVisibility(View.GONE);
-                        delivery_continue_btn.setVisibility(View.VISIBLE);
-//                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                        Toast.makeText(ProductDetailActivity.this, "coming soon", Toast.LENGTH_SHORT).show();
+//                        changeAddress.setVisibility(View.VISIBLE);
+//                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+//                        buy_on_product_detail.setVisibility(View.GONE);
+//                        delivery_continue_btn.setVisibility(View.VISIBLE);
                     }else {
                         startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                     }
