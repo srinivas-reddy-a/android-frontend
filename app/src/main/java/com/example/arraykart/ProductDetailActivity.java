@@ -530,7 +530,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
     private void volume(String[] volume){
 
-        ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,R.layout.spinner_text,volume);
+        ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,android.R.layout.simple_spinner_item,volume);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
