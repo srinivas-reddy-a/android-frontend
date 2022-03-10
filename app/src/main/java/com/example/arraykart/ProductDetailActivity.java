@@ -674,12 +674,17 @@ public class ProductDetailActivity extends AppCompatActivity {
     private void volume(String[] volume){
 
         ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,android.R.layout.simple_spinner_item,volume);
+
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 vl = (String) parent.getItemAtPosition(position);
+//                int cost = spinner.getSelectedItemPosition();
+//                String[] price ={"100","200","300","400"};
+//                String costs = price[cost];
+//                Toast.makeText(ProductDetailActivity.this,costs, Toast.LENGTH_SHORT).show();
                 selected_volume.setText(vl);
                 String token = sharedPrefManager.getValue_string("token");
 

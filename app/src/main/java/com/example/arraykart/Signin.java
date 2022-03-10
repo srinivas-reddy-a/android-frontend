@@ -5,15 +5,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,6 +41,8 @@ import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -47,6 +55,8 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -59,9 +69,12 @@ public class Signin extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     private static  int RC_SIGN_IN = 100;
 
+    private static final int REQ_USER_CONSENT = 200;
+    OtpReeiver otpReeiver;
+
     private ImageView imageView;
     private TextView signup,resendSingIn;
-    private TextView Sign_in_page_otp,Sign_in_page_email;
+    private EditText Sign_in_page_otp,Sign_in_page_email;
     private Button Sign_in,Submit;
 
     public String UserToken;
@@ -82,6 +95,11 @@ public class Signin extends AppCompatActivity {
         Sign_in = findViewById(R.id.Sign_in);
         resendSingIn = findViewById(R.id.resendSingIn);
         progressBar = findViewById(R.id.progressBar);
+
+        OtpRequestPermissions();
+
+//        String ot = new OtpReeiver().getOtp();
+//        Sign_in_page_otp.setText(ot);
 
         String number = getIntent().getStringExtra("number");
 //        if(number != null){
@@ -164,7 +182,7 @@ public class Signin extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     login();
-                    progressBar.setVisibility(View.VISIBLE);
+//                    progressBar.setVisibility(View.VISIBLE);
                 }
             });
         }catch (Exception e){
@@ -178,6 +196,84 @@ public class Signin extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
             }
         });
+
+    }
+
+    private void OtpRequestPermissions(){
+//        if(ContextCompat.checkSelfPermission(Signin.this, Manifest.permission.RECEIVE_SMS)
+//        != PackageManager.PERMISSION_GRANTED);
+//        ActivityCompat.requestPermissions(Signin.this,new String[]{
+//                Manifest.permission.RECEIVE_SMS
+//        },100);
+
+        SmsRetrieverClient client = SmsRetriever.getClient(this);
+        client.startSmsUserConsent(null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQ_USER_CONSENT){
+
+            if ((resultCode == RESULT_OK) && (data != null)){
+
+                String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
+                getOtpFromMessage(message);
+
+
+            }
+
+
+        }
+        //facebook
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        //google
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+
+    }
+
+    private void getOtpFromMessage(String message) {
+
+        Pattern otpPattern = Pattern.compile("(|^)\\d{6}");
+        Matcher matcher = otpPattern.matcher(message);
+        if (matcher.find()){
+
+            Sign_in_page_otp.setText(matcher.group(0));
+
+        }
+
+
+    }
+
+    private void registerBroadcastReceiver(){
+
+        otpReeiver = new OtpReeiver();
+
+        otpReeiver.smsBroadcastReceiverListener = new OtpReeiver.SmsBroadcastReceiverListener(){
+            @Override
+            public void onSuccess(Intent intent) {
+
+                startActivityForResult(intent,REQ_USER_CONSENT);
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        };
+
+        IntentFilter intentFilter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
+        registerReceiver(otpReeiver,intentFilter);
 
     }
 
@@ -242,7 +338,7 @@ public class Signin extends AppCompatActivity {
 
         if(otp.isEmpty()){
             Sign_in_page_otp.requestFocus();
-            Sign_in_page_otp.setError("please enter otp first");
+            Sign_in_page_otp.setError("please enter valid otp");
             return;
         }else {
             Call<LogInOtpRespones> call = RetrofitClient
@@ -331,22 +427,22 @@ public class Signin extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //facebook
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-
-        //google
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        //facebook
+//        callbackManager.onActivityResult(requestCode, resultCode, data);
+//
+//        //google
+//
+//        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+//        if (requestCode == RC_SIGN_IN) {
+//            // The Task returned from this call is always completed, no need to attach
+//            // a listener.
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            handleSignInResult(task);
+//        }
+//    }
 
 
 
@@ -459,5 +555,12 @@ public class Signin extends AppCompatActivity {
         if(userToken.contains("token")){
 
         }
+        registerBroadcastReceiver();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(otpReeiver);
     }
 }
