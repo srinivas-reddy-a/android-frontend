@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Rs.499999/-"
+        android:text="₹ 499999/-"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         android:textStyle="normal"
@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="RS.599999/-"
+        android:text="₹ 599999/-"
         android:textSize="@dimen/text_size"
         app:layout_constraintStart_toEndOf="@+id/wishListPrice"
         app:layout_constraintTop_toTopOf="@+id/wishListPrice" />

@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"
                 android:layout_marginStart="16dp"
-                android:text="RS._________/-"
+                android:text="₹ ______/-"
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size"
                 app:layout_constraintEnd_toEndOf="parent"

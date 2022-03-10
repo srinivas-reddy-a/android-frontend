@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
-                android:text="*The Offer is flat 100 Rs. Instant Discount on a range of products sold on Flipkart Platform upon paying through ‘Flipkart Pay Later’ for the first time (only available to customers of Flipkart Pay Later’ product) also known as “Buy Now Pay Later” from 01st December 2021 00:00 hrs to 20th December 2021 23:59 hrs. Minimum order value is Rs. 500."
+                android:text="*The Offer is flat ₹100 . Instant Discount on a range of products sold on Flipkart Platform upon paying through ‘Flipkart Pay Later’ for the first time (only available to customers of Flipkart Pay Later’ product) also known as “Buy Now Pay Later” from 01st December 2021 00:00 hrs to 20th December 2021 23:59 hrs. Minimum order value is ₹ 500."
                 android:textColor="@color/text"
                 android:textSize="@dimen/text_size"/>
         </LinearLayout>

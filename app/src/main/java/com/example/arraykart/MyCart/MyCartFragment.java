@@ -89,10 +89,10 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         cartItemModelList= new ArrayList<>();
-//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"Rs.---/-","RS.",1,0,0));
-//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"Rs.---/-","RS.",2,1,0));
-//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"Rs.---/-","RS.",3,0,1));
-//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.----","Free","RS.-----"));
+//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"₹ ---/-","₹",1,0,0));
+//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"₹ ---/-","₹",2,1,0));
+//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"₹ ---/-","₹",3,0,1));
+//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","₹ ----","Free","₹ -----"));
 //
 //        cartAdapter = new CartAdapter(cartItemModelList);
 //        cartItemsRecyclerView.setAdapter(cartAdapter);
@@ -117,10 +117,8 @@ public class MyCartFragment extends Fragment {
                         t += Integer.parseInt( cartItemModelList.get(j).getQuantity()) * Integer.parseInt( cartItemModelList.get(j).getPrice());
                     }
                     total = Integer.toString(t);
-
-                    //total_cart_amount.setText("RS."+total+"/--");
+//                    total_cart_amount.setText("₹ "+total+"---");
                     total_cart_amount.setText("Price coming soon");
-
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
