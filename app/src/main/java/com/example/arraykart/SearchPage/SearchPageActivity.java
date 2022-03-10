@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -79,11 +80,58 @@ public class SearchPageActivity extends AppCompatActivity implements SearchAdapt
             }
         });
 
+
+
         searchPageBackIV = findViewById(R.id.searchPageBackIV);
         searchPageBackIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        edt.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction() == event.ACTION_DOWN &&  keyCode == KeyEvent.KEYCODE_ENTER){
+                    if ((edt.getText().toString().equals(""))) {
+                        Toast.makeText(
+                                getBaseContext(),
+                                "Whoa! You haven't entered anything in the search box.",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+//
+//                    String text = edt.getText().toString();
+//                   sharedPrefManager.setValue_list("search",text);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                        String p = edt.getText().toString();
+                        String url = "/api/product/?search="+p;
+
+                        Call<SearchProducRespones> call = RetrofitClient.getInstance().getApi().getSearchProduct(url);
+                        call.enqueue(new Callback<SearchProducRespones>() {
+                            @Override
+                            public void onResponse(Call<SearchProducRespones> call, Response<SearchProducRespones> response) {
+                                try{
+                                    searchProductModels = response.body().getProducts();
+                                    SearchProductAdapter searchProductAdapter = new SearchProductAdapter(searchProductModels,getApplicationContext());
+                                    recyclerView.setAdapter(searchProductAdapter);
+                                }catch (Exception e){
+                                    Toast.makeText(SearchPageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<SearchProducRespones> call, Throwable t) {
+
+                            }
+                        });
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 
