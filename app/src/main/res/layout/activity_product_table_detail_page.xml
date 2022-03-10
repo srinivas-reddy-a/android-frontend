@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40sp"
-                    android:text="Product All Details"
+                    android:text="@string/product_all_details"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
                     android:textSize="@dimen/page_name" />
@@ -62,8 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="3dp"
-            >
+            android:padding="3dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +70,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="technical_name"
+                    android:text="@string/technical_name"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -80,7 +79,7 @@
                     android:id="@+id/technical_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nutrient Efficiency Optimizer"
+                    android:text="@string/nutrient_efficiency_optimizer"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -99,7 +98,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="description"
+                    android:text="@string/description"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -108,7 +107,7 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Epicel is highly active and safe.It increases the fertilizer efficiency and also mobilizes the nutrients present in the soil which are not available to the plants at normal course. Epicel is non-phytotoxic."
+                    android:text="@string/description_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -126,7 +125,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="target_disease"
+                    android:text="@string/target_disease"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -135,7 +134,7 @@
                     android:id="@+id/target_disease"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NA"
+                    android:text="@string/na"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -154,7 +153,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="target_field_crops"
+                    android:text="@string/target_field_crops"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -163,7 +162,7 @@
                     android:id="@+id/target_field_crops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Raddish"
+                    android:text="@string/target_field_crop_name"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -181,7 +180,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="target_vegetable_crops"
+                    android:text="@string/target_vegetable_crops"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -190,7 +189,7 @@
                     android:id="@+id/target_vegetable_crops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Garlic"
+                    android:text="@string/target_vegetable_crop_name"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -209,7 +208,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="target_fruit_crops"
+                    android:text="@string/target_fruit_crops"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -218,7 +217,7 @@
                     android:id="@+id/target_fruit_crops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Grapes, Guava, Sapota, Citrus, Mango, Pomegranate, Custard Apple, Banana. Apple, Coconut etc."
+                    android:text="@string/target_fruit_crop_name"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -237,7 +236,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="target_plantation_crops"
+                    android:text="@string/target_plantation_crops"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -246,7 +245,7 @@
                     android:id="@+id/target_plantation_crops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cardamom. Tea, Coffee, Floriculture. Home gardening, Medicinal plants etc."
+                    android:text="@string/target_plantation_crop_name"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -265,7 +264,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="mode_of_action"
+                    android:text="@string/mode_of_action"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -274,7 +273,7 @@
                     android:id="@+id/mode_of_action"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Epicel™ is highly active and safe. It increases the fertilizer efficiency and also mobilizes the nutrients present in the soil which are not available to the plants at normal course.."
+                    android:text="@string/mode_of_action_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -293,7 +292,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="duration_of_effect"
+                    android:text="@string/duration_of_effect"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -302,7 +301,7 @@
                     android:id="@+id/duration_of_effect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NA"
+                    android:text="@string/na"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -320,7 +319,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="compatability_with_other_chemicals"
+                    android:text="@string/compatability_with_other_chemicals"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -329,7 +328,7 @@
                     android:id="@+id/compatability_with_other_chemicals"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Epicel is compatible with all agriculture inputs "
+                    android:text="@string/compatability_with_other_chemicals_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -347,7 +346,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="frequency_of_application"
+                    android:text="@string/frequency_of_application"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -356,7 +355,7 @@
                     android:id="@+id/frequency_of_application"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Two"
+                    android:text="@string/frequency_of_application_no"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -375,7 +374,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="dosage"
+                    android:text="@string/dosage"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -384,7 +383,7 @@
                     android:id="@+id/dosage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Apply 2.5kg per hectare of  . . to apply 1 tonne per hectare stabilized organic manure at the time of Land preparation"
+                    android:text="@string/dosage_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -403,7 +402,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="water_requirement (ltr)"
+                    android:text="@string/water_requirement"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -412,7 +411,7 @@
                     android:id="@+id/water_requirement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NA"
+                    android:text="@string/na"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -431,7 +430,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="time_of_application"
+                    android:text="@string/time_of_application"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -440,7 +439,7 @@
                     android:id="@+id/time_of_application"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="After one month of sowing or after three weeks of transplantation, second application is recommended as per requirement and duration of the crop."
+                    android:text="@string/time_of_application_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -458,7 +457,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="method_of_application"
+                    android:text="@string/method_of_application"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -467,7 +466,7 @@
                     android:id="@+id/method_of_application"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Through drip irrigation or through drenching."
+                    android:text="@string/method_of_application_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -485,7 +484,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="waiting_period"
+                    android:text="@string/waiting_period"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -494,7 +493,7 @@
                     android:id="@+id/waiting_period"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NA"
+                    android:text="@string/na"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -513,7 +512,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="label_on_product"
+                    android:text="@string/label_on_product"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -522,7 +521,7 @@
                     android:id="@+id/label_on_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NA"
+                    android:text="@string/na"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -540,7 +539,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="storage"
+                    android:text="@string/storage"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -549,7 +548,7 @@
                     android:id="@+id/storage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Store in dry and cool place. avoid direct sunlight"
+                    android:text="@string/storage_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -567,7 +566,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="country_of_origin"
+                    android:text="@string/country_of_origin"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -576,7 +575,7 @@
                     android:id="@+id/country_of_origin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="India"
+                    android:text="@string/country_of_origin_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -594,7 +593,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="shelf_life"
+                    android:text="@string/shelf_life"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -603,7 +602,7 @@
                     android:id="@+id/shelf_life"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Two years from the date of manufacturing in original sealed pack"
+                    android:text="@string/shelf_life_detail"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -621,7 +620,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="volume"
+                    android:text="@string/volume"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -630,7 +629,7 @@
                     android:id="@+id/volume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1Kg,5Kg"
+                    android:text="@string/volume_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -649,7 +648,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="dimensions"
+                    android:text="@string/dimensions"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -658,7 +657,7 @@
                     android:id="@+id/dimensions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="15x10x4"
+                    android:text="@string/dimensions_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -676,7 +675,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="state(solid/liquid)"
+                    android:text="@string/state"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -685,7 +684,7 @@
                     android:id="@+id/state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="solid"
+                    android:text="@string/state_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -703,7 +702,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="category"
+                    android:text="@string/category"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -712,7 +711,7 @@
                     android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Growth Enhancers"
+                    android:text="@string/category_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -730,7 +729,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="inventory_id"
+                    android:text="@string/inventory_id"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -739,7 +738,7 @@
                     android:id="@+id/inventory_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1234"
+                    android:text="@string/inventory_id_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
@@ -757,7 +756,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="brand"
+                    android:text="@string/brand"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -766,7 +765,7 @@
                     android:id="@+id/brand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Excel Industries Ltd."
+                    android:text="@string/brand_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>

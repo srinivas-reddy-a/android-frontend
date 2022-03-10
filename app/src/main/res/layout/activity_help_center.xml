@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35sp"
                     android:layout_marginLeft="40sp"
-                    android:text="Help Center"
+                    android:text="@string/help_center"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
                     android:textSize="@dimen/page_name" />

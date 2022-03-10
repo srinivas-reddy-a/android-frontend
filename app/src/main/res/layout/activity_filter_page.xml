@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:visibility="gone"
         android:padding="5sp"
-        android:text="cost/kg"
+        android:text="@string/cost_kg"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,35 +47,35 @@
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1Kg/200" />
+            android:text="@string/_1kg_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2kg/400" />
+            android:text="@string/_2kg_400" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip3"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3Kg/600" />
+            android:text="@string/_3kg_600" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip4"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4Kg/800" />
+            android:text="@string/_4kg_800" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip5"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5kg/1000" />
+            android:text="@string/_5kg_1000" />
     </com.google.android.material.chip.ChipGroup>
 
     <TextView
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:padding="5sp"
-        android:text="cost"
+        android:text="@string/cost"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,35 +109,35 @@
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100-200" />
+            android:text="@string/_100_200" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip7"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="200-300" />
+            android:text="@string/_200_300" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip8"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="300-400" />
+            android:text="@string/_300_400" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip9"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="upto 500" />
+            android:text="@string/upto_500" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip10"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="500"
+            android:text="@string/_500"
             android:visibility="gone" />
     </com.google.android.material.chip.ChipGroup>
 
@@ -148,7 +148,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/green"
         android:padding="10sp"
-        android:text="search"
+        android:text="@string/search"
         android:textColor="@color/text"
         android:textSize="@dimen/text_size"
         app:layout_constraintEnd_toEndOf="parent"

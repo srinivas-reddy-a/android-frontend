@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_weight="1"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="#5F5A5A"
                 android:textSize="20sp" />
 
@@ -52,7 +52,7 @@
             android:layout_marginStart="30dp"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
-            android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
+            android:text="@string/indian_rupee_symbol"
             android:textColor="@color/gray"
             android:visibility="gone" />
 
