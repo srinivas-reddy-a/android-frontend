@@ -18,33 +18,32 @@ public class ProductDetailPageModel {
     private String compatability_with_other_chemicals;
     private String frequency_of_application;
     private String dosage;
+    @SerializedName("water_requirement (ltr)")
     private String water_requirement;
-    private String time_of_applicationid;
+    private String time_of_application;
     private String method_of_application;
     private String waiting_period;
-    private String label_on_product;
+    private String phytotoxicity;
     private String storage;
     private String country_of_origin;
-    private String shelf_life;
     private String volume;
     private String dimensions;
+    @SerializedName("state(solid/liquid)")
     private String state;
     private String category;
     private String inventory_id;
     private String brand;
     private String image;
     private String sowing_time;
-
     @SerializedName("seed_Rate(Kg/acre)")
     private String seed_Rate;
     private String maturity_duration;
     private String colour;
     private String usp;
-
     @SerializedName("Number of Seeds/Packet")
     private String NumberOfSeeds;
 
-    public ProductDetailPageModel(String id, String name, String technical_name, String price, String description, String target_disease, String target_field_crops, String target_vegetable_crops, String target_fruit_crops, String target_plantation_crops, String mode_of_action, String duration_of_effect, String compatability_with_other_chemicals, String frequency_of_application, String dosage, String water_requirement, String time_of_applicationid, String method_of_application, String waiting_period, String label_on_product, String storage, String country_of_origin, String shelf_life, String volume, String dimensions, String state, String category, String inventory_id, String brand, String image, String sowing_time, String seed_Rate, String maturity_duration, String colour, String usp, String numberOfSeeds) {
+    public ProductDetailPageModel(String id, String name, String technical_name, String price, String description, String target_disease, String target_field_crops, String target_vegetable_crops, String target_fruit_crops, String target_plantation_crops, String mode_of_action, String duration_of_effect, String compatability_with_other_chemicals, String frequency_of_application, String dosage, String water_requirement, String time_of_application, String method_of_application, String waiting_period, String phytotoxicity, String storage, String country_of_origin, String volume, String dimensions, String state, String category, String inventory_id, String brand, String image, String sowing_time, String seed_Rate, String maturity_duration, String colour, String usp, String numberOfSeeds) {
         this.id = id;
         this.name = name;
         this.technical_name = technical_name;
@@ -61,13 +60,12 @@ public class ProductDetailPageModel {
         this.frequency_of_application = frequency_of_application;
         this.dosage = dosage;
         this.water_requirement = water_requirement;
-        this.time_of_applicationid = time_of_applicationid;
+        this.time_of_application = time_of_application;
         this.method_of_application = method_of_application;
         this.waiting_period = waiting_period;
-        this.label_on_product = label_on_product;
+        this.phytotoxicity = phytotoxicity;
         this.storage = storage;
         this.country_of_origin = country_of_origin;
-        this.shelf_life = shelf_life;
         this.volume = volume;
         this.dimensions = dimensions;
         this.state = state;
@@ -211,12 +209,12 @@ public class ProductDetailPageModel {
         this.water_requirement = water_requirement;
     }
 
-    public String getTime_of_applicationid() {
-        return time_of_applicationid;
+    public String getTime_of_application() {
+        return time_of_application;
     }
 
-    public void setTime_of_applicationid(String time_of_applicationid) {
-        this.time_of_applicationid = time_of_applicationid;
+    public void setTime_of_application(String time_of_application) {
+        this.time_of_application = time_of_application;
     }
 
     public String getMethod_of_application() {
@@ -235,12 +233,12 @@ public class ProductDetailPageModel {
         this.waiting_period = waiting_period;
     }
 
-    public String getLabel_on_product() {
-        return label_on_product;
+    public String getPhytotoxicity() {
+        return phytotoxicity;
     }
 
-    public void setLabel_on_product(String label_on_product) {
-        this.label_on_product = label_on_product;
+    public void setPhytotoxicity(String phytotoxicity) {
+        this.phytotoxicity = phytotoxicity;
     }
 
     public String getStorage() {
@@ -257,14 +255,6 @@ public class ProductDetailPageModel {
 
     public void setCountry_of_origin(String country_of_origin) {
         this.country_of_origin = country_of_origin;
-    }
-
-    public String getShelf_life() {
-        return shelf_life;
-    }
-
-    public void setShelf_life(String shelf_life) {
-        this.shelf_life = shelf_life;
     }
 
     public String getVolume() {
