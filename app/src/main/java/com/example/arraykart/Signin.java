@@ -78,6 +78,7 @@ public class Signin extends AppCompatActivity {
     private Button Sign_in,Submit;
 
     public String UserToken;
+    private String user_id;
 
     SharedPrefManager sharedPrefManager;
 
@@ -246,8 +247,10 @@ public class Signin extends AppCompatActivity {
         Pattern otpPattern = Pattern.compile("(|^)\\d{6}");
         Matcher matcher = otpPattern.matcher(message);
         if (matcher.find()){
-
+            login();
+            String number = Sign_in_page_email.getText().toString();
             Sign_in_page_otp.setText(matcher.group(0));
+            loginOtp(user_id,number);
 
         }
 
@@ -298,7 +301,7 @@ public class Signin extends AppCompatActivity {
                 LogInRespones logInRespones = response.body();
                 if(response.isSuccessful()){
                     Toast.makeText(Signin.this, logInRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                    String user_id = logInRespones.getId();
+                    user_id = logInRespones.getId();
                     Sign_in_page_otp.setVisibility(View.VISIBLE);
                     resendSingIn.setVisibility(View.VISIBLE);
                     Sign_in.setVisibility(View.GONE);
@@ -351,7 +354,7 @@ public class Signin extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         UserToken = logInOtpRespones.getToken();
                         sharedPrefManager.setValue_string("token", UserToken);
-                        Toast.makeText(Signin.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signin.this, "Logged in successfully", Toast.LENGTH_LONG).show();
 //                    Intent in = new Intent(Signin.this, HomeNavigationActivity.class);
 //                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                    startActivity(in);

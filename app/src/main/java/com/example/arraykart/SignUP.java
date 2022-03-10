@@ -240,7 +240,7 @@ public class SignUP extends AppCompatActivity {
         if (matcher.find()){
 
             signUpUserOtp.setText(matcher.group(0));
-
+            registerOtp();
         }
 
 
@@ -356,7 +356,6 @@ public class SignUP extends AppCompatActivity {
                 if(response.code()==200){
                     String token = responseBody.getToken();
                     sharedPrefManager.setValue_string("token",token);
-                    Toast.makeText(SignUP.this,responseBody.getMessage(), Toast.LENGTH_SHORT).show();
                     finish();
                     signUpUserOtp.setVisibility(View.GONE);
                     resendSingUp.setVisibility(View.GONE);
