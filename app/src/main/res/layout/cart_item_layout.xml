@@ -21,6 +21,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/selected_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/smokeWhite"
+        android:elevation="5dp"
+        android:text="2kg"
+        android:textColor="@color/text"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/remove_item_btn"
+        app:layout_constraintStart_toStartOf="@+id/mini_quantity_cart"
+        app:layout_constraintTop_toBottomOf="@+id/product_quantity" />
+
+    <TextView
         android:id="@+id/product_title"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
@@ -61,8 +74,8 @@
         android:layout_marginEnd="8dp"
         android:padding="1dp"
         android:text="₹ 40000/-"
-        android:textColor="@color/heading"
-        android:textSize="@dimen/heading_size"
+        android:textColor="@color/text"
+        android:textSize="15dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_free_offer" />
@@ -72,9 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
         android:text="₹ 50000/-"
-        android:textSize="@dimen/text_size"
+        android:textSize="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/cart_item_price"
         app:layout_constraintEnd_toStartOf="@+id/cart_item_price"
         tools:ignore="MissingConstraints" />
@@ -120,8 +132,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/boarder_background"
         android:orientation="horizontal"
-        android:padding="3dp"
-        android:layout_marginStart="16dp"
+        android:padding="1dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/remove_item_btn"
         app:layout_constraintStart_toEndOf="@+id/mini_quantity_cart"
         app:layout_constraintTop_toBottomOf="@+id/tv_free_offer">
@@ -139,7 +151,7 @@
             android:padding="4dp"
             android:text="1"
             android:textColor="@color/text"
-            android:textSize="@dimen/heading_size" />
+            android:textSize="14dp" />
     </LinearLayout>
 
 
@@ -219,7 +231,7 @@
         android:id="@+id/Add_quantity_cart"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/product_quantity"
         app:layout_constraintStart_toEndOf="@+id/product_quantity"
         app:layout_constraintTop_toTopOf="@+id/product_quantity"
