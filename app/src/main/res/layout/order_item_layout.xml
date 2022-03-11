@@ -27,7 +27,7 @@
         android:maxLines="1"
         android:padding="1dp"
         android:singleLine="true"
-        android:text="PRODUCT NAME"
+        android:text="@string/product_name"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         android:textStyle="bold"
@@ -55,7 +55,7 @@
         android:layout_marginEnd="101dp"
         android:maxLines="2"
         android:textAlignment="textStart"
-        android:text="Delivered on sunday 28/11/2021"
+        android:text="@string/delivered_on_sunday_28_11_2021"
         android:textSize="@dimen/text_size"
         android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="@+id/order_indicator"
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Your rating"
+        android:text="@string/your_rating"
         android:textSize="@dimen/text_size"
         android:textColor="@color/text"
         android:textStyle="bold"
@@ -163,7 +163,7 @@
             android:id="@+id/RateAndReview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Rate and Review"
+            android:text="@string/rate_and_review"
             android:backgroundTint="@color/green"/>
 
     </LinearLayout>

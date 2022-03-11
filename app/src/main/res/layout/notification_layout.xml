@@ -30,7 +30,7 @@
         android:layout_marginTop="44dp"
 
         android:paddingEnd="10dp"
-        android:text="sachin"
+        android:text="@string/sachin"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         app:layout_constraintStart_toEndOf="@+id/notifi_image"
@@ -43,7 +43,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="40dp"
         android:paddingEnd="10dp"
-        android:text="TextView"
+        android:text="@string/textview"
         app:layout_constraintEnd_toStartOf="@+id/notification_delete"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/notifi_boldTv"

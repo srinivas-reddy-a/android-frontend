@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">अरेकार्ट</string>
+    <string name="title_activity_home_navigation">HomeNavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">User Name</string>
+    <string name="nav_header_subtitle">user.name@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Categories</string>
+    <string name="menu_slideshow">Orders</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">1594258097572065</string>
+    <string name="fb_login_protocol_scheme">fb1594258097572065</string>
+    <string name="phoneNumber">+919311900912</string>
+    <string name="eMail">yourfriends@arraykart.com</string>
+    <string name="further_queries">For further queries, contact us through:</string>
+    <string name="title_activity_community">CommunityActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="help_center">Help Center</string>
+    <string name="community">Community Buying</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="aadhaar">Aadhaar</string>
+    <string name="enter_aadhaar_no">Enter aadhaar No</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="register_to_become_a_community_head">Register to become a Community Head</string>
+    <string name="skip">Skip</string>
+</resources>

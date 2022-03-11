@@ -35,7 +35,7 @@
                     android:layout_gravity="left"
                     app:srcCompat="@drawable/ic_baseline_west_24"
                     tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="3dp" />\
+                    tools:layout_editor_absoluteY="3dp" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -75,8 +75,7 @@
                     android:layout_gravity="right"
                     android:layout_marginEnd="10sp"
                     android:drawableStart="@drawable/ic_baseline_search_24"
-                    android:padding="9sp"
-                    ></TextView>
+                    android:padding="9sp"/>
 
 
             </androidx.appcompat.widget.Toolbar>

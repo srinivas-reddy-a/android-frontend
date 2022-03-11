@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QTY  :"
+            android:text="@string/qty"
             android:textColor="@color/text"
             android:textSize="16dp" />
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="1"
+            android:text="@string/_1"
             android:textColor="@color/text"
             android:textSize="16dp" />
     </LinearLayout>
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Add Quality of Products"
+        android:text="@string/add_quality_of_products"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         android:textStyle="normal"
@@ -107,7 +107,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volume"
+            android:text="@string/volume"
             android:padding="2dp"
             android:layout_marginEnd="2dp"
             android:textColor="@color/text"
@@ -117,7 +117,7 @@
           android:id="@+id/selected_volume"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="2kg"
+          android:text="@string/_2kg"
           android:textSize="@dimen/heading_size"
           android:textColor="@color/text"/>
 

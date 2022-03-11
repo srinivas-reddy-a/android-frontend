@@ -144,7 +144,7 @@
         android:id="@+id/AlreadyRegistered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Has Been Already Registered!"
+        android:text="@string/user_has_been_already_registered"
         android:textAlignment="center"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"

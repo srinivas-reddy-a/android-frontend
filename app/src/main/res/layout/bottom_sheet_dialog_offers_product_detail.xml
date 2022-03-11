@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10sp"
             android:layout_weight="1"
-            android:text="Terms &amp; Conditions"
+            android:text="@string/terms_conditions"
             android:textColor="@color/heading"
             android:textSize="@dimen/heading_size" />
     </LinearLayout>
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
-            android:text="Frequently Asked Questions"
+            android:text="@string/faq"
             android:textColor="@color/heading"
             android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
-                android:text="1.  What is the Offer?"
+                android:text="@string/faq1"
                 android:textColor="@color/heading"
                 android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
-                android:text="*The Offer is flat ₹100 . Instant Discount on a range of products sold on Flipkart Platform upon paying through ‘Flipkart Pay Later’ for the first time (only available to customers of Flipkart Pay Later’ product) also known as “Buy Now Pay Later” from 01st December 2021 00:00 hrs to 20th December 2021 23:59 hrs. Minimum order value is ₹ 500."
+                android:text="@string/ans1"
                 android:textColor="@color/text"
                 android:textSize="@dimen/text_size"/>
         </LinearLayout>
