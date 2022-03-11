@@ -146,9 +146,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 //        int freeCoupon = cartItemModelList.get(position).getFreeCoupons();
         String productPrice = cartItemModelList.get(position).getPrice();
         String productQuantity = cartItemModelList.get(position).getQuantity();
+        String volume = cartItemModelList.get(position).getVolume();
 //        String cuttedPrice = cartItemModelList.get(position).getCuttedPerice();
 //        int offerApplied = cartItemModelList.get(position).getOffersApplied()
-        holder.cartItemDetail(resource,title,productPrice,productQuantity);
+        holder.cartItemDetail(resource,title,productPrice,productQuantity,volume);
 
 
     }
@@ -169,7 +170,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
         private TextView couponsApplied;
         private TextView productQuantity;
         private ConstraintLayout remove_item_btn;
-        private TextView add_wishList_cart_page,remove_item_btn_cartPage;
+        private TextView add_wishList_cart_page,remove_item_btn_cartPage ,cartVolume;
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -181,6 +182,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             cuttedPrice = itemView.findViewById(R.id.cart_item_off_price);
             offerApplied = itemView.findViewById(R.id.offer_applied);
             couponsApplied = itemView.findViewById(R.id.coupon_applied);
+            cartVolume = itemView.findViewById(R.id.selected_volume);
             productQuantity = itemView.findViewById(R.id.product_quantity_text);
             remove_item_btn=itemView.findViewById(R.id.remove_item_btn);
             Add_quantity_cart = itemView.findViewById(R.id.Add_quantity_cart);
@@ -211,7 +213,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
                                  CartUPdateRespones cartUPdateRespones = response.body();
                                 if (response.isSuccessful()) {
-                                    Toast.makeText(context, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -256,7 +257,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
                                 CartUPdateRespones cartUPdateRespones = response.body();
                                 if (response.isSuccessful()) {
-//                                    Toast.makeText(context, cartUPdateRespones.getMessage(), Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -427,7 +427,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 //
         }
 
-        private void cartItemDetail(String image,String title,String productPriceText,String qty){
+        private void cartItemDetail(String image,String title,String productPriceText,String qty,String volume){
             try {
 
 //                productImage.setImageResource(image);
@@ -439,7 +439,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                 productTitle.setText(title);
                 freeCoupons.setVisibility(View.GONE);
                 freeCouponIcon.setVisibility(View.GONE);
-                productPrice.setText("RS"+" "+productPriceText+"/--");
+                cartVolume.setText("Volume "+ volume );
+//                productPrice.setText("₹ "+" "+productPriceText+"---");
+                productPrice.setText("Price coming soon");
                 cuttedPrice.setVisibility(View.GONE);
                 offerApplied.setVisibility(View.GONE);
                 productQuantity.setText(qty);

@@ -415,9 +415,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         ImageSlider imageSlider = findViewById(R.id.imageSlider2);
         List<SlideModel> slideModelList = new ArrayList<>();
-        slideModelList.add(new SlideModel(R.drawable.offer));
-        slideModelList.add(new SlideModel(R.drawable.offer));
-        slideModelList.add(new SlideModel(R.drawable.offer));
+        slideModelList.add(new SlideModel(R.drawable.offer1homepage));
         slideModelList.add(new SlideModel(R.drawable.offer));
         slideModelList.add(new SlideModel(R.drawable.offer));
 

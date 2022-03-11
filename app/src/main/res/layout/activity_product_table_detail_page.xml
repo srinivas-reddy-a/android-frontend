@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/technical_name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/technical_name"
@@ -85,6 +86,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/technical_name_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -96,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/description"
@@ -113,6 +116,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/description_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -123,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/target_disease_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/target_disease"
@@ -140,6 +145,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/target_disease_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -151,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/target_field_crops_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/target_field_crops"
@@ -168,6 +175,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/target_field_crops_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -178,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/target_vegetable_crops_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/target_vegetable_crops"
@@ -195,6 +204,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/target_vegetable_crops_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -206,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/target_fruit_crops_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/target_fruit_crops"
@@ -223,6 +234,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/target_fruit_crops_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -234,6 +246,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/target_plantation_crops_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/target_plantation_crops"
@@ -251,6 +264,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/target_plantation_crops_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -262,6 +276,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/mode_of_action_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/mode_of_action"
@@ -279,6 +294,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/mode_of_action_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -290,6 +306,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/duration_of_effect_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/duration_of_effect"
@@ -307,6 +324,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/duration_of_effect_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -317,6 +335,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/compatability_with_other_chemicals_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/compatability_with_other_chemicals"
@@ -334,6 +353,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/compatability_with_other_chemicals_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -344,6 +364,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/frequency_of_application_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/frequency_of_application"
@@ -361,6 +382,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/frequency_of_application_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -372,6 +394,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/dosage_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dosage"
@@ -389,6 +412,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/dosage_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -400,6 +424,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/water_requirement_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/water_requirement"
@@ -417,6 +442,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/water_requirement_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -428,6 +454,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/time_of_application_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/time_of_application"
@@ -445,6 +472,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/time_of_application_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -455,6 +483,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/method_of_application_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/method_of_application"
@@ -472,6 +501,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/method_of_application_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -482,6 +512,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/waiting_period_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/waiting_period"
@@ -499,6 +530,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/waiting_period_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -510,6 +542,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/label_on_product_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_on_product"
@@ -527,6 +560,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/label_on_product_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -537,6 +571,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/storage_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/storage"
@@ -554,6 +589,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/storage_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -564,6 +600,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/country_of_origin_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/country_of_origin"
@@ -581,6 +618,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/country_of_origin_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -591,6 +629,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/volume_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/shelf_life"
@@ -599,7 +638,7 @@
                     android:textColor="#000000"
                     android:textStyle="bold"/>
                 <TextView
-                    android:id="@+id/shelf_life"
+                    android:id="@+id/volume"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/shelf_life_detail"
@@ -608,33 +647,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@color/appbarSmokeWhite"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volume"
-                    android:layout_weight="1"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/volume"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/volume_value"
-                    android:layout_weight="1"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <View
+                android:id="@+id/volume_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -646,9 +659,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/dimensions_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/dimensions"
+                    android:text="@string/volume"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -657,12 +671,13 @@
                     android:id="@+id/dimensions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/dimensions_value"
+                    android:text="@string/volume_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/dimensions_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -673,9 +688,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/state_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/state"
+                    android:text="@string/dimensions"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -684,12 +700,13 @@
                     android:id="@+id/state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/state_value"
+                    android:text="@string/dimensions_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/state_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -700,9 +717,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/category_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/category"
+                    android:text="@string/state"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -711,12 +729,13 @@
                     android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/category_value"
+                    android:text="@string/state_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/category_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -727,9 +746,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/inventory_id_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/inventory_id"
+                    android:text="@string/category"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -738,12 +758,13 @@
                     android:id="@+id/inventory_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/inventory_id_value"
+                    android:text="@string/category_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/inventory_id_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
@@ -754,9 +775,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/brand_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/brand"
+                    android:text="@string/inventory_id"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textColor="#000000"
@@ -765,12 +787,187 @@
                     android:id="@+id/brand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/inventory_id_value"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/brand_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appbarSmokeWhite"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/sowing_time_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brand"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/sowing_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excel Industries Ltd."
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/sowing_time_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appbarSmokeWhite"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/seed_Rate_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="seed_Rate(Kg/acre)"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/seed_Rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excel Industries Ltd."
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/seed_Rate_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appbarSmokeWhite"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/maturity_duration_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="maturity_duration"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/maturity_duration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excel Industries Ltd."
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/maturity_duration_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appbarSmokeWhite"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/colour_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="colour"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/colour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excel Industries Ltd."
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/colour_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appbarSmokeWhite"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/usp_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="usp"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/usp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Excel Industries Ltd."
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <View
+                android:id="@+id/usp_view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/appbarSmokeWhite"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/NumberofSeeds_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Seeds/Packet"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/NumberofSeeds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/brand_value"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
             </LinearLayout>
             <View
+                android:id="@+id/NumberofSeeds_view"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"

@@ -255,8 +255,37 @@ public class ProductDetailActivity extends AppCompatActivity {
         TextView ld2= findViewById(R.id.listDetail2);
         LinearLayout categoryLL = findViewById(R.id.categoryLL);
 
+        ImageView li3 = findViewById(R.id.listImage3);
+        TextView lt3 = findViewById(R.id.listText3);
+        TextView ld3= findViewById(R.id.listDetail3);
+        LinearLayout showingTimeLL = findViewById(R.id.showingTimeLL);
 
-       //////////
+        ImageView li4 = findViewById(R.id.listImage4);
+        TextView lt4 = findViewById(R.id.listText4);
+        TextView ld4= findViewById(R.id.listDetail4);
+        LinearLayout seedRateLL = findViewById(R.id.seedRateLL);
+
+        ImageView li5 = findViewById(R.id.listImage5);
+        TextView lt5 = findViewById(R.id.listText5);
+        TextView ld5 = findViewById(R.id.listDetail5);
+        LinearLayout maturityDurationLL = findViewById(R.id.maturityDurationLL);
+
+        ImageView li6 = findViewById(R.id.listImage6);
+        TextView lt6 = findViewById(R.id.listText6);
+        TextView ld6 = findViewById(R.id.listDetail6);
+        LinearLayout colourLL = findViewById(R.id.colourLL);
+
+        ImageView li7 = findViewById(R.id.listImage7);
+        TextView lt7 = findViewById(R.id.listText7);
+        TextView ld7 = findViewById(R.id.listDetail7);
+        LinearLayout uspLL = findViewById(R.id.uspLL);
+
+        ImageView li8 = findViewById(R.id.listImage8);
+        TextView lt8 = findViewById(R.id.listText8);
+        TextView ld8 = findViewById(R.id.listDetail8);
+        LinearLayout NumberofSeedsLL = findViewById(R.id.NumberofSeedsLL);
+
+        //////////
         descriptionLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -296,8 +325,84 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
             }
         });
+        showingTimeLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if ((ld3.getVisibility() == View.GONE)) {
+                    ld3.setVisibility(View.VISIBLE);
+                    li3.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld3.setVisibility(View.GONE);
+                    li3.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        seedRateLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if ((ld4.getVisibility() == View.GONE)) {
+                    ld4.setVisibility(View.VISIBLE);
+                    li4.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld4.setVisibility(View.GONE);
+                    li4.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        maturityDurationLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld5.getVisibility() == View.GONE)) {
+                    ld5.setVisibility(View.VISIBLE);
+                    li5.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld5.setVisibility(View.GONE);
+                    li5.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        colourLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld6.getVisibility() == View.GONE)) {
+                    ld6.setVisibility(View.VISIBLE);
+                    li6.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld6.setVisibility(View.GONE);
+                    li6.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        uspLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld7.getVisibility() == View.GONE)) {
+                    ld7.setVisibility(View.VISIBLE);
+                    li7.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld7.setVisibility(View.GONE);
+                    li7.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
+        NumberofSeedsLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ((ld8.getVisibility() == View.GONE)) {
+                    ld8.setVisibility(View.VISIBLE);
+                    li8.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24);
+                } else {
+                    ld8.setVisibility(View.GONE);
+                    li8.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24);
+                }
+            }
+        });
 
 
 
@@ -367,11 +472,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
-                        changeAddress.setVisibility(View.VISIBLE);
-                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-                        buy_on_product_detail.setVisibility(View.GONE);
-                        delivery_continue_btn.setVisibility(View.VISIBLE);
-//                    startActivity(new Intent(ProductDetailActivity.this, MyAddressActivity.class));
+                        Toast.makeText(ProductDetailActivity.this, "coming soon", Toast.LENGTH_SHORT).show();
+//                        changeAddress.setVisibility(View.VISIBLE);
+//                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+//                        buy_on_product_detail.setVisibility(View.GONE);
+//                        delivery_continue_btn.setVisibility(View.VISIBLE);
                     }else {
                         startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                     }
@@ -475,10 +580,48 @@ public class ProductDetailActivity extends AppCompatActivity {
                 try {
                     product = response.body().getProduct();
                     pdProductName.setText(product.get(0).getName());
-                    productDetailPagePrice.setText(product.get(0).getPrice());
+                    //productDetailPagePrice.setText(product.get(0).getPrice());
+                    productDetailPagePrice.setText("Price coming soon");
                     listDetail.setText(product.get(0).getDescription());
                     listDetail1.setText(product.get(0).getBrand());
                     listDetail2.setText(product.get(0).getCategory());
+                    String showing = product.get(0).getSowing_time();
+                    String seedRate = product.get(0).getSeed_Rate();
+                    String maturity_duration = product.get(0).getMaturity_duration();
+                    String colour = product.get(0).getColour();
+                    String usp = product.get(0).getUsp();
+                    String NumberofSeeds = product.get(0).getNumberOfSeeds();
+                    if(showing.contains("NA") || showing.isEmpty() || showing.equals(null)){
+                        showingTimeLL.setVisibility(View.GONE);
+                    }else {
+                        ld3.setText(showing);
+                    }
+                    if(seedRate.contains("NA") || seedRate.isEmpty() || seedRate.equals(null)){
+                        seedRateLL.setVisibility(View.GONE);
+                    }else {
+                        ld4.setText(seedRate);
+                    }
+                    if(maturity_duration.contains("NA") || maturity_duration.isEmpty() || maturity_duration.equals(null)){
+                        maturityDurationLL.setVisibility(View.GONE);
+                    }else {
+                        ld5.setText(maturity_duration);
+                    }
+                    if(colour.contains("NA") || colour.isEmpty() || colour.equals(null)){
+                        colourLL.setVisibility(View.GONE);
+                    }else {
+                        ld6.setText(colour);
+                    }
+                    if(usp.contains("NA") || usp.isEmpty() || usp.equals(null)){
+                        uspLL.setVisibility(View.GONE);
+                    }else {
+                        ld7.setText(usp);
+                    }
+                    if(NumberofSeeds.contains("NA") || NumberofSeeds.isEmpty() || NumberofSeeds.equals(null)){
+                        NumberofSeedsLL.setVisibility(View.GONE);
+                    }else {
+                        ld8.setText(NumberofSeeds);
+                    }
+
                     yo= product.get(0).getImage();
                     si = yo.split(",");
                     carouselView.setPageCount(si.length);
@@ -531,12 +674,17 @@ public class ProductDetailActivity extends AppCompatActivity {
     private void volume(String[] volume){
 
         ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,android.R.layout.simple_spinner_item,volume);
+
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 vl = (String) parent.getItemAtPosition(position);
+//                int cost = spinner.getSelectedItemPosition();
+//                String[] price ={"100","200","300","400"};
+//                String costs = price[cost];
+//                Toast.makeText(ProductDetailActivity.this,costs, Toast.LENGTH_SHORT).show();
                 selected_volume.setText(vl);
                 String token = sharedPrefManager.getValue_string("token");
 

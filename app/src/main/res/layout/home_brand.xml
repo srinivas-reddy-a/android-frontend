@@ -17,8 +17,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/Circular"
-        app:strokeColor="#AFAAAA"
-        app:strokeWidth="1sp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
