@@ -21,7 +21,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="12dp"
             android:drawableTint="@color/green"
-            android:text="@string/cash_on_delivery"
+            android:text="CASH  ON  DELIVERY"
             android:textColor="@color/green"
             android:textSize="20dp" />
 
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="45dp"
-            android:text="@string/cash_on_delivery1"
+            android:text="Pay when your order arrives at home"
             android:textColor="@color/text" />
 
 

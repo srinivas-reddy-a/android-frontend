@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35sp"
                     android:layout_marginLeft="40sp"
-                    android:text="@string/my_address"
+                    android:text="My Address"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
                     android:textSize="@dimen/page_name" />
@@ -74,7 +74,7 @@
             android:drawablePadding="10dp"
             android:drawableTint="@color/green"
             android:padding="12dp"
-            android:text="@string/add_new_address"
+            android:text="Add new address"
             android:textColor="@color/green"
             android:textSize="@dimen/heading_size" />
     </LinearLayout>
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="@string/select_your_address"
+        android:text="Select Your Address"
         android:textSize="@dimen/heading_size"
         android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green"
-        android:text="@string/continue_string"
+        android:text="continue"
         android:textColor="@color/white"
         android:textSize="@dimen/heading_size"
         android:visibility="gone"

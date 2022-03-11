@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:layout_marginTop="8dp"
-        android:text="@string/reason_for_cancel"
+        android:text="please let us know the reason ??"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="5dp"
             android:drawableTint="@color/couponApplied"
-            android:text="@string/reason1"
+            android:text="reason number  1 !!"
             android:textColor="@color/text"
             android:textSize="20dp" />
 
@@ -55,7 +55,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="5dp"
             android:drawableTint="@color/couponApplied"
-            android:text="@string/reason1"
+            android:text="reason number  1 !!"
             android:textColor="@color/text"
             android:textSize="20dp" />
 
@@ -67,7 +67,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="5dp"
             android:drawableTint="@color/couponApplied"
-            android:text="@string/reason1"
+            android:text="reason number  1 !!"
             android:textColor="@color/text"
             android:textSize="20dp" />
 
@@ -79,7 +79,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="5dp"
             android:drawableTint="@color/couponApplied"
-            android:text="@string/reason1"
+            android:text="reason number  1 !!"
             android:textColor="@color/text"
             android:textSize="20dp" />
 
@@ -91,7 +91,7 @@
             android:drawableStart="@drawable/ic_default_dot"
             android:drawablePadding="5dp"
             android:drawableTint="@color/couponApplied"
-            android:text="@string/reason1"
+            android:text="reason number  1 !!"
             android:textColor="@color/text"
             android:textSize="20dp" />
     </LinearLayout>
