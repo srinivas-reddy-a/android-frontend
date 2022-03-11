@@ -85,7 +85,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
         gridView = findViewById(R.id.gridView);
         ////for home category
-        String url = "/api/product/?category="+name;
+        String url = "/api/product/category/filter/product/"+name;
         Call<CategoryIdRespones> call = RetrofitClient.getInstance().getApi().getCategory(url);
         call.enqueue(new Callback<CategoryIdRespones>() {
             @Override
@@ -115,7 +115,7 @@ public class ItemsForSingleProduct extends AppCompatActivity {
 
         ///home page brand
 
-        String urll = "/api/product/?brand="+nameB;
+        String urll = "/api/product/brand/product/"+nameB;
         Call<CategoryIdRespones> callB = RetrofitClient.getInstance().getApi().getCategory(urll);
         callB.enqueue(new Callback<CategoryIdRespones>() {
             @Override
