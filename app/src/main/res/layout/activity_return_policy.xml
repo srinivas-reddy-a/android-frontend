@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35sp"
                     android:layout_marginLeft="40sp"
-                    android:text="@string/return_policy"
+                    android:text="Return Policy"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
                     android:textSize="@dimen/page_name" />
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/returns"
+                android:text="RETURNS "
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading_size" />
 
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/return_policy_description1"
+                android:text="Our policy lasts 7 days. If 7 days have gone by since your purchase, unfortunately, we can’t offer you a refund or exchange.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/return_policy_description2"
+                android:text="To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.   "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -97,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/return_policy_description3"
+                android:text="To return Seeds, Fertilizers, Pesticides, Adjuvants, Crop Nutrition, and Farm Machinery, the packet should not be opened. The product should be in clean condition while returning or exchanging.   "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -105,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/return_policy_description4"
+                android:text="To complete your return, we require a receipt or proof of purchase.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20sp"
-                android:text="@string/refunds"
+                android:text="Refunds (if applicable)  "
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading_size" />
 
@@ -122,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/refund_description1"
+                android:text="Once your return is received and inspected, we will send you an email or update on your profile to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/refund_description2"
+                android:text="If it is approved, then your refund will be processed, and a credit will automatically be applied to your credit/debit card or original method of payment, within a certain amount of days. For Cash on Delivery payment, the customer has to give his/her Bank Account number to process the refund.   "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -139,14 +139,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20sp"
-                android:text="@string/late_refund"
+                android:text="Late or missing refunds (if applicable)  "
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/late_refund_content1"
+                android:text="If you haven’t received a refund yet, first check your bank account again.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size"
                 android:layout_marginBottom="20sp" />
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/late_refund_content2"
+                android:text="Then contact your credit/debit card company, it may take some time before your refund is officially posted.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -163,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/late_refund_content3"
+                android:text="Next, contact your bank. There is often some processing time before a refund is posted.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -171,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/late_refund_content4"
+                android:text="If you’ve done all of this and you still have not received your refund yet, please contact us at yourfriends@arraykart.com.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20sp"
-                android:text="@string/sale_items"
+                android:text="Sale items (if applicable) "
                 android:textColor="@color/heading"
                 android:textSize="@dimen/heading_size" />
 
@@ -188,7 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/sale_items_content1"
+                android:text="Only regular-priced items may be refunded, unfortunately, sale items cannot be refunded.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -197,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20sp"
-                android:text="@string/exchanges"
+                android:text="Exchanges (if applicable)  "
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading_size" />
 
@@ -205,7 +205,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/exchange_content1"
+                android:text="We only replace items if they are defective or damaged.  If you need to exchange it for the same item, make a request through purchase history at our application or send us an email at yourfriends@arraykart.com. Your product will be exchanged from the given address on certain days.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -214,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20sp"
-                android:text="@string/shipping"
+                android:text="Shipping "
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading_size" />
 
@@ -222,7 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20sp"
-                android:text="@string/shipping_content1"
+                android:text="To return your product, you should request it on our application. Our Delivery boy will pick up the product from you after going through the Quality checks. If we find the product the same as delivered to you, we will initiate your refund. The amount will be deposited into your Bank Account on certain days.  "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 
@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20sp"
-                android:text="@string/shipping_content2"
+                android:text="Depending on where you live, the time it may take for your exchanged product to reach you may vary. "
                 android:textColor="@color/text"
                 android:textSize="@dimen/heading_size" />
 

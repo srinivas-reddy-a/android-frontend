@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="@string/trending" />
+            android:text="Trending" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2.1"
@@ -54,14 +54,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="@string/new_arrival" />
+            android:text="NewArrival" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip3.1"
             style="@style/CustomChipStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/best_selling" />
+            android:text="Best selling" />
     </com.google.android.material.chip.ChipGroup>
 
     <TextView
@@ -71,7 +71,7 @@
         android:layout_marginTop="15dp"
         android:padding="1dp"
         android:paddingLeft="5dp"
-        android:text="@string/sort_by_cost"
+        android:text="Sort By Cost"
         android:textColor="@color/heading"
         android:textSize="@dimen/heading_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="@string/low_to_high" />
+            android:text="Low to High" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2.3"
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="@string/high_to_low" />
+            android:text="High to Low" />
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/green"
-        android:text="@string/search"
+        android:text="Search"
         android:textColor="@color/white"
         android:textSize="@dimen/heading_size"
         app:layout_constraintEnd_toEndOf="parent"

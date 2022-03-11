@@ -80,7 +80,7 @@
             android:background="@drawable/squared_corners"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:padding="15sp"
-            android:paddingStart="15sp"/>
+            android:paddingStart="15sp"></TextView>
 
 
     </com.google.android.material.appbar.AppBarLayout>
