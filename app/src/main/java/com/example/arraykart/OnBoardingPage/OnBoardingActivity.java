@@ -27,6 +27,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         if(firstTime.equals("Yes")){
             Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
             startActivity(intent);
+            finish();
         }
         else{
             SharedPreferences.Editor editor = preferences.edit();
@@ -53,6 +54,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -76,6 +78,7 @@ public class OnBoardingActivity extends AppCompatActivity {
                     else {
                         Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
             });

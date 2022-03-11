@@ -2,6 +2,7 @@ package com.example.arraykart.MyCart;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
+import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyOrder.OrderPlacedPage;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
@@ -122,7 +124,8 @@ public class MyCartFragment extends Fragment {
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        view.findViewById(R.id.ContinueShopping).setVisibility(View.VISIBLE);
 
 
                     } catch (Exception e) {
@@ -209,6 +212,14 @@ public class MyCartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getContext().startActivity(new Intent(getContext(), MyAddressActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.ContinueShopping).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Activity)getContext()).finishAffinity();
+                getContext().startActivity(new Intent(getContext(), HomeNavigationActivity.class));
             }
         });
 

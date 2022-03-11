@@ -591,32 +591,32 @@ public class ProductDetailActivity extends AppCompatActivity {
                     String colour = product.get(0).getColour();
                     String usp = product.get(0).getUsp();
                     String NumberofSeeds = product.get(0).getNumberOfSeeds();
-                    if(showing.contains("NA") || showing.isEmpty() || showing.equals(null)){
+                    if(showing.contains("NA") || showing.isEmpty() || showing == null){
                         showingTimeLL.setVisibility(View.GONE);
                     }else {
                         ld3.setText(showing);
                     }
-                    if(seedRate.contains("NA") || seedRate.isEmpty() || seedRate.equals(null)){
+                    if(seedRate.contains("NA") || seedRate.isEmpty() || seedRate == null){
                         seedRateLL.setVisibility(View.GONE);
                     }else {
                         ld4.setText(seedRate);
                     }
-                    if(maturity_duration.contains("NA") || maturity_duration.isEmpty() || maturity_duration.equals(null)){
+                    if(maturity_duration.contains("NA") || maturity_duration.isEmpty() || maturity_duration == null){
                         maturityDurationLL.setVisibility(View.GONE);
                     }else {
                         ld5.setText(maturity_duration);
                     }
-                    if(colour.contains("NA") || colour.isEmpty() || colour.equals(null)){
+                    if(colour.contains("NA") || colour.isEmpty() || colour == null){
                         colourLL.setVisibility(View.GONE);
                     }else {
                         ld6.setText(colour);
                     }
-                    if(usp.contains("NA") || usp.isEmpty() || usp.equals(null)){
+                    if(usp.contains("NA") || usp.isEmpty() || usp == null){
                         uspLL.setVisibility(View.GONE);
                     }else {
                         ld7.setText(usp);
                     }
-                    if(NumberofSeeds.contains("NA") || NumberofSeeds.isEmpty() || NumberofSeeds.equals(null)){
+                    if(NumberofSeeds.contains("NA") || NumberofSeeds.isEmpty() || NumberofSeeds == null){
                         NumberofSeedsLL.setVisibility(View.GONE);
                     }else {
                         ld8.setText(NumberofSeeds);

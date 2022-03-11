@@ -247,7 +247,6 @@ public class Signin extends AppCompatActivity {
         Pattern otpPattern = Pattern.compile("(|^)\\d{6}");
         Matcher matcher = otpPattern.matcher(message);
         if (matcher.find()){
-            login();
             String number = Sign_in_page_email.getText().toString();
             Sign_in_page_otp.setText(matcher.group(0));
             loginOtp(user_id,number);
@@ -300,7 +299,7 @@ public class Signin extends AppCompatActivity {
             public void onResponse(Call<LogInRespones> call, Response<LogInRespones> response) {
                 LogInRespones logInRespones = response.body();
                 if(response.isSuccessful()){
-                    Toast.makeText(Signin.this, logInRespones.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Signin.this, logInRespones.getMessage(), Toast.LENGTH_SHORT).show();
                     user_id = logInRespones.getId();
                     Sign_in_page_otp.setVisibility(View.VISIBLE);
                     resendSingIn.setVisibility(View.VISIBLE);

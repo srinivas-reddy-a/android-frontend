@@ -307,7 +307,7 @@ public class SignUP extends AppCompatActivity {
             public void onResponse(Call<SignUpRespones> call, Response<SignUpRespones> response) {
                 SignUpRespones signUpRespones = response.body();
                 if(response.isSuccessful()){
-                    Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignUP.this, signUpRespones.getMessage(), Toast.LENGTH_SHORT).show();
                     signUpUserOtp.setVisibility(View.VISIBLE);
                     resendSingUp.setVisibility(View.VISIBLE);
                     signupbtn.setVisibility(View.GONE);
