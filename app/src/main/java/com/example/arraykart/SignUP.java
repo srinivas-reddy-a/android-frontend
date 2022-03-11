@@ -5,8 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,6 +40,10 @@ import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.credentials.Credential;
+import com.google.android.gms.auth.api.credentials.Credentials;
+import com.google.android.gms.auth.api.credentials.CredentialsApi;
+import com.google.android.gms.auth.api.credentials.HintRequest;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -74,6 +80,8 @@ public class SignUP extends AppCompatActivity {
     private static final int REQ_USER_CONSENT = 200;
     OtpReeiver otpReeiver;
 
+    private static final int CREDENTIAL_PICKER_REQUEST =120 ;
+
     private ImageView imageView;
     private TextView signintv,resendSingUp;
     private Button signupbtn,submit;
@@ -95,6 +103,8 @@ public class SignUP extends AppCompatActivity {
         resendSingUp = findViewById(R.id.resendSingUp);
         sharedPrefManager = new SharedPrefManager(this);
         progressBar = findViewById(R.id.progressBar);
+
+        getNumberAuto();
 
         OtpRequestPermissions();
 
@@ -191,6 +201,24 @@ public class SignUP extends AppCompatActivity {
 
     }
 
+    private void getNumberAuto(){
+        HintRequest hintRequest = new HintRequest.Builder()
+                .setPhoneNumberIdentifierSupported(true)
+                .build();
+
+
+        PendingIntent intent = Credentials.getClient(SignUP.this).getHintPickerIntent(hintRequest);
+        try
+        {
+            startIntentSenderForResult(intent.getIntentSender(), CREDENTIAL_PICKER_REQUEST, null, 0, 0, 0,new Bundle());
+        }
+        catch (IntentSender.SendIntentException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
     private void OtpRequestPermissions(){
 //        if(ContextCompat.checkSelfPermission(Signin.this, Manifest.permission.RECEIVE_SMS)
 //        != PackageManager.PERMISSION_GRANTED);
@@ -205,6 +233,28 @@ public class SignUP extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == RESULT_OK)
+        {
+            // Obtain the phone number from the result
+            Credential credentials = data.getParcelableExtra(Credential.EXTRA_KEY);
+            /* EditText.setText(credentials.getId().substring(3));*/ //get the selected phone number
+            //Do what ever you want to do with your selected phone number here
+
+            signUpUserNumber.setText(credentials.getId().substring(3));
+
+            // Toast.makeText(this, "MOB"+credentials.getId().substring(3), Toast.LENGTH_SHORT).show();
+
+
+        }
+        else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE)
+        {
+            // *** No phone numbers available ***
+            Toast.makeText(SignUP.this, "No phone numbers found", Toast.LENGTH_LONG).show();
+        }
+
+
+        //otp
 
         if (requestCode == REQ_USER_CONSENT){
 

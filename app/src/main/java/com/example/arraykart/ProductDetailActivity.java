@@ -672,6 +672,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     }
     private void volume(String[] volume){
+         String is = volume[0];
+        if (is.toUpperCase().contains("NA") || is == null || is.isEmpty()) {
+            findViewById(R.id.spinnerLayout).setVisibility(View.GONE);
+        }
 
         ArrayAdapter adapter = new ArrayAdapter(ProductDetailActivity.this,android.R.layout.simple_spinner_item,volume);
 
