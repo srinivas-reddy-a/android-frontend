@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.arraykart.AllApiModels.SearchProducRespones;
@@ -118,6 +119,9 @@ public class SearchPageActivity extends AppCompatActivity implements SearchAdapt
                                     searchProductModels = response.body().getProducts();
                                     SearchProductAdapter searchProductAdapter = new SearchProductAdapter(searchProductModels,getApplicationContext());
                                     recyclerView.setAdapter(searchProductAdapter);
+                                    findViewById(R.id.textForSearch).setVisibility(View.VISIBLE);
+                                    TextView txt = findViewById(R.id.textForSearch);
+                                    txt.setText("search for "+ p);
                                 }catch (Exception e){
                                     Toast.makeText(SearchPageActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
