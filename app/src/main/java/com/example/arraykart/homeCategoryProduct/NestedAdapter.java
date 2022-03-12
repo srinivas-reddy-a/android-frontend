@@ -65,6 +65,15 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 
         String name = nestedModel.getName();
 
+        holder.moreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(context,ItemsForSingleProduct.class);
+                in.putExtra("name",name);
+                context.startActivity(in);
+            }
+        });
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 holder.nested_recyclerview.getContext(),LinearLayoutManager.HORIZONTAL,false
         );
@@ -82,7 +91,7 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 //        holder.nested_recyclerview.setRecycledViewPool(viewPool);
 
 
-        String url = "/api/product/?category="+name;
+        String url = "/api/product/?category="+name+"&limit=8";
         Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
         call.enqueue(new Callback<ProductsRespones>() {
             @Override
@@ -133,13 +142,14 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView nested_category_name;
+        private TextView nested_category_name , moreButton;
         private RecyclerView nested_recyclerview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nested_category_name = itemView.findViewById(R.id.nested_category_name);
             nested_recyclerview = itemView.findViewById(R.id.nested_recyclerview);
+            moreButton = itemView.findViewById(R.id.moreButton);
 
 
         }
