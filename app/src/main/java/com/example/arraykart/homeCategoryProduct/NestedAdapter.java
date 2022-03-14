@@ -91,15 +91,16 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 //        holder.nested_recyclerview.setRecycledViewPool(viewPool);
 
 
-        String url = "/api/product/?category="+name+"&limit=8";
-        Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
-        call.enqueue(new Callback<ProductsRespones>() {
-            @Override
-            public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
+        if(name != null) {
+            String url = "/api/product/category/filter/product/" + name + "/?limit=8";
+            Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
+            call.enqueue(new Callback<ProductsRespones>() {
+                @Override
+                public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
 
-                if(response.isSuccessful()){
+                    if (response.isSuccessful()) {
                         mainModels = response.body().getProducts();
-                        HAdapter hAdapter = new HAdapter(context,mainModels);
+                        HAdapter hAdapter = new HAdapter(context, mainModels);
                         holder.nested_recyclerview.setLayoutManager(linearLayoutManager);
                         holder.nested_recyclerview.setAdapter(hAdapter);
                         holder.nested_recyclerview.setRecycledViewPool(viewPool);
@@ -116,22 +117,24 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 //                                context.startActivity(in);
 //                            }
 //                        });
-                }else {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    } else {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                            Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
-                    } catch (Exception e) {
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
                     }
+                }
+
+                @Override
+                public void onFailure(Call<ProductsRespones> call, Throwable t) {
 
                 }
-            }
-            @Override
-            public void onFailure(Call<ProductsRespones> call, Throwable t) {
-
-            }
-        });
+            });
+        }
 
 
     }
