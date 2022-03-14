@@ -91,38 +91,38 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 //        holder.nested_recyclerview.setRecycledViewPool(viewPool);
 
 
-//        if(name != null) {
-//            String url = "/api/product/category/filter/product/" + name + "/?limit=8";
-//            Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
-//            call.enqueue(new Callback<ProductsRespones>() {
-//                @Override
-//                public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
-//
-//                    if (response.isSuccessful()) {
-//                        mainModels = response.body().getProducts();
-//                        HAdapter hAdapter = new HAdapter(context, mainModels);
-//                        holder.nested_recyclerview.setLayoutManager(linearLayoutManager);
-//                        holder.nested_recyclerview.setAdapter(hAdapter);
-//                        holder.nested_recyclerview.setRecycledViewPool(viewPool);
-//
-//                    } else {
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
-//                            Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-//
-//                        } catch (Exception e) {
-//                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<ProductsRespones> call, Throwable t) {
-//
-//                }
-//            });
-//        }
+        if(name != null) {
+            String url = "/api/product/category/filter/product/" + name + "/?limit=8";
+            Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
+            call.enqueue(new Callback<ProductsRespones>() {
+                @Override
+                public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
+
+                    if (response.isSuccessful()) {
+                        mainModels = response.body().getProducts();
+                        HAdapter hAdapter = new HAdapter(context, mainModels);
+                        holder.nested_recyclerview.setLayoutManager(linearLayoutManager);
+                        holder.nested_recyclerview.setAdapter(hAdapter);
+                        holder.nested_recyclerview.setRecycledViewPool(viewPool);
+
+                    } else {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                            Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        } catch (Exception e) {
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ProductsRespones> call, Throwable t) {
+
+                }
+            });
+        }
 
 
     }
