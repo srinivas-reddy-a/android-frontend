@@ -91,50 +91,38 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 //        holder.nested_recyclerview.setRecycledViewPool(viewPool);
 
 
-        if(name != null) {
-            String url = "/api/product/category/filter/product/" + name + "/?limit=8";
-            Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
-            call.enqueue(new Callback<ProductsRespones>() {
-                @Override
-                public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
-
-                    if (response.isSuccessful()) {
-                        mainModels = response.body().getProducts();
-                        HAdapter hAdapter = new HAdapter(context, mainModels);
-                        holder.nested_recyclerview.setLayoutManager(linearLayoutManager);
-                        holder.nested_recyclerview.setAdapter(hAdapter);
-                        holder.nested_recyclerview.setRecycledViewPool(viewPool);
-
-//                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
-//                            @Override
-//                            public void onClickListener(int position) {
-//                                Toast.makeText(context, mainModels.get(position).getName(), Toast.LENGTH_SHORT).show();
-//                                Intent in = new Intent(context, ProductDetailActivity.class);
-//                                in.putExtra("id",mainModels.get(position).getId());
-//                                in.putExtra("qlt","1");
-//                                in.putExtra("image",mainModels.get(position).getImage());
-//                                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                context.startActivity(in);
-//                            }
-//                        });
-                    } else {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                            Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-                        } catch (Exception e) {
-                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ProductsRespones> call, Throwable t) {
-
-                }
-            });
-        }
+//        if(name != null) {
+//            String url = "/api/product/category/filter/product/" + name + "/?limit=8";
+//            Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
+//            call.enqueue(new Callback<ProductsRespones>() {
+//                @Override
+//                public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
+//
+//                    if (response.isSuccessful()) {
+//                        mainModels = response.body().getProducts();
+//                        HAdapter hAdapter = new HAdapter(context, mainModels);
+//                        holder.nested_recyclerview.setLayoutManager(linearLayoutManager);
+//                        holder.nested_recyclerview.setAdapter(hAdapter);
+//                        holder.nested_recyclerview.setRecycledViewPool(viewPool);
+//
+//                    } else {
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
+//                            Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+//
+//                        } catch (Exception e) {
+//                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ProductsRespones> call, Throwable t) {
+//
+//                }
+//            });
+//        }
 
 
     }
