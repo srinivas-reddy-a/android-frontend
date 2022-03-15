@@ -146,7 +146,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
 
