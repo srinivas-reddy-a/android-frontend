@@ -48,7 +48,7 @@
                     android:text="More"
                     android:textColor="@color/green"
                     android:textSize="16dp"
-                    android:textStyle="italic"
+                    android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
