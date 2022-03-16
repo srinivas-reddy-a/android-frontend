@@ -143,6 +143,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     //banner slider on home page
     MenuItem id;
 
+    Menu optionsMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -591,7 +593,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         }
 
-//
+//        MenuItem item = optionsMenu.findItem(R.id.nav_SignUp);
 //        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 //        if(user_token.contains("token")) {
 //            id.setVisible(false);
@@ -663,8 +665,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
             }
         });
-
-
 
 
 
@@ -767,6 +767,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 //        return true;
 //
 //    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        //  store the menu to var when creating options menu
+        optionsMenu = menu;
+        return true;
+    }
 
 
     @Override

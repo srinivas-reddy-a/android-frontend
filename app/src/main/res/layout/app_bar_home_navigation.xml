@@ -63,8 +63,8 @@
                 android:layout_width="25sp"
                 android:layout_height="25sp"
                 android:layout_gravity="right"
-                android:tint="#000000"
-                app:srcCompat="@drawable/ic_baseline_notifications_24" />
+                app:srcCompat="@drawable/ic_baseline_notifications_24"
+                app:tint="#000000" />
 
         </androidx.appcompat.widget.Toolbar>
 
