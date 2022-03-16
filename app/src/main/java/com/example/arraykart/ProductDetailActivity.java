@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
@@ -61,6 +62,7 @@ import com.example.arraykart.homeCategoryProduct.MainModel;
 import com.example.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
 
 import org.json.JSONObject;
@@ -77,7 +79,7 @@ import retrofit2.Response;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    private CarouselView carouselView;
+    private CarouselView carouselView,carouselViews;
     private TextView striketextView;
     private List<ProductDetailPageModel> product;
 
@@ -184,6 +186,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         ShippingAddress();
 
         //////////
+
+
 
         if(qlty!=null) {
             product_quantity_text_product_detail_page.setText(qlty);
@@ -658,6 +662,16 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         carouselView.setImageListener(imageListener);
 
+
+
+        carouselView.setImageClickListener(new ImageClickListener() {
+            @Override
+            public void onClick(int position) {
+                ShowDialog(url);
+            }
+        });
+
+
         delivery_continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -746,11 +760,49 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     }
 
+    private void ShowDialog(String url) {
+        Dialog dialog = new Dialog(this, R.style.DialogStyle);
+        dialog.setContentView(R.layout.open_image_product_detail);
+        carouselViews = dialog.findViewById(R.id.carouselViewProductDetail);
+        Call<ProductDetailPageRespones> CallDetail = RetrofitClient.getInstance().getApi().getDetail(url);
+        CallDetail.enqueue(new Callback<ProductDetailPageRespones>() {
+            @Override
+            public void onResponse(Call<ProductDetailPageRespones> call, Response<ProductDetailPageRespones> response) {
+
+                try {
+                    product = response.body().getProduct();
+
+                    yo= product.get(0).getImage();
+                    si = yo.split(",");
+                    carouselViews.setPageCount(si.length);
+                }catch (Exception e){
+                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductDetailPageRespones> call, Throwable t) {
+                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        carouselViews.setImageListener(imageListener);
+        dialog.findViewById(R.id.dismiss).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
             Glide.with(ProductDetailActivity.this)
                     .load("https://arraykartandroid.s3.ap-south-1.amazonaws.com/"+si[position])
+                    .placeholder(R.drawable.placeholder)
                     .centerCrop()
                     .into(imageView);
         }
@@ -760,6 +812,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     public boolean supportShouldUpRecreateTask(@NonNull Intent targetIntent) {
         return super.supportShouldUpRecreateTask(targetIntent);
     }
+
 
     @Override
     protected void onRestart() {
