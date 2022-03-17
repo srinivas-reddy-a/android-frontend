@@ -141,7 +141,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     final private  long DELAY_TIME =3000;
     final private  long PERIOD_TIME = 3000;
     //banner slider on home page
-    MenuItem id;
+    NavigationView navigationView;
 
     Menu optionsMenu;
 
@@ -773,7 +773,10 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         //  store the menu to var when creating options menu
-        optionsMenu = menu;
+        navigationView= findViewById(R.id.nav_view);
+        optionsMenu = navigationView.getMenu();
+        MenuItem mitem = optionsMenu.findItem(R.id.nav_gallery);
+//        mitem.setTitle("allo");
         return true;
     }
 
