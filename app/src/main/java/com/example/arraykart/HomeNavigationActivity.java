@@ -772,10 +772,11 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-        //  store the menu to var when creating options menu
+        // get the navigation view in which the menu is included
         navigationView= findViewById(R.id.nav_view);
         optionsMenu = navigationView.getMenu();
         MenuItem mitem = optionsMenu.findItem(R.id.nav_gallery);
+        // example
 //        mitem.setTitle("allo");
         return true;
     }
