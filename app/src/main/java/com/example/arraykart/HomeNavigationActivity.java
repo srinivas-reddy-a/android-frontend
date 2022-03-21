@@ -771,7 +771,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        //comment out the following line to hide 3 dots in home page toolbar
+//        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         // get the navigation view in which the menu is included
         navigationView= findViewById(R.id.nav_view);
         optionsMenu = navigationView.getMenu();
