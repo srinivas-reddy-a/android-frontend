@@ -39,6 +39,8 @@ public class WishListFragment extends Fragment {
         return root;
     }
 
+
+
     public void onDestroyView(){
         super.onDestroyView();
         binding=null;

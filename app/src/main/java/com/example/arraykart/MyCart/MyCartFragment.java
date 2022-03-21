@@ -121,11 +121,13 @@ public class MyCartFragment extends Fragment {
                     total = Integer.toString(t);
 //                    total_cart_amount.setText("₹ "+total+"---");
                     total_cart_amount.setText("Price coming soon");
+                    view.findViewById(R.id.constraintLayout2).setVisibility(View.VISIBLE);
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
                        // Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         view.findViewById(R.id.ContinueShopping).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.constraintLayout2).setVisibility(View.GONE);
 
 
                     } catch (Exception e) {
