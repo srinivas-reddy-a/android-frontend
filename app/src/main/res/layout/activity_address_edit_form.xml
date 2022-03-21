@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35sp"
                     android:layout_marginLeft="40sp"
-                    android:text="Edit Address"
+                    android:text="@string/edit_address"
                     android:textAlignment="center"
                     android:textColor="@color/appbarComponentsblack"
                     android:textSize="24sp" />
@@ -73,7 +73,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="City*"
+                android:hint="@string/city"
                 android:inputType="text"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -86,7 +86,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start"
-                android:hint="Locality, area or street*"
+                android:hint="@string/locality_area_or_street"
                 android:inputType="textMultiLine"
                 android:lines="3" />
 
@@ -99,7 +99,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start"
-                android:hint="Flat no. or Building name*"
+                android:hint="@string/flat_no_or_building_name"
                 android:inputType="textMultiLine"
                 android:lines="3" />
 
@@ -117,7 +117,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:hint="Pincode*"
+                    android:hint="@string/pincode"
                     android:inputType="number"
                     tools:ignore="TouchTargetSizeCheck" />
 
@@ -128,7 +128,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:hint="state*"
+                    android:hint="@string/state"
                     android:inputType="text"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -149,7 +149,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="FullName*"
+                android:hint="@string/fullname"
                 android:inputType="textPersonName"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -162,7 +162,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="Mobile no.*"
+                android:hint="@string/mobile_no"
                 android:inputType="number"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -175,7 +175,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="30dp"
                 android:ems="10"
-                android:hint="Alternative Mobile no(optional).*"
+                android:hint="@string/alternative_mobile_no_optional"
                 android:inputType="number"
                 tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
@@ -184,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
-                android:text="update your address"
+                android:text="@string/update_your_address"
                 android:textColor="@color/white"
                 />
 

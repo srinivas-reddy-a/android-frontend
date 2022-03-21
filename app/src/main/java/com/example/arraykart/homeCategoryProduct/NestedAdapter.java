@@ -65,15 +65,6 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 
         String name = nestedModel.getName();
 
-        holder.moreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(context,ItemsForSingleProduct.class);
-                in.putExtra("name",name);
-                context.startActivity(in);
-            }
-        });
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 holder.nested_recyclerview.getContext(),LinearLayoutManager.HORIZONTAL,false
         );
@@ -91,38 +82,47 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
 //        holder.nested_recyclerview.setRecycledViewPool(viewPool);
 
 
-        if(name != null) {
-            String url = "/api/product/category/filter/product/" + name + "/?limit=8";
-            Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
-            call.enqueue(new Callback<ProductsRespones>() {
-                @Override
-                public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
+        String url = "/api/product/?category="+name;
+        Call<ProductsRespones> call = RetrofitClient.getInstance().getApi().getNestedCategory(url);
+        call.enqueue(new Callback<ProductsRespones>() {
+            @Override
+            public void onResponse(Call<ProductsRespones> call, Response<ProductsRespones> response) {
 
-                    if (response.isSuccessful()) {
+                if(response.isSuccessful()){
                         mainModels = response.body().getProducts();
-                        HAdapter hAdapter = new HAdapter(context, mainModels);
+                        HAdapter hAdapter = new HAdapter(context,mainModels);
                         holder.nested_recyclerview.setLayoutManager(linearLayoutManager);
                         holder.nested_recyclerview.setAdapter(hAdapter);
                         holder.nested_recyclerview.setRecycledViewPool(viewPool);
 
-                    } else {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                            Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+//                        hAdapter.setOnItemClickListener(new HAdapter.OnItemClickListener() {
+//                            @Override
+//                            public void onClickListener(int position) {
+//                                Toast.makeText(context, mainModels.get(position).getName(), Toast.LENGTH_SHORT).show();
+//                                Intent in = new Intent(context, ProductDetailActivity.class);
+//                                in.putExtra("id",mainModels.get(position).getId());
+//                                in.putExtra("qlt","1");
+//                                in.putExtra("image",mainModels.get(position).getImage());
+//                                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                context.startActivity(in);
+//                            }
+//                        });
+                }else {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Toast.makeText(context, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
-                        } catch (Exception e) {
-                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
+                    } catch (Exception e) {
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                }
-
-                @Override
-                public void onFailure(Call<ProductsRespones> call, Throwable t) {
 
                 }
-            });
-        }
+            }
+            @Override
+            public void onFailure(Call<ProductsRespones> call, Throwable t) {
+
+            }
+        });
 
 
     }
@@ -133,14 +133,13 @@ public class NestedAdapter extends RecyclerView.Adapter<NestedAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView nested_category_name , moreButton;
+        private TextView nested_category_name;
         private RecyclerView nested_recyclerview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nested_category_name = itemView.findViewById(R.id.nested_category_name);
             nested_recyclerview = itemView.findViewById(R.id.nested_recyclerview);
-            moreButton = itemView.findViewById(R.id.moreButton);
 
 
         }

@@ -44,8 +44,7 @@ public class NotificationActivity extends AppCompatActivity {
 
             notificationModelList = new ArrayList<>();
             if(notificationModelList == null){
-//                Toast.makeText(this, "yoyo", Toast.LENGTH_SHORT).show();
-//                findViewById(R.id.NoNotification).setVisibility(View.VISIBLE);
+                Toast.makeText(this, " ", Toast.LENGTH_SHORT).show();
             }else {
                 notificationAdapter = new NotificationAdapter(notificationModelList);
                 notificationRecyclerView.setAdapter(notificationAdapter);

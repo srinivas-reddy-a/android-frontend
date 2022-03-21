@@ -38,11 +38,9 @@ public class SearchProductAdapter extends RecyclerView.Adapter<SearchProductAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.nm.setText(searchProductModels.get(position).getName());
-//        holder.pr.setText(searchProductModels.get(position).getPrice());
-        holder.pr.setText("Price coming soon");
+        holder.pr.setText(searchProductModels.get(position).getPrice());
         Glide.with(context.getApplicationContext())
                 .load(searchProductModels.get(position).getImage())
-                .placeholder(R.drawable.placeholder)
                 .into(holder.img);
 
     }

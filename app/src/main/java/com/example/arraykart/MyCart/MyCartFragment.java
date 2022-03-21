@@ -2,7 +2,6 @@ package com.example.arraykart.MyCart;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,7 +27,6 @@ import com.example.arraykart.AllApiModels.getSelectedAddressRespones;
 import com.example.arraykart.AllRetrofit.RetrofitClient;
 import com.example.arraykart.AllRetrofit.SharedPrefManager;
 import com.example.arraykart.DeliveryPage.DeliveryActivity;
-import com.example.arraykart.HomeNavigationActivity;
 import com.example.arraykart.MyOrder.OrderPlacedPage;
 import com.example.arraykart.ProductDetailActivity;
 import com.example.arraykart.R;
@@ -91,10 +89,10 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         cartItemModelList= new ArrayList<>();
-//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"₹ ---/-","₹",1,0,0));
-//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"₹ ---/-","₹",2,1,0));
-//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"₹ ---/-","₹",3,0,1));
-//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","₹ ----","Free","₹ -----"));
+//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"Rs.---/-","RS.",1,0,0));
+//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"Rs.---/-","RS.",2,1,0));
+//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"Rs.---/-","RS.",3,0,1));
+//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.----","Free","RS.-----"));
 //
 //        cartAdapter = new CartAdapter(cartItemModelList);
 //        cartItemsRecyclerView.setAdapter(cartAdapter);
@@ -119,13 +117,12 @@ public class MyCartFragment extends Fragment {
                         t += Integer.parseInt( cartItemModelList.get(j).getQuantity()) * Integer.parseInt( cartItemModelList.get(j).getPrice());
                     }
                     total = Integer.toString(t);
-//                    total_cart_amount.setText("₹ "+total+"---");
-                    total_cart_amount.setText("Price coming soon");
+
+                    total_cart_amount.setText("RS."+total+"/--");
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                       // Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                        view.findViewById(R.id.ContinueShopping).setVisibility(View.VISIBLE);
+                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
 
                     } catch (Exception e) {
@@ -143,11 +140,10 @@ public class MyCartFragment extends Fragment {
             buy_on_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "coming soon", Toast.LENGTH_SHORT).show();
-//                    changeAddress.setVisibility(View.VISIBLE);
-//                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-//                    buy_on_cart.setVisibility(View.GONE);
-//                    delivery_continue_btn.setVisibility(View.VISIBLE);
+                    changeAddress.setVisibility(View.VISIBLE);
+                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                    buy_on_cart.setVisibility(View.GONE);
+                    delivery_continue_btn.setVisibility(View.VISIBLE);
 
                 }
             });
@@ -212,14 +208,6 @@ public class MyCartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getContext().startActivity(new Intent(getContext(), MyAddressActivity.class));
-            }
-        });
-
-        view.findViewById(R.id.ContinueShopping).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Activity)getContext()).finishAffinity();
-                getContext().startActivity(new Intent(getContext(), HomeNavigationActivity.class));
             }
         });
 

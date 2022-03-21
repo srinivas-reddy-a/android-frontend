@@ -36,6 +36,7 @@ public class HelpCenterActivity extends AppCompatActivity {
                         "?subject=" + Uri.encode("some subject text here") +
                         "&body=" + Uri.encode("some text here");
 
+
         try {
             Uri uri = Uri.parse(uriText);
             Intent intent = new Intent(Intent.ACTION_SENDTO);

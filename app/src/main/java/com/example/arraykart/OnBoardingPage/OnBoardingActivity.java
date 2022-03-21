@@ -27,16 +27,15 @@ public class OnBoardingActivity extends AppCompatActivity {
         if(firstTime.equals("Yes")){
             Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
             startActivity(intent);
-            finish();
         }
         else{
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("FirstTimeInstall", "Yes");
             editor.apply();
 
-            String original = "You can trust us with your money, products are 100% authentic.";
-            String homeDelivery = "We deliver at your door-step, so no shopping out hustles.";
-            String factory = "We deal directly with the manufacturers and hence low costs.";
+            String original = "You can trust us with your money, products we deal in are 100% authentic.";
+            String homeDelivery = "We deliver at your door-step within 3 to 5 days, so no shopping out hustles.";
+            String factory = "We deal directly with the manufacturers, ofcourse we reduce the costs.";
             TextView textView = (TextView) findViewById(R.id.textView);
             Button button = (Button) findViewById(R.id.button);
             Button skip = (Button) findViewById(R.id.skip);
@@ -54,7 +53,6 @@ public class OnBoardingActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
                     startActivity(intent);
-                    finish();
                 }
             });
 
@@ -78,7 +76,6 @@ public class OnBoardingActivity extends AppCompatActivity {
                     else {
                         Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
                         startActivity(intent);
-                        finish();
                     }
                 }
             });

@@ -57,7 +57,7 @@ public class OrderPlacedPage extends AppCompatActivity {
                     .centerCrop()
                     .into(orderPlaceIamge);
             orderPlacePName.setText(name);
-            orderPlacedPrice.setText("₹ " + total + "/--");
+            orderPlacedPrice.setText("RS." + total + "/--");
             orderPlacedQty.setText("X" + qlt);
 
         }

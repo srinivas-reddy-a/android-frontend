@@ -187,8 +187,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
 //                }
 //                rating.setText(rate);
                 rating.setVisibility(View.GONE);
-               // price.setText(prices);
-                price.setText("Price coming soon");
+                price.setText(prices);
 //                cuttedPrice.setText(cuttedPricess);
                 cuttedPrice.setVisibility(View.GONE);
 //                paymentMethod.setText(method);

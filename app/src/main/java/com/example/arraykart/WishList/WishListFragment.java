@@ -133,8 +133,7 @@ public class WishListFragment extends Fragment {
                 }else{
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        //Toast.makeText(getContext(), jsonObject.getString("message  "), Toast.LENGTH_SHORT).show();
-                        view.findViewById(R.id.ContinueShopping).setVisibility(View.VISIBLE);
+                        Toast.makeText(getContext(), jsonObject.getString("message  "), Toast.LENGTH_SHORT).show();
 
 
                     } catch (Exception e) {
@@ -151,13 +150,6 @@ public class WishListFragment extends Fragment {
     }else{
         Toast.makeText(getContext(), "SignUp first", Toast.LENGTH_SHORT).show();
     }
-
-        view.findViewById(R.id.ContinueShopping).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Activity)getContext()).finish();
-            }
-        });
 
 //        wishListAdapter = new WishListAdapter(wishListModelList,getContext());
 //        wishListRecyclerView.setAdapter(wishListAdapter);

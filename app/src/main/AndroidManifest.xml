@@ -6,10 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
 
     <application
         android:allowBackup="true"
@@ -21,47 +17,37 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.RetrunPollicy.ReturnPolicy"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".OnBoardingPage.OnBoardingActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
 
         <activity
             android:name=".ui.PrivacyPolicy.PrivacyPolicy"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".ui.Legal.Legal"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".RatingReviewPage.FeedbakRatingReview"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".MyOrder.OrderPlacedPage"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".AddressActivity.AddressEditForm"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".ProductDetailAboutListing.ProductTableDetailPage"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".Community.CommunityActivity"
             android:exported="false"
             android:label="@string/title_activity_community"
-            android:theme="@style/Theme.Arraykart.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:theme="@style/Theme.Arraykart.NoActionBar" />
         <activity
             android:name=".HelpCenterActivity.HelpCenterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".RatingReviewPage.AllReviewActivity"
             android:exported="false"
@@ -85,8 +71,7 @@
         <activity
             android:name=".SearchPage.SearchPageActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddressActivity.AddressFormActivity"
             android:exported="false"
@@ -197,12 +182,6 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-        <receiver android:name=".OtpReeiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

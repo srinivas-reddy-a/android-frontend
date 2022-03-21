@@ -17,13 +17,15 @@
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/Circular"
+        app:strokeColor="#AFAAAA"
+        app:strokeWidth="1sp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="@dimen/text_size"
         android:textColor="@color/text"
         android:textAlignment="center"

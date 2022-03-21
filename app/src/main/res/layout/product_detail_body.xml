@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15sp"
                 android:layout_marginTop="15dp"
-                android:text="Product Name"
+                android:text="@string/product_name"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/heading_size" />
 
@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Volume"
+                    android:text="@string/volume"
                     android:padding="2dp"
                     android:layout_marginEnd="2dp"
                     android:textColor="@color/text"
@@ -80,8 +80,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/green"
-                    android:dropDownWidth="100dp"
-                    android:popupBackground="@color/smokeWhite"
                     />
 
             </LinearLayout>
@@ -102,7 +100,7 @@
                     android:layout_weight="1"
                     android:background="@color/rating"
                     android:padding="5sp"
-                    android:text="4.5"
+                    android:text="@string/_4_5"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     tools:ignore="TextContrastCheck" />
@@ -123,7 +121,7 @@
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
                     android:padding="5sp"
-                    android:text="150 ratings"
+                    android:text="@string/_150_ratings"
                     android:textSize="@dimen/text_size"
                     android:textColor="@color/text" />
             </LinearLayout>
@@ -136,7 +134,7 @@
                 android:layout_marginTop="15dp"
                 android:background="#80B1D8B3"
                 android:padding="5sp"
-                android:text="special price"
+                android:text="@string/special_price"
                 android:textColor="#1A711D" />
 
             <LinearLayout
@@ -153,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5sp"
-                    android:text="₹___"
+                    android:text="@string/Rs"
                     android:visibility="gone"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text_size" />
@@ -162,7 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="2sp"
-                    android:text="₹"
+                    android:text="@string/Rs1"
                     android:textColor="@color/heading"
                     android:textSize="@dimen/heading_size" />
 
@@ -172,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="3sp"
-                    android:text="___"
+                    android:text="@string/___"
                     android:textColor="@color/heading"
                     android:textSize="@dimen/heading_size" />
 
@@ -182,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5sp"
-                    android:text="20% off"
+                    android:text="@string/_20_off"
                     android:visibility="gone"
                     android:textColor="#2874F0"
                     android:textSize="@dimen/heading_size" />
@@ -203,7 +201,7 @@
                 android:id="@+id/textView28"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Offers and Coupons"
+                android:text="@string/offers_and_coupons"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/heading_size" />
@@ -228,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5sp"
-                    android:text="Special PriceGet extra 14% off (price inclusive of discount)"
+                    android:text="@string/discount"
                     android:textSize="@dimen/text_size"
                     android:textColor="@color/text"/>
 
@@ -260,7 +258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5sp"
-                    android:text="Bank OfferFlat ₹100 off on first Flipkart Pay Later order of ₹500 and above"
+                    android:text="@string/offer"
                     android:textColor="@color/text"
                     android:textSize="@dimen/text_size"/>
 
@@ -314,7 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 
@@ -333,7 +331,7 @@
                 android:layout_marginStart="30dp"
                 android:paddingTop="5sp"
                 android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
+                android:text="@string/indian_rupee_symbol"
                 android:textColor="@color/gray"
                 android:visibility="gone" />
 
@@ -365,7 +363,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="Brand"
+                    android:text="@string/brand"
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 
@@ -384,7 +382,7 @@
                 android:layout_marginStart="30dp"
                 android:paddingTop="5sp"
                 android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
+                android:text="@string/indian_rupee_symbol"
                 android:textColor="@color/gray"
                 android:visibility="gone" />
 
@@ -417,7 +415,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:text="category"
+                    android:text="@string/category"
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 
@@ -436,318 +434,7 @@
                 android:layout_marginStart="30dp"
                 android:paddingTop="5sp"
                 android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="@color/gray"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFBFB"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/showingTimeLL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/listText3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="Sowing time"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/heading_size" />
-
-                <ImageView
-                    android:id="@+id/listImage3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="15sp"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/listDetail3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="@color/gray"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFBFB"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/seedRateLL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/listText4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="seed_Rate(Kg/acre)"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/heading_size" />
-
-                <ImageView
-                    android:id="@+id/listImage4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="15sp"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/listDetail4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="@color/gray"
-                android:visibility="gone" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFBFB"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/maturityDurationLL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/listText5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="maturity_duration"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/heading_size" />
-
-                <ImageView
-                    android:id="@+id/listImage5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="15sp"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/listDetail5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="@color/gray"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFBFB"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/colourLL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/listText6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="colour"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/heading_size" />
-
-                <ImageView
-                    android:id="@+id/listImage6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="15sp"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/listDetail6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="@color/gray"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFBFB"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/uspLL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/listText7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="usp"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/heading_size" />
-
-                <ImageView
-                    android:id="@+id/listImage7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="15sp"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/listDetail7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
-                android:textColor="@color/gray"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FDFBFB"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/NumberofSeedsLL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10sp"
-                android:paddingBottom="10sp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/listText8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:text="Number of Seeds/Packet"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/heading_size" />
-
-                <ImageView
-                    android:id="@+id/listImage8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="15sp"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/listDetail8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
-                android:text="The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents. The Indian rupee sign (₹) is the currency symbol for the Indian rupee, the official currency of India. Designed by Udaya Kumar, it was presented to the public by the Government of India on 15 July 2010, following its selection through an open competition among Indian residents."
+                android:text="@string/indian_rupee_symbol"
                 android:textColor="@color/gray"
                 android:visibility="gone" />
 
@@ -766,7 +453,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Click for More Details"
+                android:text="@string/click_for_more_details"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/text_size"
                 />
@@ -809,7 +496,7 @@
                 android:id="@+id/MoreReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click for more review"
+                android:text="@string/click_for_more_review"
                 android:textColor="@color/heading"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -834,7 +521,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="15dp"
-                android:text="Suggested Products"
+                android:text="@string/suggested_products"
                 android:textSize="@dimen/heading_size"
                 android:textColor="@color/heading"
                 android:textStyle="bold"/>
