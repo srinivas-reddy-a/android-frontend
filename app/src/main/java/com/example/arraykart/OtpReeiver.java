@@ -16,26 +16,6 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
 
 public class OtpReeiver extends BroadcastReceiver {
-//    public static String Sign_in_page_otp ;
-//
-//    public void setOtp_text(String text){
-//        OtpReeiver.Sign_in_page_otp = text;
-//    }
-//    public String getOtp(){
-//        return Sign_in_page_otp;
-//    }
-//
-//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-//    @Override
-//    public void onReceive(Context context, Intent intent) {
-//        SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
-//        for(SmsMessage smsMessage : messages){
-//            String message_body = smsMessage.getMessageBody();
-//            String getOtp = message_body.split(":")[1];
-////            Sign_in_page_otp.setText(getOtp);
-//            Sign_in_page_otp = getOtp;
-//        }
-//    }
 
     public SmsBroadcastReceiverListener smsBroadcastReceiverListener;
 

@@ -142,6 +142,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private Spinner spinner;
     private String AddId ;
     private String vl;
+    private String costs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -476,11 +477,11 @@ public class ProductDetailActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                     if(userToken.contains("token")) {
-                        Toast.makeText(ProductDetailActivity.this, "coming soon", Toast.LENGTH_SHORT).show();
-//                        changeAddress.setVisibility(View.VISIBLE);
-//                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-//                        buy_on_product_detail.setVisibility(View.GONE);
-//                        delivery_continue_btn.setVisibility(View.VISIBLE);
+//                        Toast.makeText(ProductDetailActivity.this, "coming soon", Toast.LENGTH_SHORT).show();
+                        changeAddress.setVisibility(View.VISIBLE);
+                        ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                        buy_on_product_detail.setVisibility(View.GONE);
+                        delivery_continue_btn.setVisibility(View.VISIBLE);
                     }else {
                         startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
                     }
@@ -584,8 +585,15 @@ public class ProductDetailActivity extends AppCompatActivity {
                 try {
                     product = response.body().getProduct();
                     pdProductName.setText(product.get(0).getName());
-                    //productDetailPagePrice.setText(product.get(0).getPrice());
-                    productDetailPagePrice.setText("Price coming soon");
+                    String p = product.get(0).getPrice();
+                    String[] price;
+                    price = p.split(",");
+                    if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null || p.contains("0")){
+                        productDetailPagePrice.setText("out of stock");
+                    }else {
+                        productDetailPagePrice.setText(price[0] + "/---");
+                    }
+//                    productDetailPagePrice.setText("Price coming soon");
                     listDetail.setText(product.get(0).getDescription());
                     listDetail1.setText(product.get(0).getBrand());
                     listDetail2.setText(product.get(0).getCategory());
@@ -632,7 +640,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     String sp = product.get(0).getVolume();
                     String[] volume;
                     volume = sp.split(",");
-                    volume(volume);
+                    volume(volume,price);
 
                 }catch (Exception e){
                     Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -664,18 +672,22 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
 
-        carouselView.setImageClickListener(new ImageClickListener() {
-            @Override
-            public void onClick(int position) {
-                ShowDialog(url);
-            }
-        });
+//        carouselView.setImageClickListener(new ImageClickListener() {
+//            @Override
+//            public void onClick(int position) {
+//                ShowDialog(url);
+//            }
+//        });
 
 
         delivery_continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orederPlaced(AddId,token,id,imgs);
+                if(AddId.contains("null")){
+                    Toast.makeText(ProductDetailActivity.this, "Please Add Address First", Toast.LENGTH_SHORT).show();
+                }else{
+                   orederPlaced(AddId,token,id,imgs);
+                }
             }
         });
 
@@ -685,8 +697,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
     }
-    private void volume(String[] volume){
+    private void volume(String[] volume,String[] price){
          String is = volume[0];
+         String p = price[0];
         if (is.toUpperCase().contains("NA") || is == null || is.isEmpty()) {
             findViewById(R.id.spinnerLayout).setVisibility(View.GONE);
         }
@@ -699,10 +712,14 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 vl = (String) parent.getItemAtPosition(position);
-//                int cost = spinner.getSelectedItemPosition();
-//                String[] price ={"100","200","300","400"};
-//                String costs = price[cost];
-//                Toast.makeText(ProductDetailActivity.this,costs, Toast.LENGTH_SHORT).show();
+                int cost = spinner.getSelectedItemPosition();
+                costs = price[cost];
+                if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null || p.contains("0")){
+                    productDetailPagePrice.setText("out of stock");
+                }else {
+                    productDetailPagePrice.setText(costs + "/---");
+                }
+//               Toast.makeText(ProductDetailActivity.this,costs, Toast.LENGTH_SHORT).show();
                 selected_volume.setText(vl);
                 String token = sharedPrefManager.getValue_string("token");
 
@@ -893,38 +910,43 @@ public class ProductDetailActivity extends AppCompatActivity {
                 String qty = product_quantity_text_product_detail_page.getText().toString();
                 // api call for add cart
                 SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
-                if(userToken.contains("token")) {
-                    Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty , selected_volume.getText().toString());
-                    callC.enqueue(new Callback<CartAddRespones>() {
-                        @Override
-                        public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
-                            if (response.isSuccessful()) {
-                                CartAddRespones cartAddRespones = response.body();
-                                Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
-                                String str = cartAddRespones.getMessage();
-                                if(str.contains("Successfully added!")) {
-                                    cart_on_product_detail.setVisibility(View.GONE);
-                                    go_cart_on_product_detail.setVisibility(View.VISIBLE);
-                                    go_cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            startActivity(new Intent(ProductDetailActivity.this, MYCartActivity.class));
-                                        }
-                                    });
+                if(costs.contains("out of stock")) {
+                    if (userToken.contains("token")) {
+                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, costs, selected_volume.getText().toString());
+                        callC.enqueue(new Callback<CartAddRespones>() {
+                            @Override
+                            public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
+                                if (response.isSuccessful()) {
+                                    CartAddRespones cartAddRespones = response.body();
+                                    Toast.makeText(ProductDetailActivity.this, cartAddRespones.getMessage(), Toast.LENGTH_SHORT).show();
+                                    String str = cartAddRespones.getMessage();
+                                    if (str.contains("Successfully added!")) {
+                                        cart_on_product_detail.setVisibility(View.GONE);
+                                        go_cart_on_product_detail.setVisibility(View.VISIBLE);
+                                        go_cart_on_product_detail.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                startActivity(new Intent(ProductDetailActivity.this, MYCartActivity.class));
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<CartAddRespones> call, Throwable t) {
-                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<CartAddRespones> call, Throwable t) {
+                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
 //                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
-                }else{
-                    startActivity(new Intent(ProductDetailActivity.this,SignUP.class));
+                    } else {
+                        startActivity(new Intent(ProductDetailActivity.this, SignUP.class));
+                    }
+                }else {
+                    Toast.makeText(ProductDetailActivity.this,"product out of stock", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -1120,55 +1142,63 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void  orederPlaced(String AddIds,String token,String id,String imgs){
         String qty = product_quantity_text_product_detail_page.getText().toString();
-        String price = getIntent().getStringExtra("price");
-        int t = Integer.parseInt(qty)*Integer.parseInt(price);;
-        String total = Integer.toString(t);
-        if(!AddIds.contains("null")){
-            Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token,total,AddIds);
-            callOrder.enqueue(new Callback<deleteWishListRespones>() {
-                @Override
-                public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
-                    deleteWishListRespones deleteWishListRespones = response.body();
-                    if(response.isSuccessful()){
-                        String order_id = deleteWishListRespones.getMessage();
-                        Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id,id,qty,selected_volume.getText().toString());
-                        callDetail.enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if(response.isSuccessful()){
-                                    Intent in = new Intent(ProductDetailActivity.this, OrderPlacedPage.class);
-                                    in.putExtra("page","pd");
-                                    in.putExtra("id",id);
-                                    in.putExtra("qlt",qty);
-                                    in.putExtra("image",imgs);
-                                    in.putExtra("total",total);
-                                    in.putExtra("order_id",order_id);
-                                    in.putExtra("Add",AddIds);
-                                    in.putExtra("name",pdProductName.getText().toString());
-                                    in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(in);
-                                    ProductDetailPageAddressShow.setVisibility(View.GONE);
-                                    delivery_continue_btn.setVisibility(View.GONE);
-                                    buy_on_product_detail.setVisibility(View.VISIBLE);
-                                }
+        String price = productDetailPagePrice.getText().toString();
+        if(!price.contains("out of stock")) {
+            int t = Integer.parseInt(qty) * Integer.parseInt(price);
+            String total = Integer.toString(t);
+            if (t >= 1000) {
+                if (!AddIds.contains("null")) {
+                    Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token, total, AddIds);
+                    callOrder.enqueue(new Callback<deleteWishListRespones>() {
+                        @Override
+                        public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                            deleteWishListRespones deleteWishListRespones = response.body();
+                            if (response.isSuccessful()) {
+                                String order_id = deleteWishListRespones.getMessage();
+                                Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, id, qty, selected_volume.getText().toString());
+                                callDetail.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
+                                            Intent in = new Intent(ProductDetailActivity.this, OrderPlacedPage.class);
+                                            in.putExtra("page", "pd");
+                                            in.putExtra("id", id);
+                                            in.putExtra("qlt", qty);
+                                            in.putExtra("image", imgs);
+                                            in.putExtra("total", total);
+                                            in.putExtra("order_id", order_id);
+                                            in.putExtra("Add", AddIds);
+                                            in.putExtra("name", pdProductName.getText().toString());
+                                            in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(in);
+                                            ProductDetailPageAddressShow.setVisibility(View.GONE);
+                                            delivery_continue_btn.setVisibility(View.GONE);
+                                            buy_on_product_detail.setVisibility(View.VISIBLE);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
+                        }
 
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
+                        @Override
+                        public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(this, "Please Add you Address First", Toast.LENGTH_LONG).show();
                 }
-
-                @Override
-                public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        }else{
-            Toast.makeText(this, "Please Add you Address First", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "minimum price should be 1000", Toast.LENGTH_LONG).show();
+            }
+        }else {
+            Toast.makeText(this, "product out of stock", Toast.LENGTH_LONG).show();
         }
 
     }

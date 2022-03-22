@@ -785,8 +785,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
-//        startActivity(getIntent());
-//        finish();
+        startActivity(getIntent());
+        finish();
 //        NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
 //        NavController navController = navHost.getNavController();
 //

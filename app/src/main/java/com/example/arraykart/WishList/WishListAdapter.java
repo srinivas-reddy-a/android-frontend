@@ -68,11 +68,18 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
         String title = wishListModelList.get(position).getName();
 //        int freeOffer = wishListModelList.get(position).getFreeOffer();
 //        String rating = wishListModelList.get(position).getRating();
-        String price = wishListModelList.get(position).getPrice();
+        String p = wishListModelList.get(position).getPrice();
+        String[] price;
+        price = p.split(",");
+        if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null || p.contains("0")){
+            holder.price.setText("out of stock");
+        }else {
+            holder.price.setText(price[0] + "/---");
+        }
 //        String cuttedPrice=wishListModelList.get(position).getCuttedPrice();
 //        String paymentMethod= wishListModelList.get(position).getPaymentMethod();
 
-        holder.setData(resource,title,price);
+        holder.setData(resource,title);
 
     }
 
@@ -163,7 +170,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
             });
 
         }
-        private void setData(String resource,String title,String prices){
+        private void setData(String resource,String title){
             try {
                 Glide.with(context)
                         .load(resource)
@@ -188,7 +195,6 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
 //                rating.setText(rate);
                 rating.setVisibility(View.GONE);
                // price.setText(prices);
-                price.setText("Price coming soon");
 //                cuttedPrice.setText(cuttedPricess);
                 cuttedPrice.setVisibility(View.GONE);
 //                paymentMethod.setText(method);

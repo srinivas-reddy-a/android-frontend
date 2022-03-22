@@ -91,14 +91,6 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         cartItemModelList= new ArrayList<>();
-//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"₹ ---/-","₹",1,0,0));
-//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"₹ ---/-","₹",2,1,0));
-//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"₹ ---/-","₹",3,0,1));
-//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","₹ ----","Free","₹ -----"));
-//
-//        cartAdapter = new CartAdapter(cartItemModelList);
-//        cartItemsRecyclerView.setAdapter(cartAdapter);
-//        cartAdapter.notifyDataSetChanged();
 
 //       api call to get cart items
 
@@ -119,8 +111,8 @@ public class MyCartFragment extends Fragment {
                         t += Integer.parseInt( cartItemModelList.get(j).getQuantity()) * Integer.parseInt( cartItemModelList.get(j).getPrice());
                     }
                     total = Integer.toString(t);
-//                    total_cart_amount.setText("₹ "+total+"---");
-                    total_cart_amount.setText("Price coming soon");
+                    total_cart_amount.setText("₹ "+total+"---");
+//                    total_cart_amount.setText("Price coming soon");
                     view.findViewById(R.id.constraintLayout2).setVisibility(View.VISIBLE);
                 }else {
                     try {
@@ -145,11 +137,11 @@ public class MyCartFragment extends Fragment {
             buy_on_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "coming soon", Toast.LENGTH_SHORT).show();
-//                    changeAddress.setVisibility(View.VISIBLE);
-//                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
-//                    buy_on_cart.setVisibility(View.GONE);
-//                    delivery_continue_btn.setVisibility(View.VISIBLE);
+//                    Toast.makeText(getContext(), "coming soon", Toast.LENGTH_SHORT).show();
+                    changeAddress.setVisibility(View.VISIBLE);
+                    ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
+                    buy_on_cart.setVisibility(View.GONE);
+                    delivery_continue_btn.setVisibility(View.VISIBLE);
 
                 }
             });
@@ -277,23 +269,24 @@ public class MyCartFragment extends Fragment {
     }
 
     private void  orederPlaced(String AddIds,String token,String total){
-        if(!AddIds.contains("null")){
-            Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token,total,AddIds);
-            callOrder.enqueue(new Callback<deleteWishListRespones>() {
-                @Override
-                public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
-                    deleteWishListRespones deleteWishListRespones = response.body();
-                    if(response.isSuccessful()){
-                        String order_id = deleteWishListRespones.getMessage();
-                        for (int i = 0;i<cartItemModelList.size();i++) {
-                            Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, cartItemModelList.get(i).getId(),  cartItemModelList.get(i).getQuantity(),cartItemModelList.get(i).getVolume());
-                            callDetail.enqueue(new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
+        if(Integer.parseInt(total) >= 1000) {
+            if (!AddIds.contains("null")) {
+                Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token, total, AddIds);
+                callOrder.enqueue(new Callback<deleteWishListRespones>() {
+                    @Override
+                    public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                        deleteWishListRespones deleteWishListRespones = response.body();
+                        if (response.isSuccessful()) {
+                            String order_id = deleteWishListRespones.getMessage();
+                            for (int i = 0; i < cartItemModelList.size(); i++) {
+                                Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, cartItemModelList.get(i).getId(), cartItemModelList.get(i).getQuantity(), cartItemModelList.get(i).getVolume());
+                                callDetail.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
 
-                                        Intent in = new Intent(getContext(), OrderPlacedPage.class);
-                                        in.putExtra("page","cart");
+                                            Intent in = new Intent(getContext(), OrderPlacedPage.class);
+                                            in.putExtra("page", "cart");
 //                                        in.putExtra("id", id);
 //                                        in.putExtra("qlt", qty);
 //                                        in.putExtra("image", imgs);
@@ -302,30 +295,33 @@ public class MyCartFragment extends Fragment {
 //                                        in.putExtra("Add", AddIds);
 //                                        in.putExtra("name", pdProductName.getText().toString());
 //                                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(in);
-                                        ProductDetailPageAddressShow.setVisibility(View.GONE);
-                                        delivery_continue_btn.setVisibility(View.GONE);
-                                        buy_on_cart.setVisibility(View.VISIBLE);
+                                            startActivity(in);
+                                            ProductDetailPageAddressShow.setVisibility(View.GONE);
+                                            delivery_continue_btn.setVisibility(View.GONE);
+                                            buy_on_cart.setVisibility(View.VISIBLE);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
+            } else {
+                Toast.makeText(getContext(), "Please Add you Address First", Toast.LENGTH_LONG).show();
+            }
         }else{
-            Toast.makeText(getContext(), "Please Add you Address First", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "minimum price should be 1000", Toast.LENGTH_SHORT).show();
         }
 
     }

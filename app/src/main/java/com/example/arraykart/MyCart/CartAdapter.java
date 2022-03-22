@@ -440,8 +440,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                 freeCoupons.setVisibility(View.GONE);
                 freeCouponIcon.setVisibility(View.GONE);
                 cartVolume.setText("Volume "+ volume );
-//                productPrice.setText("₹ "+" "+productPriceText+"---");
-                productPrice.setText("Price coming soon");
+                productPrice.setText("₹ "+" "+productPriceText+"---");
+//                productPrice.setText("Price coming soon");
                 cuttedPrice.setVisibility(View.GONE);
                 offerApplied.setVisibility(View.GONE);
                 productQuantity.setText(qty);
