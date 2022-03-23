@@ -1,5 +1,6 @@
 package com.example.arraykart.MyCart;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -213,6 +214,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
                                  CartUPdateRespones cartUPdateRespones = response.body();
                                 if (response.isSuccessful()) {
+                                    context.startActivity(new Intent(context,MYCartActivity.class));
+                                    ((Activity)context).finish();
                                 }else {
                                     try {
                                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -257,6 +260,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                             public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
                                 CartUPdateRespones cartUPdateRespones = response.body();
                                 if (response.isSuccessful()) {
+                                    context.startActivity(new Intent(context,MYCartActivity.class));
+                                    ((Activity)context).finish();
                                 }else {
                                     try {
                                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -326,6 +331,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                                                     notifyItemRemoved(getAdapterPosition());
                                                     notifyDataSetChanged();
                                                     Toast.makeText(context, deleteWishListRespones.getMessage(), Toast.LENGTH_LONG).show();
+                                                    context.startActivity(new Intent(context,MYCartActivity.class));
+                                                    ((Activity)context).finish();
                                                 }else {
                                                     try {
                                                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -440,7 +447,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                 freeCoupons.setVisibility(View.GONE);
                 freeCouponIcon.setVisibility(View.GONE);
                 cartVolume.setText("Volume "+ volume );
-                productPrice.setText("₹ "+" "+productPriceText+"---");
+                productPrice.setText("₹ "+productPriceText+"---");
 //                productPrice.setText("Price coming soon");
                 cuttedPrice.setVisibility(View.GONE);
                 offerApplied.setVisibility(View.GONE);

@@ -910,7 +910,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
                 if(!productDetailPagePrice.getText().toString().contains("out of stock")) {
                     if (userToken.contains("token")) {
-                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty, selected_volume.getText().toString());
+                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty, selected_volume.getText().toString(),costs);
                         callC.enqueue(new Callback<CartAddRespones>() {
                             @Override
                             public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
