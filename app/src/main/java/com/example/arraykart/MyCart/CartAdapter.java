@@ -393,6 +393,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                                             notifyItemRemoved(getAdapterPosition());
                                             notifyDataSetChanged();
                                             Toast.makeText(context, "Product Added to WishList", Toast.LENGTH_LONG).show();
+                                            context.startActivity(new Intent(context,MYCartActivity.class));
+                                            ((Activity)context).finish();
                                         }else {
                                             try {
                                                 JSONObject jsonObject = new JSONObject(response.errorBody().string());
