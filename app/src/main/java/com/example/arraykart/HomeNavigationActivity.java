@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.location.Location;
@@ -92,6 +93,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -110,6 +112,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     private LottieAnimationView lottieAnimationView;
 
     private ImageView notification_home_page;
+    private ImageView languageChange;
 
     SharedPrefManager sharedPrefManager;
 
@@ -141,12 +144,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     final private  long DELAY_TIME =3000;
     final private  long PERIOD_TIME = 3000;
     //banner slider on home page
-    MenuItem id;
+    NavigationView navigationView;
+
+    Menu optionsMenu;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
 
@@ -179,7 +183,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
                         .setAction("Action", null).show();
             }
         });
-
+        languageChange = (ImageView)findViewById(R.id.language_change);
+        languageChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChangeLanguageDialog();
+            }
+        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -216,7 +226,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
             }
         });
 
-                meowBottomNavigation = findViewById(R.id.bottom_navigation);
+        meowBottomNavigation = findViewById(R.id.bottom_navigation);
         meowBottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_baseline_people_24));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_baseline_home_24));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_account_circle_24));
@@ -594,7 +604,7 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         }
 
-//
+//        MenuItem item = optionsMenu.findItem(R.id.nav_SignUp);
 //        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 //        if(user_token.contains("token")) {
 //            id.setVisible(false);
@@ -604,6 +614,46 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
         nestedRecyclerView();
 
+    }
+
+    private void showChangeLanguageDialog() {
+        final String[] listItems = {"हिन्दी", "English"};
+        androidx.appcompat.app.AlertDialog.Builder mBuilder = new androidx.appcompat.app.AlertDialog.Builder(HomeNavigationActivity.this);
+        mBuilder.setTitle("Choose Language...");
+        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(i==0) {
+                    setLocale("hi");
+                    recreate();
+                }
+                else if(i==1){
+                    setLocale("en");
+                    recreate();
+                }
+                dialogInterface.dismiss();
+            }
+        });
+
+        androidx.appcompat.app.AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My Lang", lang);
+        editor.apply();
+    }
+
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My Lang", "");
+        setLocale(language);
     }
 
     @Override
@@ -666,8 +716,6 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
             }
         });
-
-
 
 
 
@@ -770,6 +818,19 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 //        return true;
 //
 //    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        // get the navigation view in which the menu is included
+        navigationView= findViewById(R.id.nav_view);
+        optionsMenu = navigationView.getMenu();
+        MenuItem mitem = optionsMenu.findItem(R.id.nav_gallery);
+        // example
+//        mitem.setTitle("allo");
+        return true;
+    }
 
 
     @Override

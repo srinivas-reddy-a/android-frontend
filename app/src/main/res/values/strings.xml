@@ -384,13 +384,13 @@
     <string name="use_number">Use Number</string>
     <string name="enter_otp">Enter Otp</string>
     <string name="resend">Resend</string>
-    <string name="submit">submit</string>
-    <string name="sign_up">Sign Up</string>
     <string name="options_for_sign_up">Options for sign up</string>
     <string name="view_your_wishlist">View Your WishList</string>
-    <string name="product_name_here">Product Name here</string>
     <string name="free_offer">free offer</string>
     <string name="rs_499999">Rs.499999/-</string>
     <string name="rs_599999">RS.599999/-</string>
     <string name="cash_on_delivery_available">Cash on delivery available</string>
+    <string name="product_name_here">Product Name Here</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="submit">Submit</string>
 </resources>
