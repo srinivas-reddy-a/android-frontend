@@ -69,7 +69,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.ViewHo
         String p = wishListModelList.get(position).getPrice();
         String[] price;
         price = p.split(",");
-        if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null || p.contains("0")){
+        if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null){
             holder.price.setText("out of stock");
         }else {
             holder.price.setText(price[0] + "/---");

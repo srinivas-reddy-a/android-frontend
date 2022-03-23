@@ -116,7 +116,7 @@
         android:layout_height="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:tint="#D1CECE"
+        android:tint="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3"
         app:srcCompat="@android:drawable/ic_notification_overlay"
@@ -128,7 +128,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="14dp"
         android:progress="100"
         android:progressTint="#D1CECE"
         android:rotation="90"
@@ -218,7 +218,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Mon,12th dec 2021 12:24"
+        android:text="Your order will delivered 3 to 5 working days "
         android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/orderedTitle"
@@ -255,6 +255,7 @@
         android:text="Tus,13th dec 2021 9:45"
         android:textColor="@color/text"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/packedTitle"
         app:layout_constraintStart_toEndOf="@+id/packedTitle"
         app:layout_constraintTop_toTopOf="@+id/packedTitle" />
@@ -264,6 +265,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="order has been packed "
+        android:visibility="gone"
         android:textColor="@color/text"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/packedTitle"
@@ -290,6 +292,7 @@
         android:text="Wed,14Th dec 2021 10:40"
         android:textColor="@color/text"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/shippedTitle"
         app:layout_constraintStart_toEndOf="@+id/shippedTitle"
         app:layout_constraintTop_toTopOf="@+id/shippedTitle" />
@@ -300,6 +303,7 @@
         android:layout_height="wrap_content"
         android:text="ored has been shipped succesfully"
         android:textColor="@color/text"
+        android:visibility="gone"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/shippedTitle"
         app:layout_constraintTop_toBottomOf="@+id/shipped_delivery_progressBar" />
@@ -324,6 +328,7 @@
         android:text="Wed,15th dec 2021 9:43"
         android:textColor="@color/text"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/deliveredTitle"
         app:layout_constraintStart_toEndOf="@+id/deliveredTitle"
         app:layout_constraintTop_toTopOf="@+id/deliveredTitle" />
@@ -336,6 +341,7 @@
         android:text="order delivered on time "
         android:textColor="@color/text"
         android:textSize="10sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/deliveredTitle"
         app:layout_constraintTop_toBottomOf="@+id/deliveredTitle" />
 

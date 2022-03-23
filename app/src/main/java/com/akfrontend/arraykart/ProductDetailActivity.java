@@ -1177,7 +1177,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     Toast.makeText(this, "Please Add you Address First", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(this, "minimum price should be 1000", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "minimum order value should be 1000", Toast.LENGTH_LONG).show();
             }
         }else {
             Toast.makeText(this, "product out of stock", Toast.LENGTH_LONG).show();
