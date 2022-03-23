@@ -65,19 +65,23 @@ public class CommunityActivity extends AppCompatActivity {
                 public void onResponse(Call<CartUPdateRespones> call, Response<CartUPdateRespones> response) {
                     CartUPdateRespones cartUPdateRespones = response.body();
                     String msg = cartUPdateRespones.getMessage();
-                    if(msg.contains("Already Registered!")){
-                        linearLayout9.setVisibility(View.GONE);
-                        linearLayout10.setVisibility(View.GONE);
-                        button3.setVisibility(View.GONE);
-                        AlreadyRegistered.setVisibility(View.VISIBLE);
-                        textView17.setVisibility(View.GONE);
-                    }else {
-                        linearLayout9.setVisibility(View.VISIBLE);
-                        linearLayout10.setVisibility(View.VISIBLE);
-                        button3.setVisibility(View.VISIBLE);
-                        AlreadyRegistered.setVisibility(View.GONE);
-                        textView17.setVisibility(View.VISIBLE);
+                    try {
+                        if (msg.contains("Already Registered!")) {
+//                            linearLayout9.setVisibility(View.GONE);
+//                            linearLayout10.setVisibility(View.GONE);
+//                            button3.setVisibility(View.GONE);
+                            AlreadyRegistered.setVisibility(View.VISIBLE);
+//                            textView17.setVisibility(View.GONE);
+                        } else {
+                            linearLayout9.setVisibility(View.VISIBLE);
+                            linearLayout10.setVisibility(View.VISIBLE);
+                            button3.setVisibility(View.VISIBLE);
+//                            AlreadyRegistered.setVisibility(View.GONE);
+                            textView17.setVisibility(View.VISIBLE);
 
+                        }
+                    }catch (Exception e){
+                        Toast.makeText(CommunityActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
