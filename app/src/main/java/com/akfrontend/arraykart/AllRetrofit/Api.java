@@ -230,7 +230,8 @@ public interface Api {
     Call<CartAddRespones>addToCart(@Header("Authorization") String Authorization,
                                    @Field("product_id") String product_id,
                                    @Field("quantity") String quantity,
-                                   @Field("volume") String volume
+                                   @Field("volume") String volume,
+                                   @Field("price") String price
     );
 
     @FormUrlEncoded
