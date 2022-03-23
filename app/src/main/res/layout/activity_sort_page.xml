@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20sp"
-    tools:context=".Sort.sortPage">
+    tools:context="com.akfrontend.arraykart.Sort.sortPage">
 
     <TextView
         android:id="@+id/textView3"

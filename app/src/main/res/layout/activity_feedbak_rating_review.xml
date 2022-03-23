@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RatingReviewPage.FeedbakRatingReview">
+    tools:context="com.akfrontend.arraykart.RatingReviewPage.FeedbakRatingReview">
 
     <include layout="@layout/rate_review_ordered_product_layout"/>
 

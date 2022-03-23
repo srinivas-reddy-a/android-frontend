@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyCart.MYCartActivity">
+    tools:context="com.akfrontend.arraykart.MyCart.MYCartActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

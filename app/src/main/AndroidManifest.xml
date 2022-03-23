@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.arraykart">
+    package="com.akfrontend.arraykart">
     <!-- userperm -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/arraykart_icon"
         android:label="@string/app_name"
         android:roundIcon="@drawable/arraykart_icon"
@@ -20,152 +20,152 @@
         android:theme="@style/Theme.Arraykart"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.RetrunPollicy.ReturnPolicy"
+            android:name="com.akfrontend.arraykart.ui.RetrunPollicy.ReturnPolicy"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OnBoardingPage.OnBoardingActivity"
+            android:name="com.akfrontend.arraykart.OnBoardingPage.OnBoardingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.PrivacyPolicy.PrivacyPolicy"
+            android:name="com.akfrontend.arraykart.ui.PrivacyPolicy.PrivacyPolicy"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.Legal.Legal"
+            android:name="com.akfrontend.arraykart.ui.Legal.Legal"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RatingReviewPage.FeedbakRatingReview"
+            android:name="com.akfrontend.arraykart.RatingReviewPage.FeedbakRatingReview"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MyOrder.OrderPlacedPage"
+            android:name="com.akfrontend.arraykart.MyOrder.OrderPlacedPage"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddressActivity.AddressEditForm"
+            android:name="com.akfrontend.arraykart.AddressActivity.AddressEditForm"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProductDetailAboutListing.ProductTableDetailPage"
+            android:name="com.akfrontend.arraykart.ProductDetailAboutListing.ProductTableDetailPage"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Community.CommunityActivity"
+            android:name="com.akfrontend.arraykart.Community.CommunityActivity"
             android:exported="false"
             android:label="@string/title_activity_community"
             android:theme="@style/Theme.Arraykart.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HelpCenterActivity.HelpCenterActivity"
+            android:name="com.akfrontend.arraykart.HelpCenterActivity.HelpCenterActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RatingReviewPage.AllReviewActivity"
+            android:name="com.akfrontend.arraykart.RatingReviewPage.AllReviewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RatingReviewPage.RatingActivity"
+            android:name="com.akfrontend.arraykart.RatingReviewPage.RatingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NotificationPage.NotificationActivity"
+            android:name="com.akfrontend.arraykart.NotificationPage.NotificationActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UserProfile.ProfileEditPageActivity"
+            android:name="com.akfrontend.arraykart.UserProfile.ProfileEditPageActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UserProfile.UserProfileActivity"
+            android:name="com.akfrontend.arraykart.UserProfile.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SearchPage.SearchPageActivity"
+            android:name="com.akfrontend.arraykart.SearchPage.SearchPageActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible"/>
         <activity
-            android:name=".AddressActivity.AddressFormActivity"
+            android:name="com.akfrontend.arraykart.AddressActivity.AddressFormActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".AddressActivity.MyAddressActivity"
+            android:name="com.akfrontend.arraykart.AddressActivity.MyAddressActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".DeliveryPage.DeliveryActivity"
+            android:name="com.akfrontend.arraykart.DeliveryPage.DeliveryActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".WishList.WishListActivity"
+            android:name="com.akfrontend.arraykart.WishList.WishListActivity"
             android:exported="false"
             android:label="Wish List"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MyOrder.OrderDetail"
+            android:name="com.akfrontend.arraykart.MyOrder.OrderDetail"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Sort.sortPage"
+            android:name="com.akfrontend.arraykart.Sort.sortPage"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Filter.FilterPage"
+            android:name="com.akfrontend.arraykart.Filter.FilterPage"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SignUP"
+            android:name="com.akfrontend.arraykart.SignUP"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Signin"
+            android:name="com.akfrontend.arraykart.Signin"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MyOrder.MyOrder"
+            android:name="com.akfrontend.arraykart.MyOrder.MyOrder"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MyCart.MYCartActivity"
+            android:name="com.akfrontend.arraykart.MyCart.MYCartActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ProductDetailActivity"
+            android:name="com.akfrontend.arraykart.ProductDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct"
+            android:name="com.akfrontend.arraykart.homeCategoryProduct.allItemOfSingleProduct.ItemsForSingleProduct"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".homeCategoryProduct.moreProductCategory.moreCategoryProducts"
+            android:name="com.akfrontend.arraykart.homeCategoryProduct.moreProductCategory.moreCategoryProducts"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".HomeNavigationActivity"
+            android:name="com.akfrontend.arraykart.HomeNavigationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Arraykart.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.akfrontend.arraykart.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -197,7 +197,7 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-        <receiver android:name=".OtpReeiver"
+        <receiver android:name="com.akfrontend.arraykart.OtpReeiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>

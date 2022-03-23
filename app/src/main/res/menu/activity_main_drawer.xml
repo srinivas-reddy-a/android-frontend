@@ -38,11 +38,13 @@
             />
         <item
             android:id="@+id/nav_SignUp"
+            android:visible="false"
             android:icon="@drawable/ic_baseline_login"
             android:title="SignUp"
             />
         <item
             android:id="@+id/nav_LogOut"
+            android:visible="false"
             android:icon="@drawable/ic_baseline_logout"
             android:title="LogOut"
             />

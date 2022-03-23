@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Legal.Legal">
+    tools:context="com.akfrontend.arraykart.ui.Legal.Legal">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -366,7 +366,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20sp"
-                    android:text="If, at our request, you send certain specific submissions (for example contest entries) or without a  request from us you send creative ideas, suggestions, proposals, plans, or other materials, whether  online, by email, by postal mail, or otherwise (collectively, 'comments'), you agree that we may, at  any time, without restriction, edit, copy, publish, distribute, translate and otherwise use in any  medium any comments that you forward to us. We are and shall be under no obligation (1) to  maintain any comments in confidence; (2) to pay compensation for any comments; or (3) to respond  to any comments."
+                    android:text="If, at our request, you send certain specific submissions (for akfrontend contest entries) or without a  request from us you send creative ideas, suggestions, proposals, plans, or other materials, whether  online, by email, by postal mail, or otherwise (collectively, 'comments'), you agree that we may, at  any time, without restriction, edit, copy, publish, distribute, translate and otherwise use in any  medium any comments that you forward to us. We are and shall be under no obligation (1) to  maintain any comments in confidence; (2) to pay compensation for any comments; or (3) to respond  to any comments."
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 

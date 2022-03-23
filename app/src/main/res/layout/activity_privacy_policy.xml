@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PrivacyPolicy.PrivacyPolicy">
+    tools:context="com.akfrontend.arraykart.ui.PrivacyPolicy.PrivacyPolicy">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -162,7 +162,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20sp"
-                    android:text="We get information about you from third parties. For example, if you use an integrated social media feature on  our Applications. The third-party social media Application will give us certain information about you. This could  include your name and email address. "
+                    android:text="We get information about you from third parties. For akfrontend, if you use an integrated social media feature on  our Applications. The third-party social media Application will give us certain information about you. This could  include your name and email address. "
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 
@@ -218,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20sp"
-                    android:text="We use information for marketing purposes. We might send you information about special promotions or offers.  We might also tell you about new features or products. These might be our own offers or products, or third-party  offers or products we think you might find interesting. Or, for example, if you buy tickets from us we'll enroll you in our  newsletter."
+                    android:text="We use information for marketing purposes. We might send you information about special promotions or offers.  We might also tell you about new features or products. These might be our own offers or products, or third-party  offers or products we think you might find interesting. Or, for akfrontend, if you buy tickets from us we'll enroll you in our  newsletter."
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 
@@ -282,7 +282,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20sp"
-                    android:text="We may share information with any successor to all or part of our business. For example, if part of our  business is sold we may give our customer list as part of that transaction."
+                    android:text="We may share information with any successor to all or part of our business. For akfrontend, if part of our  business is sold we may give our customer list as part of that transaction."
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 

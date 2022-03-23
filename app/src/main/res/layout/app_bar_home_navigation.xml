@@ -9,7 +9,7 @@
     android:focusable="true"
 
     android:focusableInTouchMode="true"
-    tools:context=".HomeNavigationActivity">
+    tools:context="com.akfrontend.arraykart.HomeNavigationActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

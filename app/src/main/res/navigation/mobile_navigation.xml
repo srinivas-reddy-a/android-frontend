@@ -7,59 +7,59 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.arraykart.ui.home.HomeFragment"
+        android:name="com.akfrontend.arraykart.ui.home.HomeFragment"
         android:label="Arraykart" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.arraykart.ui.gallery.GalleryFragment"
+        android:name="com.akfrontend.arraykart.ui.gallery.GalleryFragment"
         android:label="Arraykart" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.arraykart.ui.slideshow.SlideshowFragment"
+        android:name="com.akfrontend.arraykart.ui.slideshow.SlideshowFragment"
         android:label="Arraykart" />
     <fragment
         android:id="@+id/nav_wishList"
-        android:name="com.example.arraykart.ui.WishList.WishListFragment"
+        android:name="com.akfrontend.arraykart.ui.WishList.WishListFragment"
         android:label="Arraykart" />
     <fragment
         android:id="@+id/nav_MyCart"
-        android:name="com.example.arraykart.ui.MyCart.MyCartNavFragment"
+        android:name="com.akfrontend.arraykart.ui.MyCart.MyCartNavFragment"
         android:label="Arraykart" />
     <fragment
         android:id="@+id/nav_Settings"
-        android:name="com.example.arraykart.ui.settings.SettingsNavFragment"
+        android:name="com.akfrontend.arraykart.ui.settings.SettingsNavFragment"
         android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_SignUp"
-        android:name="com.example.arraykart.ui.SignUp.SignUpFragment"
+        android:name="com.akfrontend.arraykart.ui.SignUp.SignUpFragment"
         android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_LogOut"
-        android:name="com.example.arraykart.ui.LogOut.LogOutFragment"
+        android:name="com.akfrontend.arraykart.ui.LogOut.LogOutFragment"
         android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_HelpCenter"
-        android:name="com.example.arraykart.ui.HelpCenter.HelpCenterFragment"
+        android:name="com.akfrontend.arraykart.ui.HelpCenter.HelpCenterFragment"
         android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_PrivacyPolicy"
-        android:name="com.example.arraykart.ui.PrivacyPolicy.PrivacyPolicyFragment"
+        android:name="com.akfrontend.arraykart.ui.PrivacyPolicy.PrivacyPolicyFragment"
         android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_Legal"
-        android:name="com.example.arraykart.ui.Legal.LegalFragment"
+        android:name="com.akfrontend.arraykart.ui.Legal.LegalFragment"
         android:label="Arraykart"
         />
     <fragment
         android:id="@+id/nav_Return_Policy"
-        android:name="com.example.arraykart.ui.RetrunPollicy.ReturnPolicyFragment"
+        android:name="com.akfrontend.arraykart.ui.RetrunPollicy.ReturnPolicyFragment"
         android:label="Arraykart"
         />
 </navigation>
