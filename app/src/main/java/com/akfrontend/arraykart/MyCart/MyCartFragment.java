@@ -108,7 +108,7 @@ public class MyCartFragment extends Fragment {
                         t += Integer.parseInt( cartItemModelList.get(j).getQuantity()) * Integer.parseInt( cartItemModelList.get(j).getPrice());
                     }
                     total = Integer.toString(t);
-                    total_cart_amount.setText("₹ "+total+"---");
+                    total_cart_amount.setText("₹ "+total+" /---");
 //                    total_cart_amount.setText("Price coming soon");
                     view.findViewById(R.id.constraintLayout2).setVisibility(View.VISIBLE);
                 }else {
@@ -324,4 +324,21 @@ public class MyCartFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ShippingAddress();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ShippingAddress();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ShippingAddress();
+    }
 }

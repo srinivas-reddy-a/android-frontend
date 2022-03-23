@@ -142,7 +142,7 @@
             android:layout_marginEnd="3dp"
             android:backgroundTint="@color/gray"
             android:text="Edit"
-            android:textSize="16sp"
+            android:textSize="13sp"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <Button
@@ -151,7 +151,7 @@
             android:layout_height="40dp"
             android:backgroundTint="@color/gray"
             android:text="Remove"
-            android:textSize="16sp"
+            android:textSize="13sp"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 

@@ -97,7 +97,7 @@ public class MyOrderFragment extends Fragment {
                     orderAdapter.notifyDataSetChanged();
 
                 }else {
-                    Toast.makeText(getContext(), "err", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "no order", Toast.LENGTH_SHORT).show();
 
                 }
             }

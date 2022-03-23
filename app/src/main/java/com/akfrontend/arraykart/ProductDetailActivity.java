@@ -1,5 +1,7 @@
 package com.akfrontend.arraykart;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -126,6 +128,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private String AddId ;
     private String vl;
     private String costs;
+    private String[] price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,7 +201,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     String nATxt = Integer.toString(Aqlt);
                     product_quantity_text_product_detail_page.setText(nATxt);
                 }catch (Exception e){
-                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), LENGTH_SHORT).show();
                 }
             }
         });
@@ -218,7 +221,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                         product_quantity_text_product_detail_page.setText(nSTxt);
                     }
                 }catch (Exception e){
-                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), LENGTH_SHORT).show();
                 }
             }
         });
@@ -569,7 +572,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                     product = response.body().getProduct();
                     pdProductName.setText(product.get(0).getName());
                     String p = product.get(0).getPrice();
-                    String[] price;
                     price = p.split(",");
                     if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null){
                         productDetailPagePrice.setText("out of stock");
@@ -626,7 +628,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     volume(volume,price);
 
                 }catch (Exception e){
-                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), LENGTH_SHORT).show();
                 }
 
 
@@ -634,7 +636,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProductDetailPageRespones> call, Throwable t) {
-                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
             }
         });
 
@@ -648,7 +650,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }
             });
         }catch (Exception e){
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, e.getMessage(), LENGTH_SHORT).show();
         }
 
         carouselView.setImageListener(imageListener);
@@ -667,7 +669,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(AddId.contains("null")){
-                    Toast.makeText(ProductDetailActivity.this, "Please Add Address First", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, "Please Add Address First", LENGTH_SHORT).show();
                 }else{
                    orederPlaced(AddId,token,id,imgs);
                 }
@@ -676,13 +678,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
 
-
-
-
     }
     private void volume(String[] volume,String[] price){
          String is = volume[0];
-         String p = price[0];
         if (is.toUpperCase().contains("NA") || is == null || is.isEmpty()) {
             findViewById(R.id.spinnerLayout).setVisibility(View.GONE);
         }
@@ -697,9 +695,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                 vl = (String) parent.getItemAtPosition(position);
                 int cost = spinner.getSelectedItemPosition();
                 costs = price[cost];
-                if(p.toUpperCase().contains("NA") || p.isEmpty() || p == null){
+                if(price[0].toUpperCase().contains("NA") || price[0].isEmpty() ||price[0] == null){
                     productDetailPagePrice.setText("out of stock");
                 }else {
+                    costs = price[cost];
                     productDetailPagePrice.setText(costs + "/---");
                 }
 //               Toast.makeText(ProductDetailActivity.this,costs, Toast.LENGTH_SHORT).show();
@@ -733,7 +732,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
-                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                     }
                 });
 
@@ -776,7 +775,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     si = yo.split(",");
                     carouselViews.setPageCount(si.length);
                 }catch (Exception e){
-                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), LENGTH_SHORT).show();
                 }
 
 
@@ -784,7 +783,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProductDetailPageRespones> call, Throwable t) {
-                Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
             }
         });
         carouselViews.setImageListener(imageListener);
@@ -880,7 +879,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
-                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                 }
             });
         }
@@ -893,9 +892,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                 String qty = product_quantity_text_product_detail_page.getText().toString();
                 // api call for add cart
                 SharedPreferences userToken = getSharedPreferences("arraykartuser",MODE_PRIVATE);
-                if(costs.contains("out of stock")) {
+                if(!productDetailPagePrice.getText().toString().contains("out of stock")) {
                     if (userToken.contains("token")) {
-                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, costs, selected_volume.getText().toString());
+                        Call<CartAddRespones> callC = RetrofitClient.getInstance().getApi().addToCart(token, id, qty, selected_volume.getText().toString());
                         callC.enqueue(new Callback<CartAddRespones>() {
                             @Override
                             public void onResponse(Call<CartAddRespones> call, Response<CartAddRespones> response) {
@@ -923,7 +922,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-//                    startActivity(new Intent(ProductDetailActivity.this,MYCartActivity.class));
                     } else {
                         startActivity(new Intent(ProductDetailActivity.this, SignUP.class));
                     }
@@ -963,7 +961,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<CartUPdateRespones> call, Throwable t) {
-                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
 
                 }
             });
@@ -998,17 +996,17 @@ public class ProductDetailActivity extends AppCompatActivity {
                                             }else {
                                                 try {
                                                     JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                                                    Toast.makeText(ProductDetailActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(ProductDetailActivity.this, jsonObject.getString("msg"), LENGTH_SHORT).show();
 
                                                 } catch (Exception e) {
-                                                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(ProductDetailActivity.this, e.getMessage(), LENGTH_SHORT).show();
                                                 }
                                             }
                                         }
 
                                         @Override
                                         public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                                         }
                                     });
 
@@ -1019,14 +1017,14 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 }
 
                             } else {
-                                Toast.makeText(ProductDetailActivity.this, "error", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProductDetailActivity.this, "error", LENGTH_SHORT).show();
                             }
 
                         }
 
                         @Override
                         public void onFailure(Call<WishListAddRespones> call, Throwable t) {
-                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                         }
                     });
 
@@ -1116,7 +1114,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<getSelectedAddressRespones> call, Throwable t) {
-                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                 }
             });
         }else {
@@ -1125,7 +1123,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void  orederPlaced(String AddIds,String token,String id,String imgs){
         String qty = product_quantity_text_product_detail_page.getText().toString();
-        String price = productDetailPagePrice.getText().toString();
+        String price = costs;
         if(!price.contains("out of stock")) {
             int t = Integer.parseInt(qty) * Integer.parseInt(price);
             String total = Integer.toString(t);
@@ -1151,6 +1149,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                                             in.putExtra("total", total);
                                             in.putExtra("order_id", order_id);
                                             in.putExtra("Add", AddIds);
+                                            in.putExtra("volume",selected_volume.getText().toString());
                                             in.putExtra("name", pdProductName.getText().toString());
                                             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(in);
@@ -1162,7 +1161,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -1170,7 +1169,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProductDetailActivity.this, t.getMessage(), LENGTH_SHORT).show();
                         }
                     });
 

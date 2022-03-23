@@ -168,12 +168,12 @@ public class OrderDetail extends AppCompatActivity {
                     order_detail_productQuantity.setText("QTY:"+qty);
                     total_item.setText("Price("+qty+"item)");
 
-//                    total_item_price.setText("₹ "+total+"/--");
-//                    saved_price.setText("₹ "+total+"/--");
-//                    order_detail_productPrice.setText("₹ "+total+"---");
-                    total_item_price.setText("Price coming soon");
-                    saved_price.setText("Price coming soon");
-                    order_detail_productPrice.setText("Price coming soon");
+                    total_item_price.setText("₹ "+total+"/--");
+                    saved_price.setText("₹ "+total+"/--");
+                    order_detail_productPrice.setText("₹ "+total+"/---");
+//                    total_item_price.setText("Price coming soon");
+//                    saved_price.setText("Price coming soon");
+//                    order_detail_productPrice.setText("Price coming soon");
                     String yo = product.get(0).getImage();
                     String [] i = yo.split(",");
                     si = i[0];
