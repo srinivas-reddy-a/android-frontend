@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.os.Binder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -306,7 +307,7 @@ public class Signin extends AppCompatActivity {
             @Override
             public void onSuccess(Intent intent) {
 
-                if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+                if (getCallingActivity() != null && getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
                     startActivityForResult(intent,REQ_USER_CONSENT);
                 }
 
