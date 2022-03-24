@@ -2,8 +2,10 @@ package com.akfrontend.arraykart.ui.LogOut;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.akfrontend.arraykart.AllApiModels.LogOutRespones;
 import com.akfrontend.arraykart.AllRetrofit.RetrofitClient;
 import com.akfrontend.arraykart.AllRetrofit.SharedPrefManager;
+import com.akfrontend.arraykart.HomeNavigationActivity;
 import com.akfrontend.arraykart.databinding.FragmentLogOutBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -57,6 +60,8 @@ public class LogOutFragment extends Fragment {
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            getContext().startActivity(new Intent(getContext(), HomeNavigationActivity.class));
+                            ((Activity)getContext()).finish();
                             dialog.dismiss();
                             sharedPrefManager.clear();
 

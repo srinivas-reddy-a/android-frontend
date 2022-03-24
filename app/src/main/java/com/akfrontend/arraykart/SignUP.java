@@ -166,19 +166,19 @@ public class SignUP extends AppCompatActivity {
             }
         });
 
-       createGoogleRequest();
-
-        // Set the dimensions of the sign-in button.
-        ImageView signInButton = findViewById(R.id.sign_in_button);
-//        signInButton.setSize(SignInButton.SIZE_STANDARD);
-
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-                //progressBar.setVisibility(View.VISIBLE);
-            }
-        });
+//       createGoogleRequest();
+//
+//        // Set the dimensions of the sign-in button.
+//        ImageView signInButton = findViewById(R.id.sign_in_button);
+////        signInButton.setSize(SignInButton.SIZE_STANDARD);
+//
+//        signInButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                signIn();
+//                //progressBar.setVisibility(View.VISIBLE);
+//            }
+//        });
 
         resendSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -455,29 +455,29 @@ public class SignUP extends AppCompatActivity {
 
 
     ////google sign
-    private void createGoogleRequest(){
-        //google access
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
-    }
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        if (getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
-            startActivityForResult(signInIntent, RC_SIGN_IN);
-        }
-
-    }
+//    private void createGoogleRequest(){
+//        //google access
+//        // Configure sign-in to request the user's ID, email address, and basic
+//        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//
+//        // Build a GoogleSignInClient with the options specified by gso.
+//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//
+//        // Check for existing Google Sign In account, if the user is already signed in
+//        // the GoogleSignInAccount will be non-null.
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        //updateUI(account);
+//    }
+//    private void signIn() {
+//        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+//        if (getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+//            startActivityForResult(signInIntent, RC_SIGN_IN);
+//        }
+//
+//    }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {

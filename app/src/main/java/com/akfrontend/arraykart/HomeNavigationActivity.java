@@ -761,11 +761,9 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 //        mitem.setTitle("allo");
         SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
         if(user_token.contains("token")){
-            mitem.setVisible(false);
             mite.setVisible(true);
         }else {
             mitem.setVisible(true);
-            mite.setVisible(false);
         }
 
         return true;

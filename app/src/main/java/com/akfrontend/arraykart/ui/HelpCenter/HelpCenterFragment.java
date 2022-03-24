@@ -25,7 +25,6 @@ public class HelpCenterFragment extends Fragment {
         View root = binding.getRoot();
         Intent intent = new Intent(getContext(), HelpCenterActivity.class);
         startActivity(intent);
-        ((Activity)getContext()).finish();
 
         return root;
     }

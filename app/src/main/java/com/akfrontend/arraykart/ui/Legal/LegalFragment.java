@@ -25,4 +25,5 @@ public class LegalFragment extends Fragment {
         getContext().startActivity(new Intent(getContext(),Legal.class));
         return  root;
     }
+
 }
