@@ -307,7 +307,7 @@ public class Signin extends AppCompatActivity {
             @Override
             public void onSuccess(Intent intent) {
 
-                if (getCallingActivity() != null && getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+                if (getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
                     startActivityForResult(intent,REQ_USER_CONSENT);
                 }
 
@@ -472,7 +472,7 @@ public class Signin extends AppCompatActivity {
     ////google
     private void signIn() {
 
-        if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+        if (getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
         }
