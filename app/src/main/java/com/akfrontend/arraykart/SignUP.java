@@ -296,7 +296,7 @@ public class SignUP extends AppCompatActivity {
             public void onSuccess(Intent intent) {
 
                 if (getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
-                        startActivityForResult(intent,REQ_USER_CONSENT);
+                      //  startActivityForResult(intent,REQ_USER_CONSENT);
                     }
 
 

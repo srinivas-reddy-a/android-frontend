@@ -202,11 +202,6 @@ public class Signin extends AppCompatActivity {
     }
 
     private void OtpRequestPermissions(){
-//        if(ContextCompat.checkSelfPermission(Signin.this, Manifest.permission.RECEIVE_SMS)
-//        != PackageManager.PERMISSION_GRANTED);
-//        ActivityCompat.requestPermissions(Signin.this,new String[]{
-//                Manifest.permission.RECEIVE_SMS
-//        },100);
 
         SmsRetrieverClient client = SmsRetriever.getClient(this);
         client.startSmsUserConsent(null);
@@ -308,7 +303,8 @@ public class Signin extends AppCompatActivity {
             public void onSuccess(Intent intent) {
 
                 if (getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
-                    startActivityForResult(intent,REQ_USER_CONSENT);
+                   // startActivityForResult(intent,REQ_USER_CONSENT);
+//                    startActivityIfNeeded(intent,REQ_USER_CONSENT);
                 }
 
 
