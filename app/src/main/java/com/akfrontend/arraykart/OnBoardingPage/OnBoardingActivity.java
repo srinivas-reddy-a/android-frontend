@@ -6,12 +6,14 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Binder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.akfrontend.arraykart.BuildConfig;
 import com.akfrontend.arraykart.HomeNavigationActivity;
 import com.akfrontend.arraykart.R;
 
@@ -25,9 +27,11 @@ public class OnBoardingActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         String firstTime = preferences.getString("FirstTimeInstall", "");
         if(firstTime.equals("Yes")){
-            Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
-            startActivity(intent);
-            finish();
+            if(getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+                Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
         else{
             SharedPreferences.Editor editor = preferences.edit();
@@ -76,9 +80,12 @@ public class OnBoardingActivity extends AppCompatActivity {
                     }
 
                     else {
-                        Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
-                        startActivity(intent);
-                        finish();
+                        if(getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+                            Intent intent = new Intent(OnBoardingActivity.this, HomeNavigationActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     }
                 }
             });

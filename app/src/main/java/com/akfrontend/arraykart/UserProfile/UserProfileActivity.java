@@ -11,12 +11,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Binder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akfrontend.arraykart.BuildConfig;
 import com.bumptech.glide.Glide;
 import com.akfrontend.arraykart.AddressActivity.MyAddressActivity;
 import com.akfrontend.arraykart.AllApiModels.AuthRespones;
@@ -127,7 +129,10 @@ public class UserProfileActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //edit page
-                    startActivity(new Intent(UserProfileActivity.this, ProfileEditPageActivity.class));
+                    if(getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+                        startActivity(new Intent(UserProfileActivity.this, ProfileEditPageActivity.class));
+                    }
+
 
                 }
             });
@@ -152,7 +157,9 @@ public class UserProfileActivity extends AppCompatActivity {
             account_settings.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(UserProfileActivity.this,ProfileEditPageActivity.class));
+                    if(getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+                        startActivity(new Intent(UserProfileActivity.this,ProfileEditPageActivity.class));
+                    }
                 }
             });
 

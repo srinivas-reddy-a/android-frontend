@@ -294,7 +294,13 @@ public class SignUP extends AppCompatActivity {
             @Override
             public void onSuccess(Intent intent) {
 
-                startActivityForResult(intent,REQ_USER_CONSENT);
+                if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+                    if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+                        startActivityForResult(intent,REQ_USER_CONSENT);
+                    }
+
+                }
+
 
             }
 
@@ -469,7 +475,10 @@ public class SignUP extends AppCompatActivity {
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
+
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {

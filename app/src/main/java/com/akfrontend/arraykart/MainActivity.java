@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.akfrontend.arraykart.OnBoardingPage.OnBoardingActivity;
 import com.akfrontend.arraykart.R;
@@ -20,9 +22,15 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, OnBoardingActivity.class);
-                startActivity(i);
-                finish();
+                if(getPackageManager().getNameForUid(Binder.getCallingUid()).equals(BuildConfig.APPLICATION_ID)){
+                    Intent i = new Intent(MainActivity.this, OnBoardingActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+//                Intent i = new Intent(MainActivity.this, OnBoardingActivity.class);
+//                startActivity(i);
+//                Toast.makeText(MainActivity.this, getPackageManager().getNameForUid(Binder.getCallingUid()), Toast.LENGTH_SHORT).show();
+//                finish();
             }
         }, 3000);
 

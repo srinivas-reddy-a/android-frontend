@@ -306,7 +306,10 @@ public class Signin extends AppCompatActivity {
             @Override
             public void onSuccess(Intent intent) {
 
-                startActivityForResult(intent,REQ_USER_CONSENT);
+                if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+                    startActivityForResult(intent,REQ_USER_CONSENT);
+                }
+
 
             }
 
@@ -467,8 +470,12 @@ public class Signin extends AppCompatActivity {
     }
     ////google
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+
+        if (getCallingActivity() != null && getCallingActivity().getPackageName().equals(BuildConfig.APPLICATION_ID)){
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }
+
     }
 
 //    @Override
