@@ -116,7 +116,7 @@
         android:layout_height="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:tint="#D1CECE"
+        android:tint="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3"
         app:srcCompat="@android:drawable/ic_notification_overlay"
@@ -128,7 +128,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="14dp"
         android:progress="100"
         android:progressTint="#D1CECE"
         android:rotation="90"
@@ -206,7 +206,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="order Placed"
+        android:text="@string/order_placed"
         android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/orderIndicator"
@@ -218,7 +218,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/mon_12th_dec_2021_12_24"
+        android:text="@string/your_order_will_delivered_3_to_5_working_days"
         android:textColor="@color/text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/orderedTitle"
@@ -255,6 +255,7 @@
         android:text="@string/tus_13th_dec_2021_9_45"
         android:textColor="@color/text"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/packedTitle"
         app:layout_constraintStart_toEndOf="@+id/packedTitle"
         app:layout_constraintTop_toTopOf="@+id/packedTitle" />
@@ -264,6 +265,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/order_has_been_packed"
+
+        android:visibility="gone"
         android:textColor="@color/text"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/packedTitle"
@@ -290,6 +293,7 @@
         android:text="@string/wed_14th_dec_2021_10_40"
         android:textColor="@color/text"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/shippedTitle"
         app:layout_constraintStart_toEndOf="@+id/shippedTitle"
         app:layout_constraintTop_toTopOf="@+id/shippedTitle" />
@@ -300,6 +304,7 @@
         android:layout_height="wrap_content"
         android:text="@string/order_has_been_shipped_succesfully"
         android:textColor="@color/text"
+        android:visibility="gone"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/shippedTitle"
         app:layout_constraintTop_toBottomOf="@+id/shipped_delivery_progressBar" />
@@ -324,6 +329,7 @@
         android:text="@string/wed_15th_dec_2021_9_43"
         android:textColor="@color/text"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/deliveredTitle"
         app:layout_constraintStart_toEndOf="@+id/deliveredTitle"
         app:layout_constraintTop_toTopOf="@+id/deliveredTitle" />
@@ -336,6 +342,7 @@
         android:text="@string/order_delivered_on_time"
         android:textColor="@color/text"
         android:textSize="10sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/deliveredTitle"
         app:layout_constraintTop_toBottomOf="@+id/deliveredTitle" />
 

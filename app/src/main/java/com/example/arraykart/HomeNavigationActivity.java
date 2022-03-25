@@ -78,7 +78,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
+import androidx.navigation.NavInflater;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -147,6 +150,8 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     NavigationView navigationView;
 
     Menu optionsMenu;
+
+    MenuItem home;
 
 
     @Override
@@ -656,15 +661,15 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
         setLocale(language);
     }
 
-    @Override
-    public void onRestart() {
-        super.onRestart();
-        //When BACK BUTTON is pressed, the activity on the stack is restarted
-        //Do what you want on the refresh procedure here
-        startActivity(getIntent());
-        finish();
-
-    }
+//    @Override
+//    public void onRestart() {
+//        super.onRestart();
+//        //When BACK BUTTON is pressed, the activity on the stack is restarted
+//        //Do what you want on the refresh procedure here
+//        startActivity(getIntent());
+//        finish();
+//
+//    }
     //nested recyclerView
 
     private void nestedRecyclerView() {
@@ -810,26 +815,49 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
-//        id = menu.findItem(R.id.nav_SignUp);
-//        return true;
-//
-//    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
+        //getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         // get the navigation view in which the menu is included
         navigationView= findViewById(R.id.nav_view);
         optionsMenu = navigationView.getMenu();
-        MenuItem mitem = optionsMenu.findItem(R.id.nav_gallery);
+        MenuItem mitem = optionsMenu.findItem(R.id.nav_SignUp);
+        MenuItem mite = optionsMenu.findItem(R.id.nav_LogOut);
+        home = optionsMenu.findItem(R.id.nav_home);
         // example
 //        mitem.setTitle("allo");
+        SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
+        if(user_token.contains("token")){
+            mitem.setVisible(false);
+            mite.setVisible(true);
+        }else {
+            mitem.setVisible(true);
+            mite.setVisible(false);
+        }
+
         return true;
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+
+
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
+        startActivity(getIntent());
+        finish();
+//        NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home);
+//        NavController navController = navHost.getNavController();
+//
+//        NavInflater navInflater = navController.getNavInflater();
+//        NavGraph graph = navInflater.inflate(R.navigation.mobile_navigation);
+//
+//        graph.setStartDestination(R.id.nav_home);
+//
+//        navController.setGraph(graph);
+
+
     }
 
 

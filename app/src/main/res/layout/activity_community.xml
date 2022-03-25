@@ -60,6 +60,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textAlignment="center"
+        android:visibility="gone"
         android:text="@string/register_to_become_a_community_head"
         android:textSize="@dimen/heading_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,6 +74,7 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:paddingStart="20dp"
+        android:visibility="gone"
         android:paddingEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +105,7 @@
         android:orientation="horizontal"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
@@ -135,6 +138,7 @@
         android:layout_marginTop="30dp"
         android:textAlignment="center"
         android:textSize="@dimen/heading_size"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />

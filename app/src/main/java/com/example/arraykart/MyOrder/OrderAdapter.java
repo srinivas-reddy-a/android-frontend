@@ -85,7 +85,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
                 @Override
                 public void onFailure(Call<getProductsRespones> call, Throwable t) {
-                    Toast.makeText(context, "fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 

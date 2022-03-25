@@ -64,7 +64,6 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.img);
         holder.tv.setText(mainModel.get(position).getName());
-        holder.tv1.setText("RS."+mainModel.get(position).getPrice()+"/--");
 
 //        if(position<=p) {
 //            Glide.with(this.context)
@@ -81,6 +80,15 @@ public class HAdapter extends RecyclerView.Adapter<HAdapter.ViewHolder>{
 //            holder.tv.setPadding(20,140,20,140);
 //            holder.tv1.setVisibility(View.GONE);
 //        }
+        String p = mainModel.get(position).getPrice();
+        String[] price;
+        price = p.split(",");
+        if(price[0].toLowerCase().contains("na") || price[0].isEmpty() || price[0] == null || price[0].contains("0")){
+            holder.tv1.setText("out of stock");
+        }else {
+            holder.tv1.setText("₹ " + price[0] + "/--");
+        }
+//        holder.tv1.setText("Price coming soon");
 
     }
 

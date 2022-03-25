@@ -276,6 +276,7 @@ public class SignUP extends AppCompatActivity {
                 }else if(response.code()==401) {
                     signUpUserOtp.requestFocus();
                     signUpUserOtp.setError("please enter valid otp");
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }else {
                     try {

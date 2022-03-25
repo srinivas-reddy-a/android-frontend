@@ -47,6 +47,7 @@ public class OrderPlacedPage extends AppCompatActivity {
         String order_id = getIntent().getStringExtra("order_id");
         String Add = getIntent().getStringExtra("Add");
         String name = getIntent().getStringExtra("name");
+        String volume = getIntent().getStringExtra("volume");
 
         if(page.contains("cart")){
             cardView.setVisibility(View.GONE);
@@ -79,6 +80,7 @@ public class OrderPlacedPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     finish();
+
                 }
             });
             ContinueShopping.setOnClickListener(new View.OnClickListener() {
@@ -91,12 +93,13 @@ public class OrderPlacedPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(OrderPlacedPage.this, OrderDetail.class);
-                    in.putExtra("id",Pid);
-                    in.putExtra("qlt",qlt);
+                    in.putExtra("productId",Pid);
+                    in.putExtra("qty",qlt);
                     in.putExtra("image",image);
                     in.putExtra("total",total);
                     in.putExtra("order_id",order_id);
-                    in.putExtra("Add",Add);
+                    in.putExtra("addId",Add);
+                    in.putExtra("volume",volume);
                     in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(in);
                 }

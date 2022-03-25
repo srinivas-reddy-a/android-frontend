@@ -1,5 +1,6 @@
 package com.example.arraykart.ui.HelpCenter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -25,6 +26,7 @@ public class HelpCenterFragment extends Fragment {
         View root = binding.getRoot();
         Intent intent = new Intent(getContext(),HelpCenterActivity.class);
         startActivity(intent);
+        ((Activity)getContext()).finish();
 
         return root;
     }

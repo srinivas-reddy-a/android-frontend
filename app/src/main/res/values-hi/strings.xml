@@ -394,4 +394,5 @@
     <string name="product_name_here">उत्पाद का नाम यहाँ</string>
     <string name="options_for_sign_up">साइन अप के लिए विकल्प</string>
     <string name="view_your_wishlist">अपनी इच्छा सूची देखें</string>
+    <string name="your_order_will_delivered_3_to_5_working_days">आपका ऑर्डर 3 से 5 कार्य दिवसों में वितरित किया जाएगा</string>
 </resources>

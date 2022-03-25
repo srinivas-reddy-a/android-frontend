@@ -47,6 +47,7 @@ public class SlideshowFragment extends Fragment {
 //            }
 //        });
         if(user_token.contains("token")) {
+
             getContext().startActivity(new Intent(getContext(), MyOrder.class));
         }else {
             startActivity(new Intent(getContext(), SignUP.class));

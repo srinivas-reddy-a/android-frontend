@@ -89,14 +89,7 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         cartItemModelList= new ArrayList<>();
-//        cartItemModelList.add(new CartItemModel(0,"1",R.drawable.img,"Pesticide1",2,"Rs.---/-","RS.",1,0,0));
-//        cartItemModelList.add(new CartItemModel(0,"2",R.drawable.img,"Pesticide2",0,"Rs.---/-","RS.",2,1,0));
-//        cartItemModelList.add(new CartItemModel(0,"3",R.drawable.img,"Pesticide3",1,"Rs.---/-","RS.",3,0,1));
-//        cartItemModelList.add(new CartItemModel(1,"Price(3 item)","RS.----","Free","RS.-----"));
-//
-//        cartAdapter = new CartAdapter(cartItemModelList);
-//        cartItemsRecyclerView.setAdapter(cartAdapter);
-//        cartAdapter.notifyDataSetChanged();
+
 
 //       api call to get cart items
 
@@ -118,11 +111,16 @@ public class MyCartFragment extends Fragment {
                     }
                     total = Integer.toString(t);
 
-                    total_cart_amount.setText("RS."+total+"/--");
+                    total_cart_amount.setText("₹ "+total+" /---");
+//                    total_cart_amount.setText("Price coming soon");
+                    view.findViewById(R.id.constraintLayout2).setVisibility(View.VISIBLE);
                 }else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        view.findViewById(R.id.ContinueShopping).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.constraintLayout2).setVisibility(View.GONE);
+
 
 
                     } catch (Exception e) {
@@ -140,6 +138,7 @@ public class MyCartFragment extends Fragment {
             buy_on_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     changeAddress.setVisibility(View.VISIBLE);
                     ProductDetailPageAddressShow.setVisibility(View.VISIBLE);
                     buy_on_cart.setVisibility(View.GONE);
@@ -263,23 +262,24 @@ public class MyCartFragment extends Fragment {
     }
 
     private void  orederPlaced(String AddIds,String token,String total){
-        if(!AddIds.contains("null")){
-            Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token,total,AddIds);
-            callOrder.enqueue(new Callback<deleteWishListRespones>() {
-                @Override
-                public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
-                    deleteWishListRespones deleteWishListRespones = response.body();
-                    if(response.isSuccessful()){
-                        String order_id = deleteWishListRespones.getMessage();
-                        for (int i = 0;i<cartItemModelList.size();i++) {
-                            Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, cartItemModelList.get(i).getId(),  cartItemModelList.get(i).getQuantity(),cartItemModelList.get(i).getVolume());
-                            callDetail.enqueue(new Callback<ResponseBody>() {
-                                @Override
-                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    if (response.isSuccessful()) {
+        if(Integer.parseInt(total) >= 1000) {
+            if (!AddIds.contains("null")) {
+                Call<deleteWishListRespones> callOrder = RetrofitClient.getInstance().getApi().orderAdd(token, total, AddIds);
+                callOrder.enqueue(new Callback<deleteWishListRespones>() {
+                    @Override
+                    public void onResponse(Call<deleteWishListRespones> call, Response<deleteWishListRespones> response) {
+                        deleteWishListRespones deleteWishListRespones = response.body();
+                        if (response.isSuccessful()) {
+                            String order_id = deleteWishListRespones.getMessage();
+                            for (int i = 0; i < cartItemModelList.size(); i++) {
+                                Call<ResponseBody> callDetail = RetrofitClient.getInstance().getApi().OrderDetail(order_id, cartItemModelList.get(i).getId(), cartItemModelList.get(i).getQuantity(), cartItemModelList.get(i).getVolume());
+                                callDetail.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
 
-                                        Intent in = new Intent(getContext(), OrderPlacedPage.class);
-                                        in.putExtra("page","cart");
+                                            Intent in = new Intent(getContext(), OrderPlacedPage.class);
+                                            in.putExtra("page", "cart");
 //                                        in.putExtra("id", id);
 //                                        in.putExtra("qlt", qty);
 //                                        in.putExtra("image", imgs);
@@ -288,33 +288,53 @@ public class MyCartFragment extends Fragment {
 //                                        in.putExtra("Add", AddIds);
 //                                        in.putExtra("name", pdProductName.getText().toString());
 //                                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(in);
-                                        ProductDetailPageAddressShow.setVisibility(View.GONE);
-                                        delivery_continue_btn.setVisibility(View.GONE);
-                                        buy_on_cart.setVisibility(View.VISIBLE);
+                                            startActivity(in);
+                                            ProductDetailPageAddressShow.setVisibility(View.GONE);
+                                            delivery_continue_btn.setVisibility(View.GONE);
+                                            buy_on_cart.setVisibility(View.VISIBLE);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<deleteWishListRespones> call, Throwable t) {
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
+            } else {
+                Toast.makeText(getContext(), "Please Add you Address First", Toast.LENGTH_LONG).show();
+            }
         }else{
-            Toast.makeText(getContext(), "Please Add you Address First", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "minimum price should be 1000", Toast.LENGTH_SHORT).show();
         }
 
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ShippingAddress();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ShippingAddress();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ShippingAddress();
+    }
 }

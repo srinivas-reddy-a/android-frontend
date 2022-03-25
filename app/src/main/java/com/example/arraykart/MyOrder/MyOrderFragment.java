@@ -86,13 +86,6 @@ public class MyOrderFragment extends Fragment {
         sharedPrefManager = new SharedPrefManager(getContext());
         String token = sharedPrefManager.getValue_string("token");
 
-//        orderItemModelList.add(new OrderItemModel(R.drawable.img,2,"product name","Delivered on MM/DD/YY"));
-//        orderItemModelList.add(new OrderItemModel(R.drawable.img,1,"product name","Canceled"));
-//        orderItemModelList.add(new OrderItemModel(R.drawable.img,0,"product name","Delivered on MM/DD/YY"));
-//        orderItemModelList.add(new OrderItemModel(R.drawable.img,0,"product name","Canceled"));
-
-
-
         Call<getOrderRespones> call = RetrofitClient.getInstance().getApi().getOrder(token);
         call.enqueue(new Callback<getOrderRespones>() {
             @Override
@@ -105,7 +98,7 @@ public class MyOrderFragment extends Fragment {
                     orderAdapter.notifyDataSetChanged();
 
                 }else {
-                    Toast.makeText(getContext(), "err", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "no order", Toast.LENGTH_SHORT).show();
 
                 }
             }

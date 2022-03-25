@@ -109,7 +109,18 @@ public class GridViewAdapter extends BaseAdapter {
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.cImg);
             holder.txt.setText(modelForSingleProducts.get(position).getName());
-            holder.prc.setText("RS."+modelForSingleProducts.get(position).getPrice()+"/--");
+
+            String p = modelForSingleProducts.get(position).getPrice();
+            String[] price;
+            price = p.split(",");
+            if(price[0].toLowerCase().contains("na") || price[0].isEmpty() || price[0] == null || price[0].contains("0")){
+                holder.prc.setText("out of stock");
+            }else {
+                holder.prc.setText("₹ " + price[0] + "/---");
+            }
+
+
+           // holder.prc.setText("Price Coming soon");
             holder.rb.setVisibility(View.GONE);
             holder.rt.setVisibility(View.GONE);
 

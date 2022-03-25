@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -146,9 +148,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 //        int freeCoupon = cartItemModelList.get(position).getFreeCoupons();
         String productPrice = cartItemModelList.get(position).getPrice();
         String productQuantity = cartItemModelList.get(position).getQuantity();
+        String volume = cartItemModelList.get(position).getVolume();
 //        String cuttedPrice = cartItemModelList.get(position).getCuttedPerice();
 //        int offerApplied = cartItemModelList.get(position).getOffersApplied()
-        holder.cartItemDetail(resource,title,productPrice,productQuantity);
+        holder.cartItemDetail(resource,title,productPrice,productQuantity,volume);
 
 
     }
@@ -170,6 +173,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
         private TextView productQuantity;
         private ConstraintLayout remove_item_btn;
         private TextView add_wishList_cart_page,remove_item_btn_cartPage;
+        private TextView cartVolume;
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -187,7 +191,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
             mini_quantity_cart = itemView.findViewById(R.id.mini_quantity_cart);
             remove_item_btn_cartPage = itemView.findViewById(R.id.remove_item_btn_cartPage);
             add_wishList_cart_page = itemView.findViewById(R.id.add_wishList_cart_page);
-
+            cartVolume = itemView.findViewById(R.id.selected_volume);
 
             sharedPrefManager = new SharedPrefManager(itemView.getContext());
             String token = sharedPrefManager.getValue_string("token");
@@ -427,7 +431,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
 //
         }
 
-        private void cartItemDetail(String image,String title,String productPriceText,String qty){
+        private void cartItemDetail(String image,String title,String productPriceText,String qty, String volume){
             try {
 
 //                productImage.setImageResource(image);
@@ -439,7 +443,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartItemViewHo
                 productTitle.setText(title);
                 freeCoupons.setVisibility(View.GONE);
                 freeCouponIcon.setVisibility(View.GONE);
-                productPrice.setText("RS"+" "+productPriceText+"/--");
+
+                cartVolume.setText("Volume "+ volume );
+                productPrice.setText("₹ "+" "+productPriceText+"---");
+//                productPrice.setText("Price coming soon");
                 cuttedPrice.setVisibility(View.GONE);
                 offerApplied.setVisibility(View.GONE);
                 productQuantity.setText(qty);
