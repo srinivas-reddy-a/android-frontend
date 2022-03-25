@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PrivacyPolicy.PrivacyPolicy">
+    tools:context="com.akfrontend.arraykart.ui.PrivacyPolicy.PrivacyPolicy">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -163,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20sp"
                     android:text="@string/pp_info_collect4"
+
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 
@@ -219,6 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20sp"
                     android:text="@string/pp_info_use6"
+
                     android:textColor="@color/text"
                     android:textSize="@dimen/heading_size" />
 

@@ -5,7 +5,7 @@
     android:id="@+id/sign_cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Signin">
+    tools:context="com.akfrontend.arraykart.Signin">
 
     <include
         layout="@layout/sign_in"

@@ -8,7 +8,7 @@
     android:background="@color/cardview_light_background"
     android:padding="20sp"
     style="@style/BottomSheetStyle"
-    tools:context=".Filter.FilterPage">
+    tools:context="com.akfrontend.arraykart.Filter.FilterPage">
 
     <TextView
         android:id="@+id/textView"
