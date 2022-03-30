@@ -145,13 +145,13 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
     Menu optionsMenu;
 
     MenuItem home;
-
+    public int selectedElement=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getApplicationInfo().targetSdkVersion = 14;
         super.onCreate(savedInstanceState);
-
+        loadLocale();
         SharedPreferences user_token = getSharedPreferences("arraykartuser",MODE_PRIVATE);
 
         sharedPrefManager = new SharedPrefManager(this);
@@ -616,42 +616,47 @@ public class HomeNavigationActivity extends AppCompatActivity implements Navigat
 
     private void showChangeLanguageDialog() {
         final String[] listItems = {"हिन्दी", "English"};
-        androidx.appcompat.app.AlertDialog.Builder mBuilder = new androidx.appcompat.app.AlertDialog.Builder(HomeNavigationActivity.this);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(HomeNavigationActivity.this);
         mBuilder.setTitle("Choose Language...");
-        mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+        mBuilder.setSingleChoiceItems(listItems, selectedElement, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(i==0) {
-                    setLocale("hi");
+                    selectedElement = i;
+                    setLocale("hi", selectedElement);
                     recreate();
                 }
                 else if(i==1){
-                    setLocale("en");
+                    selectedElement = i;
+                    setLocale("en", selectedElement);
                     recreate();
                 }
                 dialogInterface.dismiss();
             }
         });
 
-        androidx.appcompat.app.AlertDialog mDialog = mBuilder.create();
+        AlertDialog mDialog = mBuilder.create();
         mDialog.show();
     }
 
-    private void setLocale(String lang) {
+    private void setLocale(String lang, int a) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
+        selectedElement = a;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My Lang", lang);
+        editor.putInt("selected", a);
         editor.apply();
     }
 
     public void loadLocale(){
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My Lang", "");
-        setLocale(language);
+        int selectRadio = prefs.getInt("selected", 0);
+        setLocale(language, selectRadio);
     }
 
 //    @Override
